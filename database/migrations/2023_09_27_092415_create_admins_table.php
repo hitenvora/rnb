@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('role');
             $table->string('name');
             $table->string('password');
             $table->tinyInteger('is_active')->default(1)->comment('1: active, 0: inactive');

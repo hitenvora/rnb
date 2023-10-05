@@ -835,13 +835,13 @@
                 },
                 dataType: "json",
                 success: (data) => {
-                    window.location = "{{route('basic_branch')}}";
                     $('#master_id').val(data.data.id);
                     $('#basic_name_scheme').val(data.data.basic_name_scheme);
                     $('#basic_name_project').val(data.data.basic_name_project);
                     $('#basic_wms_work_head').val(data.data.basic_wms_work_head);
                     $('#district_id').val(data.data.district_id);
-
+                    
+                    window.location = "{{route('basic_branch')}}";
                 },
                 error: function(response) {
                     toastr.error(response.msg);

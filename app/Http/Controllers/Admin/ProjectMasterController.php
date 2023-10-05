@@ -60,8 +60,8 @@ class ProjectMasterController extends Controller
             $project_master[$key]['eye_icon'] = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="viewproposal(' . $record->id . ')"  title="View"><i class="fa fa-eye"></i></button>
             <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#proposal_view" aria-label="View" data-bs-original-title="View';
 
-
-            $action = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="editmaster(' . $id . ')" title="Edit"><i class="fa fa-pencil"></i></button>';
+            $actionUrl = route('edit_project_master', $id);
+            $action = '<a class="btn btn-primary btn-sm me-1" href="' . $actionUrl . '"><i class="fa fa-pencil"></i></a>';
             $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
 
             $project_master[$key]['action'] =  $action;
@@ -76,10 +76,23 @@ class ProjectMasterController extends Controller
     public function master_edit($id)
     {
         $project_master = Master::where('id', '=', $id)->first();
-        if ($project_master) {
-            return response()->json(['status' => '200', 'msg' => 'success', 'data' => $project_master]);
-        }
-        return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        // if ($project_master) {
+        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $project_master]);
+        // }
+        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        $division_name = DivisionMasters::orderBy('id')->get();
+        $sub_division_name = SubDivisionMasters::orderBy('id')->get();
+        $district_name = District::orderBy('id')->get();
+        $taluka_name = Taluka::orderBy('id')->get();
+        // $proposal = ProPosalMasters::orderBy('id')->get();
+        $work_type = WorkTypes::orderBy('id')->get();
+        $type_work = TypesOfWork::orderBy('id')->get();
+        $budget = Budget::orderBy('id')->get();
+        $budget_work = BudgetWork::orderBy('id')->get();
+        $mp_mla = MpMlaSuggested::orderBy('id')->get();
+        $sent_box = SentBox::orderBy('id')->get();
+        $master_show = Master::orderBy('id')->get();
+        return view('pb_branch.edit_basic_branch', compact('division_name', 'sub_division_name', 'project_master', 'district_name', 'taluka_name', 'work_type', 'type_work', 'budget', 'budget_work', 'mp_mla', 'sent_box'));
     }
 
 

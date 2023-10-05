@@ -78,7 +78,7 @@ class LetterReminderMasterController extends Controller
         }
         return Datatables::of($letter_reminder)
             ->addIndexColumn()
-            ->rawColumns(['action', 'active_button','eye_icon'])
+            ->rawColumns(['action', 'active_button', 'eye_icon'])
             ->make(true);
     }
 

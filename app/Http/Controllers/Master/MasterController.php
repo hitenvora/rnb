@@ -426,40 +426,32 @@ class MasterController extends Controller
         $basic_branch->tpi_validity_extension_letter_image = $request->input('tpi_validity_extension_letter_image');
         $basic_branch->tpi_aggr_no = $request->input('tpi_aggr_no');
         $basic_branch->tpi_agency_last = $request->input('tpi_agency_last');
-
-
-
-        $basic_branch->save();
-
-
-
-
+        
         $forest_protected = $request->input('forest_protected');
-
+        
         if (isset($forest_protected) && sizeof($forest_protected)) {
 
-            foreach ($forest_protected as $option) {
-                Master::create([
-                    'forest_protected' => $option,
-                ]);
-            }
+            $basic_branch->forest_protected = implode(",",$forest_protected);
+            // foreach ($forest_protected as $option) {
+            //     Master::create([
+            //         'forest_protected' => $option,
+            //     ]);
+            // }
         }
-
-
 
         $used_type = $request->input('used_type');
-
+        
         if (isset($used_type) && sizeof($used_type)) {
-
-            foreach ($used_type as $option) {
-                Master::create([
-                    'used_type' => $option,
-                ]);
-            }
+            
+            // foreach ($used_type as $option) {
+            //     Master::create([
+            //         'used_type' => $option,
+            //     ]);
+            // }
+            $basic_branch->used_type = implode(",",$used_type);
         }
-
-
-
+        
+        $basic_branch->save();
         return response()->json(['status' => '200', 'msg' => 'success']);
     }
 }

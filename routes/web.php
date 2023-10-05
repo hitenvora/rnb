@@ -188,3 +188,20 @@ Route::get('/fmg', [FmgController::class, 'index'])->name('fmg');
 
 //fdr
 Route::get('/fdr', [FdrController::class, 'index'])->name('fdr');
+
+//edit
+Route::get('/edit-proposal/{id}', [ProposalMasterController::class, 'proposal_master_edit'])->name('edit_proposal_submitted_detail');
+
+Route::get('/edit-principal-approval/{id}', [ProposalMasterController::class, 'principal_approval_edit'])->name('edit_principal_approval_detail');
+
+Route::get('/edit-block-estimate-submit-detail/{id}', [ProposalMasterController::class, 'principal_estimate_edit'])->name('edit_block_estimate_submit_detail');
+
+Route::get('/edit-administrative-approval/{id}', [ProposalMasterController::class, 'edit_administrative_approval'])->name('edit_administrative_approval');
+
+Route::get('/technical-section-detail/{id}', [ProposalMasterController::class, 'edit_technical_section_detail'])->name('edit_technical_section_detail');
+
+Route::get('/edit-forest-clearence-detail/{id}', [ProposalMasterController::class, 'edit_forest_clearence_detail'])->name('edit_forest_clearence_detail');
+
+Route::get('/edit-utility-shifting-detail/{id}', [ProposalMasterController::class, 'edit_utility_shifting_detail'])->name('edit_utility_shifting_detail');
+
+Route::get('/edit-laq-approval/{id}', [ProposalMasterController::class, 'edit_utility_shifting_detail'])->name('edit_utility_shifting_detail');

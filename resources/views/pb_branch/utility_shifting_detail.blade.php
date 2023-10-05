@@ -35,32 +35,32 @@
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item checkboxes" href="#">
                                                     <input type="checkbox" id="used_type[]" name="used_type[]"
-                                                        value="HTML" class="form-check-input" checked>
+                                                        value="Electric Pole" class="form-check-input" checked>
                                                     Electric Pole
                                                 </a>
                                                 <a class="dropdown-item checkboxes" href="#">
                                                     <input type="checkbox" id="used_type[]" name="used_type[]"
-                                                        value="HTML" class="form-check-input" checked>
+                                                        value="Water Supply line" class="form-check-input" checked>
                                                     Water Supply line
                                                 </a>
                                                 <a class="dropdown-item checkboxes" href="#">
                                                     <input type="checkbox" id="used_type[]" name="used_type[]"
-                                                        value="HTML" class="form-check-input" checked>
+                                                        value="Drainage line" class="form-check-input" checked>
                                                     Drainage line
                                                 </a>
                                                 <a class="dropdown-item checkboxes" href="#">
                                                     <input type="checkbox" id="used_type[]" name="used_type[]"
-                                                        value="HTML" class="form-check-input">
+                                                        value="Telephone line" class="form-check-input">
                                                     Telephone line
                                                 </a>
                                                 <a class="dropdown-item checkboxes" href="#">
                                                     <input type="checkbox" id="used_type[]" name="used_type[]"
-                                                        value="HTML" class="form-check-input">
+                                                        value="Gas line" class="form-check-input">
                                                     Gas line
                                                 </a>
                                                 <a class="dropdown-item checkboxes" href="#">
                                                     <input type="checkbox" id="used_type[]" name="used_type[]"
-                                                        value="HTML" class="form-check-input">
+                                                        value="Others" class="form-check-input">
                                                     Others
                                                 </a>
                                             </div>

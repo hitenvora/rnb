@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Budget;
 use App\Models\Admin\BudgetWork;
 use App\Models\Admin\District;
+use App\Models\Admin\DivisionMasters;
 use App\Models\Admin\MpMlaSuggested;
 use App\Models\Admin\ProPosalMasters;
 use App\Models\Admin\SentBox;
+use App\Models\Admin\SubDivisionMasters;
 use App\Models\Admin\Taluka;
 use App\Models\Admin\TypesOfWork;
 use App\Models\Admin\WorkTypes;
+use App\Models\Master\Master;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -155,12 +158,81 @@ class ProposalMasterController extends Controller
 
     public function proposal_master_edit($id)
     {
-        $proposal_master = ProPosalMasters::where('id', '=', $id)->first();
-        if ($proposal_master) {
-            return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
-        }
-        return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        $project_master = Master::where('id', $id)->first();
+        // if ($proposal_master) {
+        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
+        // }
+        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        return view('pb_branch.edit_proposal_submitted_detail',compact('project_master'));
     }
+
+    public function principal_approval_edit($id)
+    {
+        $project_master = Master::where('id', $id)->first();
+        // if ($proposal_master) {
+        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
+        // }
+        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        return view('pb_branch.edit_principal_approval_detail',compact('project_master'));
+    }
+
+    public function principal_estimate_edit($id)
+    {
+        $project_master = Master::where('id', $id)->first();
+        $division_name = DivisionMasters::orderBy('id')->get();
+        $sub_division_name = SubDivisionMasters::orderBy('id')->get();
+        // if ($proposal_master) {
+        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
+        // }
+        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        return view('pb_branch.edit_block_estimate_submit_detail',compact('project_master','division_name','sub_division_name'));
+    }
+
+    public function edit_administrative_approval($id)
+    {
+        $project_master = Master::where('id', $id)->first();
+      
+        // if ($proposal_master) {
+        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
+        // }
+        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        return view('pb_branch.edit_administrative_approval',compact('project_master'));
+    }
+
+    public function edit_technical_section_detail($id)
+    {
+        $project_master = Master::where('id', $id)->first();
+      
+        // if ($proposal_master) {
+        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
+        // }
+        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        return view('pb_branch.edit_technical_section_detail',compact('project_master'));
+    }
+    
+    public function edit_forest_clearence_detail($id)
+    {
+        $project_master = Master::where('id', $id)->first();
+      
+        // if ($proposal_master) {
+        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
+        // }
+        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        return view('pb_branch.edit_forest_clearence_detail',compact('project_master'));
+    }
+
+    public function edit_utility_shifting_detail($id)
+    {
+        $project_master = Master::where('id', $id)->first();
+      
+        // if ($proposal_master) {
+        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
+        // }
+        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
+        return view('pb_branch.edit_utility_shifting_detail',compact('project_master'));
+    }
+
+    
 
     public function delete(Request $request)
     {
