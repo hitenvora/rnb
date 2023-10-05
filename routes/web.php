@@ -1,0 +1,190 @@
+<?php
+
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\DivisionMasterController;
+use App\Http\Controllers\Admin\LetterReminderMasterController;
+use App\Http\Controllers\Admin\MasterFormController;
+use App\Http\Controllers\Admin\ProjectMasterController;
+use App\Http\Controllers\Admin\ProposalMasterController;
+use App\Http\Controllers\Admin\SubDivisionMasterController;
+use App\Http\Controllers\Admin\UserMasterController;
+use App\Http\Controllers\AuditorAccount\BudgetaryDetailController;
+use App\Http\Controllers\AuditorAccount\DlpPeriodController;
+use App\Http\Controllers\AuditorAccount\ExcessDetailController;
+use App\Http\Controllers\AuditorAccount\ExpenditureDetailController;
+use App\Http\Controllers\AuditorAccount\FdrController;
+use App\Http\Controllers\AuditorAccount\FmgController;
+use App\Http\Controllers\AuditorAccount\TimeExtensionController;
+use App\Http\Controllers\AuditorAccount\WorkStatusController;
+use App\Http\Controllers\Master\MasterController;
+use App\Http\Controllers\PbBranch\AdministrativeApprovalController;
+use App\Http\Controllers\PbBranch\BasicBranchController;
+use App\Http\Controllers\PbBranch\BlockEstimateSubmitDetailController;
+use App\Http\Controllers\PbBranch\ForestClearenceDetailController;
+use App\Http\Controllers\PbBranch\LaqApprovalController;
+use App\Http\Controllers\PbBranch\PbBranchLoginController;
+use App\Http\Controllers\PbBranch\PrincipalApprovalDetailController;
+use App\Http\Controllers\PbBranch\ProposalSubmittedDetailController;
+use App\Http\Controllers\PbBranch\TechnicalSectionDetailController;
+use App\Http\Controllers\PbBranch\UtilityShiftingDetailController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Tender\DepositOrderController;
+use App\Http\Controllers\Tender\DtpApprovalController;
+use App\Http\Controllers\Tender\NitController;
+use App\Http\Controllers\Tender\TpiDetaileController;
+use App\Models\PbBranch\PbBranchLogin;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+//profile
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+
+//admin-login
+Route::get('/admin/login', [AdminAuthController::class, 'index'])->name('admin_login');
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin_login_submit');
+Route::get('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin_logout');
+
+
+
+
+
+//master-form
+Route::get('/master-form', [MasterFormController::class, 'index'])->name('master_form');
+//master insert
+Route::post('/master-insert', [MasterController::class, 'insert'])->name('master_insert');
+
+//proposal_master
+Route::get('/proposal-master', [ProposalMasterController::class, 'index'])->name('proposal_master');
+Route::post('/proposal-master-insert', [ProposalMasterController::class, 'insert'])->name('proposal_master_insert');
+Route::post('/get-proposal-master', [ProposalMasterController::class, 'get_proposal_master'])->name('get_proposal_master');
+Route::get('/proposal-master-edit/{id}', [ProposalMasterController::class, 'proposal_master_edit'])->name('edit_proposal_master');
+Route::post('/proposal-delete', [ProposalMasterController::class, 'delete'])->name('proposal_delete');
+Route::get('/show-proposal-master/{id}', [ProposalMasterController::class, 'show_proposal_master'])->name('show_proposal_master');
+//user_master
+Route::get('/user-master', [UserMasterController::class, 'index'])->name('user_master');
+Route::post('/user-insert', [UserMasterController::class, 'insert'])->name('user_master_insert');
+Route::post('/get-user', [UserMasterController::class, 'get_user_list'])->name('get_user_list');
+Route::get('/user-edit/{id}', [UserMasterController::class, 'user_edit'])->name('user_edit');
+Route::post('/user-delete', [UserMasterController::class, 'delete'])->name('user_delete');
+
+// project_master
+Route::get('/project-master', [ProjectMasterController::class, 'index'])->name('project_master');
+Route::get('/project-master/create', [ProjectMasterController::class, 'create'])->name('project_master.create');
+Route::post('/get-project-master', [ProjectMasterController::class, 'get_project_master'])->name('get_project_master');
+Route::get('/edit-project-master/{id}', [ProjectMasterController::class, 'master_edit'])->name('edit_project_master');
+Route::post('/project-master-delete', [ProjectMasterController::class, 'delete'])->name('project_master_delete');
+
+//division_master
+Route::get('/division-master', [DivisionMasterController::class, 'index'])->name('division_master');
+Route::post('/division-insert', [DivisionMasterController::class, 'insert'])->name('division_insert');
+Route::post('/get-division', [DivisionMasterController::class, 'get_division_list'])->name('get_division_list');
+Route::get('/division-edit/{id}', [DivisionMasterController::class, 'division_edit'])->name('division_edit');
+Route::post('/division-delete', [DivisionMasterController::class, 'delete'])->name('division_delete');
+
+//sub-division_master
+Route::get('/sub-division-master', [SubDivisionMasterController::class, 'index'])->name('sub_division_master');
+Route::post('/sub-division-insert', [SubDivisionMasterController::class, 'insert'])->name('sub_division_insert');
+Route::post('/get-sub-division', [SubDivisionMasterController::class, 'get_sub_division_list'])->name('get_sub_division_list');
+Route::get('/sub-division-edit/{id}', [SubDivisionMasterController::class, 'sub_division_edit'])->name('sub_division_edit');
+Route::post('/sub-division-delete', [SubDivisionMasterController::class, 'delete'])->name('sub_division_delete');
+
+//letter_reminder_master
+Route::get('/letter-reminder-master', [LetterReminderMasterController::class, 'index'])->name('letter_reminder_master');
+Route::post('/letter-reminder-insert', [LetterReminderMasterController::class, 'insert'])->name('letter_reminder_insert');
+Route::post('/get-letter-reminder', [LetterReminderMasterController::class, 'get_letter_reminder'])->name('get_letter_reminder');
+Route::get('/letter-reminder-edit/{id}', [LetterReminderMasterController::class, 'letter_reminder_edit'])->name('letter_reminder_edit');
+Route::post('/letter-reminder-delete', [LetterReminderMasterController::class, 'delete'])->name('letter_reminder_delete');
+
+
+//pb-branch-login
+Route::get('/pb/branch/login', [PbBranchLoginController::class, 'index'])->name('pb_branch_login');
+Route::post('/pb/branch/login/submit', [PbBranchLoginController::class, 'login'])->name('pb_branch_login_submit');
+Route::get('/pb/branch/logout', [PbBranchLoginController::class, 'logout'])->name('pb_branch_logout');
+
+//basic_branch
+Route::get('/basic-branch', [BasicBranchController::class, 'index'])->name('basic_branch');
+Route::post('/basic-branch-insert', [BasicBranchController::class, 'insert'])->name('basic_branch_insert');
+
+
+//proposal_submitted_detail
+Route::get('/proposal-submitted-detail', [ProposalSubmittedDetailController::class, 'index'])->name('proposal_submitted_detail');
+Route::post('/proposal-submitted-insert', [ProposalSubmittedDetailController::class, 'insert'])->name('proposal_submitted_insert');
+
+//principal_approval_detail
+Route::get('/principal-approval-detail', [PrincipalApprovalDetailController::class, 'index'])->name('principal_approval_detail');
+Route::post('/principal-approval-insert', [PrincipalApprovalDetailController::class, 'insert'])->name('principal_approval_insert');
+
+//block_estimate_submit_detail
+Route::get('/block-estimate-submit-detail', [BlockEstimateSubmitDetailController::class, 'index'])->name('block_estimate_submit_detail');
+Route::post('/block-estimate-submit-insert', [BlockEstimateSubmitDetailController::class, 'insert'])->name('block_estimate_submit_insert');
+
+//administrative_approval
+Route::get('/administrative-approval', [AdministrativeApprovalController::class, 'index'])->name('administrative_approval');
+Route::post('/administrative-approval-insert', [AdministrativeApprovalController::class, 'insert'])->name('administrative_approval_insert');
+
+
+//technical_section_detail
+Route::get('/technical-section-detail', [TechnicalSectionDetailController::class, 'index'])->name('technical_section_detail');
+Route::post('/technical-section-detail-insert', [TechnicalSectionDetailController::class, 'insert'])->name('technical_section_detail_insert');
+
+//forest_clearence_detail
+Route::get('/forest-clearence-detail', [ForestClearenceDetailController::class, 'index'])->name('forest_clearence_detail');
+
+//utility_shifting_detail
+Route::get('/utility-shifting-detail', [UtilityShiftingDetailController::class, 'index'])->name('utility_shifting_detail');
+
+//laq_approval
+Route::get('/laq-approval', [LaqApprovalController::class, 'index'])->name('laq_approval');
+
+
+
+//budgetary_detail
+Route::get('/budgetary-detail', [BudgetaryDetailController::class, 'index'])->name('budgetary_detail');
+
+//expenditure_detail
+Route::get('/expenditure-detail', [ExpenditureDetailController::class, 'index'])->name('expenditure_detail');
+
+//excess_detail
+Route::get('/excess-detail', [ExcessDetailController::class, 'index'])->name('excess_detail');
+
+//time_extension
+Route::get('/time-extension', [TimeExtensionController::class, 'index'])->name('time_extension');
+
+//work_status
+Route::get('/work-status', [WorkStatusController::class, 'index'])->name('work_status');
+
+//dlp_period
+Route::get('/dlp-period', [DlpPeriodController::class, 'index'])->name('dlp_period');
+
+//dtp_approval
+Route::get('/dtp-approval', [DtpApprovalController::class, 'index'])->name('dtp_approval');
+
+//nit
+Route::get('/nit', [NitController::class, 'index'])->name('nit');
+
+//deposit_order
+Route::get('/deposit-order', [DepositOrderController::class, 'index'])->name('deposit_order');
+
+//tpi_detail
+Route::get('/tpi-detail', [TpiDetaileController::class, 'index'])->name('tpi_detail');
+
+//fmg
+Route::get('/fmg', [FmgController::class, 'index'])->name('fmg');
+
+//fdr
+Route::get('/fdr', [FdrController::class, 'index'])->name('fdr');
