@@ -3,7 +3,7 @@
     @endsection
 
     @section('content')
-    @include('navbar.pb_branch.edit_pb_branch_navbar')
+        @include('navbar.pb_branch.edit_pb_branch_navbar')
 
 
         <body>
@@ -18,13 +18,15 @@
                                 <div class="card-body">
                                     <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                         @csrf
-                                        <input type="hidden" name="master_id" id="master_id">
+                                        <input type="hidden" name="master_id" id="master_id"
+                                            value="{{ $project_master->id }}">
                                         {{-- @foreach ($block_estimate_show as $item)
                                         @endforeach --}}
                                         <div class="col-lg-3">
                                             <label class="form-label">Letter No.</label>
                                             <input type="text" class="form-control" id="bes_letter_no"
-                                                name="bes_letter_no" placeholder="Enter Letter No." value="{{ $project_master->bes_letter_no }}">
+                                                name="bes_letter_no" placeholder="Enter Letter No."
+                                                value="{{ $project_master->bes_letter_no }}">
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="form-label">Letter Date</label>
@@ -40,13 +42,19 @@
                                             <label class="form-label">Letter Upload</label>
                                             <div class="input-group">
                                                 <input type="file" class="form-control w-100" id="bes_letter_upload"
-                                                    name="bes_letter_upload" value="{{ $project_master->bes_letter_upload }}">
+                                                    name="bes_letter_upload"
+                                                    value="{{ $project_master->bes_letter_upload }}">
+                                                a
+                                                href="{{ asset('uplode_images/block_estimate_submitted_detail/' . $project_master->bes_letter_upload) }}"
+                                                target="_blank">
+                                                <br>Open Image in New Tab
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <label class="form-label">Provision in Estimate</label>
                                             <textarea rows="9" class="form-control" id="bes_provision_in_estimate" name="bes_provision_in_estimate"
-                                                placeholder="Enter Provision in Estimate">"{{ $project_master->bes_provision_in_estimate }}"</textarea>
+                                                placeholder="Enter Provision in Estimate">{{ $project_master->bes_provision_in_estimate }}</textarea>
                                         </div>
                                         <div class="col-xl-3 col-lg-6">
                                             <label class="form-label">Submitted Letter No.</label>
@@ -57,7 +65,8 @@
                                         <div class="col-xl-3  col-lg-6">
                                             <label class="form-label">Submission Office Date</label>
                                             <input type="date" class="form-control" id="bes_submit_office_date"
-                                                name="bes_submit_office_date" value="{{ $project_master->bes_submit_office_date }}">
+                                                name="bes_submit_office_date"
+                                                value="{{ $project_master->bes_submit_office_date }}">
                                         </div>
                                         <div class="col-xl-3  col-lg-6">
                                             <label class="form-label">Letter Upload</label>
@@ -65,15 +74,20 @@
                                                 <input type="file" class="form-control w-100"
                                                     id="bes_office_letter_upload" name="bes_office_letter_upload"
                                                     value="{{ $project_master->bes_office_letter_upload }}">
+                                                <a href="{{ asset('uplode_images/block_estimate_submitted_detail/' . $project_master->bes_office_letter_upload) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="col-xl-3  col-lg-6">
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <label class="form-label">Division</label>
-                                                    <select class="form-select" id="division_id" name="division_id">
+                                                    <select class="form-select" id="division_id " name="division_id">
                                                         @foreach ($division_name as $value)
-                                                            <option selected value="{{ $value['id'] }}" @selected($project_master->division_id)>
+                                                            <option value="{{ $value['id'] }}"
+                                                                {{ $project_master->division_id == $value['id'] ? 'selected' : '' }}>
                                                                 {{ $value['name'] }}
                                                             </option>
                                                         @endforeach
@@ -83,7 +97,8 @@
                                                     <label class="form-label">Subdivision</label>
                                                     <select class="form-select" id="sub_division_id" name="sub_division_id">
                                                         @foreach ($sub_division_name as $value)
-                                                            <option selected value="{{ $value['id'] }}" @selected($project_master->sub_division_id)>
+                                                            <option value="{{ $value['id'] }}"
+                                                                {{ $project_master->sub_division_id == $value['id'] ? 'selected' : '' }}>
                                                                 {{ $value['name'] }}
                                                             </option>
                                                         @endforeach
@@ -112,29 +127,15 @@
                                                                     <td>
                                                                         <input type="text" id="bes_status"
                                                                             name="bes_status" class="form-control"
-                                                                            placeholder="Enter Status" value="{{ $project_master->bes_status }}">
+                                                                            placeholder="Enter Status"
+                                                                            value="{{ $project_master->bes_status }}">
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" id="bes_remark"
                                                                             name="bes_remark" class="form-control"
-                                                                            placeholder="Enter Remark" value="{{ $project_master->bes_remark }}">
+                                                                            placeholder="Enter Remark"
+                                                                            value="{{ $project_master->bes_remark }}">
                                                                     </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    {{-- <td>
-                                                                        <input type="date" id="f_date"
-                                                                            class="form-control" placeholder="Enter Date">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="f_status"
-                                                                            class="form-control"
-                                                                            placeholder="Enter Status">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="f_remark"
-                                                                            class="form-control"
-                                                                            placeholder="Enter Remark">
-                                                                    </td> --}}
                                                                 </tr>
 
                                                                 <tr>
@@ -226,6 +227,61 @@
                             });
                         }
                     }
+                });
+            });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const addContactButton = document.getElementById('add-contact');
+                const contactFieldsContainer = document.getElementById('contect');
+                let contactCount = 0; // Keep track of added contacts
+
+                addContactButton.addEventListener('click', function() {
+                    contactCount++; // Increment contact count
+
+                    // Create a new input field (you can customize this as needed)
+                    const newContactField = document.createElement('p');
+                    newContactField.innerHTML = `
+                    <div class="col-xl-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="expen_table dtp_table table-responsive">
+                                                        <table class="exp_detail table-bordered">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="date" id="bes_follow_up_date[]"
+                                                                            name="bes_follow_up_date[]" value="{{ $project_master->bes_follow_up_date }}" class="form-control"
+                                                                            
+                                                                            placeholder="Enter Date">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="bes_status[]"
+                                                                            name="bes_status[]" class="form-control"
+                                                                            placeholder="Enter Status"   value="{{ $project_master->bes_status }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="bes_remark[]"
+                                                                            name="bes_remark[]" class="form-control"
+                                                                            placeholder="Enter Remark"   value="{{ $project_master->bes_remark }}">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                    // Add an event listener to the "Remove" button
+                    const removeButton = newContactField.querySelector('.remove-contact');
+                    removeButton.addEventListener('click', function() {
+                        contactFieldsContainer.removeChild(
+                            newContactField); // Remove the field when "Remove" is clicked
+                        contactCount--; // Decrement contact count
+                    });
+                    contactFieldsContainer.appendChild(newContactField);
                 });
             });
         </script>

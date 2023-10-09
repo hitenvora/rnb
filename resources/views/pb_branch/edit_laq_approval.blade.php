@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-    @include('navbar.pb_branch.pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
     <body>
         <div class="mg-b-23">
@@ -17,36 +17,41 @@
                             <div class="card-body">
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
-                                    <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
 
                                     <div class="col-lg-6">
                                         <label class="form-label">Name of Village</label>
                                         <input type="text" class="form-control" id="laq_name_village"
-                                            name="laq_name_village" placeholder="Enter Village" value="{{ $project_master->initiated_name }}">
+                                            name="laq_name_village" placeholder="Enter Village"
+                                            value="{{ $project_master->laq_name_village }}">
                                     </div>
                                     <div class="col-lg-6">
                                         <label class="form-label">Submission of LAQ Proposal to Land Acquisition
                                             Office</label>
                                         <input type="text" class="form-control" id="laq_office" name="laq_office"
                                             placeholder="Enter Submission of LAQ Proposal to Land Acquisition Office"
-                                            value="{{ $project_master->initiated_name }}">
+                                            value="{{ $project_master->laq_office }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Letter No.</label>
                                         <input type="text" class="form-control" id="laq_letter_no" name="laq_letter_no"
-                                            placeholder="Enter Letter No." value="{{ $project_master->initiated_name }}">
+                                            placeholder="Enter Letter No." value="{{ $project_master->laq_letter_no }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Letter Date</label>
                                         <input type="date" class="form-control" id="laq_letter_date"
-                                            name="laq_letter_date" value="{{ $project_master->initiated_name }}">
+                                            name="laq_letter_date" value="{{ $project_master->laq_letter_date }}">
                                     </div>
                                     <div class="col-lg-6">
                                         <label class="form-label">Letter Upload</label>
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="laq_letter_uplode"
                                                 name="laq_letter_uplode" value="{{ $project_master->laq_letter_uplode }}">
+                                                <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_letter_uplode) }}" target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
                                         </div>
+                                        
                                     </div>
                                     <div class="col-xl-2 col-lg-6 mt-2">
                                         <div class="contact_list">
@@ -55,8 +60,8 @@
                                                 <div class="col-lg-12">
                                                     <label class="form-label">File Preparation by Sub Division</label>
                                                     <select class="form-select" name="laq_file_sub" id="laq_file_sub">
-                                                        <option value="Kamrej">Kamrej</option>
-                                                        <option value="Adajan">Adajan</option>
+                                                        <option value="Kamrej"@selected($project_master->laq_file_sub == 'Kamrej')>Kamrej</option>
+                                                        <option value="Adajan"@selected($project_master->laq_file_sub == 'Adajan')>Adajan</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -71,17 +76,20 @@
                                                         <div class="col-lg-4">
                                                             <label class="form-label">File Submitted to DLR</label>
                                                             <input type="text" class="form-control" id="laq_dlr_no"
-                                                                name="laq_dlr_no" placeholder="Enter File Submitted to DLR" value="{{ $project_master->laq_dlr_no }}">
+                                                                name="laq_dlr_no" placeholder="Enter File Submitted to DLR"
+                                                                value="{{ $project_master->laq_dlr_no }}">
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <label class="form-label">Date</label>
                                                             <input type="date" class="form-control" id="laq_pro_date"
-                                                                name="laq_pro_date" value="{{ $project_master->laq_pro_date }}">
+                                                                name="laq_pro_date"
+                                                                value="{{ $project_master->laq_pro_date }}">
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <label class="form-label">Challan Amount</label>
                                                             <input type="text" class="form-control" id="laq_challan_amt"
-                                                                name="laq_challan_amt" placeholder="Enter Challan Amount" value="{{ $project_master->laq_challan_amt }}">
+                                                                name="laq_challan_amt" placeholder="Enter Challan Amount"
+                                                                value="{{ $project_master->laq_challan_amt }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -90,7 +98,8 @@
                                                         <div class="col-lg-6">
                                                             <label class="form-label">Challan Date</label>
                                                             <input type="date" class="form-control" id="laq_challan_date"
-                                                                name="laq_challan_date" value="{{ $project_master->laq_challan_date }}">
+                                                                name="laq_challan_date"
+                                                                value="{{ $project_master->laq_challan_date }}">
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <label class="form-label">Payment Date</label>
@@ -111,18 +120,20 @@
                                     <div class="col-xl-2 col-lg-4">
                                         <label class="form-label">JMS Approved By</label>
                                         <input type="text" class="form-control" id="laq_jms_office"
-                                            name="laq_jms_office" placeholder="Enter JMS Approved By" value="{{ $project_master->laq_jms_office }}">
+                                            name="laq_jms_office" placeholder="Enter JMS Approved By"
+                                            value="{{ $project_master->laq_jms_office }}">
                                     </div>
                                     <div class="col-xl-2 col-lg-4">
                                         <label class="form-label">JMS Date</label>
                                         <input type="date" class="form-control" id="laq_approved_jms_date"
-                                            name="laq_approved_jms_date" value="{{ $project_master->laq_approved_jms_date }}">
+                                            name="laq_approved_jms_date"
+                                            value="{{ $project_master->laq_approved_jms_date }}">
                                     </div>
                                     <div class="col-xl-6  col-lg-12">
                                         <label class="form-label">File Upload</label>
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="laq_upload_img"
-                                                name="laq_upload_img">
+                                                name="laq_upload_img" value="{{ $project_master->laq_upload_img }}">
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
@@ -132,19 +143,23 @@
                                                     <label class="form-label">File Submitted To Collector</label>
                                                     <select class="form-select" name="laq_file_collector"
                                                         id="laq_file_collector">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" @selected($project_master->laq_file_collector == 'Yes')>Yes
+                                                        </option>
+                                                        <option value="No"@selected($project_master->laq_file_collector == 'No')>No
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label class="form-label">Date</label>
                                                     <input type="date" class="form-control" id="laq_file_date"
-                                                        name="laq_file_date" value="{{ $project_master->laq_file_date }}">
+                                                        name="laq_file_date"
+                                                        value="{{ $project_master->laq_file_date }}">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label class="form-label">Gati Shakti Implementation Date</label>
                                                     <input type="date" class="form-control" id="laq_gati_date"
-                                                        name="laq_gati_date" value="{{ $project_master->laq_gati_date }}">
+                                                        name="laq_gati_date"
+                                                        value="{{ $project_master->laq_gati_date }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -155,8 +170,10 @@
                                                 <div class="col-xl-12">
                                                     <label class="form-label">Section 10 A, B, C</label>
                                                     <select class="form-select" name="laq_sec_10" id="laq_sec_10">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" @selected($project_master->laq_sec_10 == 'Yes')>Yes
+                                                        </option>
+                                                        <option value="No"@selected($project_master->laq_sec_10 == 'No')>No
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -173,14 +190,17 @@
                                                 <div class="col-xl-12">
                                                     <label class="form-label">Section 11</label>
                                                     <select class="form-select" name="laq_sec_11" id="laq_sec_11">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" @selected($project_master->laq_sec_11 == 'Yes')>Yes
+                                                        </option>
+                                                        <option value="No"@selected($project_master->laq_sec_11 == 'No')>No
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <label class="form-label">Date</label>
                                                     <input type="date" class="form-control" id="laq_sec11_date"
-                                                        name="laq_sec11_date" value="{{ $project_master->laq_sec11_date }}">
+                                                        name="laq_sec11_date"
+                                                        value="{{ $project_master->laq_sec11_date }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -191,8 +211,10 @@
                                                 <div class="col-lg-12">
                                                     <label class="form-label">Section 19</label>
                                                     <select class="form-select" name="laq_sec_19" id="laq_sec_19">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" @selected($project_master->laq_sec_19 == 'Yes')>Yes
+                                                        </option>
+                                                        <option value="No"@selected($project_master->laq_sec_19 == 'No')>No
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -209,17 +231,20 @@
                                                                     <td>
                                                                         <input type="text" id="laq_valuation"
                                                                             name="laq_valuation" class="form-control"
-                                                                            placeholder="Enter Valuation" value="{{ $project_master->laq_valuation }}">
+                                                                            placeholder="Enter Valuation"
+                                                                            value="{{ $project_master->laq_valuation }}">
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" id="laq_amt"
                                                                             name="laq_amt" class="form-control"
-                                                                            placeholder="Enter Amount" value="{{ $project_master->laq_amt }}">
+                                                                            placeholder="Enter Amount"
+                                                                            value="{{ $project_master->laq_amt }}">
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" id="laq_num"
                                                                             name="laq_num" class="form-control"
-                                                                            placeholder="Enter No." value="{{ $project_master->laq_num }}">
+                                                                            placeholder="Enter No."
+                                                                            value="{{ $project_master->laq_num }}">
                                                                     </td>
                                                                     <td>
                                                                         <input type="date" id="laq_date"
@@ -278,21 +303,25 @@
                                                 <div class="col-xl-12">
                                                     <label class="form-label">Section 21</label>
                                                     <select class="form-select" name="laq_sec_21" id="laq_sec_21">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" @selected($project_master->laq_sec_21 == 'Yes')>Yes
+                                                        </option>
+                                                        <option value="No"@selected($project_master->laq_sec_21 == 'No')>No
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label class="form-label">Date</label>
                                                     <input type="date" class="form-control" id="laq_s21_file_date"
-                                                        name="laq_s21_file_date" value="{{ $project_master->laq_s21_file_date }}">
+                                                        name="laq_s21_file_date"
+                                                        value="{{ $project_master->laq_s21_file_date }}">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label class="form-label">Approval For Valuation and Intimation to Land
                                                         Owner</label>
                                                     <input type="text" class="form-control" id="laq_approval"
                                                         name="laq_approval"
-                                                        placeholder="Enter Approval For Valuation and Intimation to Land Owner" value="{{ $project_master->laq_approval }}">
+                                                        placeholder="Enter Approval For Valuation and Intimation to Land Owner"
+                                                        value="{{ $project_master->laq_approval }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -303,25 +332,32 @@
                                                 <div class="col-xl-12">
                                                     <label class="form-label">Section 23</label>
                                                     <select class="form-select" name="laq_sec_23" id="laq_sec_23">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" @selected($project_master->laq_sec_23 == 'Yes')>Yes
+                                                        </option>
+                                                        <option value="No"@selected($project_master->laq_sec_23 == 'No')>No
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label class="form-label">Date</label>
                                                     <input type="date" class="form-control" id="laq_23sec_date"
-                                                        name="laq_23sec_date" value="{{ $project_master->laq_23sec_date }}">
+                                                        name="laq_23sec_date"
+                                                        value="{{ $project_master->laq_23sec_date }}">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label class="form-label">Letter No.</label>
                                                     <input type="text" class="form-control" id="laq_23letter_no"
-                                                        name="laq_23letter_no" placeholder="Enter Letter No." value="{{ $project_master->laq_23letter_no }}">
+                                                        name="laq_23letter_no" placeholder="Enter Letter No."
+                                                        value="{{ $project_master->laq_23letter_no }}">
                                                 </div>
                                                 <div class="col-xl-12 col-lg-12">
                                                     <label class="form-label">Letter Upload</label>
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100" id="laq_23_img"
                                                             name="laq_23_img" value="{{ $project_master->laq_23_img }}">
+                                                            <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_23_img) }}" target="_blank">
+                                                                <br>Open Image in New Tab
+                                                            </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -334,14 +370,17 @@
                                                     <label class="form-label">Possession Details</label>
                                                     <select class="form-select" name="laq_poss_detail"
                                                         id="laq_poss_detail">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                        <option value="Yes" @selected($project_master->laq_poss_detail == 'Yes')>Yes
+                                                        </option>
+                                                        <option value="No"@selected($project_master->laq_poss_detail == 'No')>No
+                                                        </option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <label class="form-label">Status</label>
                                                     <input type="text" class="form-control" id="laq_status"
-                                                        name="laq_status" placeholder="Enter Status" value="{{ $project_master->laq_status }}">
+                                                        name="laq_status" placeholder="Enter Status"
+                                                        value="{{ $project_master->laq_status }}">
                                                 </div>
                                             </div>
                                         </div>

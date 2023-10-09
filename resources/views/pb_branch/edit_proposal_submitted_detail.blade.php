@@ -17,7 +17,7 @@
                             <div class="card-body">
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
-                                    <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Initiated By MP/MLA Name</label>
                                         {{-- @foreach ($proposal_show as $proposal_show1) --}}
@@ -68,6 +68,9 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="ppd_letter_upload"
                                                 name="ppd_letter_upload" value="{{ $project_master->ppd_letter_upload }}">
+                                                <a href="{{ asset('uplode_images/proposal_submitte_detail/' . $project_master->ppd_letter_upload) }}" target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">

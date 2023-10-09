@@ -19,7 +19,7 @@
                             <div class="card-body">
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
-                                    <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <div class="col-lg-4">
                                         <label class="form-label">Letter No.</label>
                                         <input type="text" class="form-control" id="tsd_letter_no" name="tsd_letter_no"
@@ -40,15 +40,18 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="tsd_letter_upload"
                                                 name="tsd_letter_upload" value="{{ $project_master->tsd_letter_upload }}">
+                                                <a href="{{ asset('uplode_images/technical_section_detail/' . $project_master->tsd_letter_upload) }}" target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label class="form-label">Approved By</label>
                                         <select class="form-select" id="tsd_approved_by" name="tsd_approved_by"
                                             value="{{ $project_master->tsd_approved_by }}">
-                                            <option selected value="Government">Government</option>
-                                            <option value="Circle">Circle</option>
-                                            <option value="Divison">Divison</option>
+                                            <option value="Government"@selected($project_master->tsd_approved_by == 'Government')>Government</option>
+                                            <option value="Circle"@selected($project_master->tsd_approved_by == 'Circle')>Circle</option>
+                                            <option value="Divison"@selected($project_master->tsd_approved_by == 'Divison')>Divison</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-12">

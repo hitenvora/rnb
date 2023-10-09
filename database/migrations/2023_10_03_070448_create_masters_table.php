@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('basic_wms_work_head')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
             $table->foreign('district_id')->references('id')->on('districts');
-            $table->text('basic_taluka')->nullable();
             $table->unsignedBigInteger('taluka_id')->nullable();
             $table->foreign('taluka_id')->references('id')->on('talukas');
             $table->unsignedBigInteger('work_type_id')->nullable();
@@ -283,8 +282,8 @@ return new class extends Migration
             $table->text('nit_agency_name')->nullable();
             $table->text('latter_image_extension')->nullable();
             $table->bigInteger('nit_letter_no')->nullable();
-            $table->bigInteger('nit_latter_no_2')->nullable();
-            $table->bigInteger('nit_latter_extension_no')->nullable();
+            $table->text('nit_latter_no_2')->nullable();
+            $table->text('nit_latter_extension_no')->nullable();
             $table->date('nit_start_date')->nullable();
             $table->date('nit_end_date')->nullable();
             $table->date('nit_tender_open_date')->nullable();
@@ -295,13 +294,13 @@ return new class extends Migration
             $table->date('nit_preliminary_date')->nullable();
             $table->date('nit_pq_sub_date')->nullable();
             $table->date('nit_pq_approval_date')->nullable();
-            $table->date('nit_re_invited_date')->nullable();
+            $table->longText('nit_re_invited_date')->nullable();
             $table->date('nit_validity_date')->nullable();
             $table->date('nit_tender_proposal')->nullable();
             $table->date('nit_latter_date')->nullable();
             $table->date('tender_proposal_date')->nullable();
-            $table->date('nit_validity_extension_date')->nullable();
-            $table->date('latter_date_extension')->nullable();
+            $table->longText('nit_validity_extension_date')->nullable();
+            $table->longText('latter_date_extension')->nullable();
 
 
             //deposit-order
@@ -349,8 +348,8 @@ return new class extends Migration
             $table->bigInteger('tpi_tendure_amount')->nullable();
             $table->bigInteger('tpi_nit_no')->nullable();
             $table->bigInteger('tpi_tender_letter_no')->nullable();
-            $table->bigInteger('tpi_latter_no_2')->nullable();
-            $table->bigInteger('tpi_validity_extension_letter_no')->nullable();
+            $table->text('tpi_latter_no_2')->nullable();
+            $table->text('tpi_validity_extension_letter_no')->nullable();
 
             $table->date('tpi_dtp_date')->nullable();
             $table->date('tpi_tender_date')->nullable();
@@ -364,12 +363,12 @@ return new class extends Migration
             $table->date('tpi_preliminary_date')->nullable();
             $table->date('tpi_pq_sub_date')->nullable();
             $table->date('tpi_pq_approval_date')->nullable();
-            $table->date('tpi_re_invited_date')->nullable();
+            $table->text('tpi_re_invited_date')->nullable();
             $table->date('tpi_validity_date')->nullable();
             $table->date('tpi_tender_proposal')->nullable();
-            $table->date('tpi_validity_extension_date')->nullable();
+            $table->text('tpi_validity_extension_date')->nullable();
             $table->date('tpi_tender_proposal_date')->nullable();
-            $table->date('tpi_validity_extension_letter_date')->nullable();
+            $table->text('tpi_validity_extension_letter_date')->nullable();
             $table->date('tpi_proposal_latter_date')->nullable();
 
             $table->timestamps();

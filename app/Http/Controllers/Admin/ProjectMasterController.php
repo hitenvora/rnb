@@ -14,6 +14,7 @@ use App\Models\Admin\Taluka;
 use App\Models\Admin\TypesOfWork;
 use App\Models\Admin\WorkTypes;
 use App\Models\Master\Master;
+use App\Models\PbBranch\NameOfSchema;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -38,7 +39,8 @@ class ProjectMasterController extends Controller
         $mp_mla = MpMlaSuggested::orderBy('id')->get();
         $sent_box = SentBox::orderBy('id')->get();
         $master_show = Master::orderBy('id')->get();
-        return view('admin.project_master.create', compact('division_name', 'sub_division_name', 'district_name', 'taluka_name', 'work_type', 'type_work', 'budget', 'budget_work', 'mp_mla', 'sent_box'));
+
+        return view('admin.project_master.create', compact('division_name', 'sub_division_name', 'district_name', 'taluka_name', 'work_type', 'type_work', 'budget', 'budget_work', 'mp_mla', 'sent_box', 'name_of_scheme'));
     }
 
     public function get_project_master(Request $request)

@@ -15,6 +15,8 @@ use App\Models\Admin\Taluka;
 use App\Models\Admin\TypesOfWork;
 use App\Models\Admin\WorkTypes;
 use App\Models\PbBranch\Basic;
+use App\Models\PbBranch\NameOfProject;
+use App\Models\PbBranch\NameOfSchema;
 use Illuminate\Http\Request;
 
 class BasicBranchController extends Controller
@@ -33,7 +35,10 @@ class BasicBranchController extends Controller
         $budget_work= BudgetWork::orderBy('id')->get();
         $mp_mla= MpMlaSuggested::orderBy('id')->get();
         $sent_box= SentBox::orderBy('id')->get();
-        return view('pb_branch.basic_branch', compact('division_name', 'sub_division_name','district_name','taluka_name','work_type','type_work','budget','budget_work','mp_mla','sent_box'));
+        $name_of_scheme  =NameOfSchema ::orderBy('id')->get();
+        $name_of_project  =NameOfProject::orderBy('id')->get();
+
+        return view('pb_branch.basic_branch', compact('division_name', 'sub_division_name','district_name','taluka_name','work_type','type_work','budget','budget_work','mp_mla','sent_box','name_of_scheme','name_of_project'));
     }
     
     // public function insert(Request $request)

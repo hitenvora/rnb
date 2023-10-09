@@ -204,4 +204,35 @@ Route::get('/edit-forest-clearence-detail/{id}', [ProposalMasterController::clas
 
 Route::get('/edit-utility-shifting-detail/{id}', [ProposalMasterController::class, 'edit_utility_shifting_detail'])->name('edit_utility_shifting_detail');
 
-Route::get('/edit-laq-approval/{id}', [ProposalMasterController::class, 'edit_utility_shifting_detail'])->name('edit_utility_shifting_detail');
+Route::get('/edit-laq-approval/{id}', [ProposalMasterController::class, 'edit_laq_approval'])->name('edit_laq_approval');
+
+
+//edit auditor
+Route::get('/edit-budgetary-detail/{id}', [ProposalMasterController::class, 'edit_budgetary_detail'])->name('edit_budgetary_detail');
+
+Route::get('/edit-expenditure-detail/{id}', [ProposalMasterController::class, 'edit_expenditure_detail'])->name('edit_expenditure_detail');
+
+Route::get('/edit-excess-detail/{id}', [ProposalMasterController::class, 'edit_excess_detail'])->name('edit_excess_detail');
+
+Route::get('/edit-time-extension/{id}', [ProposalMasterController::class, 'edit_time_extension'])->name('edit_time_extension');
+
+Route::get('/edit-work-status/{id}', [ProposalMasterController::class, 'edit_work_status'])->name('edit_work_status');
+
+Route::get('/edit-fmg/{id}', [ProposalMasterController::class, 'edit_fmg'])->name('edit_fmg');
+
+Route::get('/edit-fdr/{id}', [ProposalMasterController::class, 'edit_fdr'])->name('edit_fdr');
+
+Route::get('/edit-dlp-period/{id}', [ProposalMasterController::class, 'edit_dlp_period'])->name('edit_dlp_period');
+
+//edit tender
+Route::get('/edit-dtp-approval/{id}', [ProposalMasterController::class, 'edit_dtp_approval'])->name('edit_dtp_approval');
+
+Route::get('/edit-nit/{id}', [ProposalMasterController::class, 'edit_nit'])->name('edit_nit');
+
+Route::get('/edit-deposit-order/{id}', [ProposalMasterController::class, 'edit_deposit_order'])->name('edit_deposit_order');
+
+Route::get('/edit-tpi-detail/{id}', [ProposalMasterController::class, 'edit_tpi_detail'])->name('edit_tpi_detail');
+
+//
+Route::post('/name-of-schema-insert', [MasterController::class, 'name_of_schema_insert'])->name('name_of_schema_insert');
+Route::post('/name-of-project-insert', [MasterController::class, 'name_of_project_insert'])->name('name_of_project_insert');

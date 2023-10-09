@@ -50,8 +50,7 @@
                                         <div class="col-xl-3 col-lg-6">
                                             <label class="form-label">Submitted Letter No.</label>
                                             <input type="text" class="form-control" id="bes_submit_letter"
-                                                name="bes_submit_letter" placeholder="Enter Submitted Letter No."
-                                                value="">
+                                                name="bes_submit_letter" placeholder="Enter Submitted Letter No.">
                                         </div>
                                         <div class="col-xl-3  col-lg-6">
                                             <label class="form-label">Submission Office Date</label>
@@ -90,7 +89,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-12">
+                                        <div class="col-xl-12" id="contect">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="expen_table dtp_table table-responsive">
@@ -103,20 +102,19 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        <input type="date" id="bes_follow_up_date"
-                                                                            name="bes_follow_up_date" class="form-control"
-                                                                            value="bes_follow_up_date"
+                                                                        <input type="date" id="bes_follow_up_date[]"
+                                                                            name="bes_follow_up_date[]" class="form-control"
                                                                             placeholder="Enter Date">
                                                                     </td>
                                                                     <td>
-                                                                        <input type="text" id="bes_status"
-                                                                            name="bes_status" class="form-control"
-                                                                            placeholder="Enter Status" value="bes_status">
+                                                                        <input type="text" id="bes_status[]"
+                                                                            name="bes_status[]" class="form-control"
+                                                                            placeholder="Enter Status">
                                                                     </td>
                                                                     <td>
-                                                                        <input type="text" id="bes_remark"
-                                                                            name="bes_remark" class="form-control"
-                                                                            placeholder="Enter Remark" value="bes_remark">
+                                                                        <input type="text" id="bes_remark[]"
+                                                                            name="bes_remark[]" class="form-control"
+                                                                            placeholder="Enter Remark">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -138,17 +136,17 @@
 
                                                                 <tr>
                                                                     <td class="text-end border" colspan="6">
-                                                                        <a class="btn btn-warning add_btn" id="add_button"
-                                                                            name="add_button">
+                                                                        <a class="btn btn-light-warning px-3"
+                                                                            id="add-contact">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="19" height="18"
-                                                                                viewBox="0 0 19 18" fill="none">
-                                                                                <path d="M9.5 3.75V14.25M4.25 9H14.75"
-                                                                                    stroke="white" stroke-width="1.67"
+                                                                                width="20" height="20"
+                                                                                viewBox="0 0 20 20" fill="none">
+                                                                                <path
+                                                                                    d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                                    stroke="#802B81" stroke-width="1.67"
                                                                                     stroke-linecap="round"
                                                                                     stroke-linejoin="round" />
-                                                                            </svg>
-                                                                            Add
+                                                                            </svg> Add
                                                                         </a>
                                                                     </td>
                                                                 </tr>
@@ -225,6 +223,61 @@
                             });
                         }
                     }
+                });
+            });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const addContactButton = document.getElementById('add-contact');
+                const contactFieldsContainer = document.getElementById('contect');
+                let contactCount = 0; // Keep track of added contacts
+
+                addContactButton.addEventListener('click', function() {
+                    contactCount++; // Increment contact count
+
+                    // Create a new input field (you can customize this as needed)
+                    const newContactField = document.createElement('p');
+                    newContactField.innerHTML = `
+                    <div class="col-xl-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="expen_table dtp_table table-responsive">
+                                                        <table class="exp_detail table-bordered">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="date" id="bes_follow_up_date[]"
+                                                                            name="bes_follow_up_date[]" class="form-control"
+                                                                            
+                                                                            placeholder="Enter Date">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="bes_status[]"
+                                                                            name="bes_status[]" class="form-control"
+                                                                            placeholder="Enter Status">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="bes_remark[]"
+                                                                            name="bes_remark[]" class="form-control"
+                                                                            placeholder="Enter Remark">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                    // Add an event listener to the "Remove" button
+                    const removeButton = newContactField.querySelector('.remove-contact');
+                    removeButton.addEventListener('click', function() {
+                        contactFieldsContainer.removeChild(
+                            newContactField); // Remove the field when "Remove" is clicked
+                        contactCount--; // Decrement contact count
+                    });
+                    contactFieldsContainer.appendChild(newContactField);
                 });
             });
         </script>

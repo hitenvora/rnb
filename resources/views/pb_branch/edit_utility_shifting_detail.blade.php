@@ -18,7 +18,7 @@
                             <div class="card-body">
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
-                                    <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
 
                                     <div class="col-lg-4">
                                         <label class="form-label">Chainage</label>
@@ -79,10 +79,10 @@
                                         </div>
 
                                         <!-- <label  class="form-label">Type of Utility </label>
-                                                                                <select class="form-select" id="name_project" name="name_project">
-                                                                                    <option selected value="{{ $project_master->initiated_name }}">Electric Pole, Water Supply line, Drainage line, Telephone line, Gas line, Others </option>
-                                                                                    <option value="{{ $project_master->initiated_name }}">Gondal</option>
-                                                                                </select> -->
+                                                                                    <select class="form-select" id="name_project" name="name_project">
+                                                                                        <option selected value="{{ $project_master->initiated_name }}">Electric Pole, Water Supply line, Drainage line, Telephone line, Gas line, Others </option>
+                                                                                        <option value="{{ $project_master->initiated_name }}">Gondal</option>
+                                                                                    </select> -->
                                     </div>
 
                                     <div class="col-lg-4">
@@ -154,8 +154,8 @@
                                                             <select class="form-select joint-date-visit"
                                                                 id="usd_joint_visit" name="usd_joint_visit">
                                                                 <option selected
-                                                                    value="Yes"@selected($project_master->usd_payment == 'Yes')>Yes</option>
-                                                                <option value="No" @selected($project_master->usd_payment == 'No')>No
+                                                                    value="Yes"@selected($project_master->usd_joint_visit == 'Yes')>Yes</option>
+                                                                <option value="No" @selected($project_master->usd_joint_visit == 'No')>No
                                                                 </option>
                                                             </select>
                                                         </td>
@@ -296,7 +296,7 @@
                                                     <tr>
                                                         <td class="text-end" colspan="14">
                                                             <a class="btn btn-warning add_btn" id="add_button"
-                                                                name="add_button">
+                                                                name="add_button" id="add_proposal_sent">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19"
                                                                     height="18" viewBox="0 0 19 18" fill="none">
                                                                     <path d="M9.5 3.75V14.25M4.25 9H14.75" stroke="white"
@@ -378,6 +378,54 @@
                         });
                     }
                 }
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add_proposal_sent');
+            const contactFieldsContainer = document.getElementById('contect');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `<table class="table sign_up_table">
+                                <tr>
+                                    <td id="contect" >
+                                        <input type="text" placeholder="Enter contact person name"
+                                            title="Enter contact person name" name="person_name[]"
+                                            id="person_name" class="form-control border-0 p-0">
+                                        <span class="text-danger" id="person_name_error"></span>
+
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Enter mobile no."
+                                            title="Enter mobile no." name="mobile_no[]" id="mobile_no"
+                                            class="form-control border-0 p-0">
+                                        <span class="text-danger" id="mobile_no_error"></span>
+
+                                    </td>
+                                    <td>
+                                        <input type="email" placeholder="Enter email id"
+                                            title="Enter email id" name="email_id[]" id="email_id"
+                                            class="form-control border-0 p-0">
+                                        <span class="text-danger" id="email_id_error"></span>
+                                    </td>
+                                </tr>
+                        </table>
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
             });
         });
     </script>

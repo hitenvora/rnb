@@ -17,7 +17,7 @@
                             <div class="card-body">
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
-                                    <input type="hidden" name="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <div class="col-xl-4 col-lg-6 branch-scheme-select">
                                         <label class="form-label">Name of Scheme</label>
                                         <div class="d-flex">
@@ -76,21 +76,23 @@
                                                                 <option value="">Select District List</option>
                                                                 @foreach ($district_name as $value)
                                                                     <option value="{{ $value['id'] }}"
-                                                                        @selected($project_master->district_id)>{{ $value['name'] }}
+                                                                        {{ $project_master->district_id == $value['id'] ? 'selected' : '' }}>
+                                                                        {{ $value['name'] }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
+
 
                                                         </div>
 
                                                         <div class="col-lg-4">
                                                             <label class="form-label">Taluka</label>
-                                                            <select class="form-select" id="basic_taluka"
-                                                                name="basic_taluka">
+                                                            <select class="form-select" id="taluka_id" name="taluka_id">
                                                                 <option value="">Select Taluka List</option>
                                                                 @foreach ($taluka_name as $value)
                                                                     <option value="{{ $value['id'] }}"
-                                                                        @selected($project_master->taluka_id)>{{ $value['name'] }}
+                                                                        {{ $project_master->taluka_id == $value['id'] ? 'selected' : '' }}>
+                                                                        {{ $value['name'] }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -101,8 +103,8 @@
                                                                 name="work_type_id">
                                                                 <option value="">Select Work List</option>
                                                                 @foreach ($work_type as $value)
-                                                                    <option
-                                                                        value="{{ $value['id'] }}"@selected($project_master->work_type_id)>
+                                                                    <option value="{{ $value['id'] }}"
+                                                                        {{ $project_master->work_type_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}
                                                                     </option>
                                                                 @endforeach
@@ -120,7 +122,7 @@
                                                                 <option value="">Select Work List</option>
                                                                 @foreach ($type_work as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"@selected($project_master->types_of_work_id)>
+                                                                        value="{{ $value['id'] }}"{{ $project_master->types_of_work_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}
                                                                     </option>
                                                                 @endforeach
@@ -143,7 +145,7 @@
                                                                 <option value="">Select budget List</option>
                                                                 @foreach ($budget as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"@selected($project_master->budget_id)>
+                                                                        value="{{ $value['id'] }}"{{ $project_master->budget_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -161,7 +163,7 @@
                                                                 <option value="">Select budget Work List</option>
                                                                 @foreach ($budget_work as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"@selected($project_master->budget_work_id)>
+                                                                        value="{{ $value['id'] }}"{{ $project_master->budget_work_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -195,7 +197,7 @@
                                                                 <option value="">Select Mp MlaList</option>
                                                                 @foreach ($mp_mla as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"@selected($project_master->basic_mp_mla)>
+                                                                        value="{{ $value['id'] }}"{{ $project_master->basic_mp_mla == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -231,6 +233,13 @@
                                                                 <input type="file" class="form-control w-100"
                                                                     id="basic_upload_img" name="basic_upload_img"
                                                                     value="{{ $project_master->basic_upload_img }}">
+                                                                    <a href="{{ asset('uplode_images/basic/' . $project_master->basic_upload_img) }}" target="_blank">
+                                                                        <br>Open Image in New Tab
+                                                                    </a>
+                                                                    
+
+                                                                    {{-- <img src="{{ asset('uplode_images/basic/' . $project_master->basic_upload_img) }}"
+                                                                    alt="" height="50" srcset=""> --}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -329,7 +338,7 @@
                                                                 <option value="">Select Sent Box</option>
                                                                 @foreach ($sent_box as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"@selected($project_master->sent_box_id)>
+                                                                        value="{{ $value['id'] }}"{{ $project_master->sent_box_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -378,7 +387,8 @@
                                         <select class="form-select" id="division_master_id" name="division_master_id">
                                             <option value="">Select division name List</option>
                                             @foreach ($division_name as $value)
-                                                <option value="{{ $value['id'] }}"@selected($project_master->division_master_id)>
+                                                <option
+                                                    value="{{ $value['id'] }}"{{ $project_master->division_master_id == $value['id'] ? 'selected' : '' }}>
                                                     {{ $value['name'] }}</option>
                                             @endforeach
                                         </select>
@@ -390,7 +400,8 @@
                                             name="sub_division_master_id">
                                             <option value="">Select Sub division Name List</option>
                                             @foreach ($sub_division_name as $value)
-                                                <option value="{{ $value['id'] }}"@selected($project_master->sub_division_master_id)>
+                                                <option
+                                                    value="{{ $value['id'] }}"{{ $project_master->sub_division_master_id == $value['id'] ? 'selected' : '' }}>
                                                     {{ $value['name'] }}</option>
                                             @endforeach
                                         </select>

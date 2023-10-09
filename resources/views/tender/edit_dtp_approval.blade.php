@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-    @include('navbar.tender.tender_navbar')
+    @include('navbar.tender.edit_tender_navbar')
 
     <body>
         <div class="mg-b-23">
@@ -17,21 +17,23 @@
                             <div class="card-body">
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
-                                    <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <div class="col-lg-4">
                                         <label for="inputtitle1" class="form-label">Submitted To</label>
                                         <input class="form-control" type="text" id="dtp_sub_to" name="dtp_sub_to"
-                                            placeholder="To">
+                                            placeholder="To" value="{{ $project_master->dtp_sub_to }}">
                                     </div>
                                     <div class="col-lg-4">
                                         <label for="inputtitle1" class="form-label">Submitted Date</label>
                                         <input class="form-control" type="date" id="dtp_submit_date"
-                                            name="dtp_submit_date" placeholder="Enter Submitted Date">
+                                            name="dtp_submit_date" placeholder="Enter Submitted Date"
+                                            value="{{ $project_master->dtp_submit_date }}">
                                     </div>
                                     <div class="col-lg-4">
                                         <label for="inputtitle1" class="form-label">Letter No.</label>
                                         <input class="form-control" type="text" id="dtp_submit_letter_no"
-                                            name="dtp_submit_letter_no" placeholder="Enter Letter No.">
+                                            name="dtp_submit_letter_no" placeholder="Enter Letter No."
+                                            value="{{ $project_master->dtp_submit_letter_no }}">
                                     </div>
                                     <div class="col-lg-12 mt-2">
                                         <div class="contact_list">
@@ -40,31 +42,31 @@
                                                 <div class="col-lg-3">
                                                     <label class="form-label">Authority</label>
                                                     <select class="form-select" name="dtp_authority" id="dtp_authority">
-                                                        <option value="Executive Engineer">Executive Engineer</option>
-                                                        <option value="Superintendent Engineer">Superintendent Engineer
-                                                        </option>
-                                                        <option value="Chief Engineer">Chief Engineer</option>
+                                                        <option value="Executive Engineer"@selected($project_master->dtp_authority == 'Executive Engineer')>Executive Engineer</option>
+                                                        <option value="Superintendent Engineer"@selected($project_master->dtp_authority == 'Superintendent Engineer')>Superintendent Engineer</option>
+                                                        <option value="Chief Engineer"@selected($project_master->dtp_authority == 'Chief Engineer')>Chief Engineer</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <label class="form-label">Date</label>
                                                     <input type="date" class="form-control" id="dtp_date"
-                                                        name="dtp_date" value="2023-09-13">
+                                                        name="dtp_date" value="{{ $project_master->dtp_date }}">
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <label for="inputtitle1" class="form-label">Letter No.</label>
                                                     <input class="form-control" type="text" id="dtp_letter_no"
-                                                        name="dtp_letter_no" placeholder="Enter Letter No.">
+                                                        name="dtp_letter_no" placeholder="Enter Letter No."
+                                                        value="{{ $project_master->dtp_letter_no }}">
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <label for="inputtitle1" class="form-label">Amount</label>
                                                     <input class="form-control" type="text" id="dtp_amt" name="dtp_amt"
-                                                        placeholder="Enter Amount">
+                                                        placeholder="Enter Amount" value="{{ $project_master->dtp_amt }}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-12" id="contect">
+                                    <div class="col-xl-12">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="expen_table dtp_table table-responsive">
@@ -77,19 +79,23 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    <input type="date" id="dtp_f_date[]"
-                                                                        name="dtp_f_date[]" class="form-control"
+                                                                    <input type="date" id="dtp_f_date" name="dtp_f_date"
+                                                                        class="form-control"
+                                                                        value="{{ $project_master->dtp_f_date }}"
                                                                         placeholder="Enter Date">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" id="dtp_f_status[]"
-                                                                        name="dtp_f_status[]" class="form-control"
-                                                                        placeholder="Enter Status">
+                                                                    <input type="text" id="dtp_f_status"
+                                                                        name="dtp_f_status" class="form-control"
+                                                                        placeholder="Enter Status"
+                                                                        value="{{ $project_master->dtp_f_status }}">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" id="dtp_f_remark[]"
-                                                                        name="dtp_f_remark[]" class="form-control"
-                                                                        placeholder="Enter Remark">
+                                                                    <input type="text" id="dtp_f_remark"
+                                                                        name="dtp_f_remark" class="form-control"
+                                                                        placeholder="Enter Remark"
+                                                                        value="{{ $project_master->dtp_f_remark }}">
+
                                                                 </td>
                                                             </tr>
                                                             {{-- <tr>
@@ -109,16 +115,17 @@
 
                                                             <tr>
                                                                 <td class="text-end border" colspan="6">
-                                                                    <a class="btn btn-light-warning px-3" id="add-contact">
+                                                                    <a class="btn btn-warning add_btn" id="add_button"
+                                                                        name="add_button">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="20" height="20"
-                                                                            viewBox="0 0 20 20" fill="none">
-                                                                            <path
-                                                                                d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
-                                                                                stroke="#802B81" stroke-width="1.67"
+                                                                            width="19" height="18"
+                                                                            viewBox="0 0 19 18" fill="none">
+                                                                            <path d="M9.5 3.75V14.25M4.25 9H14.75"
+                                                                                stroke="white" stroke-width="1.67"
                                                                                 stroke-linecap="round"
                                                                                 stroke-linejoin="round" />
-                                                                        </svg> Add
+                                                                        </svg>
+                                                                        Add
                                                                     </a>
                                                                 </td>
                                                             </tr>
@@ -185,60 +192,6 @@
                         });
                     }
                 }
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const addContactButton = document.getElementById('add-contact');
-            const contactFieldsContainer = document.getElementById('contect');
-            let contactCount = 0; // Keep track of added contacts
-
-            addContactButton.addEventListener('click', function() {
-                contactCount++; // Increment contact count
-
-                // Create a new input field (you can customize this as needed)
-                const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
-                    <div class="col-xl-12">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="expen_table dtp_table table-responsive">
-                                                        <table class="exp_detail table-bordered">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <input type="date" id="dtp_f_date[]"
-                                                                            name="dtp_f_date[]" class="form-control"
-                                                                            
-                                                                            placeholder="Enter Date">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="dtp_f_status[]"
-                                                                            name="dtp_f_status[]" class="form-control"
-                                                                            placeholder="Enter Status">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="dtp_f_remark[]"
-                                                                            name="dtp_f_remark[]" class="form-control"
-                                                                            placeholder="Enter Remark">
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
-
-                // Add an event listener to the "Remove" button
-                const removeButton = newContactField.querySelector('.remove-contact');
-                removeButton.addEventListener('click', function() {
-                    contactFieldsContainer.removeChild(
-                        newContactField); // Remove the field when "Remove" is clicked
-                    contactCount--; // Decrement contact count
-                });
-                contactFieldsContainer.appendChild(newContactField);
             });
         });
     </script>

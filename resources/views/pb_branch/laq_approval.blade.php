@@ -322,6 +322,7 @@
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100" id="laq_23_img"
                                                             name="laq_23_img">
+                                                           
                                                     </div>
                                                 </div>
                                             </div>
@@ -350,14 +351,14 @@
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
                                             name="btn_save">Save</button>
                                     </div>
-                                </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+        </div>
+        </form>
 
     </body>
 @endsection

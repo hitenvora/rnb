@@ -71,8 +71,8 @@
                                     <div class="col-lg-3">
                                         <label class="form-label">PQ Open</label>
                                         <select class="form-select" id="nit_pq_open" name="nit_pq_open">
-                                            <option selected value="">Yes</option>
-                                            <option value="">No</option>
+                                            <option selected value="Yes">Yes</option>
+                                            <option value="No">No</option>
                                         </select>
                                     </div>
 
@@ -96,8 +96,8 @@
                                             value="2023-09-16">
                                     </div>
 
-                                    <div class="panel-group utility-shifting-tabel pt-0">
-                                        <div class="table-responsive" id="display_data">
+                                    <div class="panel-group utility-shifting-tabel pt-0" id="contect">
+                                        <div class="table-responsive">
                                             <h5 class="proposal-sent-heading">Proposal Sent</h5>
                                             <table
                                                 class="table no-margin class_tr_put utility-shifting-tabel-data proposal-sent-tabel-data">
@@ -110,38 +110,28 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <input type="date" name="nit_re_invited_date"
-                                                                class="form-control" id="nit_re_invited_date"
-                                                                value="14/09/2023">
+                                                            <input type="date" name="nit_re_invited_date[]"
+                                                                class="form-control" id="nit_re_invited_date[]">
                                                         </td>
 
                                                         <td>
-                                                            <input type="text" name="nit_with_reason"
-                                                                class="form-control" id="nit_with_reason"
+                                                            <input type="text" name="nit_with_reason[]"
+                                                                class="form-control" id="nit_with_reason[]"
                                                                 placeholder="Enter Reason">
                                                         </td>
                                                     </tr>
 
-                                                    {{-- <tr>
-                                                    <td>
-                                                        <input type="date" name="date_input" class="form-control" id="date_input" value="14/09/2023">
-                                                    </td>
-                                                    
-                                                    <td>
-                                                        <input type="text" name="Submitted_to" class="form-control" id="Submitted_to" placeholder="Enter Reason">
-                                                    </td>
-                                                 </tr> --}}
+
                                                     <tr>
                                                         <td class="text-end" colspan="14">
-                                                            <a class="btn btn-warning add_btn" id="add_button"
-                                                                name="add_button">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="19"
-                                                                    height="18" viewBox="0 0 19 18" fill="none">
-                                                                    <path d="M9.5 3.75V14.25M4.25 9H14.75" stroke="white"
-                                                                        stroke-width="1.67" stroke-linecap="round"
-                                                                        stroke-linejoin="round"></path>
-                                                                </svg>
-                                                                Add
+                                                            <a class="btn btn-light-warning px-3" id="add-contact">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 20 20" fill="none">
+                                                                    <path
+                                                                        d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                        stroke="#802B81" stroke-width="1.67"
+                                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg> Add
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -153,8 +143,7 @@
                                     <div class="col-lg-3">
                                         <label for="inputtitle1" class="form-label">Validity Date</label>
                                         <input class="form-control" type="date" id="nit_validity_date"
-                                            name="nit_validity_date" placeholder="Enter Submitted Date"
-                                            value="2023-09-16">
+                                            name="nit_validity_date" placeholder="Enter Submitted Date">
                                     </div>
 
                                     <div class="col-lg-3">
@@ -191,7 +180,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="panel-group utility-shifting-tabel pt-0">
+                                    <div class="panel-group utility-shifting-tabel pt-0" id="engncy_entry">
                                         <div class="table-responsive" id="display_data">
                                             <h5 class="proposal-sent-heading">Agency Entry</h5>
                                             <table class="table no-margin class_tr_put utility-shifting-tabel-data">
@@ -206,26 +195,28 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <input type="text" name="nit_agency_main"
-                                                                class="form-control" id="nit_agency_main" value="XYZ">
+                                                            <input type="text" name="nit_agency_main[]"
+                                                                class="form-control" id="nit_agency_main[]"
+                                                                value="XYZ">
                                                         </td>
 
                                                         <td>
-                                                            <input type="text" name="nit_tender_cost"
-                                                                class="form-control" id="nit_tender_cost"
+                                                            <input type="text" name="nit_tender_cost[]"
+                                                                class="form-control" id="nit_tender_cost[]"
                                                                 placeholder="Enter Tender Cost">
                                                         </td>
 
                                                         <td>
-                                                            <input type="text" name="nit_latter_no_2"
-                                                                class="form-control" id="nit_latter_no_2" value="12045">
+                                                            <input type="text" name="nit_latter_no_2[]"
+                                                                class="form-control" id="nit_latter_no_2[]"
+                                                                value="12045">
                                                         </td>
 
                                                         <td>
-                                                            <select class="form-select" id="nit_tender_above"
-                                                                name="nit_tender_above">
+                                                            <select class="form-select" id="nit_tender_above[]"
+                                                                name="nit_tender_above[]">
                                                                 <option selected value="Above">Above</option>
-                                                                <option value=""></option>
+                                                                <option value="Below">Below</option>
                                                             </select>
                                                         </td>
                                                     </tr>
@@ -253,15 +244,14 @@
 
                                                     <tr>
                                                         <td class="text-end" colspan="14">
-                                                            <a class="btn btn-warning add_btn" id="add_button"
-                                                                name="add_button">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="19"
-                                                                    height="18" viewBox="0 0 19 18" fill="none">
-                                                                    <path d="M9.5 3.75V14.25M4.25 9H14.75" stroke="white"
-                                                                        stroke-width="1.67" stroke-linecap="round"
-                                                                        stroke-linejoin="round"></path>
-                                                                </svg>
-                                                                Add
+                                                            <a class="btn btn-light-warning px-3" id="add-egncy">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 20 20" fill="none">
+                                                                    <path
+                                                                        d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                        stroke="#802B81" stroke-width="1.67"
+                                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg> Add
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -277,7 +267,7 @@
                                             name="tender_proposal_date" value="2023-09-16">
                                     </div>
 
-                                    <div class="panel-group utility-shifting-tabel pt-0">
+                                    <div class="panel-group utility-shifting-tabel pt-0" id="add_extension">
                                         <div class="table-responsive" id="display_data">
                                             <h5 class="proposal-sent-heading">Validity Extension</h5>
                                             <table class="table no-margin class_tr_put utility-shifting-tabel-data">
@@ -293,73 +283,48 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <input type="text" name="nit_agency_name"
-                                                                class="form-control" id="nit_agency_name"
+                                                            <input type="text" name="nit_agency_name[]"
+                                                                class="form-control" id="nit_agency_name[]"
                                                                 placeholder="Enter Agency Name">
                                                         </td>
 
                                                         <td>
-                                                            <input type="date" name="nit_validity_extension_date"
-                                                                class="form-control" id="nit_validity_extension_date"
-                                                                value="14/09/2023">
+                                                            <input type="date" name="nit_validity_extension_date[]"
+                                                                class="form-control" id="nit_validity_extension_date[]">
                                                         </td>
 
                                                         <td>
-                                                            <input type="text" name="nit_latter_extension_no"
-                                                                class="form-control" id="nit_latter_extension_no"
+                                                            <input type="text" name="nit_latter_extension_no[]"
+                                                                class="form-control" id="nit_latter_extension_no[]"
                                                                 value="12045">
                                                         </td>
 
                                                         <td>
-                                                            <input type="date" name="latter_date_extension"
-                                                                class="form-control" id="latter_date_extension"
-                                                                value="14/09/2023">
+                                                            <input type="date" name="latter_date_extension[]"
+                                                                class="form-control" id="latter_date_extension[]">
                                                         </td>
 
                                                         <td>
                                                             <div class="input-group">
                                                                 <input type="file" class="form-control w-100"
-                                                                    id="latter_image_extension"
-                                                                    name="latter_image_extension">
+                                                                    id="latter_image_extension[]"
+                                                                    name="latter_image_extension[]">
                                                             </div>
                                                         </td>
                                                     </tr>
 
-                                                    {{-- <tr>
-                                                    <td>
-                                                        <input type="text" name="agency_name" class="form-control" id="agency_name" placeholder="Enter Agency Name">
-                                                    </td>
 
-                                                    <td>
-                                                        <input type="date" name="Validity_Date" class="form-control" id="Validity_Date" value="14/09/2023">
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="latter_no_2" class="form-control" id="latter_no_2" value="12045">
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="latter_date_2" class="form-control" id="latter_date_2" value="14/09/2023">
-                                                    </td>
-
-                                                    <td>
-                                                        <div class="input-group">
-                                                            <input type="file" class="form-control w-100" id="upload_letter" name="upload_letter">
-                                                        </div>
-                                                    </td>
-                                                 </tr> --}}
 
                                                     <tr>
                                                         <td class="text-end" colspan="14">
-                                                            <a class="btn btn-warning add_btn" id="add_button"
-                                                                name="add_button">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="19"
-                                                                    height="18" viewBox="0 0 19 18" fill="none">
-                                                                    <path d="M9.5 3.75V14.25M4.25 9H14.75" stroke="white"
-                                                                        stroke-width="1.67" stroke-linecap="round"
-                                                                        stroke-linejoin="round"></path>
-                                                                </svg>
-                                                                Add
+                                                            <a class="btn btn-light-warning px-3" id="add-Extension">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 20 20" fill="none">
+                                                                    <path
+                                                                        d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                        stroke="#802B81" stroke-width="1.67"
+                                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg> Add
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -369,32 +334,32 @@
                                     </div>
 
                                     <!-- <div class="col-lg-12 mt-2">
-                                                <div class="contact_list">
-                                                  <h6>DTP Approval</h6>
-                                                    <div class="row p-0">
-                                                        <div class="col-lg-3">
-                                                            <label class="form-label">Authority</label>
-                                                            <select class="form-select" name="Authority" id="Authority">
-                                                                <option value="exc">Executive Engineer</option>
-                                                                <option value="SE">Superintendent Engineer</option>
-                                                                <option value="CE">Chief Engineer</option>
-                                                              </select>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <label class="form-label">Date</label>
-                                                            <input type="date" class="form-control" id="dtp_date" name="dtp_date" value="2023-09-13">
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <label for="inputtitle1" class="form-label">Letter No.</label>
-                                                            <input class="form-control" type="text" id="Letter_No" name="Letter_No" placeholder="Enter Letter No.">
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <label for="inputtitle1" class="form-label">Amount</label>
-                                                            <input class="form-control" type="text" id="Amount" name="Amount" placeholder="Enter Amount">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> -->
+                                                                <div class="contact_list">
+                                                                  <h6>DTP Approval</h6>
+                                                                    <div class="row p-0">
+                                                                        <div class="col-lg-3">
+                                                                            <label class="form-label">Authority</label>
+                                                                            <select class="form-select" name="Authority" id="Authority">
+                                                                                <option value="exc">Executive Engineer</option>
+                                                                                <option value="SE">Superintendent Engineer</option>
+                                                                                <option value="CE">Chief Engineer</option>
+                                                                              </select>
+                                                                        </div>
+                                                                        <div class="col-lg-3">
+                                                                            <label class="form-label">Date</label>
+                                                                            <input type="date" class="form-control" id="dtp_date" name="dtp_date" value="2023-09-13">
+                                                                        </div>
+                                                                        <div class="col-lg-3">
+                                                                            <label for="inputtitle1" class="form-label">Letter No.</label>
+                                                                            <input class="form-control" type="text" id="Letter_No" name="Letter_No" placeholder="Enter Letter No.">
+                                                                        </div>
+                                                                        <div class="col-lg-3">
+                                                                            <label for="inputtitle1" class="form-label">Amount</label>
+                                                                            <input class="form-control" type="text" id="Amount" name="Amount" placeholder="Enter Amount">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> -->
 
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
@@ -453,6 +418,190 @@
                         });
                     }
                 }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-contact');
+            const contactFieldsContainer = document.getElementById('contect');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+                    <table
+                                                class="table no-margin class_tr_put utility-shifting-tabel-data proposal-sent-tabel-data">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="date" name="nit_re_invited_date[]"
+                                                               id="nit_re_invited_date[]"
+                                                               class="form-control" 
+                                                                >
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" name="nit_with_reason[]"
+                                                                class="form-control" id="nit_with_reason[]"
+                                                                placeholder="Enter Reason">
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                     
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
+            });
+        });
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-egncy');
+            const contactFieldsContainer = document.getElementById('engncy_entry');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+                <div class="panel-group utility-shifting-tabel pt-0" id="engncy_entry" >
+                                        <div class="table-responsive" id="display_data">
+                                            <h5 class="proposal-sent-heading">Agency Entry</h5>
+                                            <table class="table no-margin class_tr_put utility-shifting-tabel-data">
+                                               
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="nit_agency_main[]"
+                                                                class="form-control" id="nit_agency_main[]">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" name="nit_tender_cost[]"
+                                                                class="form-control" id="nit_tender_cost[]"
+                                                                placeholder="Enter Tender Cost">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" name="nit_latter_no_2[]"
+                                                                class="form-control" id="nit_latter_no_2[]">
+                                                        </td>
+
+                                                        <td>
+                                                            <select class="form-select" id="nit_tender_above[]"
+                                                                name="nit_tender_above[]">
+                                                                <option selected value="Above">Above</option>
+                                                                <option value="Below">Below</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+
+                                                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
+            });
+        });
+
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-Extension');
+            const contactFieldsContainer = document.getElementById('add_extension');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+               
+                <div class="panel-group utility-shifting-tabel pt-0" id="add_extension">
+                                        <div class="table-responsive" id="display_data">
+                                           
+                                            <table class="table no-margin class_tr_put utility-shifting-tabel-data">
+                                                
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="nit_agency_name[]"
+                                                                class="form-control" id="nit_agency_name[]"
+                                                                placeholder="Enter Agency Name">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="date" name="nit_validity_extension_date[]"
+                                                                class="form-control" id="nit_validity_extension_date[]"
+                                                                >
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" name="nit_latter_extension_no[]"
+                                                                class="form-control" id="nit_latter_extension_no[]"
+                                                                value="12045">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="date" name="latter_date_extension[]"
+                                                                class="form-control" id="latter_date_extension[]"
+                                                                >
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="file" class="form-control w-100"
+                                                                    id="latter_image_extension[]"
+                                                                    name="latter_image_extension[]">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
             });
         });
     </script>

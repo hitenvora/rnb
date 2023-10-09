@@ -18,7 +18,7 @@
                                 <form class="row" method="post" enctype="multipart/form-data"
                                     id="master_id">
                                     @csrf
-                                    <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     {{-- @foreach ($principal_show as $item)
                                         
                                     @endforeach --}}
@@ -38,11 +38,10 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Approved By</label>
-                                        <select class="form-select" id="pad_approved_by" name="pad_approved_by" value="{{ $project_master->pad_approved_by }}">
-                                           
-                                            <option value="Government">Government</option>
-                                            <option value="Circle">Circle</option>
-                                            <option value="Divison">Divison</option>
+                                        <select class="form-select" id="pad_approved_by" name="pad_approved_by" value="{{ $project_master->pad_approved_by }}"> 
+                                            <option value="Government"@selected($project_master->pad_approved_by == 'Government')>Government</option>
+                                            <option value="Circle"@selected($project_master->pad_approved_by == 'Circle')>Circle</option>
+                                            <option value="Divison"@selected($project_master->pad_approved_by == 'Divison')>Divison</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-12">
@@ -50,6 +49,9 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="pad_letter_upload"
                                                 name="pad_letter_upload" value="{{ $project_master->pad_letter_upload }}">
+                                                <a href="{{ asset('uplode_images/principal_approval_detail/' . $project_master->pad_letter_upload) }}" target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">

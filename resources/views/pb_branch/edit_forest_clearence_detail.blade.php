@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-@include('navbar.pb_branch.edit_pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
 
     <body>
@@ -18,23 +18,33 @@
                             <div class="card-body">
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
-                                    <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Chainage</label>
                                         <input type="text" class="form-control" id="forest_chainage"
-                                            name="forest_chainage" placeholder="Enter Chainage" value=""{{ $project_master->forest_chainage }}"">
+                                            name="forest_chainage" placeholder="Enter Chainage"
+                                            value="{{ $project_master->forest_chainage }}">
                                     </div>
+
+
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Protected/Non Protected</label>
                                         <div class="form-control checkboxes d-flex gap-3">
+                                            @php
+                                                $forest_protected = [];
+                                                if (isset($project_master->forest_protected)) {
+                                                    $forest_protected = explode(',', $project_master->forest_protected);
+                                                }
+                                            @endphp
                                             <label class="mb-0">
                                                 <input class="form-check-input" name="forest_protected[]"
-                                                    id="forest_protected[]" type="checkbox" value="Protected"
-                                                    checked>Protected
+                                                    id="forest_protected[]" type="checkbox" @checked(in_array('Protected', $forest_protected))
+                                                    value="Protected">Protected
                                             </label>
                                             <label class="mb-0">
                                                 <input class="form-check-input" name="forest_protected[]"
-                                                    id="forest_protected[]" type="checkbox" value="Non Protected">Non
+                                                    id="forest_protected[]" type="checkbox"@checked(in_array('Non Protected', $forest_protected))
+                                                    value="Non Protected">Non
                                                 Protected
                                             </label>
                                         </div>
@@ -53,17 +63,20 @@
                                         <label class="form-label">Approval to be accorded by District/State/Gandhinagar
                                         </label>
                                         <input type="text" class="form-control" id="forest_appr_state"
-                                            name="forest_appr_state" placeholder="Enter District/State/Gandhinagar" value="{{ $project_master->forest_appr_state }}">
+                                            name="forest_appr_state" placeholder="Enter District/State/Gandhinagar"
+                                            value="{{ $project_master->forest_appr_state }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Proposal Submitted To</label>
                                         <input type="text" class="form-control" id="forest_proposal_submit"
-                                            name="forest_proposal_submit" placeholder="Proposal Submitted To" value="{{ $project_master->forest_proposal_submit }}">
+                                            name="forest_proposal_submit" placeholder="Proposal Submitted To"
+                                            value="{{ $project_master->forest_proposal_submit }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Letter No.</label>
                                         <input type="text" class="form-control" id="forest_letter_no"
-                                            name="forest_letter_no" placeholder="Enter Letter No." value="{{ $project_master->forest_letter_no }}">
+                                            name="forest_letter_no" placeholder="Enter Letter No."
+                                            value="{{ $project_master->forest_letter_no }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Letter Date</label>
@@ -77,12 +90,16 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="upload_img"
                                                 name="forest_upload_img" value="{{ $project_master->forest_upload_img }}">
+                                                <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_upload_img) }}" target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Online Proposal Submission No.</label>
                                         <input type="text" class="form-control" id="forest_online_no"
-                                            name="forest_online_no" placeholder="Enter Online Proposal Submission No." value="{{ $project_master->forest_online_no }}">
+                                            name="forest_online_no" placeholder="Enter Online Proposal Submission No."
+                                            value="{{ $project_master->forest_online_no }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Online Proposal Submission Date</label>
@@ -98,10 +115,9 @@
                                     <div class="col-lg-3">
                                         <label class="form-label">Approved By</label>
                                         <select class="form-select" id="forest_approved_by" name="forest_approved_by">
-                                            <option selected value="">Select Approved By</option>
-                                            <option value="Government">Government</option>
-                                            <option value="Circle">Circle</option>
-                                            <option value="Divison">Divison</option>
+                                            <option value="Government"@selected($project_master->forest_approved_by == 'Government')>Government</option>
+                                            <option value="Circle"@selected($project_master->forest_approved_by == 'Circle')>Circle</option>
+                                            <option value="Divison"@selected($project_master->forest_approved_by == 'Divison')>Divison</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-3">
@@ -113,7 +129,11 @@
                                         <label class="form-label">Letter Upload</label>
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="forest_letter_img"
-                                                name="forest_letter_img" value="{{ $project_master->forest_letter_img }}">
+                                                name="forest_letter_img"
+                                                value="{{ $project_master->forest_letter_img }}">
+                                                    <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_letter_img) }}" target="_blank">
+                                                        <br>Open Image in New Tab
+                                                    </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">

@@ -47,7 +47,6 @@
                                     <div class="col-lg-4">
                                         <label class="form-label">Approved By</label>
                                         <select class="form-select" id="aa_approved_by" name="aa_approved_by">
-                                            <option selected disabled value="aa_approved_by">aa_approved_by</option>
                                             <option value="Government">Government</option>
                                             <option value="Circle">Circle</option>
                                             <option value="Divison">Divison</option>
