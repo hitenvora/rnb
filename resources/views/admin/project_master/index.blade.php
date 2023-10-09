@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-end">
-                                    <a class="btn btn-white" href="#" id="exportButton" download>
+                                    <a class="btn btn-white" href="{{ route('project_export') }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                             viewBox="0 0 18 18" fill="none">
                                             <path
@@ -805,7 +805,7 @@
                 // {
                 //     data: 'ppd_proposal_submitted_letter_no',
                 //     name: 'ppd_proposal_submitted_letter_no'
-                // },   
+                // },
                 //  {
                 //     data: 'ppd_proposal_submitted_letter_date',
                 //     name: 'ppd_proposal_submitted_letter_date'
@@ -840,8 +840,8 @@
                     $('#basic_name_project').val(data.data.basic_name_project);
                     $('#basic_wms_work_head').val(data.data.basic_wms_work_head);
                     $('#district_id').val(data.data.district_id);
-                    
-                    window.location = "{{route('basic_branch')}}";
+
+                    window.location = "{{ route('basic_branch') }}";
                 },
                 error: function(response) {
                     toastr.error(response.msg);

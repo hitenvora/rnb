@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class MasterController extends Controller
 {
+
+    public function storeImage($img, $path)
+    {
+        $path = public_path($path);
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
+
+        $imageName = time() . '.' . $img->extension();
+        $img->move($path, $imageName);
+        return $imageName;
+    }
+
     public function insert(Request $request)
     {
 
@@ -118,7 +130,12 @@ class MasterController extends Controller
         $basic_branch->basic_mp_mla_name = $request->input('basic_mp_mla_name');
         $basic_branch->basic_letter_no = $request->input('basic_letter_no');
         $basic_branch->basic_letter_date = $request->input('basic_letter_date');
-        $basic_branch->basic_upload_img = $request->input('basic_upload_img');
+
+        if (isset($request->basic_upload_img)) {
+            $basic_branch->basic_upload_img = $this->storeImage($request->basic_upload_img, 'images/masters/');
+        }
+
+
         $basic_branch->basic_suggest = $request->input('basic_suggest');
         $basic_branch->basic_recever_from = $request->input('basic_recever_from');
         $basic_branch->basic_rec_letter_no = $request->input('basic_rec_letter_no');
@@ -426,12 +443,12 @@ class MasterController extends Controller
         $basic_branch->tpi_validity_extension_letter_image = $request->input('tpi_validity_extension_letter_image');
         $basic_branch->tpi_aggr_no = $request->input('tpi_aggr_no');
         $basic_branch->tpi_agency_last = $request->input('tpi_agency_last');
-        
+
         $forest_protected = $request->input('forest_protected');
-        
+
         if (isset($forest_protected) && sizeof($forest_protected)) {
 
-            $basic_branch->forest_protected = implode(",",$forest_protected);
+            $basic_branch->forest_protected = implode(",", $forest_protected);
             // foreach ($forest_protected as $option) {
             //     Master::create([
             //         'forest_protected' => $option,
@@ -440,17 +457,17 @@ class MasterController extends Controller
         }
 
         $used_type = $request->input('used_type');
-        
+
         if (isset($used_type) && sizeof($used_type)) {
-            
+
             // foreach ($used_type as $option) {
             //     Master::create([
             //         'used_type' => $option,
             //     ]);
             // }
-            $basic_branch->used_type = implode(",",$used_type);
+            $basic_branch->used_type = implode(",", $used_type);
         }
-        
+
         $basic_branch->save();
         return response()->json(['status' => '200', 'msg' => 'success']);
     }

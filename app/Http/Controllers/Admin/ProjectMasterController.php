@@ -16,6 +16,8 @@ use App\Models\Admin\WorkTypes;
 use App\Models\Master\Master;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use App\Exports\ExportMasters;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectMasterController extends Controller
 {
@@ -61,7 +63,9 @@ class ProjectMasterController extends Controller
             <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#proposal_view" aria-label="View" data-bs-original-title="View';
 
             $actionUrl = route('edit_project_master', $id);
-            $action = '<a class="btn btn-primary btn-sm me-1" href="' . $actionUrl . '"><i class="fa fa-pencil"></i></a>';
+            $sheetUrl = route('project_sheet', $id);
+            $action = '<a class="btn btn-success btn-sm me-1" href="' . $sheetUrl . '">Project Sheet</a>';
+            $action .= '<a class="btn btn-primary btn-sm me-1" href="' . $actionUrl . '"><i class="fa fa-pencil"></i></a>';
             $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
 
             $project_master[$key]['action'] =  $action;
@@ -103,5 +107,15 @@ class ProjectMasterController extends Controller
         $project_master->delete();
 
         return response()->json(['status' => '200', 'msg' => 'success']);
+    }
+
+    public function project_export()
+    {
+        return  Excel::download(new ExportMasters, 'masters.xlsx');
+    }
+
+    public function projectSheet()
+    {
+        return view('admin.project_master.project_sheet');
     }
 }

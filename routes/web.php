@@ -88,6 +88,8 @@ Route::get('/project-master/create', [ProjectMasterController::class, 'create'])
 Route::post('/get-project-master', [ProjectMasterController::class, 'get_project_master'])->name('get_project_master');
 Route::get('/edit-project-master/{id}', [ProjectMasterController::class, 'master_edit'])->name('edit_project_master');
 Route::post('/project-master-delete', [ProjectMasterController::class, 'delete'])->name('project_master_delete');
+Route::get('/project-master-export', [ProjectMasterController::class, 'project_export'])->name('project_export');
+Route::get('/project-sheet', [ProjectMasterController::class, 'projectSheet'])->name('project_sheet');
 
 //division_master
 Route::get('/division-master', [DivisionMasterController::class, 'index'])->name('division_master');

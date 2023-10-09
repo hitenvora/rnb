@@ -232,6 +232,10 @@
                                                                     id="basic_upload_img" name="basic_upload_img"
                                                                     value="{{ $project_master->basic_upload_img }}">
                                                             </div>
+
+                                                            <img src="{{ asset('images/masters/' . $project_master->basic_upload_img) }}"
+                                                                alt="" height="50" srcset="">
+
                                                         </div>
                                                     </div>
                                                 </div>
