@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\AdminLogin;
 use App\Models\Admin\DivisionMasters;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -11,8 +12,9 @@ use Yajra\DataTables\Facades\DataTables;
 class DivisionMasterController extends Controller
 {
     public function index()
-    {
-        return view('admin.division_master');
+    { $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('admin.division_master',compact('user','role'));
     }
 
     public function insert(Request $request)

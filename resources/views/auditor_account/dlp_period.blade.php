@@ -19,6 +19,8 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id">
+                                
+
                                     <div class="col-lg-4">
                                         <label class="form-label">DLP Completion Date</label>
                                         <input type="date" class="form-control" id="dlp_completion_date"

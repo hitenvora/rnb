@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\AdminLogin;
 use App\Models\admin\Role;
 use App\Models\admin\UserMaster;
 use Illuminate\Http\Request;
@@ -13,36 +14,38 @@ class UserMasterController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
         $rolename = Role::orderBy('id')->get();
-        return view('admin.user_master', compact('rolename'));
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('admin.user_master', compact('rolename','user','role'));
     }
 
     public function insert(Request $request)
     {
 
         $rules = [
-            'user_name' => 'required',
+            'name' => 'required',
             'email' => 'required',
-            'Mobile_No' => 'required||numeric|min:10',
-            'user_password' => 'required|min:8',
-            'Role_id' => 'required',
+            'mobile_no' => 'required||numeric|min:10',
+            // 'user_password' => 'required|min:8',
+            'role_id' => 'required',
         ];
 
         $this->validate($request, $rules);
 
         if ($request->user_id != '') {
-            $user_master = UserMaster::find($request->user_id);
+            $user_master = AdminLogin::find($request->user_id);
             if (!$user_master) {
                 return response()->json(['status' => 400, 'msg' => 'User not found!']);
             }
         } else {
-            $user_master = new UserMaster();
+            $user_master = new AdminLogin();
         }
-        $user_master->user_name = $request->input('user_name');
+        $user_master->name = $request->input('name');
         $user_master->email = $request->input('email');
-        $user_master->Mobile_No = $request->input('Mobile_No');
-        $user_master->user_password =  Hash::make($request->user_password);
-        $user_master->Role_id = $request->input('Role_id');
+        $user_master->mobile_no = $request->input('mobile_no');
+        $user_master->password =  Hash::make($request->user_password);
+        $user_master->role_id = $request->input('role_id');
         $user_master->save();
 
         return response()->json(['status' => '200', 'msg' => 'success']);
@@ -50,8 +53,7 @@ class UserMasterController extends Controller
 
     public function get_user_list(Request $request)
     {
-        $user_master = UserMaster::orderBy('id', 'desc')->get();
-
+        $user_master = AdminLogin::with('role_name')->orderBy('id', 'desc')->get();
         foreach ($user_master as $key => $record) {
             $id = $record->id;
             $user_master[$key]['role_name_view'] =  $record->role_name->name;
@@ -67,7 +69,7 @@ class UserMasterController extends Controller
 
     public function user_edit($id)
     {
-        $employee_list = UserMaster::where('id', '=', $id)->first();
+        $employee_list = AdminLogin::where('id', '=', $id)->first();
         if ($employee_list) {
             return response()->json(['status' => '200', 'msg' => 'success', 'data' => $employee_list]);
         }
@@ -77,7 +79,7 @@ class UserMasterController extends Controller
     public function delete(Request $request)
     {
         $id =  $request->input('id');
-        $employee_list = UserMaster::find($id);
+        $employee_list = AdminLogin::find($id);
         $employee_list->delete();
 
         return response()->json(['status' => '200', 'msg' => 'success']);

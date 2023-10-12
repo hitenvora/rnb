@@ -566,9 +566,6 @@
         });
 
 
-
-
-
         document.addEventListener('DOMContentLoaded', function() {
             const addContactButton = document.getElementById('add-validity');
             const contactFieldsContainer = document.getElementById('valid_add');
@@ -637,8 +634,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button

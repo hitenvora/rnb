@@ -19,6 +19,7 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="utility_shifting">
 
                                     <div class="col-lg-4">
                                         <label class="form-label">Chainage</label>
@@ -79,10 +80,10 @@
                                         </div>
 
                                         <!-- <label  class="form-label">Type of Utility </label>
-                                                                                    <select class="form-select" id="name_project" name="name_project">
-                                                                                        <option selected value="{{ $project_master->initiated_name }}">Electric Pole, Water Supply line, Drainage line, Telephone line, Gas line, Others </option>
-                                                                                        <option value="{{ $project_master->initiated_name }}">Gondal</option>
-                                                                                    </select> -->
+                                                                                                            <select class="form-select" id="name_project" name="name_project">
+                                                                                                                <option selected value="{{ $project_master->initiated_name }}">Electric Pole, Water Supply line, Drainage line, Telephone line, Gas line, Others </option>
+                                                                                                                <option value="{{ $project_master->initiated_name }}">Gondal</option>
+                                                                                                            </select> -->
                                     </div>
 
                                     <div class="col-lg-4">
@@ -92,7 +93,7 @@
                                     </div>
 
 
-                                    <div class="panel-group utility-shifting-tabel">
+                                    <div class="panel-group utility-shifting-tabel" id="contect">
                                         <div class="table-responsive" id="display_data">
                                             <h5 class="proposal-sent-heading">Proposal Sent</h5>
                                             <table
@@ -117,196 +118,135 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <!-- <input type="hidden" name="utility" class="class_mate_id" id="mateid_2" value="3"> -->
-                                                            <input type="text" class="form-control"
-                                                                name="usd_utility_item" id="usd_utility_item"
-                                                                value="{{ $project_master->usd_utility_item }}">
+                                                    @foreach (explode(',', $project_master->usd_utility_item) as $key => $data)
+                                                        @php
+                                                            $usd_details = explode(',', $project_master->usd_details);
+                                                            $estimated_usd_latter_no = explode(',', $project_master->estimated_usd_latter_no);
+                                                            $usd_date_input = explode(',', $project_master->usd_date_input);
+                                                            $usd_submitted_to = explode(',', $project_master->usd_submitted_to);
+                                                            $usd_joint_visit = explode(',', $project_master->usd_joint_visit);
+                                                            $usd_estimate_submited = explode(',', $project_master->usd_estimate_submited);
+                                                            $usd_latter_no = explode(',', $project_master->usd_latter_no);
+                                                            $usd_date_input_sec = explode(',', $project_master->usd_date_input_sec);
+                                                            $usd_amount = explode(',', $project_master->usd_amount);
+                                                            $usd_payment = explode(',', $project_master->usd_payment);
+                                                            $usd_date_input_th = explode(',', $project_master->usd_date_input_th);
+                                                            $usd_date_input_fr = explode(',', $project_master->usd_date_input_fr);
+                                                            $usd_date_input_fi = explode(',', $project_master->usd_date_input_fi);
 
-                                                        </td>
-                                                        <td>
-                                                            <!-- <input type="hidden" name="test_id[]" class="class_test_id" id="testid_2" value="60"> -->
-                                                            <input type="text" name="usd_details"
-                                                                class="form-control class_test" id="usd_details"
-                                                                value="{{ $project_master->usd_details }}">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="estimated_usd_latter_no"
-                                                                class="form-control class_code"
-                                                                id="estimated_usd_latter_no"
-                                                                value="{{ $project_master->estimated_usd_latter_no }}">
-                                                        </td>
+                                                        @endphp
+                                                        <tr>
+                                                            <td>
+                                                                
+                                                                <input type="text" class="form-control"
+                                                                    name="usd_utility_item[]" id="usd_utility_item[]"
+                                                                    value="{{ $data }}">
 
-                                                        <td>
-                                                            <input type="date" name="usd_date_input"
-                                                                class="form-control" id="usd_date_input"
-                                                                value="{{ $project_master->usd_date_input }}">
-                                                        </td>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="usd_details[]"
+                                                                    class="form-control class_test" id="usd_details[]"
+                                                                    value="{{ @$usd_details[$key] }}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="estimated_usd_latter_no[]"
+                                                                    class="form-control class_code"
+                                                                    id="estimated_usd_latter_no[]"
+                                                                    value="{{ @$estimated_usd_latter_no[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="text" name="usd_submitted_to"
-                                                                class="form-control" id="usd_submitted_to"
-                                                                value="{{ $project_master->usd_submitted_to }}">
-                                                        </td>
+                                                            <td>
+                                                                <input type="date" name="usd_date_input[]"
+                                                                    class="form-control" id="usd_date_input[]"
+                                                                    value="{{ @$usd_date_input[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <select class="form-select joint-date-visit"
-                                                                id="usd_joint_visit" name="usd_joint_visit">
-                                                                <option selected
-                                                                    value="Yes"@selected($project_master->usd_joint_visit == 'Yes')>Yes</option>
-                                                                <option value="No" @selected($project_master->usd_joint_visit == 'No')>No
-                                                                </option>
-                                                            </select>
-                                                        </td>
+                                                            <td>
+                                                                <input type="text" name="usd_submitted_to[]"
+                                                                    class="form-control" id="usd_submitted_to[]"
+                                                                    value="{{ @$usd_submitted_to[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="text" name="usd_estimate_submited"
-                                                                class="form-control" id="usd_estimate_submited"
-                                                                value="{{ $project_master->usd_estimate_submited }}">
-                                                        </td>
+                                                            <td>
+                                                                <select class="form-select joint-date-visit"
+                                                                    id="usd_joint_visit[]" name="usd_joint_visit[]">
+                                                                    <option selected
+                                                                        value="Yes"@selected(@$usd_joint_visit[$key] == 'Yes')>Yes
+                                                                    </option>
+                                                                    <option value="No" @selected(@$usd_joint_visit[$key] == 'No')>No
+                                                                    </option>
+                                                                </select>
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="text" name="usd_latter_no"
-                                                                class="form-control" id="usd_latter_no"
-                                                                value="{{ $project_master->usd_latter_no }}">
-                                                        </td>
+                                                            <td>
+                                                                <input type="text" name="usd_estimate_submited[]"
+                                                                    class="form-control" id="usd_estimate_submited[]"
+                                                                    value="{{ @$usd_estimate_submited[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="date" name="usd_date_input_sec"
-                                                                class="form-control" id="usd_date_input_sec"
-                                                                value="{{ $project_master->usd_date_input_sec }}">
-                                                        </td>
+                                                            <td>
+                                                                <input type="text" name="usd_latter_no[]"
+                                                                    class="form-control" id="usd_latter_no[]"
+                                                                    value="{{ @$usd_latter_no[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="text" name="usd_amount" class="form-control "
-                                                                id="usd_amount"
-                                                                value="{{ $project_master->usd_amount }}">
-                                                        </td>
+                                                            <td>
+                                                                <input type="date" name="usd_date_input_sec[]"
+                                                                    class="form-control" id="usd_date_input_sec[]"
+                                                                    value="{{ @$usd_date_input_sec[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <select class="form-select" id="usd_payment"
-                                                                name="usd_payment">
-                                                                {{-- <option selected ></option> --}}
-                                                                <option value="Yes" @selected($project_master->usd_payment == 'Yes')>Yes
-                                                                </option>
-                                                                <option value="No"@selected($project_master->usd_payment == 'No')>No
-                                                                </option>
-                                                            </select>
-                                                        </td>
+                                                            <td>
+                                                                <input type="text" name="usd_amount[]"
+                                                                    class="form-control " id="usd_amount[]"
+                                                                    value="{{ @$usd_amount[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="date" name="usd_date_input_th"
-                                                                class="form-control" id="usd_date_input_th"
-                                                                value="{{ $project_master->usd_date_input_th }}">
-                                                        </td>
+                                                            <td>
+                                                                <select class="form-select" id="usd_payment[]"
+                                                                    name="usd_payment[]">
+                                                                    {{-- <option selected ></option> --}}
+                                                                    <option value="Yes" @selected(@$usd_payment[$key] == 'Yes')>Yes
+                                                                    </option>
+                                                                    <option value="No"@selected(@$usd_payment[$key] == 'No')>No
+                                                                    </option>
+                                                                </select>
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="date" name="usd_date_input_fr"
-                                                                class="form-control" id="usd_date_input_fr"
-                                                                value="{{ $project_master->usd_date_input_fr }}">
-                                                        </td>
+                                                            <td>
+                                                                <input type="date" name="usd_date_input_th[]"
+                                                                    class="form-control" id="usd_date_input_th[]"
+                                                                    value="{{ @$usd_date_input_th[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="date" name="usd_date_input_fi"
-                                                                class="form-control" id="usd_date_input_fi"
-                                                                value="{{ $project_master->usd_date_input_fi }}">
-                                                        </td>
-                                                    </tr>
+                                                            <td>
+                                                                <input type="date" name="usd_date_input_fr[]"
+                                                                    class="form-control" id="usd_date_input_fr[]"
+                                                                    value="{{ @$usd_date_input_fr[$key] }}">
+                                                            </td>
 
-                                                    {{-- <tr>
-                                                    <td>
-                                                        <!-- <input type="hidden" name="utility" class="class_mate_id" id="mateid_2" value="3"> -->
-                                                        <input type="text" name="utility_item" class="form-control "
-                                                            id="utility_item" value="XYZ">
-                                                    </td>
-                                                    <td>
-                                                        <!-- <input type="hidden" name="test_id[]" class="class_test_id" id="testid_2" value="60"> -->
-                                                        <input type="text" name="details"
-                                                            class="form-control class_test" id="details"
-                                                            value="-">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="latter_no"
-                                                            class="form-control class_code" id="latter_no"
-                                                            value="12045">
-                                                    </td>
+                                                            <td>
+                                                                <input type="date" name="usd_date_input_fi[]"
+                                                                    class="form-control" id="usd_date_input_fi[]"
+                                                                    value="{{ @$usd_date_input_fi[$key] }}">
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
 
-                                                    <td>
-                                                        <input type="date" name="date_input" class="form-control"
-                                                            id="date_input" value="14/09/2023">
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="Submitted_to" class="form-control"
-                                                            id="Submitted_to" value="-">
-                                                    </td>
-
-                                                    <td>
-                                                        <select class="form-select joint-date-visit" id="joint_visit"
-                                                            name="joint_visit">
-                                                            <option value="{{ $project_master->initiated_name }}">Yes</option>
-                                                            <option selected value="{{ $project_master->initiated_name }}">No</option>
-                                                        </select>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="Estimate_submited"
-                                                            class="form-control" id="Estimate_submited" value="-"
-                                                            disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="latter_no" class="form-control"
-                                                            id="latter_no" value="12045" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input_sec" class="form-control"
-                                                            id="date_input_sec" value="14/09/2023" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="Amount" class="form-control "
-                                                            id="Amount" value="1000" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <select class="form-select" id="Payment" name="Payment">
-                                                            <option value="{{ $project_master->initiated_name }}">Yes</option>
-                                                            <option selected value="{{ $project_master->initiated_name }}">No</option>
-                                                        </select>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input_th" class="form-control"
-                                                            id="date_input_th" value="14/09/2023" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input_fr" class="form-control"
-                                                            id="date_input_fr" value="14/09/2023" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input_fi" class="form-control"
-                                                            id="date_input_fi" value="14/09/2023" disabled>
-                                                    </td>
-                                                </tr> --}}
                                                     <tr>
                                                         <td class="text-end" colspan="14">
-                                                            <a class="btn btn-warning add_btn" id="add_button"
-                                                                name="add_button" id="add_proposal_sent">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="19"
-                                                                    height="18" viewBox="0 0 19 18" fill="none">
-                                                                    <path d="M9.5 3.75V14.25M4.25 9H14.75" stroke="white"
-                                                                        stroke-width="1.67" stroke-linecap="round"
-                                                                        stroke-linejoin="round"></path>
-                                                                </svg>
-                                                                Add
+                                                            <a class="btn btn-light-warning px-3" id="add-contact">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 20 20" fill="none">
+                                                                    <path
+                                                                        d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                        stroke="#802B81" stroke-width="1.67"
+                                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg> Add
                                                             </a>
                                                         </td>
                                                     </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -383,7 +323,7 @@
 
 
         document.addEventListener('DOMContentLoaded', function() {
-            const addContactButton = document.getElementById('add_proposal_sent');
+            const addContactButton = document.getElementById('add-contact');
             const contactFieldsContainer = document.getElementById('contect');
             let contactCount = 0; // Keep track of added contacts
 
@@ -392,30 +332,100 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `<table class="table sign_up_table">
-                                <tr>
-                                    <td id="contect" >
-                                        <input type="text" placeholder="Enter contact person name"
-                                            title="Enter contact person name" name="person_name[]"
-                                            id="person_name" class="form-control border-0 p-0">
-                                        <span class="text-danger" id="person_name_error"></span>
+                newContactField.innerHTML = `   <div class="panel-group utility-shifting-tabel">
+                                        <div class="table-responsive">
+                                            
+                                            <table
+                                                class="table no-margin class_tr_put utility-shifting-tabel-data utility-shifting-date">
+                                                
+                                                <tbody>
+                                                    <td>
+                                                    <input type="text" class="form-control"
+                                                                name="usd_utility_item[]" id="usd_utility_item[]"
+                                                                value="XYZ">
 
-                                    </td>
-                                    <td>
-                                        <input type="number" placeholder="Enter mobile no."
-                                            title="Enter mobile no." name="mobile_no[]" id="mobile_no"
-                                            class="form-control border-0 p-0">
-                                        <span class="text-danger" id="mobile_no_error"></span>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="usd_details[]"
+                                                                class="form-control class_test" id="usd_details[]">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="estimated_usd_latter_no[]"
+                                                                class="form-control class_code"
+                                                                id="estimated_usd_latter_no[]">
+                                                        </td>
 
-                                    </td>
-                                    <td>
-                                        <input type="email" placeholder="Enter email id"
-                                            title="Enter email id" name="email_id[]" id="email_id"
-                                            class="form-control border-0 p-0">
-                                        <span class="text-danger" id="email_id_error"></span>
-                                    </td>
-                                </tr>
-                        </table>
+                                                        <td>
+                                                            <input type="date" name="usd_date_input[]"
+                                                                class="form-control" id="usd_date_input[]"
+                                                                value="14/09/2023">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" name="usd_submitted_to[]"
+                                                                class="form-control" id="usd_submitted_to[]"
+                                                                value="-">
+                                                        </td>
+
+                                                        <td>
+                                                            <select class="form-select joint-date-visit"
+                                                                id="usd_joint_visit[]" name="usd_joint_visit[]">
+                                                                <option selected value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" name="usd_estimate_submited[]"
+                                                                class="form-control" id="usd_estimate_submited[]">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" name="usd_latter_no[]"
+                                                                class="form-control" id="usd_latter_no[]" value="12045">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="date" name="usd_date_input_sec[]"
+                                                                class="form-control" id="usd_date_input_sec[]"
+                                                                value="14/09/2023">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" name="usd_amount[]"
+                                                                class="form-control" id="usd_amount[]" value="1000">
+                                                        </td>
+
+                                                        <td>
+                                                            <select class="form-select" id="usd_payment[]"
+                                                                name="usd_payment[]">
+                                                                <option selected value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="date" name="usd_date_input_th[]"
+                                                                class="form-control" id="usd_date_input_th[]"
+                                                                value="14/09/2023">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="date" name="usd_date_input_fr[]"
+                                                                class="form-control" id="usd_date_input_fr[]"
+                                                                value="14/09/2023">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="date" name="usd_date_input_fi[]"
+                                                                class="form-control" id="usd_date_input_fi[]"
+                                                                value="14/09/2023">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button

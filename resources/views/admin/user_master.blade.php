@@ -192,9 +192,9 @@
                             <input type="hidden" name="user_id" id="user_id">
                             <div class="col-lg-12">
                                 <label class="form-label">User Name</label>
-                                <input type="text" class="form-control" id="user_name" name="user_name"
+                                <input type="text" class="form-control" id="name" name="name"
                                     placeholder="Enter User Name">
-                                <span class="text-danger" id="user_name_error"></span>
+                                <span class="text-danger" id="name_error"></span>
                             </div>
 
                             <div class="col-lg-6">
@@ -207,9 +207,9 @@
 
                             <div class="col-lg-6">
                                 <label class="form-label">Mobile No.</label>
-                                <input type="text" class="form-control" id="Mobile_No" name="Mobile_No"
+                                <input type="text" class="form-control" id="mobile_no" name="mobile_no"
                                     placeholder="Enter Mobile Number">
-                                <span class="text-danger" id="Mobile_No_error"></span>
+                                <span class="text-danger" id="mobile_no_error"></span>
                             </div>
 
                             <div class="col-lg-6">
@@ -221,13 +221,13 @@
 
                             <div class="col-lg-6">
                                 <label class="form-label">Role</label>
-                                <select class="form-select" name="Role_id" id="Role_id">
+                                <select class="form-select" name="role_id" id="role_id">
                                     <option>Select</option>
                                     @foreach ($rolename as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
                                 </select>
-                                <span class="text-danger" id="Role_id_error"></span>
+                                <span class="text-danger" id="role_id_error"></span>
                             </div>
                             <div class="col-12 text-center">
                                 <button type="submit" class="btn submit-btn" id="btn_save"
@@ -261,7 +261,7 @@
 
                             <div class="col-lg-6">
 								<label  class="form-label">Mobile  No.</label>
-                                <input type="text" class="form-control" id="Mobile_No" name="Mobile_No" placeholder="Enter Mobile Number">
+                                <input type="text" class="form-control" id="mobile_no" name="mobile_no" placeholder="Enter Mobile Number">
 							</div>
 
                             <div class="col-lg-6">
@@ -372,16 +372,16 @@
                     name: 'DT_RowIndex'
                 },
                 {
-                    data: 'user_name',
-                    name: 'user_name'
+                    data: 'name',
+                    name: 'name'
                 },
                 {
                     data: 'email',
                     name: 'email'
                 },
                 {
-                    data: 'Mobile_No',
-                    name: 'Mobile_No'
+                    data: 'mobile_no',
+                    name: 'mobile_no'
                 },
                 {
                     data: 'role_name_view',
@@ -405,16 +405,15 @@
             },
             dataType: "json",
             success: (data) => {
-                $('.modal-title').text('Edit Emloyee');
+                $('.modal-title').text('Edit User');
                 $("#user_master_form")[0].reset();
                 $('.edit-form').show();
                 // set edit value
                 $('#user_id').val(data.data.id);
-                $('#user_name').val(data.data.user_name);
+                $('#name').val(data.data.name);
                 $('#email').val(data.data.email);
-                $('#Mobile_No').val(data.data.Mobile_No);
-                $('#user_password').val(data.data.user_password);
-                $('#Role_id').val(data.data.Role_id);
+                $('#mobile_no').val(data.data.mobile_no);
+                $('#role_id').val(data.data.role_id);
                 // Show edit modal
                 $('#add_user').modal('show');
             },

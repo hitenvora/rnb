@@ -3,7 +3,8 @@
 @endsection
 
 @section('content')
-@include('navbar.auditor_account.edit_auditor_account_navbar')
+@include('navbar.pb_branch.edit_pb_branch_navbar')
+
 
     <body>
         <div class="mg-b-23">
@@ -18,6 +19,8 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="excess_details">
+
                                     <div class="col-lg-12 mt-2">
                                         <div class="contact_list">
                                             <h6>Submission Details From Subdivision to Division</h6>

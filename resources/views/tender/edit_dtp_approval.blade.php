@@ -3,7 +3,8 @@
 @endsection
 
 @section('content')
-    @include('navbar.tender.edit_tender_navbar')
+@include('navbar.pb_branch.edit_pb_branch_navbar')
+
 
     <body>
         <div class="mg-b-23">
@@ -18,6 +19,8 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="dtp">
+
                                     <div class="col-lg-4">
                                         <label for="inputtitle1" class="form-label">Submitted To</label>
                                         <input class="form-control" type="text" id="dtp_sub_to" name="dtp_sub_to"
@@ -66,7 +69,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-12">
+                                    <div class="col-xl-12"  id="contect">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="expen_table dtp_table table-responsive">
@@ -77,55 +80,46 @@
                                                             <th>Remark</th>
                                                         </thead>
                                                         <tbody>
+                                                            @foreach (explode(',', $project_master->dtp_f_date) as $key => $date)
+                                                                    @php
+                                                                        $dtp_f_status = explode(',', $project_master->dtp_f_status);
+                                                                        $dtp_f_remark = explode(',', $project_master->dtp_f_remark);
+                                                                    @endphp
                                                             <tr>
                                                                 <td>
-                                                                    <input type="date" id="dtp_f_date" name="dtp_f_date"
+                                                                    <input type="date" id="dtp_f_date" name="dtp_f_date[]"
                                                                         class="form-control"
-                                                                        value="{{ $project_master->dtp_f_date }}"
+                                                                        value="{{ $date}}"
                                                                         placeholder="Enter Date">
                                                                 </td>
                                                                 <td>
                                                                     <input type="text" id="dtp_f_status"
-                                                                        name="dtp_f_status" class="form-control"
+                                                                        name="dtp_f_status[]" class="form-control"
                                                                         placeholder="Enter Status"
-                                                                        value="{{ $project_master->dtp_f_status }}">
+                                                                        value="{{  @$dtp_f_status[$key] }}">
                                                                 </td>
                                                                 <td>
                                                                     <input type="text" id="dtp_f_remark"
-                                                                        name="dtp_f_remark" class="form-control"
+                                                                        name="dtp_f_remark[]" class="form-control"
                                                                         placeholder="Enter Remark"
-                                                                        value="{{ $project_master->dtp_f_remark }}">
+                                                                        value="{{ @$dtp_f_remark[$key] }}">
 
                                                                 </td>
                                                             </tr>
-                                                            {{-- <tr>
-                                                                <td>
-                                                                    <input type="date" id="f_date"
-                                                                        class="form-control" placeholder="Enter Date">
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" id="f_status"
-                                                                        class="form-control" placeholder="Enter Status">
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" id="f_remark"
-                                                                        class="form-control" placeholder="Enter Remark">
-                                                                </td>
-                                                            </tr> --}}
-
+                                                           
+@endforeach
                                                             <tr>
                                                                 <td class="text-end border" colspan="6">
-                                                                    <a class="btn btn-warning add_btn" id="add_button"
-                                                                        name="add_button">
+                                                                    <a class="btn btn-light-warning px-3" id="add-contact">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="19" height="18"
-                                                                            viewBox="0 0 19 18" fill="none">
-                                                                            <path d="M9.5 3.75V14.25M4.25 9H14.75"
-                                                                                stroke="white" stroke-width="1.67"
+                                                                            width="20" height="20"
+                                                                            viewBox="0 0 20 20" fill="none">
+                                                                            <path
+                                                                                d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                                stroke="#802B81" stroke-width="1.67"
                                                                                 stroke-linecap="round"
                                                                                 stroke-linejoin="round" />
-                                                                        </svg>
-                                                                        Add
+                                                                        </svg> Add
                                                                     </a>
                                                                 </td>
                                                             </tr>
@@ -194,5 +188,61 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-contact');
+            const contactFieldsContainer = document.getElementById('contect');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+                    <div class="col-xl-12">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="expen_table dtp_table table-responsive">
+                                                        <table class="exp_detail table-bordered">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="date" id="dtp_f_date[]"
+                                                                            name="dtp_f_date[]" class="form-control"
+                                                                            
+                                                                            placeholder="Enter Date">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="dtp_f_status[]"
+                                                                            name="dtp_f_status[]" class="form-control"
+                                                                            placeholder="Enter Status">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="dtp_f_remark[]"
+                                                                            name="dtp_f_remark[]" class="form-control"
+                                                                            placeholder="Enter Remark">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
+            });
+        });
+
+
     </script>
 @endsection

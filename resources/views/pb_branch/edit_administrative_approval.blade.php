@@ -20,6 +20,8 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="administring_approval">
+                                    
                                     {{-- @foreach ($aa_show as $item)
                                         
                                     @endforeach --}}

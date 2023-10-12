@@ -43,9 +43,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SentBoxSeeder::class,
         ]);
-        $this->call([
-            PbBranchLoginSeeder::class,
-        ]);
+      
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

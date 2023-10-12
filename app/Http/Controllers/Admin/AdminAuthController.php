@@ -23,9 +23,7 @@ class AdminAuthController extends Controller
             'password' => 'required',
         ];
         $this->validate($request, $rules);
-
-
-    
+        
         $credentials = $request->only('name', 'password');
 
         $admin = AdminLogin::where('name', $request->name)->first();
@@ -46,6 +44,6 @@ class AdminAuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        return redirect('/admin/login');
+        return redirect('./');
     }
 }

@@ -20,6 +20,7 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="technical_section">
                                     <div class="col-lg-4">
                                         <label class="form-label">Letter No.</label>
                                         <input type="text" class="form-control" id="tsd_letter_no" name="tsd_letter_no"

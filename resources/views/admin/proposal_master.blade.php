@@ -28,15 +28,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-end">
-                                    <a class="btn btn-white" href="#" id="exportButton" download>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                            viewBox="0 0 18 18" fill="none">
-                                            <path
-                                                d="M2.70117 11.4142L2.70117 14.1936C2.70117 14.6148 2.86711 15.0188 3.16248 15.3167C3.45785 15.6145 3.85846 15.7818 4.27617 15.7818H13.7262C14.1439 15.7818 14.5445 15.6145 14.8399 15.3167C15.1352 15.0188 15.3012 14.6148 15.3012 14.1936V11.4142M9.00205 2.2168V11.2168M9.00205 11.2168L12.602 7.77793M9.00205 11.2168L5.40205 7.77793"
-                                                stroke-width="1.63636" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        Export
-                                    </a>
+
                                     <a class="btn btn-primary ms-2 add-division" data-bs-toggle="modal"
                                         data-bs-target="#add_proposal">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -73,8 +65,6 @@
                                             <th>Date</th>
                                             <th>Amt. in Lakh</th>
                                             <th>Received From</th>
-                                            <th>Sent To</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -1119,10 +1109,7 @@
                     data: 'action',
                     name: 'action'
                 },
-                {
-                    data: 'eye_icon',
-                    name: 'eye_icon'
-                },
+
             ],
             drawCallback: function() {},
             initComplete: function(response) {}

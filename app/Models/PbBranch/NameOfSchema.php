@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class NameOfSchema extends Model
 {
     use HasFactory;
-
+    
+  protected $table ='name_of_schemas';
 
     
 }

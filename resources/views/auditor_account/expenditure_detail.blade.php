@@ -34,6 +34,8 @@
                                                         id="master_id">
                                                         @csrf
                                                         <input type="hidden" name="master_id" id="master_id">
+                                                        <input type="hidden" name="step" value="expenditure_detail">
+
 
                                                         <input type="date" id="ed_origin_work[]" name="ed_origin_work[]"
                                                             class="form-control" value="2022-09-16">
@@ -138,13 +140,6 @@
         var token = "{{ csrf_token() }}";
 
 
-        $(document).on('click', '.add-division', function() {
-            $('.modal-title').text('Add Proposal Master');
-            $('#master_id').val('');
-            $("#master_id")[0].reset();
-            $('span[id$="_error"]').text('');
-
-        });
 
         $('#master_id').submit(function(e) {
             e.preventDefault();
@@ -170,7 +165,7 @@
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
-                        dataTable.draw();
+                   
                     } else {
                         toastr.error(data.msg);
                     }

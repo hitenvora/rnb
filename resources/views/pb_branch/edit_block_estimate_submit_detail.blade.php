@@ -20,6 +20,7 @@
                                         @csrf
                                         <input type="hidden" name="master_id" id="master_id"
                                             value="{{ $project_master->id }}">
+                                        <input type="hidden" name="step" value="block">
                                         {{-- @foreach ($block_estimate_show as $item)
                                         @endforeach --}}
                                         <div class="col-lg-3">
@@ -44,10 +45,9 @@
                                                 <input type="file" class="form-control w-100" id="bes_letter_upload"
                                                     name="bes_letter_upload"
                                                     value="{{ $project_master->bes_letter_upload }}">
-                                                a
-                                                href="{{ asset('uplode_images/block_estimate_submitted_detail/' . $project_master->bes_letter_upload) }}"
-                                                target="_blank">
-                                                <br>Open Image in New Tab
+                                                <a href="{{ asset('uplode_images/block_estimate_submitted_detail/' . $project_master->bes_letter_upload) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
                                                 </a>
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-12">
+                                        <div class="col-xl-12" id="contect">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="expen_table dtp_table table-responsive">
@@ -117,43 +117,51 @@
                                                                 <th>Remark</th>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <input type="date" id="bes_follow_up_date"
-                                                                            name="bes_follow_up_date" class="form-control"
-                                                                            value="{{ $project_master->bes_follow_up_date }}"
-                                                                            placeholder="Enter Date">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="bes_status"
-                                                                            name="bes_status" class="form-control"
-                                                                            placeholder="Enter Status"
-                                                                            value="{{ $project_master->bes_status }}">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="bes_remark"
-                                                                            name="bes_remark" class="form-control"
-                                                                            placeholder="Enter Remark"
-                                                                            value="{{ $project_master->bes_remark }}">
-                                                                    </td>
-                                                                </tr>
+                                                                @foreach (explode(',', $project_master->bes_follow_up_date) as $key => $date)
+                                                                    @php
+                                                                        $bes_status = explode(',', $project_master->bes_status);
+                                                                        $bes_remark = explode(',', $project_master->bes_remark);
+                                                                    @endphp
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="date"
+                                                                                id="bes_follow_up_date[]"
+                                                                                name="bes_follow_up_date[]"
+                                                                                class="form-control"
+                                                                                value="{{ $date }}"
+                                                                                placeholder="Enter Date">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="bes_status"
+                                                                                name="bes_status[]" class="form-control"
+                                                                                placeholder="Enter Remark"
+                                                                                value="{{ @$bes_status[$key] }}">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="bes_remark"
+                                                                                name="bes_remark[]" class="form-control"
+                                                                                placeholder="Enter Remark"
+                                                                                value="{{ @$bes_remark[$key] }}">
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+
 
                                                                 <tr>
                                                                     <td class="text-end border" colspan="6">
-                                                                        <a class="btn btn-warning add_btn" id="add_button"
-                                                                            name="add_button">
+                                                                        <a class="btn btn-light-warning px-3"
+                                                                            id="add-contact">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="19" height="18"
-                                                                                viewBox="0 0 19 18" fill="none">
-                                                                                <path d="M9.5 3.75V14.25M4.25 9H14.75"
-                                                                                    stroke="white" stroke-width="1.67"
+                                                                                width="20" height="20"
+                                                                                viewBox="0 0 20 20" fill="none">
+                                                                                <path
+                                                                                    d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                                    stroke="#802B81" stroke-width="1.67"
                                                                                     stroke-linecap="round"
                                                                                     stroke-linejoin="round" />
-                                                                            </svg>
-                                                                            Add
+                                                                            </svg> Add
                                                                         </a>
                                                                     </td>
-                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -213,7 +221,7 @@
                             } else {
                                 toastr.success("Block Estimate updated successfully.");
                             }
-                            dataTable.draw();
+                            // dataTable.draw();
                         } else {
                             toastr.error(data.msg);
                         }
@@ -238,7 +246,6 @@
 
                 addContactButton.addEventListener('click', function() {
                     contactCount++; // Increment contact count
-
                     // Create a new input field (you can customize this as needed)
                     const newContactField = document.createElement('p');
                     newContactField.innerHTML = `
@@ -248,22 +255,23 @@
                                                     <div class="expen_table dtp_table table-responsive">
                                                         <table class="exp_detail table-bordered">
                                                             <tbody>
+
                                                                 <tr>
                                                                     <td>
-                                                                        <input type="date" id="bes_follow_up_date[]"
-                                                                            name="bes_follow_up_date[]" value="{{ $project_master->bes_follow_up_date }}" class="form-control"
+                                                                        <input type="date" id="bes_follow_up_date"
+                                                                            name="bes_follow_up_date[]"  class="form-control"
                                                                             
                                                                             placeholder="Enter Date">
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" id="bes_status[]"
                                                                             name="bes_status[]" class="form-control"
-                                                                            placeholder="Enter Status"   value="{{ $project_master->bes_status }}">
+                                                                            placeholder="Enter Status">
                                                                     </td>
                                                                     <td>
                                                                         <input type="text" id="bes_remark[]"
                                                                             name="bes_remark[]" class="form-control"
-                                                                            placeholder="Enter Remark"   value="{{ $project_master->bes_remark }}">
+                                                                            placeholder="Enter Remark">
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -276,11 +284,12 @@
 
                     // Add an event listener to the "Remove" button
                     const removeButton = newContactField.querySelector('.remove-contact');
-                    removeButton.addEventListener('click', function() {
-                        contactFieldsContainer.removeChild(
-                            newContactField); // Remove the field when "Remove" is clicked
-                        contactCount--; // Decrement contact count
-                    });
+                    removeButton
+                        .addEventListener('click', function() {
+                            contactFieldsContainer.removeChild(
+                                newContactField); // Remove the field when "Remove" is clicked
+                            contactCount--; // Decrement contact count
+                        });
                     contactFieldsContainer.appendChild(newContactField);
                 });
             });

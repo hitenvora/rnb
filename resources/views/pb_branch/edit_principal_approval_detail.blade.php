@@ -19,6 +19,8 @@
                                     id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="principal">
+
                                     {{-- @foreach ($principal_show as $item)
                                         
                                     @endforeach --}}

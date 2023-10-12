@@ -30,8 +30,8 @@
                                                                 alt="" />
                                                         </div>
                                                         <div class="flex-grow-1 d-flex flex-column">
-                                                            <h5 class="admin-name m-0">John Doe</h5>
-                                                            <span>admin</span>
+                                                            <h5 class="admin-name m-0">{{$user->name}}</h5>
+                                                            <span>{{$role->name}}</span>
                                                         </div>
                                                     </div>
 

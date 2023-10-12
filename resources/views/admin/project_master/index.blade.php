@@ -28,23 +28,25 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-end">
-                                    <a class="btn btn-white" href="#" id="exportButton" download>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                            viewBox="0 0 18 18" fill="none">
-                                            <path
-                                                d="M2.70117 11.4142L2.70117 14.1936C2.70117 14.6148 2.86711 15.0188 3.16248 15.3167C3.45785 15.6145 3.85846 15.7818 4.27617 15.7818H13.7262C14.1439 15.7818 14.5445 15.6145 14.8399 15.3167C15.1352 15.0188 15.3012 14.6148 15.3012 14.1936V11.4142M9.00205 2.2168V11.2168M9.00205 11.2168L12.602 7.77793M9.00205 11.2168L5.40205 7.77793"
-                                                stroke-width="1.63636" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        Export
-                                    </a>
-                                    <a class="btn btn-primary ms-2 add-division" href="{{ route('basic_branch') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 20 20" fill="none">
-                                            <path d="M9.99935 4.16699V15.8337M4.16602 10.0003H15.8327" stroke="white"
-                                                stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        Add Project
-                                    </a>
+                                    @if (in_array(auth()->user()->role_id, [1]))
+                                        <a class="btn btn-white" href="{{ route('project_export') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 18 18" fill="none">
+                                                <path
+                                                    d="M2.70117 11.4142L2.70117 14.1936C2.70117 14.6148 2.86711 15.0188 3.16248 15.3167C3.45785 15.6145 3.85846 15.7818 4.27617 15.7818H13.7262C14.1439 15.7818 14.5445 15.6145 14.8399 15.3167C15.1352 15.0188 15.3012 14.6148 15.3012 14.1936V11.4142M9.00205 2.2168V11.2168M9.00205 11.2168L12.602 7.77793M9.00205 11.2168L5.40205 7.77793"
+                                                    stroke-width="1.63636" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            Export
+                                        </a>
+                                        <a class="btn btn-primary ms-2 add-division" href="{{ route('basic_branch') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20" fill="none">
+                                                <path d="M9.99935 4.16699V15.8337M4.16602 10.0003H15.8327" stroke="white"
+                                                    stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            Add Project
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -763,6 +765,10 @@
                     name: 'action'
                 },
                 {
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
                     data: 'basic_wms_work_head',
                     name: 'basic_wms_work_head'
                 },
@@ -771,17 +777,18 @@
                     name: 'basic_name_of_department'
                 },
                 {
-                    data: 'basic_name_scheme',
-                    name: 'basic_name_scheme'
+                    data: 'name_of_schema',
+                    name: 'name_of_schema'
                 },
                 {
-                    data: 'basic_name_project',
-                    name: 'basic_name_project'
+                    data: 'project_name',
+                    name: 'project_name'
                 },
-                // {
-                //     data: 'district_name_view',
-                //     name: 'district_name_view'
-                // },
+                {
+                    data: 'district_name_view',
+                    name: 'district_name_view'
+                },
+
                 {
                     data: 'basic_name_of_road',
                     name: 'basic_name_of_road'
@@ -803,9 +810,9 @@
                     name: 'basic_amount'
                 },
                 // {
-                //     data: 'ppd_proposal_submitted_letter_no',
-                //     name: 'ppd_proposal_submitted_letter_no'
-                // },   
+                //     data: 'name_of_schema',
+                //     name: 'name_of_schema'
+                // },
                 //  {
                 //     data: 'ppd_proposal_submitted_letter_date',
                 //     name: 'ppd_proposal_submitted_letter_date'
@@ -840,8 +847,8 @@
                     $('#basic_name_project').val(data.data.basic_name_project);
                     $('#basic_wms_work_head').val(data.data.basic_wms_work_head);
                     $('#district_id').val(data.data.district_id);
-                    
-                    window.location = "{{route('basic_branch')}}";
+
+                    window.location = "{{ route('basic_branch') }}";
                 },
                 error: function(response) {
                     toastr.error(response.msg);

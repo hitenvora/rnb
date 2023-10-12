@@ -67,10 +67,10 @@
                                         </div>
 
                                         <!-- <label  class="form-label">Type of Utility </label>
-                                                                                                                                    <select class="form-select" id="name_project" name="name_project">
-                                                                                                                                        <option selected value="">Electric Pole, Water Supply line, Drainage line, Telephone line, Gas line, Others </option>
-                                                                                                                                        <option value="">Gondal</option>
-                                                                                                                                    </select> -->
+                                                                                                                                            <select class="form-select" id="name_project" name="name_project">
+                                                                                                                                                <option selected value="">Electric Pole, Water Supply line, Drainage line, Telephone line, Gas line, Others </option>
+                                                                                                                                                <option value="">Gondal</option>
+                                                                                                                                            </select> -->
                                     </div>
 
                                     <div class="col-lg-4">
@@ -107,14 +107,12 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <!-- <input type="hidden" name="utility" class="class_mate_id" id="mateid_2" value="3"> -->
                                                             <input type="text" class="form-control"
                                                                 name="usd_utility_item[]" id="usd_utility_item[]"
                                                                 value="XYZ">
 
                                                         </td>
                                                         <td>
-                                                            <!-- <input type="hidden" name="test_id" class="class_test_id" id="testid_2" value="60"> -->
                                                             <input type="text" name="usd_details[]"
                                                                 class="form-control class_test" id="usd_details[]">
                                                         </td>
@@ -191,87 +189,6 @@
                                                                 value="14/09/2023">
                                                         </td>
                                                     </tr>
-
-
-                                                    {{-- <tr> 
-                                                    <td>
-                                                        <!-- <input type="hidden" name="utility" class="class_mate_id" id="mateid_2" value="3"> -->
-                                                        <input type="text" name="utility_item" class="form-control "
-                                                            id="utility_item" value="XYZ">
-                                                    </td>
-                                                    <td>
-                                                        <!-- <input type="hidden" name="test_id" class="class_test_id" id="testid_2" value="60"> -->
-                                                        <input type="text" name="details"
-                                                            class="form-control class_test" id="details"
-                                                            value="-">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="latter_no"
-                                                            class="form-control class_code" id="latter_no"
-                                                            value="12045">
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input" class="form-control"
-                                                            id="date_input" value="14/09/2023">
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="Submitted_to" class="form-control"
-                                                            id="Submitted_to" value="-">
-                                                    </td>
-
-                                                    <td>
-                                                        <select class="form-select joint-date-visit" id="joint_visit"
-                                                            name="joint_visit">
-                                                            <option value="">Yes</option>
-                                                            <option selected value="">No</option>
-                                                        </select>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="Estimate_submited"
-                                                            class="form-control" id="Estimate_submited" value="-"
-                                                            disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="latter_no" class="form-control"
-                                                            id="latter_no" value="12045" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input_sec" class="form-control"
-                                                            id="date_input_sec" value="14/09/2023" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="text" name="Amount" class="form-control "
-                                                            id="Amount" value="1000" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <select class="form-select" id="Payment" name="Payment">
-                                                            <option value="">Yes</option>
-                                                            <option selected value="">No</option>
-                                                        </select>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input_th" class="form-control"
-                                                            id="date_input_th" value="14/09/2023" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input_fr" class="form-control"
-                                                            id="date_input_fr" value="14/09/2023" disabled>
-                                                    </td>
-
-                                                    <td>
-                                                        <input type="date" name="date_input_fi" class="form-control"
-                                                            id="date_input_fi" value="14/09/2023" disabled>
-                                                    </td>
-                                                </tr> --}}
                                                     <td class="text-end" colspan="14">
                                                         <a class="btn btn-light-warning px-3" id="add-contact">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20"
@@ -369,20 +286,23 @@
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
                 newContactField.innerHTML = `
-                <tbody>
-                    <table>
-                    <tr>
-                                                        <td>
-                                               
-                                                            <input type="text" class="form-control"
+              
+                <div class="panel-group utility-shifting-tabel" id="contect">
+                                        <div class="table-responsive" id="display_data">
+                                            
+                                            <table
+                                                class="table no-margin class_tr_put utility-shifting-tabel-data utility-shifting-date">
+                                                
+                                                <tbody>
+                                                    <td>
+                                                    <input type="text" class="form-control"
                                                                 name="usd_utility_item[]" id="usd_utility_item[]"
-                                                                >
+                                                                value="XYZ">
 
                                                         </td>
                                                         <td>
                                                             <input type="text" name="usd_details[]"
-                                                                class="form-control class_test" id="usd_details[]"
-                                                             >
+                                                                class="form-control class_test" id="usd_details[]">
                                                         </td>
                                                         <td>
                                                             <input type="text" name="estimated_usd_latter_no[]"
@@ -392,12 +312,14 @@
 
                                                         <td>
                                                             <input type="date" name="usd_date_input[]"
-                                                                class="form-control" id="usd_date_input[]">
+                                                                class="form-control" id="usd_date_input[]"
+                                                                value="14/09/2023">
                                                         </td>
 
                                                         <td>
                                                             <input type="text" name="usd_submitted_to[]"
-                                                                class="form-control" id="usd_submitted_to[]">
+                                                                class="form-control" id="usd_submitted_to[]"
+                                                                value="-">
                                                         </td>
 
                                                         <td>
@@ -415,18 +337,18 @@
 
                                                         <td>
                                                             <input type="text" name="usd_latter_no[]"
-                                                                class="form-control" id="usd_latter_no[]">
+                                                                class="form-control" id="usd_latter_no[]" value="12045">
                                                         </td>
 
                                                         <td>
                                                             <input type="date" name="usd_date_input_sec[]"
                                                                 class="form-control" id="usd_date_input_sec[]"
-                                                                >
+                                                                value="14/09/2023">
                                                         </td>
 
                                                         <td>
-                                                            <input type="text" name="usd_amount[]" class="form-control "
-                                                                id="usd_amount[]">
+                                                            <input type="text" name="usd_amount[]"
+                                                                class="form-control" id="usd_amount[]" value="1000">
                                                         </td>
 
                                                         <td>
@@ -439,23 +361,26 @@
 
                                                         <td>
                                                             <input type="date" name="usd_date_input_th[]"
-                                                                class="form-control" id="usd_date_input_th[]">
+                                                                class="form-control" id="usd_date_input_th[]"
+                                                                >
                                                         </td>
 
                                                         <td>
                                                             <input type="date" name="usd_date_input_fr[]"
-                                                                class="form-control" id="usd_date_input_fr[]">
+                                                                class="form-control" id="usd_date_input_fr[]"
+                                                                >
                                                         </td>
 
                                                         <td>
                                                             <input type="date" name="usd_date_input_fi[]"
                                                                 class="form-control" id="usd_date_input_fi[]"
-                                                               >
+                                                                >
                                                         </td>
                                                     </tr>
-
-                        </table>
-                        </tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button

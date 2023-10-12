@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PbBranch;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\AdminLogin;
 use App\Models\PbBranch\AdministrativeApproval;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,8 @@ class AdministrativeApprovalController extends Controller
     public function index()
     {
         // $aa_show= AdministrativeApproval::orderBy('id')->get();
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         return view('pb_branch.administrative_approval');
     }
 

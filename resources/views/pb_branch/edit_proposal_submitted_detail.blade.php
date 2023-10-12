@@ -18,6 +18,8 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="proposal">
+                                    
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Initiated By MP/MLA Name</label>
                                         {{-- @foreach ($proposal_show as $proposal_show1) --}}

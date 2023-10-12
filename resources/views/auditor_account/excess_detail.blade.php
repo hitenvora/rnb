@@ -3,7 +3,8 @@
 @endsection
 
 @section('content')
-    @include('navbar.auditor_account.auditor_account_navbar')
+@include('navbar.pb_branch.edit_pb_branch_navbar')
+
 
     <body>
         <div class="mg-b-23">

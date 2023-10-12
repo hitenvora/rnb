@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\AdminLogin;
 use App\Models\Admin\Budget;
 use App\Models\Admin\BudgetWork;
 use App\Models\Admin\District;
@@ -15,6 +16,7 @@ use App\Models\Admin\Taluka;
 use App\Models\Admin\TypesOfWork;
 use App\Models\Admin\WorkTypes;
 use App\Models\Master\Master;
+use App\Models\PbBranch\ProposalSubmittedDetail;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -22,7 +24,9 @@ use Yajra\DataTables\Facades\DataTables;
 class ProposalMasterController extends Controller
 {
     public function index()
-    {
+    {$user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        
         $districtname = District::orderBy('id')->get();
         $talukaname = Taluka::orderBy('id')->get();
         $worktype = WorkTypes::orderBy('id')->get();
@@ -32,7 +36,7 @@ class ProposalMasterController extends Controller
         $mpmla = MpMlaSuggested::orderBy('id')->get();
         $sentbox = SentBox::orderBy('id')->get();
 
-        return view('admin.proposal_master', compact('districtname', 'talukaname', 'worktype', 'typework', 'budget', 'budgetwork', 'mpmla', 'sentbox'));
+        return view('admin.proposal_master', compact('districtname', 'talukaname', 'worktype', 'typework', 'budget', 'budgetwork', 'mpmla', 'sentbox','user','role'));
     }
 
     public function insert(Request $request)
@@ -144,8 +148,10 @@ class ProposalMasterController extends Controller
             $proposal_master[$key]['eye_icon'] = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="viewproposal(' . $record->id . ')"  title="View"><i class="fa fa-eye"></i></button>
             <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#proposal_view" aria-label="View" data-bs-original-title="View';
 
+           $action= '<button type="button" class="btn btn-primary btn-sm me-1" onclick="viewproposal(' . $record->id . ')"  title="View"><i class="fa fa-eye"></i></button>';
 
-            $action = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="editproposal(' . $id . ')" title="Edit"><i class="fa fa-pencil"></i></button>';
+            $action .=  '<button type="button" class="btn btn-primary btn-sm me-1" onclick="editproposal(' . $id . ')" title="Edit"><i class="fa fa-pencil"></i></button>';
+         
             $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
 
             $proposal_master[$key]['action'] =  $action;
@@ -156,24 +162,38 @@ class ProposalMasterController extends Controller
             ->make(true);
     }
 
+    
     public function proposal_master_edit($id)
     {
+        $proposal_master = ProposalSubmittedDetail::where('id', $id)->first();
+        if ($proposal_master) {
+            return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
+        }
+        return response()->json(['status' => '200', 'msg' => 'success'], 400);
+      
+    }
+
+
+    public function proposal_submitted_edit($id)
+    {
         $project_master = Master::where('id', $id)->first();
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        
         // if ($proposal_master) {
         //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
         // }
         // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('pb_branch.edit_proposal_submitted_detail', compact('project_master'));
+        return view('pb_branch.edit_proposal_submitted_detail', compact('project_master','user','role'));
     }
 
     public function principal_approval_edit($id)
     {
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         $project_master = Master::where('id', $id)->first();
-        // if ($proposal_master) {
-        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
-        // }
-        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('pb_branch.edit_principal_approval_detail', compact('project_master'));
+
+        return view('pb_branch.edit_principal_approval_detail', compact('project_master','user','role'));
     }
 
     public function principal_estimate_edit($id)
@@ -181,123 +201,127 @@ class ProposalMasterController extends Controller
         $project_master = Master::where('id', $id)->first();
         $division_name = DivisionMasters::orderBy('id')->get();
         $sub_division_name = SubDivisionMasters::orderBy('id')->get();
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // if ($proposal_master) {
         //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
         // }
         // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('pb_branch.edit_block_estimate_submit_detail', compact('project_master', 'division_name', 'sub_division_name'));
+        return view('pb_branch.edit_block_estimate_submit_detail', compact('project_master','user','role', 'division_name', 'sub_division_name'));
     }
 
     public function edit_administrative_approval($id)
     {
         $project_master = Master::where('id', $id)->first();
-
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // if ($proposal_master) {
         //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
         // }
         // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('pb_branch.edit_administrative_approval', compact('project_master'));
+        return view('pb_branch.edit_administrative_approval', compact('project_master','user','role'));
     }
 
     public function edit_technical_section_detail($id)
     {
         $project_master = Master::where('id', $id)->first();
-
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // if ($proposal_master) {
         //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
         // }
         // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('pb_branch.edit_technical_section_detail', compact('project_master'));
+        return view('pb_branch.edit_technical_section_detail', compact('project_master','user','role'));
     }
 
     public function edit_forest_clearence_detail($id)
     {
         $project_master = Master::where('id', $id)->first();
-
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // if ($proposal_master) {
         //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
         // }
         // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('pb_branch.edit_forest_clearence_detail', compact('project_master'));
+        return view('pb_branch.edit_forest_clearence_detail', compact('project_master','user','role'));
     }
 
     public function edit_utility_shifting_detail($id)
     {
         $project_master = Master::where('id', $id)->first();
-
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // if ($proposal_master) {
         //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
         // }
         // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('pb_branch.edit_utility_shifting_detail', compact('project_master'));
+        return view('pb_branch.edit_utility_shifting_detail', compact('project_master','user','role'));
     }
 
     public function  edit_laq_approval($id)
     {
         $project_master = Master::where('id', $id)->first();
-
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // if ($proposal_master) {
         //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
         // }
         // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('pb_branch.edit_laq_approval', compact('project_master'));
+        return view('pb_branch.edit_laq_approval', compact('project_master','user','role'));
     }
 
 
     public function  edit_budgetary_detail($id)
     {
         $project_master = Master::where('id', $id)->first();
-
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // if ($proposal_master) {
         //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
         // }
         // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('auditor_account.edit_budgetary_detail', compact('project_master'));
+        return view('auditor_account.edit_budgetary_detail', compact('project_master','user','role'));
     }
     public function  edit_expenditure_detail($id)
     {
         $project_master = Master::where('id', $id)->first();
-
-        // if ($proposal_master) {
-        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
-        // }
-        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('auditor_account.edit_expenditure_detail', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('auditor_account.edit_expenditure_detail', compact('project_master','user','role'));
     }
     public function  edit_excess_detail($id)
     {
         $project_master = Master::where('id', $id)->first();
-
-        // if ($proposal_master) {
-        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
-        // }
-        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('auditor_account.edit_excess_detail', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+       
+        return view('auditor_account.edit_excess_detail', compact('project_master','user','role'));
     }
     public function  edit_time_extension($id)
 
     {
         $project_master = Master::where('id', $id)->first();
-
-        // if ($proposal_master) {
-        //     return response()->json(['status' => '200', 'msg' => 'success', 'data' => $proposal_master]);
-        // }
-        // return response()->json(['status' => '200', 'msg' => 'success'], 400);
-        return view('auditor_account.edit_time_extension', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('auditor_account.edit_time_extension', compact('project_master','user','role'));
     }
 
     public function  edit_work_status($id)
 
     {
         $project_master = Master::where('id', $id)->first();
-        return view('auditor_account.edit_work_status', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('auditor_account.edit_work_status', compact('project_master','user','role'));
     }
 
     public function  edit_fmg($id)
 
     {
         $project_master = Master::where('id', $id)->first();
-        return view('auditor_account.edit_fmg', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('auditor_account.edit_fmg', compact('project_master','user','role'));
     }
 
 
@@ -305,34 +329,46 @@ class ProposalMasterController extends Controller
 
     {
         $project_master = Master::where('id', $id)->first();
-        return view('auditor_account.edit_fdr', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('auditor_account.edit_fdr', compact('project_master','user','role'));
     }
 
     public function  edit_dlp_period($id)
     {
         $project_master = Master::where('id', $id)->first();
-        return view('auditor_account.edit_dlp_period', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('auditor_account.edit_dlp_period', compact('project_master','user','role'));
     }
 
     public function  edit_dtp_approval($id)
     {
         $project_master = Master::where('id', $id)->first();
-        return view('tender.edit_dtp_approval', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('tender.edit_dtp_approval', compact('project_master','user','role'));
     }
     public function  edit_nit($id)
     {
         $project_master = Master::where('id', $id)->first();
-        return view('tender.edit_nit', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('tender.edit_nit', compact('project_master','user','role'));
     }
     public function  edit_deposit_order($id)
     {
         $project_master = Master::where('id', $id)->first();
-        return view('tender.edit_deposit_order', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('tender.edit_deposit_order', compact('project_master','user','role'));
     }
     public function  edit_tpi_detail($id)
     {
         $project_master = Master::where('id', $id)->first();
-        return view('tender.edit_tpi_detail', compact('project_master'));
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('tender.edit_tpi_detail', compact('project_master','user','role'));
     }
 
 

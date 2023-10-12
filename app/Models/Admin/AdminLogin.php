@@ -22,5 +22,16 @@ class AdminLogin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rolename()
+    {
+        return $this->belongsTo(Role::class, 'id');
+    }
+
+    public function role_name()
+    {
+        return $this->hasOne('App\Models\Admin\Role', 'id', 'role_id');
+    }
+
 }
 

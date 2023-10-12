@@ -3,8 +3,7 @@
 @endsection
 
 @section('content')
-    @include('navbar.tender.edit_tender_navbar')
-
+@include('navbar.pb_branch.edit_pb_branch_navbar')
 
     <body>
         <div class="mg-b-23">
@@ -19,6 +18,8 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="tpi">
+
                                     <div class="col-lg-3">
                                         <label class="form-label">DTP Date</label>
                                         <input type="date" class="form-control" id="tpi_dtp_date" name="tpi_dtp_date"
@@ -131,7 +132,8 @@
                                                         value="{{ $project_master->tpi_pq_approval_date }}">
                                                 </div>
 
-                                                <div class="panel-group utility-shifting-tabel pt-0">
+                                                <div class="panel-group utility-shifting-tabel pt-0"
+                                                    id="add_poroposal_sent">
                                                     <div class="table-responsive" id="display_data">
                                                         <h5 class="proposal-sent-heading">Proposal Sent</h5>
                                                         <table
@@ -143,54 +145,52 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <input type="date" name="tpi_re_invited_date"
-                                                                            class="form-control" id="tpi_re_invited_date"
-                                                                            value="{{ $project_master->tpi_re_invited_date }}">
-                                                                    </td>
+                                                                @foreach (explode(',', $project_master->tpi_re_invited_date) as $key => $data)
+                                                                    @php
+                                                                        $tpi_with_reason = explode(',', $project_master->tpi_with_reason);
 
-                                                                    <td>
-                                                                        <input type="text" name="tpi_with_reason"
-                                                                            class="form-control" id="tpi_with_reason"
-                                                                            placeholder="Enter Reason"
-                                                                            value="{{ $project_master->tpi_with_reason }}">
-                                                                    </td>
-                                                                </tr>
+                                                                    @endphp
 
-                                                                {{-- <tr>
+                                                                    <tr>
                                                                         <td>
-                                                                            <input type="date" name="date_input"
-                                                                                class="form-control" id="date_input"
-                                                                                value="{{ $project_master->initiated_name }}">
+                                                                            <input type="date"
+                                                                                name="tpi_re_invited_date[]"
+                                                                                class="form-control"
+                                                                                id="tpi_re_invited_date[]"
+                                                                                value="{{ $data }}">
                                                                         </td>
 
                                                                         <td>
-                                                                            <input type="text" name="Submitted_to"
-                                                                                class="form-control" id="Submitted_to"
-                                                                                placeholder="Enter Reason">
+                                                                            <input type="text" name="tpi_with_reason[]"
+                                                                                class="form-control"
+                                                                                id="tpi_with_reason[]"
+                                                                                placeholder="Enter Reason"
+                                                                                value="{{ @$tpi_with_reason[$key] }}">
                                                                         </td>
-                                                                    </tr> --}}
+                                                                    </tr>
+                                                                @endforeach
                                                                 <tr>
                                                                     <td class="text-end" colspan="14">
-                                                                        <a class="btn btn-warning add_btn" id="add_button"
-                                                                            name="add_button">
+                                                                        <a class="btn btn-light-warning px-3"
+                                                                            id="add_poroposal">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="19" height="18"
-                                                                                viewBox="0 0 19 18" fill="none">
-                                                                                <path d="M9.5 3.75V14.25M4.25 9H14.75"
-                                                                                    stroke="white" stroke-width="1.67"
+                                                                                width="20" height="20"
+                                                                                viewBox="0 0 20 20" fill="none">
+                                                                                <path
+                                                                                    d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                                    stroke="#802B81" stroke-width="1.67"
                                                                                     stroke-linecap="round"
-                                                                                    stroke-linejoin="round"></path>
-                                                                            </svg>
-                                                                            Add
+                                                                                    stroke-linejoin="round" />
+                                                                            </svg> Add
                                                                         </a>
                                                                     </td>
+
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
+
 
                                                 <div class="col-lg-3">
                                                     <label for="inputtitle1" class="form-label">Validity Date</label>
@@ -244,7 +244,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="panel-group utility-shifting-tabel pt-0">
+                                                <div class="panel-group utility-shifting-tabel pt-0" id="Agency_Entry">
                                                     <div class="table-responsive" id="display_data">
                                                         <h5 class="proposal-sent-heading">Agency Entry</h5>
                                                         <table
@@ -258,79 +258,60 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <input type="text" name="tpi_agency_main"
-                                                                            class="form-control" id="tpi_agency_main"
-                                                                            value="{{ $project_master->tpi_agency_main }}">
-                                                                    </td>
+                                                                @foreach (explode(',', $project_master->tpi_agency_main) as $key => $data)
+                                                                    @php
+                                                                        $tpi_tender_cost = explode(',', $project_master->tpi_tender_cost);
+                                                                        $tpi_latter_no_2 = explode(',', $project_master->tpi_latter_no_2);
+                                                                        $tpi_above_tender_form = explode(',', $project_master->tpi_above_tender_form);
 
-                                                                    <td>
-                                                                        <input type="text" name="tpi_tender_cost"
-                                                                            class="form-control" id="tpi_tender_cost"
-                                                                            placeholder="Enter Tender Cost"
-                                                                            value="{{ $project_master->tpi_tender_cost }}">
-                                                                    </td>
+                                                                    @endphp
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="text" name="tpi_agency_main[]"
+                                                                                class="form-control"
+                                                                                id="tpi_agency_main[]"
+                                                                                value="{{ $data }}">
+                                                                        </td>
 
-                                                                    <td>
-                                                                        <input type="text" name="tpi_latter_no_2"
-                                                                            class="form-control" id="tpi_latter_no_2"
-                                                                            value="{{ $project_master->tpi_latter_no_2 }}">
-                                                                    </td>
+                                                                        <td>
+                                                                            <input type="text" name="tpi_tender_cost[]"
+                                                                                class="form-control"
+                                                                                id="tpi_tender_cost[]"
+                                                                                placeholder="Enter Tender Cost"
+                                                                                value="{{ @$tpi_tender_cost[$key] }}">
+                                                                        </td>
 
-                                                                    <td>
-                                                                        <select class="form-select"
-                                                                            id="tpi_above_tender_form"
-                                                                            name="tpi_above_tender_form">
-                                                                            <option selected value="Above"
-                                                                                @selected($project_master->tpi_above_tender_form == 'Above')>Above</option>
-                                                                            <option value="Below"
-                                                                                @selected($project_master->tpi_above_tender_form == 'Below')>Below</option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
+                                                                        <td>
+                                                                            <input type="text" name="tpi_latter_no_2[]"
+                                                                                class="form-control"
+                                                                                id="tpi_latter_no_2[]"
+                                                                                value="{{ @$tpi_latter_no_2[$key] }}">
+                                                                        </td>
 
-                                                                {{-- <tr>
-                                                                    <td>
-                                                                        <input type="text" name="agency_main"
-                                                                            class="form-control" id="agency_main"
-                                                                            value="XYZ">
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <input type="text" name="tender_cost"
-                                                                            class="form-control" id="tender_cost"
-                                                                            placeholder="Enter Tender Cost">
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <input type="text" name="latter_no_2"
-                                                                            class="form-control" id="latter_no_2"
-                                                                            value="{{ $project_master->initiated_name }}">
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <select class="form-select" id="tender_form"
-                                                                            name="tender_form">
-                                                                            <option selected value="{{ $project_master->initiated_name }}">Above</option>
-                                                                            <option value="{{ $project_master->initiated_name }}"></option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr> --}}
-
+                                                                        <td>
+                                                                            <select class="form-select"
+                                                                                id="tpi_above_tender_form[]"
+                                                                                name="tpi_above_tender_form[]">
+                                                                                <option selected value="Above">Above
+                                                                                </option>
+                                                                                <option value="Below">Below</option>
+                                                                            </select>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
                                                                 <tr>
                                                                     <td class="text-end" colspan="14">
-                                                                        <a class="btn btn-warning add_btn" id="add_button"
-                                                                            name="add_button">
+                                                                        <a class="btn btn-light-warning px-3"
+                                                                            id="add-agency">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="19" height="18"
-                                                                                viewBox="0 0 19 18" fill="none">
-                                                                                <path d="M9.5 3.75V14.25M4.25 9H14.75"
-                                                                                    stroke="white" stroke-width="1.67"
+                                                                                width="20" height="20"
+                                                                                viewBox="0 0 20 20" fill="none">
+                                                                                <path
+                                                                                    d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                                    stroke="#802B81" stroke-width="1.67"
                                                                                     stroke-linecap="round"
-                                                                                    stroke-linejoin="round"></path>
-                                                                            </svg>
-                                                                            Add
+                                                                                    stroke-linejoin="round" />
+                                                                            </svg> Add
                                                                         </a>
                                                                     </td>
                                                                 </tr>
@@ -348,7 +329,8 @@
                                                         value="{{ $project_master->tpi_tender_proposal_date }}">
                                                 </div>
 
-                                                <div class="panel-group utility-shifting-tabel pt-0">
+
+                                                <div class="panel-group utility-shifting-tabel pt-0" id="valid_add">
                                                     <div class="table-responsive" id="display_data">
                                                         <h5 class="proposal-sent-heading">Validity Extension</h5>
                                                         <table
@@ -364,99 +346,74 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td>
-                                                                        <input type="text" name="tpi_agency_name"
-                                                                            class="form-control" id="tpi_agency_name"
-                                                                            placeholder="Enter Agency Name"
-                                                                            value="{{ $project_master->tpi_agency_name }}">
-                                                                    </td>
+                                                                    @foreach (explode(',', $project_master->tpi_agency_name) as $key => $data)
+                                                                        @php
+                                                                            $tpi_validity_extension_date = explode(',', $project_master->tpi_validity_extension_date);
+                                                                            $tpi_validity_extension_letter_no = explode(',', $project_master->tpi_validity_extension_letter_no);
+                                                                            $tpi_validity_extension_letter_date = explode(',', $project_master->tpi_validity_extension_letter_date);
+                                                                            $tpi_validity_extension_letter_image = explode(',', $project_master->tpi_validity_extension_letter_image);
 
-                                                                    <td>
-                                                                        <input type="date"
-                                                                            name="tpi_validity_extension_date"
-                                                                            class="form-control"
-                                                                            id="tpi_validity_extension_date"
-                                                                            value="{{ $project_master->tpi_validity_extension_date }}">
-                                                                    </td>
+                                                                        @endphp
+                                                                        <td>
+                                                                            <input type="text" name="tpi_agency_name[]"
+                                                                                class="form-control"
+                                                                                id="tpi_agency_name[]"
+                                                                                placeholder="Enter Agency Name"
+                                                                                value="{{ $data }}">
+                                                                        </td>
 
-                                                                    <td>
-                                                                        <input type="text"
-                                                                            name="tpi_validity_extension_letter_no"
-                                                                            class="form-control"
-                                                                            id="tpi_validity_extension_letter_no"
-                                                                            value="{{ $project_master->tpi_validity_extension_letter_no }}">
-                                                                    </td>
+                                                                        <td>
+                                                                            <input type="date"
+                                                                                name="tpi_validity_extension_date[]"
+                                                                                class="form-control"
+                                                                                id="tpi_validity_extension_date[]"
+                                                                                value="{{ @$tpi_validity_extension_date[$key] }}">
+                                                                        </td>
 
-                                                                    <td>
-                                                                        <input type="date"
-                                                                            name="tpi_validity_extension_letter_date"
-                                                                            class="form-control"
-                                                                            id="tpi_validity_extension_letter_date"
-                                                                            value="{{ $project_master->tpi_validity_extension_letter_date }}">
-                                                                    </td>
+                                                                        <td>
+                                                                            <input type="text"
+                                                                                name="tpi_validity_extension_letter_no[]"
+                                                                                class="form-control"
+                                                                                id="tpi_validity_extension_letter_no[]"
+                                                                                value="{{ @$tpi_validity_extension_letter_no[$key] }}">
+                                                                        </td>
 
-                                                                    <td>
-                                                                        <div class="input-group">
-                                                                            <input type="file"
-                                                                                class="form-control w-100"
-                                                                                id="tpi_validity_extension_letter_image"
-                                                                                name="tpi_validity_extension_letter_image"
-                                                                                value="{{ $project_master->tpi_validity_extension_letter_image }}">
-                                                                            <a href="{{ asset('uplode_images/tpi_detail/' . $project_master->tpi_validity_extension_letter_image) }}"
-                                                                                target="_blank">
-                                                                                <br>Open Image in New Tab
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
+                                                                        <td>
+                                                                            <input type="date"
+                                                                                name="tpi_validity_extension_letter_date[]"
+                                                                                class="form-control"
+                                                                                id="tpi_validity_extension_letter_date[]"
+                                                                                value="{{ @$tpi_validity_extension_letter_date[$key] }}">
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <div class="input-group">
+                                                                                <input type="file"
+                                                                                    class="form-control w-100"
+                                                                                    id="tpi_validity_extension_letter_image[]"
+                                                                                    name="tpi_validity_extension_letter_image[]"
+                                                                                    value="{{ @$tpi_validity_extension_letter_image[$key] }}">
+                                                                                    <a href="{{ asset('uplode_images/tpi_detail/' . $project_master->tpi_validity_extension_letter_image) }}" target="_blank">
+                                                                                        <br>Open Image in New Tab
+                                                                                    </a>
+                                                                            </div>
+                                                                        </td>
                                                                 </tr>
-
-                                                                {{-- <tr>
-                                                                    <td>
-                                                                        <input type="text" name="agency_name"
-                                                                            class="form-control" id="agency_name"
-                                                                            placeholder="Enter Agency Name">
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <input type="date" name="Validity_Date"
-                                                                            class="form-control" id="Validity_Date"
-                                                                            value="{{ $project_master->initiated_name }}">
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <input type="text" name="latter_no_2"
-                                                                            class="form-control" id="latter_no_2"
-                                                                            value="{{ $project_master->initiated_name }}">
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <input type="date" name="latter_date_2"
-                                                                            class="form-control" id="latter_date_2"
-                                                                            value="{{ $project_master->initiated_name }}">
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <div class="input-group">
-                                                                            <input type="file"
-                                                                                class="form-control w-100"
-                                                                                id="upload_letter" name="upload_letter">
-                                                                        </div>
-                                                                    </td>
-                                                                </tr> --}}
+                                                                @endforeach
 
                                                                 <tr>
                                                                     <td class="text-end" colspan="14">
-                                                                        <a class="btn btn-warning add_btn" id="add_button"
-                                                                            name="add_button">
+                                                                        <a class="btn btn-light-warning px-3"
+                                                                            id="add-validity">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="19" height="18"
-                                                                                viewBox="0 0 19 18" fill="none">
-                                                                                <path d="M9.5 3.75V14.25M4.25 9H14.75"
-                                                                                    stroke="white" stroke-width="1.67"
+                                                                                width="20" height="20"
+                                                                                viewBox="0 0 20 20" fill="none">
+                                                                                <path
+                                                                                    d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                                    stroke="#802B81" stroke-width="1.67"
                                                                                     stroke-linecap="round"
-                                                                                    stroke-linejoin="round"></path>
-                                                                            </svg>
-                                                                            Add
+                                                                                    stroke-linejoin="round" />
+                                                                            </svg> Add
                                                                         </a>
                                                                     </td>
                                                                 </tr>
@@ -536,6 +493,213 @@
                         });
                     }
                 }
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add_poroposal');
+            const contactFieldsContainer = document.getElementById('add_poroposal_sent');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+               
+                <div class="table-responsive" id="display_data">
+                                                        
+                                                        <table
+                                                            class="table no-margin class_tr_put utility-shifting-tabel-data proposal-sent-tabel-data">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="date" name="tpi_re_invited_date[]"
+                                                                            class="form-control" id="tpi_re_invited_date[]"
+                                                                            value="14/09/2023">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input type="text" name="tpi_with_reason[]"
+                                                                            class="form-control" id="tpi_with_reason[]"
+                                                                            placeholder="Enter Reason">
+                                                                    </td>
+                                                                </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
+            });
+        });
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-agency');
+            const contactFieldsContainer = document.getElementById('Agency_Entry');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+               
+                <div class="panel-group utility-shifting-tabel pt-0" id="Agency_Entry">
+                                                    <div class="table-responsive" id="display_data">
+                                                        
+                                                        <table
+                                                            class="table no-margin class_tr_put utility-shifting-tabel-data">
+                                                           
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="text" name="tpi_agency_main[]"
+                                                                            class="form-control" id="tpi_agency_main[]"
+                                                                            value="XYZ">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input type="text" name="tpi_tender_cost[]"
+                                                                            class="form-control" id="tpi_tender_cost[]"
+                                                                            placeholder="Enter Tender Cost">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input type="text" name="tpi_latter_no_2[]"
+                                                                            class="form-control" id="tpi_latter_no_2[]"
+                                                                            value="12045">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <select class="form-select"
+                                                                            id="tpi_above_tender_form[]"
+                                                                            name="tpi_above_tender_form[]">
+                                                                            <option selected value="Above">Above</option>
+                                                                            <option value="Below">Below</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
+            });
+        });
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-validity');
+            const contactFieldsContainer = document.getElementById('valid_add');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+               
+                <div class="panel-group utility-shifting-tabel pt-0" id="valid_add">
+                                                    <div class="table-responsive" id="display_data">
+                                                        <table
+                                                            class="table no-margin class_tr_put utility-shifting-tabel-data">
+                                                            
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="text" name="tpi_agency_name[]"
+                                                                            class="form-control" id="tpi_agency_name[]"
+                                                                            placeholder="Enter Agency Name">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input type="date"
+                                                                            name="tpi_validity_extension_date[]"
+                                                                            class="form-control"
+                                                                            id="tpi_validity_extension_date[]"
+                                                                            value="14/09/2023">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input type="text"
+                                                                            name="tpi_validity_extension_letter_no[]"
+                                                                            class="form-control"
+                                                                            id="tpi_validity_extension_letter_no[]"
+                                                                            value="12045">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input type="date"
+                                                                            name="tpi_validity_extension_letter_date[]"
+                                                                            class="form-control"
+                                                                            id="tpi_validity_extension_letter_date[]"
+                                                                            value="14/09/2023">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <input type="file"
+                                                                                class="form-control w-100"
+                                                                                id="tpi_validity_extension_letter_image[]"
+                                                                                name="tpi_validity_extension_letter_image[]">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                          
+                                                             
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
             });
         });
     </script>

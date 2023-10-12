@@ -15,9 +15,10 @@
                                 <h5 class="mb-0 font-primary text-center"> Basic</h5>
                             </div>
                             <div class="card-body">
-                                <form class="row" method="post" enctype="multipart/form-data" id="master_id">
+                                <form class="row" method="post" enctype="multipart/form-data" id="master_id_form">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="step" value="basic">
                                     <div class="col-xl-4 col-lg-6 branch-scheme-select">
                                         <label class="form-label">Name of Scheme</label>
                                         <div class="d-flex">
@@ -122,7 +123,8 @@
                                                                 name="types_of_work_id">
                                                                 <option value="">Select Work List</option>
                                                                 @foreach ($type_work as $value)
-                                                                    <option value="{{ $value['id'] }}">{{ $value['name'] }}
+                                                                    <option value="{{ $value['id'] }}">
+                                                                        {{ $value['name'] }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -476,8 +478,7 @@
     <script>
         var token = "{{ csrf_token() }}";
 
-
-        $('#master_id').submit(function(e) {
+        $('#master_id_form').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
             var csrftoken = $('meta[name="csrf-token"]').attr('content');
@@ -495,13 +496,15 @@
                 processData: false,
                 success: (data) => {
                     if (data.status == 200) {
-                        $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
                             toastr.success("Proposal Master added successfully.");
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
-                        dataTable.draw();
+                        // dataTable.draw();
+
+                        // Redirect to a route after success
+                        window.location.href = "{{ route('project_master') }}";
                     } else {
                         toastr.error(data.msg);
                     }
@@ -517,6 +520,7 @@
                 }
             });
         });
+
 
 
 
@@ -546,10 +550,11 @@
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
-                        dataTable.draw();
+                        window.location.href = "{{ route('basic_branch') }}";
                     } else {
                         toastr.error(data.msg);
                     }
+
                 },
                 error: function(response) {
                     if (response.status === 422) {
@@ -593,7 +598,8 @@
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
-                        dataTable.draw();
+
+                        window.location.href = "{{ route('basic_branch') }}";
                     } else {
                         toastr.error(data.msg);
                     }

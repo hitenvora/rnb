@@ -19,6 +19,7 @@
                                     id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id">
+                                  
                                     {{-- @foreach ($principal_show as $item)
                                         
                                     @endforeach --}}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\AdminLogin;
 use App\Models\Admin\LetterReminderMasters;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -12,7 +13,9 @@ class LetterReminderMasterController extends Controller
 {
     public function index()
     {
-        return view('admin.letter_reminder_master');
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('admin.letter_reminder_master',compact('user','role'));
     }
 
     public function insert(Request $request)
@@ -71,7 +74,7 @@ class LetterReminderMasterController extends Controller
             } else {
                 $letter_reminder[$key]['active_button'] = '<span class="badge bg-success">Active</span>';
             }
-            $letter_reminder[$key]['eye_icon'] =  '<a href="' . $record->upload_img . '" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/829/829117.png" alt="map" style="height: 20px; width: 20px; "></a>';
+            $letter_reminder[$key]['eye_icon'] =  '<a href="upload/Letter-reminder/' . $record->upload_img . '" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/829/829117.png" alt="map" style="height: 20px; width: 20px; "></a>';
             $action = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="editsubdivision(' . $id . ')" title="Edit"><i class="fa fa-pencil"></i></button>';
             $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
             $letter_reminder[$key]['action'] =  $action;

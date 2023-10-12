@@ -18,6 +18,7 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="laqapproval">
 
                                     <div class="col-lg-6">
                                         <label class="form-label">Name of Village</label>
@@ -47,11 +48,12 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="laq_letter_uplode"
                                                 name="laq_letter_uplode" value="{{ $project_master->laq_letter_uplode }}">
-                                                <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_letter_uplode) }}" target="_blank">
-                                                    <br>Open Image in New Tab
-                                                </a>
+                                            <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_letter_uplode) }}"
+                                                target="_blank">
+                                                <br>Open Image in New Tab
+                                            </a>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="col-xl-2 col-lg-6 mt-2">
                                         <div class="contact_list">
@@ -97,8 +99,8 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <label class="form-label">Challan Date</label>
-                                                            <input type="date" class="form-control" id="laq_challan_date"
-                                                                name="laq_challan_date"
+                                                            <input type="date" class="form-control"
+                                                                id="laq_challan_date" name="laq_challan_date"
                                                                 value="{{ $project_master->laq_challan_date }}">
                                                         </div>
                                                         <div class="col-lg-6">
@@ -134,6 +136,10 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="laq_upload_img"
                                                 name="laq_upload_img" value="{{ $project_master->laq_upload_img }}">
+                                                <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_upload_img) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
@@ -217,7 +223,7 @@
                                                         </option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-12">
+                                                <div class="col-lg-12" id="add_Valuation">
                                                     <div class="expen_table laq_table table-responsive">
                                                         <table class="exp_detail table-bordered">
                                                             <thead>
@@ -227,66 +233,53 @@
                                                                 <th>Date</th>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <input type="text" id="laq_valuation"
-                                                                            name="laq_valuation" class="form-control"
-                                                                            placeholder="Enter Valuation"
-                                                                            value="{{ $project_master->laq_valuation }}">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="laq_amt"
-                                                                            name="laq_amt" class="form-control"
-                                                                            placeholder="Enter Amount"
-                                                                            value="{{ $project_master->laq_amt }}">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="laq_num"
-                                                                            name="laq_num" class="form-control"
-                                                                            placeholder="Enter No."
-                                                                            value="{{ $project_master->laq_num }}">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="date" id="laq_date"
-                                                                            name="laq_date" class="form-control"
-                                                                            value="{{ $project_master->laq_date }}">
-                                                                    </td>
-                                                                </tr>
-                                                                {{-- <tr>
-                                                                    <td>
-                                                                        <input type="text" id="valuation"
-                                                                            class="form-control"
-                                                                            placeholder="Enter Valuation" value="2022">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="amt"
-                                                                            class="form-control"
-                                                                            placeholder="Enter Amount" value="200000">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="Num"
-                                                                            class="form-control" placeholder="Enter No."
-                                                                            value="200000">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="date" id="val_date"
-                                                                            class="form-control" value="2023-09-16">
-                                                                    </td>
-                                                                </tr> --}}
+                                                                @foreach (explode(',', $project_master->laq_valuation) as $key => $data)
+                                                                    @php
+                                                                        $laq_amt = explode(',', $project_master->laq_amt);
+                                                                        $laq_num = explode(',', $project_master->laq_num);
+                                                                        $laq_date = explode(',', $project_master->laq_date);
 
+                                                                    @endphp
+                                                                    <tr>
+                                                                        <td>
+                                                                            <input type="text" id="laq_valuation"
+                                                                                name="laq_valuation[]"
+                                                                                class="form-control"
+                                                                                placeholder="Enter Valuation"
+                                                                                value="{{ $data }}">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="laq_amt"
+                                                                                name="laq_amt[]" class="form-control"
+                                                                                placeholder="Enter Amount"
+                                                                                value="{{ @$laq_amt[$key] }}">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="laq_num[]"
+                                                                                name="laq_num[]" class="form-control"
+                                                                                placeholder="Enter No."
+                                                                                value="{{ @$laq_num[$key] }}">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="date" id="laq_date"
+                                                                                name="laq_date[]" class="form-control"
+                                                                                value="{{ @$laq_date[$key] }}">
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
                                                                 <tr>
                                                                     <td class="text-end border" colspan="6">
-                                                                        <a class="btn btn-warning add_btn" id="add_button"
-                                                                            name="add_button">
+                                                                        <a class="btn btn-light-warning px-3"
+                                                                            id="add-valuation">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="19" height="18"
-                                                                                viewBox="0 0 19 18" fill="none">
-                                                                                <path d="M9.5 3.75V14.25M4.25 9H14.75"
-                                                                                    stroke="white" stroke-width="1.67"
+                                                                                width="20" height="20"
+                                                                                viewBox="0 0 20 20" fill="none">
+                                                                                <path
+                                                                                    d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                                    stroke="#802B81" stroke-width="1.67"
                                                                                     stroke-linecap="round"
                                                                                     stroke-linejoin="round" />
-                                                                            </svg>
-                                                                            Add
+                                                                            </svg> Add
                                                                         </a>
                                                                     </td>
                                                                 </tr>
@@ -355,9 +348,10 @@
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100" id="laq_23_img"
                                                             name="laq_23_img" value="{{ $project_master->laq_23_img }}">
-                                                            <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_23_img) }}" target="_blank">
-                                                                <br>Open Image in New Tab
-                                                            </a>
+                                                        <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_23_img) }}"
+                                                            target="_blank">
+                                                            <br>Open Image in New Tab
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -427,7 +421,7 @@
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
-                        dataTable.draw();
+                        // dataTable.draw();
                     } else {
                         toastr.error(data.msg);
                     }
@@ -441,6 +435,66 @@
                         });
                     }
                 }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-valuation');
+            const contactFieldsContainer = document.getElementById('add_Valuation');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+               
+                <div class="col-lg-12">
+                                                    <div class="expen_table laq_table table-responsive">
+                                                        <table class="exp_detail table-bordered">
+                                                            
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="text" id="laq_valuation"
+                                                                            name="laq_valuation[]" class="form-control"
+                                                                            placeholder="Enter Valuation"
+                                                                            >
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="laq_amt"
+                                                                            name="laq_amt[]" class="form-control"
+                                                                            placeholder="Enter Amount"
+                                                                            >
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" id="laq_num[]"
+                                                                            name="laq_num[]" class="form-control"
+                                                                            placeholder="Enter No."
+                                                                            >
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="date" id="laq_date"
+                                                                            name="laq_date[]" class="form-control"
+                                                                           >
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
             });
         });
     </script>

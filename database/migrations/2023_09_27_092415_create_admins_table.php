@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('role');
             $table->string('name');
             $table->string('password');
+            $table->string('mobile_no')->nullable();
+            $table->string('email')->nullable();
             $table->tinyInteger('is_active')->default(1)->comment('1: active, 0: inactive');
             $table->bigInteger('created_by')->nullable();
             $table->bigInteger('updated_by')->nullable();

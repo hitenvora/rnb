@@ -15,15 +15,21 @@
                                 <h5 class="mb-0 font-primary text-center"> Basic</h5>
                             </div>
                             <div class="card-body">
-                                <form class="row" method="post" enctype="multipart/form-data" id="master_id">
+                                <form class="row" method="post" enctype="multipart/form-data" id="master_id_form">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="basic">
                                     <div class="col-xl-4 col-lg-6 branch-scheme-select">
                                         <label class="form-label">Name of Scheme</label>
                                         <div class="d-flex">
                                             {{-- @foreach ($basic_show as $basic_showas1) --}}
                                             <select class="form-select" id="basic_name_scheme" name="basic_name_scheme">
-                                                <option selected value="Rajkot">Rajkot</option>
+                                                @foreach ($name_of_scheme as $value)
+                                                    <option value="{{ $value['id'] }}"
+                                                        {{ $project_master->basic_name_scheme == $value['id'] ? 'selected' : '' }}>
+                                                        {{ $value['name'] }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             {{-- @endforeach --}}
                                             <div class="pluse-badge" data-bs-toggle="modal"
@@ -41,7 +47,12 @@
                                         <label class="form-label">Name of Project</label>
                                         <div class="d-flex">
                                             <select class="form-select" id="basic_name_project" name="basic_name_project">
-                                                <option selected value="Gondal">Gondal</option>
+                                                @foreach ($name_of_project as $value)
+                                                    <option value="{{ $value['id'] }}"
+                                                        {{ $project_master->basic_name_project == $value['id'] ? 'selected' : '' }}>
+                                                        {{ $value['name'] }}
+                                                    </option>
+                                                @endforeach
                                             </select>
 
                                             <div class="pluse-badge" data-bs-toggle="modal"
@@ -58,7 +69,7 @@
                                     <div class="col-xl-4 col-lg-12">
                                         <label class="form-label">WMS Work Head</label>
                                         <input type="text" class="form-control" id="basic_wms_work_head"
-                                            name="basic_wms_work_head" placeholder="Enter WMS Work Head"
+                                            name="basic_wms_work_head" placeholder="Enter WMS  Head"
                                             value="{{ $project_master->basic_wms_work_head }}">
                                     </div>
 
@@ -122,7 +133,8 @@
                                                                 <option value="">Select Work List</option>
                                                                 @foreach ($type_work as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"{{ $project_master->types_of_work_id == $value['id'] ? 'selected' : '' }}>
+                                                                        value="{{ $value['id'] }}"data-work-name="{{ $value['name'] }}"
+                                                                        {{ $project_master->types_of_work_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}
                                                                     </option>
                                                                 @endforeach
@@ -145,7 +157,7 @@
                                                                 <option value="">Select budget List</option>
                                                                 @foreach ($budget as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"{{ $project_master->budget_id == $value['id'] ? 'selected' : '' }}>
+                                                                        value="{{ $value['id'] }}"data-bu-name="{{ $value['name'] }}"{{ $project_master->budget_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -163,7 +175,7 @@
                                                                 <option value="">Select budget Work List</option>
                                                                 @foreach ($budget_work as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"{{ $project_master->budget_work_id == $value['id'] ? 'selected' : '' }}>
+                                                                        value="{{ $value['id'] }}"data-item-name="{{ $value['name'] }}"{{ $project_master->budget_work_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -183,7 +195,7 @@
                                                             <label class="form-label">Amount in Lakh</label>
                                                             <input type="text" class="form-control" id="basic_amount"
                                                                 name="basic_amount"
-                                                                value="{{ $project_master->basic_budget_work_name }}">
+                                                                value="{{ $project_master->basic_amount }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,7 +209,7 @@
                                                                 <option value="">Select Mp MlaList</option>
                                                                 @foreach ($mp_mla as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"{{ $project_master->basic_mp_mla == $value['id'] ? 'selected' : '' }}>
+                                                                        value="{{ $value['id'] }}"data-mla-name="{{ $value['name'] }}"{{ $project_master->basic_mp_mla == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -233,14 +245,17 @@
                                                                 <input type="file" class="form-control w-100"
                                                                     id="basic_upload_img" name="basic_upload_img"
                                                                     value="{{ $project_master->basic_upload_img }}">
-                                                                    <a href="{{ asset('uplode_images/basic/' . $project_master->basic_upload_img) }}" target="_blank">
-                                                                        <br>Open Image in New Tab
-                                                                    </a>
-                                                                    
+                                                                <a href="{{ asset('uplode_images/basic/' . $project_master->basic_upload_img) }}"
+                                                                    target="_blank">
+                                                                    <br>Open Image in New Tab
+                                                                </a>
 
-                                                                    {{-- <img src="{{ asset('uplode_images/basic/' . $project_master->basic_upload_img) }}"
+
+                                                                {{-- <img src="{{ asset('uplode_images/basic/' . $project_master->basic_upload_img) }}"
                                                                     alt="" height="50" srcset=""> --}}
                                                             </div>
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -448,11 +463,12 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row" method="post" enctype="multipart/form-data">
-
+                        <form class="row" method="post" enctype="multipart/form-data" id="name_of_scheme_id">
+                            @csrf
+                            <input type="hidden" name="name_of_scheme_id" id="name_of_scheme_id">
                             <div class="col-lg-12">
                                 <label class="form-label">Name Of Scheme</label>
-                                <input type="text" class="form-control" id="user_name" name="user_name"
+                                <input type="text" class="form-control" id="name" name="name"
                                     value="XYZ">
                             </div>
 
@@ -477,10 +493,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row" method="post" enctype="multipart/form-data">
+                        <form class="row" method="post" enctype="multipart/form-data" id="add_name_of_project_id">
+                            @csrf
+                            <input type="hidden" name="add_name_of_project_id" id="add_name_of_project_id">
+
                             <div class="col-lg-12">
                                 <label class="form-label">Name Of Project</label>
-                                <input type="text" class="form-control" id="user_name" name="user_name"
+                                <input type="text" class="form-control" id="name" name="name"
                                     value="XYZ">
                             </div>
 
@@ -502,7 +521,7 @@
         var token = "{{ csrf_token() }}";
 
 
-        $('#master_id').submit(function(e) {
+        $('#master_id_form').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
             var csrftoken = $('meta[name="csrf-token"]').attr('content');
@@ -542,5 +561,132 @@
                 }
             });
         });
+
+        $('#name_of_scheme_id').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var csrftoken = $('meta[name="csrf-token"]').attr('content');
+            $(".text-danger").text('');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('name_of_schema_insert') }}",
+                headers: {
+                    'X-CSRF-Token': csrftoken,
+                },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    if (data.status == 200) {
+                        $('#name_of_scheme_id').modal('hide');
+                        if ($('#name_of_scheme_id').val() == '') {
+                            toastr.success("Proposal Master added successfully.");
+                        } else {
+                            toastr.success("Proposal Master updated successfully.");
+                        }
+                        window.location.href = "{{ route('basic_branch') }}";
+                    } else {
+                        toastr.error(data.msg);
+                    }
+
+                },
+                error: function(response) {
+                    if (response.status === 422) {
+                        var errors = $.parseJSON(response.responseText);
+                        $.each(errors['errors'], function(key, val) {
+                            console.log(key);
+                            $("#" + key + "_error").text(val[0]);
+                        });
+                    }
+                }
+            });
+        });
+
+
+
+
+
+
+
+        $('#add_name_of_project_id').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var csrftoken = $('meta[name="csrf-token"]').attr('content');
+            $(".text-danger").text('');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('name_of_project_insert') }}",
+                headers: {
+                    'X-CSRF-Token': csrftoken,
+                },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    if (data.status == 200) {
+                        $('#add_name_of_project_id').modal('hide');
+                        if ($('#add_name_of_project_id').val() == '') {
+                            toastr.success("Proposal Master added successfully.");
+                        } else {
+                            toastr.success("Proposal Master updated successfully.");
+                        }
+
+                        window.location.href = "{{ route('basic_branch') }}";
+                    } else {
+                        toastr.error(data.msg);
+                    }
+                },
+                error: function(response) {
+                    if (response.status === 422) {
+                        var errors = $.parseJSON(response.responseText);
+                        $.each(errors['errors'], function(key, val) {
+                            console.log(key);
+                            $("#" + key + "_error").text(val[0]);
+                        });
+                    }
+                }
+            });
+        });
+
+
+        $(document).ready(function () {
+        $('#types_of_work_id').on('change', function () {
+            var selectedOption = $(this).find(':selected');
+            var selectedWorkName = selectedOption.data('work-name');
+            $('#basic_type_work_name').val(selectedWorkName);
+        });
+    });
+
+
+
+    $(document).ready(function () {
+        $('#budget_work_id').on('change', function () {
+            var selectedOption = $(this).find(':selected');
+            var selectedWorkName = selectedOption.data('item-name');
+            $('#basic_budget_work_name').val(selectedWorkName);
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('#basic_mp_mla').on('change', function () {
+            var selectedOption = $(this).find(':selected');
+            var selectedWorkName = selectedOption.data('mla-name');
+            $('#basic_mp_mla_name').val(selectedWorkName);
+        });
+    });
+
+    $(document).ready(function () {
+        $('#budget_id').on('change', function () {
+            var selectedOption = $(this).find(':selected');
+            var selectedWorkName = selectedOption.data('bu-name');
+            $('#basic_budget_name').val(selectedWorkName);
+        });
+    });
+
     </script>
 @endsection

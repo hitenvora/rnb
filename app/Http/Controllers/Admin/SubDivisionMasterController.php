@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\AdminLogin;
 use App\Models\Admin\DivisionMasters;
 use App\Models\Admin\SubDivisionMasters;
 use Illuminate\Http\Request;
@@ -13,8 +14,10 @@ class SubDivisionMasterController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         $divisionname = DivisionMasters::orderBy('id')->get();
-        return view('admin.sub_division_master', compact('divisionname'));
+        return view('admin.sub_division_master', compact('divisionname','user','role'));
     }
 
     public function insert(Request $request)

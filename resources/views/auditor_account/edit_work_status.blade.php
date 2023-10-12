@@ -3,7 +3,8 @@
 @endsection
 
 @section('content')
-@include('navbar.auditor_account.edit_auditor_account_navbar')
+@include('navbar.pb_branch.edit_pb_branch_navbar')
+
 
 
     <body>
@@ -19,6 +20,8 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="work_status">
+
                                     <div class="col-lg-4">
                                         <label class="form-label">SD(Security Deposit) Completion Date</label>
                                         <input type="date" class="form-control" id="ws_sd_completion"

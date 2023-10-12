@@ -3,7 +3,8 @@
 @endsection
 
 @section('content')
-    @include('navbar.auditor_account.edit_auditor_account_navbar')
+@include('navbar.pb_branch.edit_pb_branch_navbar')
+
 
     <body>
         <div class="mg-b-23">
@@ -18,16 +19,20 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="bugedtry_details">
+
 
                                     <div class="col-lg-12">
                                         <label class="form-label">Item First Introduce in Year & Budget Provision</label>
                                         <input type="text" class="form-control" id="bd_item_first" name="bd_item_first"
-                                            placeholder="Enter Item First Introduce in Year & Budget Provision" value="{{ $project_master->bd_item_first }}">
+                                            placeholder="Enter Item First Introduce in Year & Budget Provision"
+                                            value="{{ $project_master->bd_item_first }}">
                                     </div>
                                     <div class="col-lg-12">
                                         <label class="form-label">Detail Budget Head</label>
                                         <input type="text" class="form-control" id="bd_detail_head" name="bd_detail_head"
-                                            placeholder="Enter Detail Budget Head" value="{{ $project_master->bd_detail_head }}">
+                                            placeholder="Enter Detail Budget Head"
+                                            value="{{ $project_master->bd_detail_head }}">
                                     </div>
                                     <div class="col-lg-6">
                                         <label class="form-label">Budget Item No.</label>
@@ -45,7 +50,7 @@
                                             <option selected value="New Item">New Item</option>
                                             <option value="continue">Continous</option>
                                         </select>
-                                        <table class="product_sub_menu table-bordered mt-3">
+                                        <table class="product_sub_menu table-bordered mt-3" id="contect">
                                             <thead>
                                                 <th>Budget Previous Year</th>
                                                 <th>Amount</th>
@@ -77,15 +82,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="text-end" colspan="2">
-                                                        <a class="btn btn-warning add_btn" id="add_button"
-                                                            name="add_button">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="19"
-                                                                height="18" viewBox="0 0 19 18" fill="none">
-                                                                <path d="M9.5 3.75V14.25M4.25 9H14.75" stroke="white"
-                                                                    stroke-width="1.67" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                            </svg>
-                                                            Add
+                                                        <a class="btn btn-light-warning px-3" id="add-contact">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="20" viewBox="0 0 20 20" fill="none">
+                                                                <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                                    stroke="#802B81" stroke-width="1.67"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg> Add
                                                         </a>
                                                     </td>
 
@@ -153,6 +156,60 @@
                         });
                     }
                 }
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-contact');
+            const contactFieldsContainer = document.getElementById('contect');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+
+                // Create a new input field (you can customize this as needed)
+                const newContactField = document.createElement('p');
+                newContactField.innerHTML = `
+                <table class="product_sub_menu table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="2022">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="200000">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="2022">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="200000">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="2022">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="200000">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        
+
+                // Add an event listener to the "Remove" button
+                const removeButton = newContactField.querySelector('.remove-contact');
+                removeButton.addEventListener('click', function() {
+                    contactFieldsContainer.removeChild(
+                        newContactField); // Remove the field when "Remove" is clicked
+                    contactCount--; // Decrement contact count
+                });
+                contactFieldsContainer.appendChild(newContactField);
             });
         });
     </script>

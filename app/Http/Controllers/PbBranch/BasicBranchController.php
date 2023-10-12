@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PbBranch;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\AdminLogin;
 use App\Models\Admin\Budget;
 use App\Models\Admin\BudgetWork;
 use App\Models\Admin\District;
@@ -23,6 +24,8 @@ class BasicBranchController extends Controller
 {
     public function index(Request $request)
     {
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // $basic_show= Basic::orderBy('id')->get();
         $division_name = DivisionMasters::orderBy('id')->get();
         $sub_division_name = SubDivisionMasters::orderBy('id')->get();
@@ -38,7 +41,7 @@ class BasicBranchController extends Controller
         $name_of_scheme  =NameOfSchema ::orderBy('id')->get();
         $name_of_project  =NameOfProject::orderBy('id')->get();
 
-        return view('pb_branch.basic_branch', compact('division_name', 'sub_division_name','district_name','taluka_name','work_type','type_work','budget','budget_work','mp_mla','sent_box','name_of_scheme','name_of_project'));
+        return view('pb_branch.basic_branch', compact('division_name', 'sub_division_name','district_name','taluka_name','work_type','type_work','budget','budget_work','mp_mla','sent_box','name_of_scheme','name_of_project','user','role'));
     }
     
     // public function insert(Request $request)

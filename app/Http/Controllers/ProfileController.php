@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\admin\AdminLogin;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,9 +60,13 @@ class ProfileController extends Controller
     //     return Redirect::to('/');
     // }
 
-      
+
     public function index()
+
     {
-        return view('profile');
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        
+        return view('profile', compact('user','role'));
     }
 }

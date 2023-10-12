@@ -19,6 +19,8 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
+                                    <input type="hidden" name="step" value="forest_cleaner">
+
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Chainage</label>
                                         <input type="text" class="form-control" id="forest_chainage"
@@ -80,7 +82,7 @@
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Letter Date</label>
-                                        <input type="text" class="form-control" id="forest_letter_date"
+                                        <input type="date" class="form-control" id="forest_letter_date"
                                             name="forest_letter_date" value="{{ $project_master->forest_letter_date }}">
                                     </div>
 
