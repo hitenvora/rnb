@@ -55,7 +55,7 @@
                                             name="forest_appr_state" placeholder="Enter District/State/Gandhinagar">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
-                                        <label class="form-label">Proposal Submitted To</label>
+                                        <label class="form-label ">Proposal Submitted To</label>
                                         <input type="text" class="form-control" id="forest_proposal_submit"
                                             name="forest_proposal_submit" placeholder="Proposal Submitted To">
                                     </div>

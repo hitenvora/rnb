@@ -880,7 +880,7 @@
                                                     class="font-primary text-decoration-underline" target="_blank">
                                                     View Image
 
-                                                </a>
+                                            </a>
                                             </td>
                                         </tr>
                                         <tr>

@@ -370,7 +370,6 @@ class MasterController extends Controller
                 $basic_branch->usd_amount = implode(",", $usd_amount);
             }
 
-
             $usd_payment = $request->input('usd_payment');
             if (isset($usd_payment) && sizeof($usd_payment)) {
 
@@ -469,10 +468,6 @@ class MasterController extends Controller
             $basic_branch->laq_poss_detail = $request->input('laq_poss_detail');
             $basic_branch->laq_status = $request->input('laq_status');
         }
-
-
-
-
 
         if ($step == 'bugedtry_details') {
             //budgetary-detail
@@ -641,9 +636,8 @@ class MasterController extends Controller
 
         //work-status
         if ($step == 'work_status') {
-            $basic_branch->ws_sd_completion = $request->input('ws_sd_completion');
             $basic_branch->ws_sd_release = $request->input('ws_sd_release');
-            $basic_branch->ws_sd_amount = $request->input('ws_sd_amount');
+            $basic_branch->ws_sd_completion = $request->input('ws_sd_completion');
         }
         //FMG
         if ($step == 'fmg') {
@@ -739,8 +733,6 @@ class MasterController extends Controller
                 $basic_branch->dtp_f_remark = implode(",", $dtp_f_remark);
             }
         }
-
-
         //NIT
         if ($step == 'nit') {
             $basic_branch->nit_no = $request->input('nit_no');
@@ -757,8 +749,6 @@ class MasterController extends Controller
             $basic_branch->nit_pq_approval_date = $request->input('nit_pq_approval_date');
             $basic_branch->nit_sent_circle_date = $request->input('nit_sent_circle_date');
             $basic_branch->nit_sent_goverment_date = $request->input('nit_sent_goverment_date');
-
-
 
             $basic_branch->nit_validity_date = $request->input('nit_validity_date');
             $basic_branch->nit_tender_form = $request->input('nit_tender_form');
@@ -826,9 +816,6 @@ class MasterController extends Controller
 
                 $basic_branch->nit_validity_extension_date = implode(",", $nit_validity_extension_date);
             }
-
-
-
 
             $nit_latter_extension_no = $request->input('nit_latter_extension_no');
             if (isset($nit_latter_extension_no) && sizeof($nit_latter_extension_no)) {
@@ -908,7 +895,7 @@ class MasterController extends Controller
                 $basic_branch->do_fdr_image = $this->storeImage($request->do_fdr_image, 'uplode_images/deposit_order_bank_guarantee_detail/');
             }
 
-            
+
             $basic_branch->do_work_order_date = $request->input('do_work_order_date');
             $basic_branch->do_time_line_month = $request->input('do_time_line_month');
             $basic_branch->do_time_limit_any = $request->input('do_time_limit_any');

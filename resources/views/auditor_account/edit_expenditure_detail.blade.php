@@ -17,7 +17,7 @@
                             </div>
                             <form class="row" method="post" enctype="multipart/form-data" id="master_id_form">
                                 @csrf
-                                <div class="card-body" id="contect">
+                                <div class="card-body">
                                     <div class="table-responsive expen_table">
                                         <table class="exp_detail table-bordered">
                                             <thead>
@@ -31,7 +31,7 @@
                                                 <th>Work(%)</th>
                                                 <th>Amount For</th>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="contect">
                                                 <tr>
 
                                                     <input type="hidden" name="master_id" id="master_id"
@@ -54,40 +54,43 @@
                                                         <td>
                                                             <input type="date" id="ed_origin_work"
                                                                 name="ed_origin_work[]" value="{{ $data }}"
-                                                                class="form-control">
+                                                                class="form-control" placeholder="enter date">
                                                         </td>
                                                         <td>
                                                             <input type="text" id="ed_estimated_cost"
                                                                 name="ed_estimated_cost[]"
-                                                                value="{{ @$ed_estimated_cost[$key] }}"
-                                                                class="form-control">
+                                                                value="{{ @$ed_estimated_cost[$key] }}" class="form-control"
+                                                                placeholder="Enter Estimated Cost">
                                                         </td>
                                                         <td>
                                                             <input type="text" class="form-control"
                                                                 name="ed_tender_cost[]" value="{{ @$ed_tender_cost[$key] }}"
-                                                                id="ed_tender_cost">
+                                                                id="ed_tender_cost" placeholder="Enter Tender Cost">
                                                         </td>
                                                         <td>
                                                             <input type="text" class="form-control"
                                                                 name="ed_project_cost[]"
-                                                                value="{{ @$ed_project_cost[$key] }}" id="ed_project_cost">
+                                                                value="{{ @$ed_project_cost[$key] }}" id="ed_project_cost"
+                                                                placeholder="Enter Project Cost">
                                                         </td>
 
                                                         <td>
                                                             <input type="text" class="form-control" id="ed_paid_amount"
-                                                                value="{{ @$ed_paid_amount[$key] }}"
-                                                                name="ed_paid_amount[]">
+                                                                value="{{ @$ed_paid_amount[$key] }}" name="ed_paid_amount[]"
+                                                                placeholder="Enter Paid Amount">
                                                         </td>
                                                         <td>
                                                             <input type="number" class="form-control"
                                                                 value="{{ @$ed_expenditure_amount[$key] }}"
-                                                                name="ed_expenditure_amount[]" id="ed_expenditure_amount">
+                                                                name="ed_expenditure_amount[]" id="ed_expenditure_amount"
+                                                                placeholder="Enter Expenditure Amount">
                                                         </td>
                                                         <!-- show total + 9 % value -->
                                                         <td>
                                                             <input type="text" class="form-control"
                                                                 name="ed_expenditure[]" value="{{ @$ed_expenditure[$key] }}"
-                                                                id="ed_expenditure" readonly>
+                                                                id="ed_expenditure" readonly
+                                                                placeholder="This Value is Automatically">
                                                         </td>
                                                         <td>
                                                             <input type="text" class="form-control" name="ed_work[]"
@@ -141,8 +144,8 @@
                                             name="sub_client" style="margin-left: 50%">Save</button>
                                     </div>
                             </form>
-
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -209,11 +212,6 @@
     <script>
         var token = "{{ csrf_token() }}";
 
-
-
-
-
-
         $('#master_id_form').submit(function(e) {
             e.preventDefault();
 
@@ -270,24 +268,8 @@
                 contactCount++; // Increment contact count
 
                 // Create a new input field (you can customize this as needed)
-                const newContactField = document.createElement('p');
-                newContactField.innerHTML = ` 
-                                <div class="table-responsive expen_table">
-                                    <table class="exp_detail table-bordered">
-                                        <thead>
-                                                <th>Original Work Expense On Date</th>
-                                                <th>Estimated Cost</th>
-                                                <th>Tender Cost</th>
-                                                <th>Project Cost(AA)</th>
-                                                <th>Paid Amount</th>
-                                                <th>Expenditure Amount</th>
-                                                <th>9% with CC Expenditure</th>
-                                                <th>Work(%)</th>
-                                                <th>Amount For</th>
-                                            </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
+                const newContactField = document.createElement('tr');
+                newContactField.innerHTML = ` <td>
                                                         <input type="date" id="ed_origin_work[]" name="ed_origin_work[]"
                                                             class="form-control">
                                                 </td>
@@ -302,21 +284,25 @@
                                                 </td>
                                                 <td>
                                                             <input type="text" class="form-control"
-                                                                name="ed_project_cost[]"                                                            id="ed_project_cost">
+                                                                name="ed_project_cost[]"id="ed_project_cost">
                                                         </td>
                                                 <td>
                                                     <input type="text" class="form-control" 
                                                         id="ed_paid_amount[]" name="ed_paid_amount[]">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" 
-                                                        name="ed_expenditure_amount[]" id="ed_expenditure_amount[]">
-                                                </td>
-                                              
-                                                <td>
-                                                    <input type="text" class="form-control"
-                                                        name="ed_expenditure[]" id="ed_expenditure[]">
-                                                </td>
+                                                    <input type="number" class="form-control"
+                                             name="ed_expenditure_amount[]" id="amount"
+                                                        placeholder="Enter Expenditure Amount">
+                                                    </td>
+                                                    <!-- show total + 9 % value -->
+                                                    <td>
+                                                        <input type="text" class="form-control"
+                                                            name="ed_expenditure[]"
+                                                            id="with_amount" readonly
+                                                            placeholder="This Value is Automatically"
+                                                            ">
+                                                    </td>
                                                 <td>
                                                     <input type="text" class="form-control"
                                                         name="ed_work[]" id="ed_work[]">
@@ -330,14 +316,8 @@
                                                         <option value="Financial Progress">Financial Progress </option>
                                                         <option value="Figical Progress">Figical Progress </option>
                                                         <option value="Tpi">Tpi </option>
-                                                     
-
                                                     </select>
                                                 </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
@@ -351,7 +331,7 @@
             });
         });
 
-
+        // 9% valu logic (1)
         document.addEventListener('DOMContentLoaded', function() {
             const amountInput = document.getElementById('ed_expenditure_amount');
             const resultInput = document.getElementById('ed_expenditure');
@@ -376,7 +356,56 @@
 
 
 
+        //9% valu logic (2)
+        function calculateExpenditure(amountInput, resultInput) {
+            const enteredAmount = parseFloat(amountInput.value);
+            if (!isNaN(enteredAmount)) {
+                const calculatedValue = enteredAmount * 100 * 0.09;
+                resultInput.value = calculatedValue.toFixed(2);
+            } else {
+                resultInput.value = '';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountInputs = document.querySelectorAll('input[name="ed_expenditure_amount[]"]');
+            const resultInputs = document.querySelectorAll('input[name="ed_expenditure[]"]');
+            const totalElements = document.querySelectorAll('.total_detail span[data-category]');
 
+            function updateTotal(category) {
+                let total = 0;
+                for (let i = 0; i < amountInputs.length; i++) {
+                    const categoryInput = document.querySelector(`select[name="ed_amount_for[]"]`);
+                    if (categoryInput.value === category) {
+                        total += parseFloat(resultInputs[i].value) || 0;
+                    }
+                }
+                return total;
+            }
+
+            function updateTotals() {
+                for (let i = 0; i < totalElements.length; i++) {
+                    const category = totalElements[i].getAttribute('data-category');
+                    const total = updateTotal(category);
+                    totalElements[i].textContent = total.toFixed(2);
+                }
+            }
+
+            amountInputs.forEach(function(amountInput, index) {
+                const resultInput = resultInputs[index];
+                amountInput.addEventListener('input', function() {
+                    calculateExpenditure(amountInput, resultInput);
+                    updateTotals();
+                });
+            });
+
+            const categoryDropdowns = document.querySelectorAll('select[name="ed_amount_for[]"]');
+            categoryDropdowns.forEach(function(categoryDropdown) {
+                categoryDropdown.addEventListener('change', updateTotals);
+            });
+        });
+
+
+        //total  function
         document.addEventListener('DOMContentLoaded', function() {
             const amountInputs = document.querySelectorAll('#ed_paid_amount');
             const categoryDropdowns = document.querySelectorAll('#ed_amount_for');
@@ -438,4 +467,5 @@
             updateTotal();
         });
     </script>
+    <!-- Add these scripts to your existing code -->
 @endsection

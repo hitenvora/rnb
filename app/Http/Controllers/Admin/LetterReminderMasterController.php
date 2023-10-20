@@ -36,8 +36,6 @@ class LetterReminderMasterController extends Controller
     {
 
 
-
-
         if ($request->letter_reminder_id != '') {
             $letter_reminder = LetterReminderMasters::find($request->letter_reminder_id);
             if (!$letter_reminder) {
@@ -50,7 +48,7 @@ class LetterReminderMasterController extends Controller
         $letter_reminder->date = $request->input('date');
         $letter_reminder->subject = $request->input('subject');
         if (isset($request->upload_img)) {
-            $letter_reminder->upload_img = $this->storeImage($request->upload_img, 'upload/Letter-reminder/');
+            $letter_reminder->upload_img = $this->storeImage($request->upload_img, 'uplode/Letter-reminder/');
         }
 
         $letter_reminder->submit_to = $request->input('submit_to');

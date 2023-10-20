@@ -37,7 +37,6 @@
                                     <div class="col-lg-6">
                                         <label for="inputtitle1" class="form-label">Date OF intiacle Yes/No</label>
                                         <select class="form-select" id="acctual_yes_no" name="acctual_yes_no">
-
                                             <option value="Yes">Yes</option>
                                             <option selected value="No">No</option>
                                         </select>

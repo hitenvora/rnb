@@ -61,40 +61,40 @@
                                         <input type="text" class="form-control" id="forest_area_hect"
                                             name="forest_area_hect" value="200">
                                     </div>
-                                    <div class="col-xl-3 col-lg-6">
+                                    <div class="col-xl-3 col-lg-6 mt-1">
                                         <label class="form-label">Approval to be accorded by District/State/Gandhinagar
                                         </label>
                                         <input type="text" class="form-control" id="forest_appr_state"
                                             name="forest_appr_state" placeholder="Enter District/State/Gandhinagar"
                                             value="{{ $project_master->forest_appr_state }}">
                                     </div>
-                                    <div class="col-xl-3 col-lg-6">
+                                    <div class="col-xl-3 col-lg-6 mt-4">
                                         <label class="form-label">Proposal Submitted To</label>
                                         <input type="text" class="form-control" id="forest_proposal_submit"
                                             name="forest_proposal_submit" placeholder="Proposal Submitted To"
                                             value="{{ $project_master->forest_proposal_submit }}">
                                     </div>
-                                    <div class="col-xl-3 col-lg-6">
+                                    <div class="col-xl-3 col-lg-6 mt-4">
                                         <label class="form-label">Letter No.</label>
                                         <input type="text" class="form-control" id="forest_letter_no"
                                             name="forest_letter_no" placeholder="Enter Letter No."
                                             value="{{ $project_master->forest_letter_no }}">
                                     </div>
-                                    <div class="col-xl-3 col-lg-6">
+                                    <div class="col-xl-3 col-lg-6 mt-4">
                                         <label class="form-label">Letter Date</label>
                                         <input type="date" class="form-control" id="forest_letter_date"
                                             name="forest_letter_date" value="{{ $project_master->forest_letter_date }}">
                                     </div>
 
-
                                     <div class="col-xl-6  col-lg-12">
                                         <label class="form-label">Letter Upload</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control w-100" id="upload_img"
+                                            <input type="file" class="form-control w-100" id="forest_upload_img"
                                                 name="forest_upload_img" value="{{ $project_master->forest_upload_img }}">
-                                                <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_upload_img) }}" target="_blank">
-                                                    <br>Open Image in New Tab
-                                                </a>
+                                            <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_upload_img) }}"
+                                                target="_blank">
+                                                <br>Open Image in New Tab
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
@@ -133,9 +133,10 @@
                                             <input type="file" class="form-control w-100" id="forest_letter_img"
                                                 name="forest_letter_img"
                                                 value="{{ $project_master->forest_letter_img }}">
-                                                    <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_letter_img) }}" target="_blank">
-                                                        <br>Open Image in New Tab
-                                                    </a>
+                                            <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_letter_img) }}"
+                                                target="_blank">
+                                                <br>Open Image in New Tab
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">

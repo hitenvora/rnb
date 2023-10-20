@@ -62,10 +62,10 @@
                                                 <div class="col-lg-12">
                                                     <label class="form-label">File Preparation by Sub Division</label>
                                                     <select class="form-select" name="laq_file_sub" id="laq_file_sub">
-                                                        <option value="">Select division Name</option>
+                                                        <option value="">Select Division Name</option>
                                                         @foreach ($division_name as $value)
                                                             <option
-                                                                value="{{ $value['id'] }}"{{ $project_master->laq_file_sub == $value['id'] ? 'selected' : '' }}>
+              value="{{ $value['id'] }}"{{ $project_master->laq_file_sub == $value['id'] ? 'selected' : '' }}>
                                                                 {{ $value['name'] }}</option>
                                                         @endforeach
                                                     </select>
