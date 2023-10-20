@@ -34,12 +34,20 @@
                                             placeholder="Enter Agency Name" value="{{ $project_master->do_agency_name }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
+                                        <label class="form-label">Tender Approved By</label>
+                                        <select class="form-select" id="tender_approved_by" name="tender_approved_by">
+                                            <option value="Government"@selected($project_master->tender_approved_by == 'Government')>Government</option>
+                                            <option value="Circle"@selected($project_master->tender_approved_by == 'Circle')>Circle</option>
+                                            <option value="Divison"@selected($project_master->tender_approved_by == 'Divison')>Divison</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6">
                                         <label for="inputtitle1" class="form-label">Letter No.</label>
                                         <input class="form-control" type="text" id="do_letter_No" name="do_etter_No"
                                             placeholder="Enter Letter No." value="{{ $project_master->do_letter_No }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
-                                        <label for="inputtitle1" class="form-label">Amount</label>
+                                        <label for="inputtitle1" class="form-label">Tender Approval Amount</label>
                                         <input class="form-control" type="text" id="do_tender_amt" name="do_tender_amt"
                                             placeholder="Enter amount" value="{{ $project_master->do_tender_amt }}">
                                     </div>
@@ -106,6 +114,34 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-12 mt-2">
+                                        <div class="contact_list">
+                                            <h6>Deposit Condition</h6>
+                                            <div class="row p-0">
+                                                <div class="col-lg-4">
+                                                    <label for="inputtitle1" class="form-label">Deposit Condition Date</label>
+                                                    <input class="form-control" type="date" id="do_condition_date"
+                                                        name="do_condition_date" placeholder="Enter Deposit Condition Date"
+                                                        value="{{ $project_master->do_condition_date }}">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="form-label">Deposit Condition Datails</label>
+                                                    <input type="date" class="form-control" id="do_condition_datails"
+                                                        name="do_condition_datails"
+                                                        value="{{ $project_master->do_condition_datails }}">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="inputtitle1" class="form-label">Deposit Condition Approval</label>
+                                                    <input class="form-control" type="text" id="do_condition_approval"
+                                                        name="do_condition_approval" placeholder="Enter amount"
+                                                        value="{{ $project_master->do_condition_approval }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-lg-12 mt-2">
                                         <div class="contact_list">
                                             <h6>Deposit Submission</h6>
@@ -137,31 +173,46 @@
                                             <h6>Bank Guarantee</h6>
                                             <div class="row p-0">
                                                 <div class="col-lg-3">
-                                                    <label class="form-label">BG Expired Date</label>
-                                                    <input type="date" class="form-control" id="do_bg_exp_date"
-                                                        name="do_bg_exp_date"
-                                                        value="{{ $project_master->do_bg_exp_date }}">
+                                                    <label class="form-label">BG Issue Date</label>
+                                                    <input type="date" class="form-control" id="do_bg_issue_date"
+                                                        name="do_bg_issue_date"
+                                                        value="{{ $project_master->do_bg_issue_date }}">
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <label for="inputtitle1" class="form-label">Amount</label>
-                                                    <input class="form-control" type="text" id="do_bg_exp_amount"
-                                                        name="do_bg_exp_amount" placeholder="Enter amount"
-                                                        value="{{ $project_master->do_bg_exp_amount }}">
+                                                    <label for="inputtitle1" class="form-label">BG Expire Date</label>
+                                                    <input class="form-control" type="date" id="do_bg_expire_date"
+                                                        name="do_bg_expire_date" placeholder="Enter amount"
+                                                        value="{{ $project_master->do_bg_expire_date }}">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label class="form-label">Letter Upload</label>
+                                                    <label class="form-label">Bank Name</label>
                                                     <div class="input-group">
-                                                        <input type="file" class="form-control w-100"
-                                                            id="do_bg_exp_image" name="do_bg_exp_image"
-                                                            value="{{ $project_master->do_bg_exp_image }}">
-                                                        <a href="{{ asset('uplode_images/deposit_order_bank_guarantee_detail/' . $project_master->do_bg_exp_image) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                        <input type="text" class="form-control w-100"
+                                                            id="do_bg_bank_name" name="do_bg_bank_name"
+                                                            value="{{ $project_master->do_bg_bank_name }}"> 
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row p-0">
+                                            <div class="col-lg-6">
+                                                <label class="form-label">BG Bank Address</label>
+                                                <input type="text" class="form-control" id="do_bg_bank_address"
+                                                    name="do_bg_bank_address"
+                                                    value="{{ $project_master->do_bg_bank_address }}">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label class="form-label">BG Bank Verified</label>
+                                                <select class="form-control" id="do_bg_bank_verified"
+                                                    name="do_bg_bank_verified"
+                                                    value="{{ $project_master->do_bg_bank_verified }}">
+                                                    <option value="Yes"@selected($project_master->do_bg_bank_verified == 'Yes')>Yes</option>
+                                                    <option value="No"@selected($project_master->do_bg_bank_verified == 'No')>No</option>
+                                                </select>
+                                            </div>
+                                            </div>
+                                            
                                         </div>
+                                        
                                     </div>
                                     <div class="col-lg-12 mt-2">
                                         <div class="contact_list">

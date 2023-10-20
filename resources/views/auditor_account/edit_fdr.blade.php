@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-@include('navbar.pb_branch.edit_pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
 
     <body>
@@ -30,7 +30,8 @@
                                     <div class="col-lg-3">
                                         <label class="form-label">FDR Time Limit In Year</label>
                                         <input type="text" class="form-control" id="fdr_time" name="fdr_time"
-                                            placeholder="Enter FMG Time Limit In Year" value="{{ $project_master->fdr_time }}">
+                                            placeholder="Enter FMG Time Limit In Year"
+                                            value="{{ $project_master->fdr_time }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">FDR Complete Date</label>

@@ -11,36 +11,31 @@ use Yajra\DataTables\Facades\DataTables;
 
 class LetterReminderMasterController extends Controller
 {
+
+
+    public function storeImage($img, $path)
+    {
+        $path = public_path($path);
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
+
+        $imageName = time() . '.' . $img->extension();
+        $img->move($path, $imageName);
+        return $imageName;
+    }
+
+
     public function index()
     {
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
-        return view('admin.letter_reminder_master',compact('user','role'));
+        return view('admin.letter_reminder_master', compact('user', 'role'));
     }
 
     public function insert(Request $request)
     {
 
-        $rules = [
-            'date' => 'required',
-            'subject' => 'required',
-            'upload_img' => 'required',
-            'submit_to' => 'required',
-            'expire_date' => 'required',
-        ];
 
-        $this->validate($request, $rules);
-        $image = $request->file('upload_img');
-        $filename = '';
-
-        if ($image == '') {
-            return response()->json(['status' => '400', 'msg' => 'please select image']);
-        }
-
-        if (!empty($image)) {
-            $filename = str_replace(' ', '', $image->getClientOriginalName());
-            $image->move(public_path('upload/Letter-reminder/'), $filename);
-        }
 
 
         if ($request->letter_reminder_id != '') {
@@ -54,7 +49,10 @@ class LetterReminderMasterController extends Controller
         }
         $letter_reminder->date = $request->input('date');
         $letter_reminder->subject = $request->input('subject');
-        $letter_reminder->upload_img = $filename;
+        if (isset($request->upload_img)) {
+            $letter_reminder->upload_img = $this->storeImage($request->upload_img, 'upload/Letter-reminder/');
+        }
+
         $letter_reminder->submit_to = $request->input('submit_to');
         $letter_reminder->expire_date = $request->input('expire_date');
         $letter_reminder->is_active = $request->input('is_active');

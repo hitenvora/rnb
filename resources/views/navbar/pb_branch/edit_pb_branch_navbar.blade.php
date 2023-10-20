@@ -32,8 +32,8 @@
                                                                 alt="" />
                                                         </div>
                                                         <div class="flex-grow-1 d-flex flex-column">
-                                                            <h5 class="admin-name m-0">{{$user->name}}</h5>
-                                                            <span>{{$role->name}}</span>
+                                                            <h5 class="admin-name m-0">{{ $user->name }}</h5>
+                                                            <span>{{ $role->name }}</span>
                                                         </div>
                                                     </div>
 
@@ -151,10 +151,10 @@
                                                 <a class="nav-link {{ Route::is('edit_fmg') ? 'active' : '' }}"
                                                     href="{{ route('edit_fmg', $project_master->id) }}">FMG</a>
                                             </li>
-                                            <li class="nav-item">
+                                            {{-- <li class="nav-item">
                                                 <a class="nav-link {{ Route::is('edit_fdr') ? 'active' : '' }}"
                                                     href="{{ route('edit_fdr', $project_master->id) }}">FDR</a>
-                                            </li>
+                                            </li> --}}
                                             <li class="nav-item">
                                                 <a class="nav-link {{ Route::is('edit_dlp_period') ? 'active' : '' }}"
                                                     href="{{ route('edit_dlp_period', $project_master->id) }}">DLP

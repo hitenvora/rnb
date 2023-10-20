@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-@include('navbar.pb_branch.edit_pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
 
 
@@ -42,18 +42,18 @@
                                             placeholder="Enter Submitted Date" value="{{ $project_master->nit_end_date }}">
                                     </div>
 
-                                    <div class="col-lg-3">
-                                        <label for="inputtitle1" class="form-label">Tender Open Date</label>
-                                        <input class="form-control" type="date" id="nit_tender_open_date"
-                                            name="nit_tender_open_date" placeholder="Enter Submitted Date"
-                                            value="{{ $project_master->nit_tender_open_date }}">
-                                    </div>
 
                                     <div class="col-lg-3">
                                         <label for="inputtitle1" class="form-label">Last Submission Date</label>
                                         <input class="form-control" type="date" id="nit_last_sub_date"
                                             name="nit_last_sub_date" placeholder="Enter Submitted Date"
                                             value="{{ $project_master->nit_last_sub_date }}">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="inputtitle1" class="form-label">Tender Open Date</label>
+                                        <input class="form-control" type="date" id="nit_tender_open_date"
+                                            name="nit_tender_open_date" placeholder="Enter Submitted Date"
+                                            value="{{ $project_master->nit_tender_open_date }}">
                                     </div>
 
                                     <div class="col-lg-3">
@@ -106,6 +106,19 @@
                                         <input class="form-control" type="date" id="nit_pq_approval_date"
                                             name="nit_pq_approval_date" placeholder="Enter Submitted Date"
                                             value="{{ $project_master->nit_pq_approval_date }}">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="inputtitle1" class="form-label">Sent To Circle Submission Date</label>
+                                        <input class="form-control" type="date" id="nit_sent_circle_date"
+                                            name="nit_sent_circle_date" placeholder="Enter Submitted Date"
+                                            value="{{ $project_master->nit_sent_circle_date }}">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="inputtitle1" class="form-label">Circle To Goverment Submission Date
+                                        </label>
+                                        <input class="form-control" type="date" id="nit_sent_goverment_date"
+                                            name="nit_sent_goverment_date" placeholder="Enter Submitted Date"
+                                            value="{{ $project_master->nit_sent_goverment_date }}">
                                     </div>
 
 
@@ -167,12 +180,27 @@
                                             value="{{ $project_master->nit_validity_date }}">
                                     </div>
 
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-3 branch-scheme-select">
                                         <label class="form-label">Tender Form</label>
-                                        <select class="form-select" id="nit_tender_form" name="nit_tender_form">
-                                            <option selected value="EPC">EPC</option>
+                                        <div class="d-flex">
+                                            <select class="form-select" id="nit_tender_form" name="nit_tender_form">
+                                                @foreach ($tender_name as $value)
+                                                    <option value="{{ $value['id'] }}"
+                                                        {{ $project_master->nit_tender_form == $value['id'] ? 'selected' : '' }}>
+                                                        {{ $value['name'] }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
 
-                                        </select>
+                                            <div class="pluse-badge" data-bs-toggle="modal"
+                                                data-bs-target="#add_name_of_project">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
+                                                    viewBox="0 0 25 24" fill="none">
+                                                    <path d="M12.5 6L12.5 18M18.5 12L6.5 12" stroke="white"
+                                                        stroke-width="1.67" stroke-linecap="round" />
+                                                </svg>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-lg-3">
@@ -215,7 +243,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Agency</th>
-                                                        <th>Tender Cost</th>
+                                                        <th>Biding Amount</th>
                                                         <th>Above / Below (%)</th>
                                                         <th>Above/Below</th>
                                                     </tr>
@@ -227,8 +255,11 @@
                                                                 $nit_tender_cost = explode(',', $project_master->nit_tender_cost);
                                                                 $nit_latter_no_2 = explode(',', $project_master->nit_latter_no_2);
                                                                 $nit_tender_above = explode(',', $project_master->nit_tender_above);
-
+                                                                // Check if the index exists in the nit_tender_above array
+                                                                $selectedAbove = isset($nit_tender_above[$key]) && $nit_tender_above[$key] == 'Above' ? 'selected' : '';
+                                                                $selectedBelow = isset($nit_tender_above[$key]) && $nit_tender_above[$key] == 'Below' ? 'selected' : '';
                                                             @endphp
+
                                                             <td>
                                                                 <input type="text" name="nit_agency_main[]"
                                                                     class="form-control" id="nit_agency_main[]"
@@ -252,12 +283,10 @@
                                                                 <select class="form-select" id="nit_tender_above[]"
                                                                     name="nit_tender_above[]">
                                                                     <option value=""> select option</option>
-                                                                    {{-- <option value="Above"
-                                                                        @if ($project_master->nit_tender_above[$key] == 'Above') selected @endif>
-                                                                        Above</option>
-                                                                    <option value="Below"
-                                                                        @if ($project_master->nit_tender_above[$key] == 'Below') selected @endif>
-                                                                        Below</option> --}}
+                                                                    <option value="Above" {{ $selectedAbove }}>Above
+                                                                    </option>
+                                                                    <option value="Below" {{ $selectedBelow }}>Below
+                                                                    </option>
                                                                 </select>
                                                             </td>
                                                     </tr>
@@ -311,45 +340,48 @@
                                                                 $latter_date_extension = explode(',', $project_master->latter_date_extension);
                                                                 $latter_image_extension = explode(',', $project_master->latter_image_extension);
 
-
                                                             @endphp
-                                                        <td>
+                                                            <td>
 
-                                                            <input type="text" name="nit_agency_name[]"
-                                                                class="form-control" id="nit_agency_name[]"
-                                                                placeholder="Enter Agency Name" value="{{$data}}">
-                                                        </td>
+                                                                <input type="text" name="nit_agency_name[]"
+                                                                    class="form-control" id="nit_agency_name[]"
+                                                                    placeholder="Enter Agency Name"
+                                                                    value="{{ $data }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="date" name="nit_validity_extension_date[]"
-                                                                class="form-control" id="nit_validity_extension_date[]" value="{{ @$nit_validity_extension_date[$key] }}">
-                                                        </td>
+                                                            <td>
+                                                                <input type="date" name="nit_validity_extension_date[]"
+                                                                    class="form-control"
+                                                                    id="nit_validity_extension_date[]"
+                                                                    value="{{ @$nit_validity_extension_date[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="text" name="nit_latter_extension_no[]"
-                                                                class="form-control" id="nit_latter_extension_no[]"
-                                                                value="{{ @$nit_latter_extension_no[$key] }}">
-                                                        </td>
+                                                            <td>
+                                                                <input type="text" name="nit_latter_extension_no[]"
+                                                                    class="form-control" id="nit_latter_extension_no[]"
+                                                                    value="{{ @$nit_latter_extension_no[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <input type="date" name="latter_date_extension[]"
-                                                                class="form-control" id="latter_date_extension[]" value="{{ @$latter_date_extension[$key] }}">
-                                                        </td>
+                                                            <td>
+                                                                <input type="date" name="latter_date_extension[]"
+                                                                    class="form-control" id="latter_date_extension[]"
+                                                                    value="{{ @$latter_date_extension[$key] }}">
+                                                            </td>
 
-                                                        <td>
-                                                            <div class="input-group">
-                                                                <input type="file" class="form-control w-100"
-                                                                    id="latter_image_extension[]"
-                                                                    name="latter_image_extension[]"
-                                                                    value="{{ @$latter_image_extension[$key]  }}">
-                                                                <a href="{{ asset('uplode_images/nit/' . $project_master->latter_image_extension) }}"
-                                                                    target="_blank">
-                                                                    <br>Open Image in New Tab
-                                                                </a>
-                                                            </div>
-                                                        </td>
+                                                            <td>
+                                                                <div class="input-group">
+                                                                    <input type="file" class="form-control w-100"
+                                                                        id="latter_image_extension[]"
+                                                                        name="latter_image_extension[]"
+                                                                        value="{{ @$latter_image_extension[$key] }}">
+                                                                    <a href="{{ asset('uplode_images/nit/' . $project_master->latter_image_extension) }}"
+                                                                        target="_blank">
+                                                                        <br>Open Image in New Tab
+                                                                    </a>
+                                                                </div>
+                                                            </td>
                                                     </tr>
-@endforeach
+                                                    @endforeach
 
 
                                                     <tr>
@@ -370,32 +402,32 @@
                                         </div>
                                     </div>
                                     <!-- <div class="col-lg-12 mt-2">
-                                                    <div class="contact_list">
-                                                      <h6>DTP Approval</h6>
-                                                        <div class="row p-0">
-                                                            <div class="col-lg-3">
-                                                                <label class="form-label">Authority</label>
-                                                                <select class="form-select" name="Authority" id="Authority">
-                                                                    <option value="exc">Executive Engineer</option>
-                                                                    <option value="SE">Superintendent Engineer</option>
-                                                                    <option value="CE">Chief Engineer</option>
-                                                                  </select>
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <label class="form-label">Date</label>
-                                                                <input type="date" class="form-control" id="dtp_date" name="dtp_date" value="2023-09-13">
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <label for="inputtitle1" class="form-label">Letter No.</label>
-                                                                <input class="form-control" type="text" id="Letter_No" name="Letter_No" placeholder="Enter Letter No.">
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <label for="inputtitle1" class="form-label">Amount</label>
-                                                                <input class="form-control" type="text" id="Amount" name="Amount" placeholder="Enter Amount">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
+                                                                                                        <div class="contact_list">
+                                                                                                          <h6>DTP Approval</h6>
+                                                                                                            <div class="row p-0">
+                                                                                                                <div class="col-lg-3">
+                                                                                                                    <label class="form-label">Authority</label>
+                                                                                                                    <select class="form-select" name="Authority" id="Authority">
+                                                                                                                        <option value="exc">Executive Engineer</option>
+                                                                                                                        <option value="SE">Superintendent Engineer</option>
+                                                                                                                        <option value="CE">Chief Engineer</option>
+                                                                                                                      </select>
+                                                                                                                </div>
+                                                                                                                <div class="col-lg-3">
+                                                                                                                    <label class="form-label">Date</label>
+                                                                                                                    <input type="date" class="form-control" id="dtp_date" name="dtp_date" value="2023-09-13">
+                                                                                                                </div>
+                                                                                                                <div class="col-lg-3">
+                                                                                                                    <label for="inputtitle1" class="form-label">Letter No.</label>
+                                                                                                                    <input class="form-control" type="text" id="Letter_No" name="Letter_No" placeholder="Enter Letter No.">
+                                                                                                                </div>
+                                                                                                                <div class="col-lg-3">
+                                                                                                                    <label for="inputtitle1" class="form-label">Amount</label>
+                                                                                                                    <input class="form-control" type="text" id="Amount" name="Amount" placeholder="Enter Amount">
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div> -->
 
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
@@ -409,6 +441,37 @@
             </div>
         </div>
         </div>
+        <!-- add name of project  -->
+        <div class="modal fade product-modal" id="add_name_of_project" tabindex="-1"
+            aria-labelledby="add_name_of_project" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="add_name_of_project">Add Name of Tender</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row" method="post" enctype="multipart/form-data" id="add_name_of_tender_form">
+                            @csrf
+                            <input type="hidden" name="add_name_of_tender_id" id="add_name_of_tender_id">
+
+                            <div class="col-lg-12">
+                                <label class="form-label">Name Of Project</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="XYZ">
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn submit-btn" id="btn_save"
+                                    name="btn_save">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="selectedID" data-id="{{ $project_master->id }}"></div>
 
     </body>
 @endsection
@@ -456,6 +519,53 @@
                 }
             });
         });
+
+        $('#add_name_of_tender_form').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var csrftoken = $('meta[name="csrf-token"]').attr('content');
+            $(".text-danger").text('');
+
+            // Obtain the selected ID from the data attribute in the HTML
+            var selectedID = $("#selectedID").data("id");
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('name_of_tender_insert') }}",
+                headers: {
+                    'X-CSRF-Token': csrftoken,
+                },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    if (data.status == 200) {
+                        $('#add_name_of_project_id').modal('hide');
+                        if ($('#add_name_of_project_id').val() == '') {
+                            toastr.success("Proposal Master added successfully.");
+                        } else {
+                            toastr.success("Proposal Master updated successfully.");
+                        }
+
+                        // Construct the URL with the selected ID and redirect
+                        window.location.href = "{{ url('edit-nit') }}/" + selectedID;
+                    } else {
+                        toastr.error(data.msg);
+                    }
+                },
+                error: function(response) {
+                    if (response.status === 422) {
+                        var errors = $.parseJSON(response.responseText);
+                        $.each(errors['errors'], function(key, val) {
+                            console.log(key);
+                            $("#" + key + "_error").text(val[0]);
+                        });
+                    }
+                }
+            });
+        });
+
 
         document.addEventListener('DOMContentLoaded', function() {
             const addContactButton = document.getElementById('add-contact');

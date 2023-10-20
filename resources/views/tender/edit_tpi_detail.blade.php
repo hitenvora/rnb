@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-@include('navbar.pb_branch.edit_pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
     <body>
         <div class="mg-b-23">
@@ -73,25 +73,35 @@
                                                 </div>
 
                                                 <div class="col-lg-3">
-                                                    <label for="inputtitle1" class="form-label">Last Submission Date</label>
+                                                    <label for="inputtitle1" class="form-label">Technical Bid Date</label>
+                                                    <input class="form-control" type="date" id="tpi_tech_bid_date"
+                                                        name="tpi_tech_bid_date" placeholder="Enter Submitted Date"
+                                                        value="{{ $project_master->tpi_tech_bid_date }}">
+                                                </div>
+
+                                                <div class="col-lg-3">
+                                                    <label for="inputtitle1" class="form-label">Interview Date</label>
+                                                    <input class="form-control" type="date" id="tpi_interview_date"
+                                                        name="tpi_interview_date" placeholder="Enter Submitted Date"
+                                                        value="{{ $project_master->tpi_interview_date }}">
+                                                </div>
+
+                                                <div class="col-lg-3">
+                                                    <label for="inputtitle1" class="form-label">Last Submission
+                                                        Date</label>
                                                     <input class="form-control" type="date" id="tpi_last_sub_date"
                                                         name="tpi_last_sub_date" placeholder="Enter Submitted Date"
                                                         value="{{ $project_master->tpi_last_sub_date }}">
                                                 </div>
 
                                                 <div class="col-lg-3">
-                                                    <label for="inputtitle1" class="form-label">Pre-Bid Meeting Date</label>
+                                                    <label for="inputtitle1" class="form-label">Pre-Bid Meeting
+                                                        Date</label>
                                                     <input class="form-control" type="date" id="tpi_pre_bid_date"
                                                         name="tpi_pre_bid_date" placeholder="Enter Submitted Date"
                                                         value="{{ $project_master->tpi_pre_bid_date }}">
                                                 </div>
 
-                                                <div class="col-lg-3">
-                                                    <label for="inputtitle1" class="form-label">Technical Bid Date</label>
-                                                    <input class="form-control" type="date" id="tpi_tech_bid_date"
-                                                        name="tpi_tech_bid_date" placeholder="Enter Submitted Date"
-                                                        value="{{ $project_master->tpi_tech_bid_date }}">
-                                                </div>
 
                                                 <div class="col-lg-3">
                                                     <label for="inputtitle1" class="form-label">Price Bid Opening
@@ -198,15 +208,30 @@
                                                         name="tpi_validity_date" placeholder="Enter Submitted Date"
                                                         value="{{ $project_master->tpi_validity_date }}">
                                                 </div>
-
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-3 branch-scheme-select">
                                                     <label class="form-label">Tender Form</label>
-                                                    <select class="form-select" id="tpi_tender_form"
-                                                        name="tpi_tender_form">
-                                                        <option selected value="EPC">EPC</option>
-                                                        <option value="{{ $project_master->tpi_tender_form }}"></option>
-                                                    </select>
+                                                    <div class="d-flex">
+                                                        <select class="form-select" id="tpi_tender_form"
+                                                            name="tpi_tender_form">
+                                                            @foreach ($tpi_tender_name as $value)
+                                                                <option value="{{ $value['id'] }}"
+                                                                    {{ $project_master->tpi_tender_form == $value['id'] ? 'selected' : '' }}>
+                                                                    {{ $value['name'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+
+                                                        <div class="pluse-badge" data-bs-toggle="modal"
+                                                            data-bs-target="#add_name_of_project">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                height="24" viewBox="0 0 25 24" fill="none">
+                                                                <path d="M12.5 6L12.5 18M18.5 12L6.5 12" stroke="white"
+                                                                    stroke-width="1.67" stroke-linecap="round" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
 
                                                 <div class="col-lg-3">
                                                     <label for="inputtitle1" class="form-label">Tender Proposal
@@ -252,7 +277,7 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Agency</th>
-                                                                    <th>Tender Cost</th>
+                                                                    <th>Bid Amount</th>
                                                                     <th>Above / Below (%)</th>
                                                                     <th>Above/Below</th>
                                                                 </tr>
@@ -277,7 +302,7 @@
                                                                             <input type="text" name="tpi_tender_cost[]"
                                                                                 class="form-control"
                                                                                 id="tpi_tender_cost[]"
-                                                                                placeholder="Enter Tender Cost"
+                                                                                placeholder="Enter Bid Amount"
                                                                                 value="{{ @$tpi_tender_cost[$key] }}">
                                                                         </td>
 
@@ -393,9 +418,10 @@
                                                                                     id="tpi_validity_extension_letter_image[]"
                                                                                     name="tpi_validity_extension_letter_image[]"
                                                                                     value="{{ @$tpi_validity_extension_letter_image[$key] }}">
-                                                                                    <a href="{{ asset('uplode_images/tpi_detail/' . $project_master->tpi_validity_extension_letter_image) }}" target="_blank">
-                                                                                        <br>Open Image in New Tab
-                                                                                    </a>
+                                                                                <a href="{{ asset('uplode_images/tpi_detail/' . $project_master->tpi_validity_extension_letter_image) }}"
+                                                                                    target="_blank">
+                                                                                    <br>Open Image in New Tab
+                                                                                </a>
                                                                             </div>
                                                                         </td>
                                                                 </tr>
@@ -449,6 +475,38 @@
         </div>
         </div>
 
+        <!-- add name of project  -->
+        <div class="modal fade product-modal" id="add_name_of_project" tabindex="-1"
+            aria-labelledby="add_name_of_project" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="add_name_of_project">Add Name of Tender</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row" method="post" enctype="multipart/form-data"
+                            id="add_tpi_name_of_tender_form">
+                            @csrf
+                            <input type="hidden" name="add_tpi_name_of_tender_id" id="">
+
+                            <div class="col-lg-12">
+                                <label class="form-label">Name Of Project</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="XYZ">
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn submit-btn" id="btn_save"
+                                    name="btn_save">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="selectedID" data-id="{{ $project_master->id }}"></div>
     </body>
 @endsection
 
@@ -480,6 +538,53 @@
                             toastr.success("Project Master updated successfully.");
                         }
                         dataTable.draw();
+                    } else {
+                        toastr.error(data.msg);
+                    }
+                },
+                error: function(response) {
+                    if (response.status === 422) {
+                        var errors = $.parseJSON(response.responseText);
+                        $.each(errors['errors'], function(key, val) {
+                            console.log(key);
+                            $("#" + key + "_error").text(val[0]);
+                        });
+                    }
+                }
+            });
+        });
+
+
+        $('#add_tpi_name_of_tender_form').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var csrftoken = $('meta[name="csrf-token"]').attr('content');
+            $(".text-danger").text('');
+
+            // Obtain the selected ID from the data attribute in the HTML
+            var selectedID = $("#selectedID").data("id");
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('tpi_name_of_tender_insert') }}",
+                headers: {
+                    'X-CSRF-Token': csrftoken,
+                },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    if (data.status == 200) {
+                        $('#add_tpi_name_of_tender_id').modal('hide');
+                        if ($('#add_tpi_name_of_tender_id').val() == '') {
+                            toastr.success("Master added successfully.");
+                        } else {
+                            toastr.success("Master updated successfully.");
+                        }
+
+                        // Construct the URL with the selected ID and redirect
+                        window.location.href = "{{ url('edit-tpi-detail') }}/" + selectedID;
                     } else {
                         toastr.error(data.msg);
                     }
@@ -578,7 +683,7 @@
                                                                     <td>
                                                                         <input type="text" name="tpi_tender_cost[]"
                                                                             class="form-control" id="tpi_tender_cost[]"
-                                                                            placeholder="Enter Tender Cost">
+                                                                            placeholder="Enter Bid Amount">
                                                                     </td>
 
                                                                     <td>

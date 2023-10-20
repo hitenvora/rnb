@@ -359,7 +359,7 @@
                             <div class="col-lg-4">
                                 <label class="form-label">District</label>
                                 <select class="form-select" id="district_id" name="district_id">
-                                    <option>Select District</option>
+                                    <option value="">Select District</option>
                                     @foreach ($districtname as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
@@ -369,7 +369,7 @@
                             <div class="col-lg-4">
                                 <label class="form-label">Taluka</label>
                                 <select class="form-select" id="taluka_id" name="taluka_id">
-                                    <option>Select Taluka</option>
+                                    <option value="">Select Taluka</option>
                                     @foreach ($talukaname as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
@@ -380,7 +380,7 @@
                             <div class="col-lg-4">
                                 <label class="form-label">Work Type</label>
                                 <select class="form-select" id="work_type_id" name="work_type_id">
-                                    <option>Select Work Type</option>
+                                    <option value="">Select Work Type</option>
                                     @foreach ($worktype as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
@@ -391,7 +391,7 @@
                             <div class="col-lg-3">
                                 <label class="form-label">Type Of Work</label>
                                 <select class="form-select" id="type_work_id" name="type_work_id">
-                                    <option>Select Type Of Work</option>
+                                    <option value="">Select Type Of Work</option>
                                     @foreach ($typework as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
@@ -406,7 +406,7 @@
                             <div class="col-lg-3">
                                 <label class="form-label">Budget</label>
                                 <select class="form-select" id="budget_id" name="budget_id">
-                                    <option>Select Budget</option>
+                                    <option value="">Select Budget</option>
                                     @foreach ($budget as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
@@ -421,7 +421,7 @@
                             <div class="col-lg-6">
                                 <label class="form-label">Budget Work / Item / Page No.</label>
                                 <select class="form-select" id="budget_work_id" name="budget_work_id">
-                                    <option>Select Budget Work</option>
+                                    <option value="">Select Budget Work</option>
                                     @foreach ($budgetwork as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
@@ -437,13 +437,13 @@
                             <div class="col-lg-4">
                                 <label class="form-label">Amount in Lakh</label>
                                 <input type="text" class="form-control" id="amount" name="amount"
-                                    placeholder="Enter Amount" value="One Lakh">
+                                    placeholder="Enter Amount">
                                 <span class="text-danger" id="amount_error"></span>
                             </div>
                             <div class="col-lg-4">
                                 <label class="form-label">MP/MLA Suggested</label>
                                 <select class="form-select" id="mp_mla_id" name="mp_mla_id">
-                                    <option>Select MP/MLA Suggested</option>
+                                    <option value="">Select MP/MLA Suggested</option>
                                     @foreach ($mpmla as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
@@ -457,14 +457,12 @@
                             </div>
                             <div class="col-lg-3">
                                 <label class="form-label">Letter No.</label>
-                                <input type="text" class="form-control" id="letter_no" name="letter_no"
-                                    value="123562123">
+                                <input type="text" class="form-control" id="letter_no" name="letter_no">
                                 <span class="text-danger" id="letter_no_error"></span>
                             </div>
                             <div class="col-lg-3">
                                 <label class="form-label">Letter Date</label>
-                                <input type="date" class="form-control" id="letter_date" name="letter_date"
-                                    value="2023-09-13">
+                                <input type="date" class="form-control" id="letter_date" name="letter_date">
                                 <span class="text-danger" id="letter_date_error"></span>
                             </div>
                             <div class="col-lg-6">
@@ -495,21 +493,21 @@
                                         <div class="col-lg-3">
                                             <label for="inputtitle1" class="form-label">Letter No.</label>
                                             <input class="form-control" type="text" id="rec_letter_no"
-                                                name="rec_letter_no" placeholder="Enter Letter No." value="100000">
+                                                name="rec_letter_no" placeholder="Enter Letter No.">
                                             <span class="text-danger" id="rec_letter_no_error"></span>
 
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="form-label">Letter Date</label>
                                             <input type="date" class="form-control" id="rec_letter_date"
-                                                name="rec_letter_date" value="2023-09-13">
+                                                name="rec_letter_date">
                                             <span class="text-danger" id="rec_letter_date_error"></span>
 
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="form-label">Amount</label>
                                             <input type="text" class="form-control" id="rec_letter_amount"
-                                                name="rec_letter_amount" value="100000">
+                                                name="rec_letter_amount">
                                             <span class="text-danger" id="rec_letter_amount_error"></span>
 
                                         </div>
@@ -530,22 +528,21 @@
                                         <div class="col-lg-3">
                                             <label for="inputtitle1" class="form-label">Letter No.</label>
                                             <input class="form-control" type="text" id="sent_proposal_letter_no"
-                                                name="sent_proposal_letter_no" placeholder="Enter Letter No."
-                                                value="100000">
+                                                name="sent_proposal_letter_no" placeholder="Enter Letter No.">
                                             <span class="text-danger" id="sent_proposal_letter_no_error"></span>
 
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="form-label">Letter Date</label>
                                             <input type="date" class="form-control" id="sent_proposal_date"
-                                                name="sent_proposal_date" value="2023-09-13">
+                                                name="sent_proposal_date">
                                             <span class="text-danger" id="sent_proposal_date_error"></span>
 
                                         </div>
                                         <div class="col-lg-3">
                                             <label class="form-label">Amount</label>
                                             <input type="text" class="form-control" id="sent_proposal_amount"
-                                                name="sent_proposal_amount" value="100000">
+                                                name="sent_proposal_amount">
                                             <span class="text-danger" id="sent_proposal_amount_error"></span>
 
                                         </div>
@@ -555,7 +552,7 @@
                             <div class="col-lg-4">
                                 <label class="form-label">Sent Box</label>
                                 <select class="form-select" id="sent_box_id" name="sent_box_id">
-                                    <option>Select Sent Box</option>
+                                    <option value="">Select Sent Box</option>
                                     @foreach ($sentbox as $value)
                                         <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                     @endforeach
@@ -565,16 +562,14 @@
                             </div>
                             <div class="col-lg-4">
                                 <label class="form-label d-lg-block d-none">&nbsp;</label>
-                                <input type="text" class="form-control" id="sent_box" name="sent_box"
-                                    value="Google Sheet">
+                                <input type="text" class="form-control" id="sent_box" name="sent_box">
                                 <span class="text-danger" id="sent_box_error"></span>
 
 
                             </div>
                             <div class="col-lg-4">
                                 <label class="form-label">Date</label>
-                                <input type="date" class="form-control" id="sent_box_date" name="sent_box_date"
-                                    value="2023-09-13">
+                                <input type="date" class="form-control" id="sent_box_date" name="sent_box_date">
                                 <span class="text-danger" id="sent_box_date_error"></span>
 
                             </div>
@@ -880,9 +875,11 @@
                                         <tr>
                                             <th>Letter Upload :</th>
                                             <td>
-                                                <a href="{{ asset('assets/img/sample.png') }}"
+
+                                                <a href="{{ asset('uplode_images/basic/' . $proposal_show->upload_img) }}"
                                                     class="font-primary text-decoration-underline" target="_blank">
                                                     View Image
+
                                                 </a>
                                             </td>
                                         </tr>
@@ -1243,42 +1240,54 @@
                 },
                 dataType: "json",
                 success: (data) => {
-                    console.log('id', id);
-                    $('.view-districts').text(data.data.district_name.name);
-                    $('.view-taluka').text(data.data.taluka_name.name);
-                    $('.view-work_type').text(data.data.work_type.name);
-                    $('.view-type_of_work').text(data.data.type_work.name);
-                    $('.view-budget').text(data.data.budget);
-                    $('.view-budget_work').text(data.data.budgetwork_name.name);
-                    $('.view-amount').text(data.data.amount);
-                    $('.view-mp_mla').text(data.data.mla_name.name);
-                    $('.view-letter_no').text(data.data.letter_no);
-                    $('.view-date').text(data.data.letter_date);
-                    $('.view-suggestion').text(data.data.suggest);
-                    $('.view-sent_box').text(data.data.sent_box_name.name);
-                    $('.view-sent_box_date').text(data.data.sent_box_date);
-                    $('.view-remark').text(data.data.sent_box_remark);
-                    $('.view-received_proposal').text(data.data.recever_from);
-                    $('.view-received_letter_no').text(data.data.rec_letter_no);
-                    $('.view-received_letter_date').text(data.data.rec_letter_date);
-                    $('.view-recevid_amount').text(data.data.rec_letter_amount);
-                    $('.view-sent_proposal').text(data.data.sent_proposal);
-                    $('.view-sent_letter_no').text(data.data.sent_proposal_letter_no);
-                    $('.view-sent_letter_date').text(data.data.sent_proposal_date);
-                    $('.view-sent_amount').text(data.data.sent_proposal_amount);
 
-                    // $('.view-city').text(data.data.city);
-                    // $('.view-address').text(data.data.address);
-                    // $('.view-map-location').attr('href', data.data.g_map_location);
-                    // $('.view-g_map_location ').text(data.data.g_map_location);
+                    console.log('id', id);
+                    $('.view-districts').text(data.data.district_name && data.data.district_name.name ? data
+                        .data.district_name.name : 'N/a');
+                    $('.view-taluka').text(data.data.taluka_name && data.data.taluka_name.name ? data.data
+                        .taluka_name.name : 'N/a');
+                    $('.view-work_type').text(data.data.work_type && data.data.work_type.name ? data.data
+                        .work_type.name : 'N/a');
+                    $('.view-type_of_work').text(data.data.type_work && data.data.type_work.name ? data.data
+                        .type_work.name : 'N/a');
+                    $('.view-budget').text(data.data.budget ? data.data.budget : 'N/a');
+                    $('.view-budget_work').text(data.data.budgetwork_name && data.data.budgetwork_name.name ?
+                        data.data.budgetwork_name.name : 'N/a');
+                    $('.view-amount').text(data.data.amount ? data.data.amount : 'N/a');
+                    $('.view-mp_mla').text(data.data.mla_name && data.data.mla_name.name ? data.data.mla_name
+                        .name : 'N/a');
+                    $('.view-letter_no').text(data.data.letter_no ? data.data.letter_no : 'N/a');
+                    $('.view-date').text(data.data.letter_date ? data.data.letter_date : 'N/a');
+                    $('.view-suggestion').text(data.data.suggest ? data.data.suggest : 'N/a');
+                    $('.view-sent_box').text(data.data.sent_box_name && data.data.sent_box_name.name ? data.data
+                        .sent_box_name.name : 'N/a');
+                    $('.view-sent_box_date').text(data.data.sent_box_date ? data.data.sent_box_date : 'N/a');
+                    $('.view-remark').text(data.data.sent_box_remark ? data.data.sent_box_remark : 'N/a');
+                    $('.view-received_proposal').text(data.data.recever_from ? data.data.recever_from : 'N/a');
+                    $('.view-received_letter_no').text(data.data.rec_letter_no ? data.data.rec_letter_no :
+                        'N/a');
+                    $('.view-received_letter_date').text(data.data.rec_letter_date ? data.data.rec_letter_date :
+                        'N/a');
+                    $('.view-recevid_amount').text(data.data.rec_letter_amount ? data.data.rec_letter_amount :
+                        'N/a');
+                    $('.view-sent_proposal').text(data.data.sent_proposal ? data.data.sent_proposal : 'N/a');
+                    $('.view-sent_letter_no').text(data.data.sent_proposal_letter_no ? data.data
+                        .sent_proposal_letter_no : 'N/a');
+                    $('.view-sent_letter_date').text(data.data.sent_proposal_date ? data.data
+                        .sent_proposal_date : 'N/a');
+                    $('.view-sent_amount').text(data.data.sent_proposal_amount ? data.data
+                        .sent_proposal_amount : 'N/a');
+
 
                     $('#contactData');
                     $('.modal-title').text('View Proposal');
                     $('.edit-form').show();
                     // set edit value
                     $('#proposal_view').modal('show');
+
                 },
                 error: function(response) {
+
                     toastr.error(response.msg);
                 }
             });

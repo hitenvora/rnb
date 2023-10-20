@@ -119,14 +119,9 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <label class="form-label">Type Of Work</label>
-                                                            <select class="form-select" id="types_of_work_id"
-                                                                name="types_of_work_id">
+                                                            <select class="form-select" id="types_of_work"
+                                                                name="types_of_work">
                                                                 <option value="">Select Work List</option>
-                                                                @foreach ($type_work as $value)
-                                                                    <option value="{{ $value['id'] }}">
-                                                                        {{ $value['name'] }}
-                                                                    </option>
-                                                                @endforeach
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-6">
@@ -614,6 +609,52 @@
                     }
                 }
             });
+        });
+
+        document.getElementById('work_type_id').addEventListener('change', function() {
+            const workTypeSelect = document.getElementById('work_type_id');
+            const typeOfWorkSelect = document.getElementById('types_of_work');
+
+            // Get the selected option's value
+            const selectedWorkTypeId = workTypeSelect.value;
+
+            // Clear the "Type Of Work" dropdown options
+            typeOfWorkSelect.innerHTML = '<option value="">Select Type Of Work</option>';
+
+            // Populate the "Type Of Work" dropdown based on the selected "Work Type"
+            if (selectedWorkTypeId === '1') {
+                // If "Work Type" is 1, add the options specific to that type
+                typeOfWorkSelect.innerHTML += `
+                <option value="Re-Surfacing">Re-Surfacing</option>
+                <option value="Strengthening">Strengthening</option>
+                <option value="3.75 to 5.5">3.75 to 5.5</option>
+                <option value="3.75 to 7">3.75 to 7</option>
+                <option value="3.75 to 10">3.75 to 10</option>
+                <option value="5.5 to 7">5.5 to 7</option>
+                <option value="5.5 to 10">5.5 to 10</option>
+                <option value="7 to 10">7 to 10</option>
+                <option value="10 to 4 lan">10 to 4 lan</option>
+                <option value="10 to 6 lan">10 to 6 lan</option>
+                <option value="4 lan to 6 lan">4 lan to 6 lan</option>`;
+            } else if (selectedWorkTypeId === '2') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+                <option value="New Buliding">New Buliding</option>
+                <option value="Addition Alternative">Addition Alternative</option>
+                <option value="Repairing Work">Repairing Work</option>`;
+            } else if (selectedWorkTypeId === '3') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+                <option value="Rob">Rob</option>
+                <option value="WaterBody Bridge">WaterBody Bridge</option>
+                <option value="Flyover">Flyover</option>`;
+            } else if (selectedWorkTypeId === '4') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+                <option value="Slab Drain">Slab Drain</option>
+                <option value="Box Calvate">Box Calvate</option>
+                <option value="Hp Drain">Hp Drain</option>`;
+            }
         });
     </script>
 @endsection

@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-@include('navbar.pb_branch.edit_pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
 
     <body>
@@ -34,16 +34,19 @@
                                                 <div class="col-lg-4">
                                                     <label class="form-label">Letter Date</label>
                                                     <input type="date" class="form-control" id="ed_division_letter_date"
-                                                        name="ed_division_letter_date" value="{{ $project_master->ed_division_letter_date }}">
+                                                        name="ed_division_letter_date"
+                                                        value="{{ $project_master->ed_division_letter_date }}">
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <label class="form-label">Letter Upload</label>
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100"
-                                                            id="ed_division_letter_image" name="ed_division_letter_image" value="{{ $project_master->ed_division_letter_image }}">
-                                                            <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_division_letter_image) }}" target="_blank">
-                                                                <br>Open Image in New Tab
-                                                            </a>
+                                                            id="ed_division_letter_image" name="ed_division_letter_image"
+                                                            value="{{ $project_master->ed_division_letter_image }}">
+                                                        <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_division_letter_image) }}"
+                                                            target="_blank">
+                                                            <br>Open Image in New Tab
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,16 +65,19 @@
                                                 <div class="col-lg-4">
                                                     <label class="form-label">Letter Date</label>
                                                     <input type="date" class="form-control" id="ed_circle_letter_date"
-                                                        name="ed_circle_letter_date" value="{{ $project_master->ed_circle_letter_date }}">
+                                                        name="ed_circle_letter_date"
+                                                        value="{{ $project_master->ed_circle_letter_date }}">
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <label class="form-label">Letter Upload</label>
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100"
-                                                            id="ed_circle_letter_image" name="ed_circle_letter_image" value="{{ $project_master->ed_circle_letter_image }}">
-                                                            <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_circle_letter_image) }}" target="_blank">
-                                                                <br>Open Image in New Tab
-                                                            </a>
+                                                            id="ed_circle_letter_image" name="ed_circle_letter_image"
+                                                            value="{{ $project_master->ed_circle_letter_image }}">
+                                                        <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_circle_letter_image) }}"
+                                                            target="_blank">
+                                                            <br>Open Image in New Tab
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,10 +104,12 @@
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100"
                                                             id="ed_government_letter_image"
-                                                            name="ed_government_letter_image" value="{{ $project_master->ed_government_letter_image }}">
-                                                            <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_government_letter_image) }}" target="_blank">
-                                                                <br>Open Image in New Tab
-                                                            </a>
+                                                            name="ed_government_letter_image"
+                                                            value="{{ $project_master->ed_government_letter_image }}">
+                                                        <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_government_letter_image) }}"
+                                                            target="_blank">
+                                                            <br>Open Image in New Tab
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,18 +118,27 @@
                                     <div class="col-lg-4">
                                         <label for="inputtitle1" class="form-label">Approval Letter No.</label>
                                         <input class="form-control" type="text" id="ed_approval_letter_no"
-                                            name="ed_approval_letter_no" placeholder="Enter Approval Letter No." value="{{ $project_master->ed_approval_letter_no }}">
+                                            name="ed_approval_letter_no" placeholder="Enter Approval Letter No."
+                                            value="{{ $project_master->ed_approval_letter_no }}">
                                     </div>
                                     <div class="col-lg-4">
                                         <label class="form-label">Letter Date</label>
                                         <input type="date" class="form-control" id="ed_approval_letter_date"
-                                            name="ed_approval_letter_date" value="{{ $project_master->ed_approval_letter_date }}">
+                                            name="ed_approval_letter_date"
+                                            value="{{ $project_master->ed_approval_letter_date }}">
                                     </div>
-                                    <div class="col-lg-4">
-                                        <label for="inputtitle1" class="form-label">Amount</label>
+                                    <div class="col-lg-2">
+                                        <label for="inputtitle1" class="form-label">Access Amount</label>
                                         <input class="form-control" type="text" id="ed_approval_letter_amount"
-                                            name="ed_approval_letter_amount" placeholder="Enter amount" value="{{ $project_master->ed_approval_letter_amount }}">
+                                            name="ed_approval_letter_amount" placeholder="Enter Access Amount"
+                                            value="{{ $project_master->ed_approval_letter_amount }}">
                                     </div>
+                                    <div class="col-lg-2">
+                                        <label for="inputtitle1" class="form-label"> Extra Amount</label>
+                                        <input class="form-control" type="text" id="ed_approval_extra_amount"
+                                            name="ed_approval_extra_amount" placeholder="Enter Extra Amount"
+                                            value="{{ $project_master->ed_approval_extra_amount }}">
+                                    </div>  
                                     <div class="col-lg-12">
                                         <label class="form-label">Item Detail</label>
                                         <textarea rows="6" class="form-control" id="ed_item_detail" name="ed_item_detail"

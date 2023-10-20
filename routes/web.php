@@ -63,8 +63,10 @@ Route::get('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin
 
 Route::group(['middleware' => ['auth']], function () {
 
-    //master-form
+    //master-formproposal-master
     Route::get('/master-form', [MasterFormController::class, 'index'])->name('master_form');
+
+    
     //master insert
     Route::post('/master-insert', [MasterController::class, 'insert'])->name('master_insert');
 
@@ -235,7 +237,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/edit-tpi-detail/{id}', [ProposalMasterController::class, 'edit_tpi_detail'])->name('edit_tpi_detail');
 
-    //
+    //insert- Form with+
     Route::post('/name-of-schema-insert', [MasterController::class, 'name_of_schema_insert'])->name('name_of_schema_insert');
     Route::post('/name-of-project-insert', [MasterController::class, 'name_of_project_insert'])->name('name_of_project_insert');
+    Route::post('/name-of-tender-insert', [MasterController::class, 'name_of_tender_insert'])->name('name_of_tender_insert');
+    Route::post('/name-tpi-of-tender-insert', [MasterController::class, 'tpi_name_of_tender_insert'])->name('tpi_name_of_tender_insert');
+
 });

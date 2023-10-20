@@ -17,6 +17,12 @@ class SentBoxSeeder extends Seeder
             [
                 'name' => 'Google Sheet',
             ],
+            [
+                'name' => 'Letter',
+            ],
+            [
+                'name' => 'Email',
+            ],
         ]);
     }
 }

@@ -16,17 +16,9 @@ class TalukaSeeder extends Seeder
         DB::table('talukas')->insert([
             
             [
-                'name' => 'Gondal',
+                'name' => 'Dabhoi',
             ],
-            [
-                'name' => 'Ankleshwar',
-            ],
-            [
-                'name' => 'Dhari',
-            ],
-            [
-                'name' => 'Chorasi',
-            ],
+           
         ]);
     }
 }

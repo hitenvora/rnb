@@ -21,6 +21,9 @@ class MpMlaSuggestedSeeder extends Seeder
             [
                 'name' => 'MLA',
             ],
+            [
+                'name' => 'Nill',
+            ],
         ]);
     }
 }

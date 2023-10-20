@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Master\Master;
 use App\Models\PbBranch\NameOfProject;
 use App\Models\PbBranch\NameOfSchema;
+use App\Models\Tender\AddTenderForm;
+use App\Models\Tender\AddTpiTenderForm;
 use Illuminate\Http\Request;
 
 class MasterController extends Controller
@@ -107,7 +109,7 @@ class MasterController extends Controller
             $basic_branch->district_id = $request->input('district_id');
             $basic_branch->taluka_id = $request->input('taluka_id');
             $basic_branch->work_type_id = $request->input('work_type_id');
-            $basic_branch->types_of_work_id = $request->input('types_of_work_id');
+            $basic_branch->types_of_work = $request->input('types_of_work');
             $basic_branch->basic_type_work_name = $request->input('basic_type_work_name');
             $basic_branch->budget_id = $request->input('budget_id');
             $basic_branch->basic_budget_name = $request->input('basic_budget_name');
@@ -124,7 +126,11 @@ class MasterController extends Controller
 
                 $basic_branch->basic_upload_img = $this->storeImage($request->basic_upload_img, 'images/masters/');
             }
+            if (isset($request->basic_sent_box_img)) {
 
+
+                $basic_branch->basic_sent_box_img = $this->storeImage($request->basic_sent_box_img, 'images/masters/');
+            }
 
 
             $basic_branch->basic_suggest = $request->input('basic_suggest');
@@ -295,6 +301,14 @@ class MasterController extends Controller
                 $basic_branch->usd_utility_item = implode(",", $usd_utility_item);
             }
 
+
+            $used_type = $request->input('used_type');
+
+            if (isset($used_type) && sizeof($used_type)) {
+
+
+                $basic_branch->used_type = implode(",", $used_type);
+            }
 
 
             $usd_details = $request->input('usd_details');
@@ -493,6 +507,18 @@ class MasterController extends Controller
             }
 
 
+            $ed_estimated_cost = $request->input('ed_estimated_cost');
+            if (isset($ed_estimated_cost) && sizeof($ed_estimated_cost)) {
+
+                $basic_branch->ed_estimated_cost = implode(",", $ed_estimated_cost);
+            }
+
+
+            $ed_project_cost = $request->input('ed_project_cost');
+            if (isset($ed_project_cost) && sizeof($ed_project_cost)) {
+
+                $basic_branch->ed_project_cost = implode(",", $ed_project_cost);
+            }
 
             $ed_expenditure_amount = $request->input('ed_expenditure_amount');
             if (isset($ed_expenditure_amount) && sizeof($ed_expenditure_amount)) {
@@ -541,26 +567,75 @@ class MasterController extends Controller
             $basic_branch->ed_approval_letter_no = $request->input('ed_approval_letter_no');
             $basic_branch->ed_approval_letter_date = $request->input('ed_approval_letter_date');
             $basic_branch->ed_approval_letter_amount = $request->input('ed_approval_letter_amount');
+            $basic_branch->ed_approval_extra_amount = $request->input('ed_approval_extra_amount');
             $basic_branch->ed_item_detail = $request->input('ed_item_detail');
         }
 
         if ($step == 'time_extension') {
             //time-extension
-            $basic_branch->tle_proposal_letter_no = $request->input('tle_proposal_letter_no');
-            $basic_branch->tle_proposal_letter_date = $request->input('tle_proposal_letter_date');
-            $basic_branch->tle_proposal_extension_date = $request->input('tle_proposal_extension_date');
-            if (isset($request->tle_proposal_letter_image)) {
-                $basic_branch->tle_proposal_letter_image = $this->storeImage($request->tle_proposal_letter_image, 'uplode_images/time_limit_extension/');
+
+            $tle_proposal_letter_no = $request->input('tle_proposal_letter_no');
+            if (isset($tle_proposal_letter_no) && sizeof($tle_proposal_letter_no)) {
+
+                $basic_branch->tle_proposal_letter_no = implode(",", $tle_proposal_letter_no);
+            }
+            $tle_proposal_letter_date = $request->input('tle_proposal_letter_date');
+            if (isset($tle_proposal_letter_date) && sizeof($tle_proposal_letter_date)) {
+
+                $basic_branch->tle_proposal_letter_date = implode(",", $tle_proposal_letter_date);
+            }
+            $tle_proposal_extension_date = $request->input('tle_proposal_extension_date');
+            if (isset($tle_proposal_extension_date) && sizeof($tle_proposal_extension_date)) {
+
+                $basic_branch->tle_proposal_extension_date = implode(",", $tle_proposal_extension_date);
             }
 
-            $basic_branch->tle_approval_letter_no = $request->input('tle_approval_letter_no');
-            $basic_branch->tle_approval_letter_date = $request->input('tle_approval_letter_date');
-            $basic_branch->tle_approval_extension_date = $request->input('tle_approval_extension_date');
 
-            if (isset($request->tle_approval_letter_image)) {
-                $basic_branch->tle_approval_letter_image = $this->storeImage($request->tle_approval_letter_image, 'uplode_images/time_limit_extension/');
+            $data = [];
+            if ($request->hasfile('tle_proposal_letter_image')) {
+
+                foreach ($request->file('tle_proposal_letter_image') as $image) {
+                    $name = $image->getClientOriginalName();
+                    $image->move('uplode_images/time_limit_extension/', $name);
+                    $data[] = $name;
+                }
+                $basic_branch->tle_proposal_letter_image = implode(",", $data);
             }
-            $basic_branch->tle_status = $request->input('tle_status');
+
+
+
+            $tle_approval_letter_no = $request->input('tle_approval_letter_no');
+            if (isset($tle_approval_letter_no) && sizeof($tle_approval_letter_no)) {
+
+                $basic_branch->tle_approval_letter_no = implode(",", $tle_approval_letter_no);
+            }
+            $tle_approval_letter_date = $request->input('tle_approval_letter_date');
+            if (isset($tle_approval_letter_date) && sizeof($tle_approval_letter_date)) {
+
+                $basic_branch->tle_approval_letter_date = implode(",", $tle_approval_letter_date);
+            }
+            $tle_approval_extension_date = $request->input('tle_approval_extension_date');
+            if (isset($tle_approval_extension_date) && sizeof($tle_approval_extension_date)) {
+
+                $basic_branch->tle_approval_extension_date = implode(",", $tle_approval_extension_date);
+            }
+
+            $data = [];
+            if ($request->hasfile('tle_approval_letter_image')) {
+
+                foreach ($request->file('tle_approval_letter_image') as $image) {
+                    $name = $image->getClientOriginalName();
+                    $image->move('uplode_images/time_limit_extension/', $name);
+                    $data[] = $name;
+                }
+                $basic_branch->tle_approval_letter_image = implode(",", $data);
+            }
+
+            $tle_status = $request->input('tle_status');
+            if (isset($tle_status) && sizeof($tle_status)) {
+
+                $basic_branch->tle_status = implode(",", $tle_status);
+            }
         }
 
 
@@ -576,6 +651,16 @@ class MasterController extends Controller
             $basic_branch->fmg_time = $request->input('fmg_time');
             $basic_branch->fmg_date = $request->input('fmg_date');
             $basic_branch->add_fmg_date = $request->input('add_fmg_date');
+            $fmg_dropdown = $request->input('fmg_dropdown');
+            if (isset($fmg_dropdown) && sizeof($fmg_dropdown)) {
+
+                $basic_branch->fmg_dropdown = implode(",", $fmg_dropdown);
+            }
+            $fmg_entry_amount = $request->input('fmg_entry_amount');
+            if (isset($fmg_entry_amount) && sizeof($fmg_entry_amount)) {
+
+                $basic_branch->fmg_entry_amount = implode(",", $fmg_entry_amount);
+            }
         }
         //FDR
         if ($step == 'fdr') {
@@ -587,9 +672,41 @@ class MasterController extends Controller
 
         //DLP Period
         if ($step == 'dlp') {
-            $basic_branch->dlp_completion_date = $request->input('dlp_completion_date');
-            $basic_branch->dlp_released_date = $request->input('dlp_released_date');
-            $basic_branch->dlp_amount = $request->input('dlp_amount');
+            $dlp_completion_date = $request->input('dlp_completion_date');
+            if (isset($dlp_completion_date) && sizeof($dlp_completion_date)) {
+
+                $basic_branch->dlp_completion_date = implode(",", $dlp_completion_date);
+            }
+
+            $dlp_released_date = $request->input('dlp_released_date');
+            if (isset($dlp_released_date) && sizeof($dlp_released_date)) {
+
+                $basic_branch->dlp_released_date = implode(",", $dlp_released_date);
+            }
+
+            $dlp_amount = $request->input('dlp_amount');
+            if (isset($dlp_amount) && sizeof($dlp_amount)) {
+
+                $basic_branch->dlp_amount = implode(",", $dlp_amount);
+            }
+
+            $dlp_work_completion_date = $request->input('dlp_work_completion_date');
+            if (isset($dlp_work_completion_date) && sizeof($dlp_work_completion_date)) {
+
+                $basic_branch->dlp_work_completion_date = implode(",", $dlp_work_completion_date);
+            }
+
+            $dlp_timeline = $request->input('dlp_timeline');
+            if (isset($dlp_timeline) && sizeof($dlp_timeline)) {
+
+                $basic_branch->dlp_timeline = implode(",", $dlp_timeline);
+            }
+
+            $dlp_dropdown = $request->input('dlp_dropdown');
+            if (isset($dlp_dropdown) && sizeof($dlp_dropdown)) {
+
+                $basic_branch->dlp_dropdown = implode(",", $dlp_dropdown);
+            }
         }
         //Tender
         //DTP Approval Detail
@@ -638,6 +755,9 @@ class MasterController extends Controller
             $basic_branch->nit_preliminary_date = $request->input('nit_preliminary_date');
             $basic_branch->nit_pq_sub_date = $request->input('nit_pq_sub_date');
             $basic_branch->nit_pq_approval_date = $request->input('nit_pq_approval_date');
+            $basic_branch->nit_sent_circle_date = $request->input('nit_sent_circle_date');
+            $basic_branch->nit_sent_goverment_date = $request->input('nit_sent_goverment_date');
+
 
 
             $basic_branch->nit_validity_date = $request->input('nit_validity_date');
@@ -736,7 +856,7 @@ class MasterController extends Controller
             //     $basic_branch->latter_image_extension = implode(",", $image_extensions);
             // }
 
-            $data=[];
+            $data = [];
             if ($request->hasfile('latter_image_extension')) {
 
                 foreach ($request->file('latter_image_extension') as $image) {
@@ -746,7 +866,6 @@ class MasterController extends Controller
                 }
                 $basic_branch->latter_image_extension = implode(",", $data);
             }
-
         }
 
         if ($step == 'deposite') {
@@ -758,11 +877,6 @@ class MasterController extends Controller
             if (isset($request->do_letter_upload_img)) {
                 $basic_branch->do_letter_upload_img = $this->storeImage($request->do_letter_upload_img, 'uplode_images/deposit_order_bank_guarantee_detail/');
             }
-
-
-
-         
-
 
 
             $basic_branch->do_above = $request->input('do_above');
@@ -777,11 +891,16 @@ class MasterController extends Controller
             $basic_branch->do_dep_by = $request->input('do_dep_by');
             $basic_branch->do_submit_date = $request->input('do_submit_date');
             $basic_branch->do_submit_amount = $request->input('do_submit_amount');
-            $basic_branch->do_bg_exp_date = $request->input('do_bg_exp_date');
-            $basic_branch->do_bg_exp_amount = $request->input('do_bg_exp_amount');
-            if (isset($request->do_bg_exp_image)) {
-                $basic_branch->do_bg_exp_image = $this->storeImage($request->do_bg_exp_image, 'uplode_images/deposit_order_bank_guarantee_detail/');
-            }
+            $basic_branch->do_condition_date = $request->input('do_condition_date');
+            $basic_branch->do_condition_datails = $request->input('do_condition_datails');
+            $basic_branch->do_condition_approval = $request->input('do_condition_approval');
+            $basic_branch->do_bg_bank_verified = $request->input('do_bg_bank_verified');
+            $basic_branch->do_bg_bank_address = $request->input('do_bg_bank_address');
+            $basic_branch->do_bg_bank_name = $request->input('do_bg_bank_name');
+            $basic_branch->do_bg_expire_date = $request->input('do_bg_expire_date');
+            $basic_branch->do_bg_issue_date = $request->input('do_bg_issue_date');
+
+
 
             $basic_branch->do_fdr_date = $request->input('do_fdr_date');
             $basic_branch->do_fdr_amount = $request->input('do_fdr_amount');
@@ -789,12 +908,13 @@ class MasterController extends Controller
                 $basic_branch->do_fdr_image = $this->storeImage($request->do_fdr_image, 'uplode_images/deposit_order_bank_guarantee_detail/');
             }
 
+            
             $basic_branch->do_work_order_date = $request->input('do_work_order_date');
             $basic_branch->do_time_line_month = $request->input('do_time_line_month');
             $basic_branch->do_time_limit_any = $request->input('do_time_limit_any');
             $basic_branch->do_completion_date = $request->input('do_completion_date');
         }
-        
+
         //TPI Detail
         if ($step == 'tpi') {
             $basic_branch->tpi_dtp_date = $request->input('tpi_dtp_date');
@@ -813,6 +933,8 @@ class MasterController extends Controller
             $basic_branch->tpi_preliminary_date = $request->input('tpi_preliminary_date');
             $basic_branch->tpi_pq_sub_date = $request->input('tpi_pq_sub_date');
             $basic_branch->tpi_pq_approval_date = $request->input('tpi_pq_approval_date');
+
+
 
             $basic_branch->tpi_tender_proposal_date = $request->input('tpi_tender_proposal_date');
             $basic_branch->tpi_validity_date = $request->input('tpi_validity_date');
@@ -901,25 +1023,9 @@ class MasterController extends Controller
 
 
 
-            // $tpi_validity_extension_letter_image = $request->input('tpi_validity_extension_letter_image');
-
-            // if (isset($tpi_validity_extension_letter_image) && is_array($tpi_validity_extension_letter_image)) {
-
-            //     $image_extensions = [];
-            //     foreach ($tpi_validity_extension_letter_image as $extension) {
-            //         $storedExtension = $this->storeImage($extension, 'uplode_images/tpi_detail/');
-            //         $image_extensions[] = $storedExtension;
-
-            // }
 
 
-
-            //     // Join the extensions into a comma-separated string
-            //     $basic_branch->tpi_validity_extension_letter_image = implode(",", $image_extensions);
-            // }
-
-
-            $data=[];
+            $data = [];
             if ($request->hasfile('tpi_validity_extension_letter_image')) {
 
                 foreach ($request->file('tpi_validity_extension_letter_image') as $image) {
@@ -933,14 +1039,6 @@ class MasterController extends Controller
         }
 
 
-
-        $used_type = $request->input('used_type');
-
-        if (isset($used_type) && sizeof($used_type)) {
-
-
-            $basic_branch->used_type = implode(",", $used_type);
-        }
 
 
 
@@ -961,7 +1059,7 @@ class MasterController extends Controller
         if ($request->name_of_scheme_id != '') {
             $division_master = NameOfSchema::find($request->name_of_scheme_id);
             if (!$division_master) {
-                return response()->json(['status' => 400, 'msg' => 'division not found!']);
+                return response()->json(['status' => 400, 'msg' => 'Name not found!']);
             }
         } else {
             $division_master = new NameOfSchema();
@@ -985,10 +1083,57 @@ class MasterController extends Controller
         if ($request->add_name_of_project_id != '') {
             $add_name_of_project = NameOfProject::find($request->add_name_of_project_id);
             if (!$add_name_of_project) {
-                return response()->json(['status' => 400, 'msg' => 'division not found!']);
+                return response()->json(['status' => 400, 'msg' => 'Name not found!']);
             }
         } else {
             $add_name_of_project = new NameOfProject();
+        }
+        $add_name_of_project->name = $request->input('name');
+        $add_name_of_project->save();
+
+        return response()->json(['status' => '200', 'msg' => 'success']);
+    }
+
+    public function name_of_tender_insert(Request $request)
+    {
+
+        $rules = [
+            'name' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        if ($request->add_name_of_tender_id != '') {
+            $add_name_of_project = AddTenderForm::find($request->add_name_of_tender_id);
+            if (!$add_name_of_project) {
+                return response()->json(['status' => 400, 'msg' => 'Tender not found!']);
+            }
+        } else {
+            $add_name_of_project = new AddTenderForm();
+        }
+        $add_name_of_project->name = $request->input('name');
+        $add_name_of_project->save();
+
+        return response()->json(['status' => '200', 'msg' => 'success']);
+    }
+
+
+    public function tpi_name_of_tender_insert(Request $request)
+    {
+
+        $rules = [
+            'name' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        if ($request->add_tpi_name_of_tender_id != '') {
+            $add_name_of_project = AddTpiTenderForm::find($request->add_tpi_name_of_tender_id);
+            if (!$add_name_of_project) {
+                return response()->json(['status' => 400, 'msg' => 'Tender not found!']);
+            }
+        } else {
+            $add_name_of_project = new AddTpiTenderForm();
         }
         $add_name_of_project->name = $request->input('name');
         $add_name_of_project->save();

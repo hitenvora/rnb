@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-@include('navbar.pb_branch.edit_pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
 
 
@@ -21,34 +21,44 @@
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <input type="hidden" name="step" value="work_status">
-
-                                    <div class="col-lg-4">
-                                        <label class="form-label">SD(Security Deposit) Completion Date</label>
-                                        <input type="date" class="form-control" id="ws_sd_completion"
-                                            name="ws_sd_completion"
-                                            placeholder="Enter SD(Security Deposit) Completion Date" value="{{ $project_master->ws_sd_completion }}">
+                                    <div class="col-lg-6">
+                                        <label for="inputtitle1" class="form-label">Acctual Complate Date Yes/No</label>
+                                        <select class="form-select" id="work_yes_no" name="work_yes_no">
+                                            <option value="Yes">Yes</option>
+                                            <option selected value="No">No</option>
+                                        </select>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
+                                        <label class="form-label"> Acctual Complate Date</label>
+                                        <input type="date" class="form-control" id="ws_sd_completion"
+                                            name="ws_sd_completion" placeholder="Enter SD(Security Deposit) Completion Date"
+                                            value="{{ $project_master->ws_sd_completion }}" style="display: none">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="inputtitle1" class="form-label">Date OF intiacle Yes/No</label>
+                                        <select class="form-select" id="acctual_yes_no" name="acctual_yes_no">
+
+                                            <option value="Yes">Yes</option>
+                                            <option selected value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6">
                                         <label class="form-label">SD Release Date</label>
                                         <input type="date" class="form-control" id="ws_sd_release" name="ws_sd_release"
-                                            value="{{ $project_master->ws_sd_release }}">
+                                            value="{{ $project_master->ws_sd_release }}" style="display: none">
                                     </div>
-                                    <div class="col-lg-4">
-                                        <label class="form-label">Amount Of SD</label>
-                                        <input type="text" class="form-control" id="ws_sd_amount" name="ws_sd_amount"
-                                            value="{{ $project_master->ws_sd_amount }}">
-                                    </div>
+
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
                                             name="sub_client">Save</button>
                                     </div>
-                                </div>
-                            </form>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </body>
 @endsection
@@ -93,6 +103,36 @@
                             $("#" + key + "_error").text(val[0]);
                         });
                     }
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const workYesNoSelect = document.getElementById('work_yes_no');
+            const zadCompilationInput = document.getElementById('ws_sd_completion');
+
+            workYesNoSelect.addEventListener('change', function() {
+                if (workYesNoSelect.value === 'Yes') {
+                    // If 'Yes' is selected, show the z_zad_compilation input
+                    zadCompilationInput.style.display = 'block';
+                } else {
+                    // If 'No' is selected or nothing is selected, hide the z_zad_compilation input
+                    zadCompilationInput.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const workYesNoSelect = document.getElementById('acctual_yes_no');
+            const zadCompilationInput = document.getElementById('ws_sd_release');
+
+            workYesNoSelect.addEventListener('change', function() {
+                if (workYesNoSelect.value === 'Yes') {
+                    // If 'Yes' is selected, show the z_zad_compilation input
+                    zadCompilationInput.style.display = 'block';
+                } else {
+                    // If 'No' is selected or nothing is selected, hide the z_zad_compilation input
+                    zadCompilationInput.style.display = 'none';
                 }
             });
         });

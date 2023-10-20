@@ -132,7 +132,6 @@
                                         </div>
                                     </a>
                                 </li>
-
                             @endif
                             <li class="box-card">
                                 <a href="{{ route('project_master') }}">
@@ -150,7 +149,7 @@
                                             <h5 class="m-0">Project Master</h5>
                                         </div>
 
-                                        
+
                                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                             viewBox="0 0 29 29" fill="none">
                                             <path d="M11.9864 8.90002L17.5864 14.5L11.9864 20.1" stroke-width="2"
@@ -161,23 +160,28 @@
                             </li>
                         </ul>
                     </div>
-                 
-                    {{-- <div class="col-lg-12">
+                  
+                <div class="col-lg-12">
                         <h3>Alerts</h3>
                         <ul class="message-list d-flex flex-wrap" id="menu-list">
+                            @forelse($notifications as $notification)
                             <li class="msg-card">
                                 <a href="{{ route('basic_branch') }}">
                                     <div class="alert alert-light-primary w-100 alert-dismissible d-flex" role="alert">
                                         <div class="flex-grow-1">
-                                            <h6>PB Branch</h6>
-                                            <span>Submission date by agency :- 25-09-2023</span>
+                                        
+                                            <span>{{ $notification->message }}</span>
                                         </div>
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
                                     </div>
                                 </a>
                             </li>
-                            <li class="msg-card">
+                            @empty
+                            <li>No notifications found.</li>
+                        @endforelse
+                           
+                            {{-- <li class="msg-card">
                                 <a href="{{ route('budgetary_detail') }}">
                                     <div class="alert alert-light-danger w-100 alert-dismissible d-flex" role="alert">
                                         <div class="flex-grow-1">
@@ -188,8 +192,8 @@
                                             aria-label="Close"></button>
                                     </div>
                                 </a>
-                            </li>
-                            <li class="msg-card">
+                            </li>  --}}
+                            {{-- <li class="msg-card">
                                 <a href="{{ route('dtp_approval') }}">
                                     <div class="alert alert-light-success w-100 alert-dismissible d-flex" role="alert">
                                         <div class="flex-grow-1">
@@ -200,9 +204,9 @@
                                             aria-label="Close"></button>
                                     </div>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
-                    </div> --}}
+                    </div> 
                 </div>
             </div>
         </div>

@@ -29,21 +29,21 @@ class BasicBranchController extends Controller
         // $basic_show= Basic::orderBy('id')->get();
         $division_name = DivisionMasters::orderBy('id')->get();
         $sub_division_name = SubDivisionMasters::orderBy('id')->get();
-        $district_name= District::orderBy('id')->get();
-        $taluka_name= Taluka::orderBy('id')->get();
+        $district_name = District::orderBy('id')->get();
+        $taluka_name = Taluka::orderBy('id')->get();
         // $proposal = ProPosalMasters::orderBy('id')->get();
         $work_type = WorkTypes::orderBy('id')->get();
-        $type_work= TypesOfWork::orderBy('id')->get();
-        $budget= Budget::orderBy('id')->get();
-        $budget_work= BudgetWork::orderBy('id')->get();
-        $mp_mla= MpMlaSuggested::orderBy('id')->get();
-        $sent_box= SentBox::orderBy('id')->get();
-        $name_of_scheme  =NameOfSchema ::orderBy('id')->get();
-        $name_of_project  =NameOfProject::orderBy('id')->get();
+        $type_work = TypesOfWork::orderBy('id')->get();
+        $budget = Budget::orderBy('id')->get();
+        $budget_work = BudgetWork::orderBy('id')->get();
+        $mp_mla = MpMlaSuggested::orderBy('id')->get();
+        $sent_box = SentBox::orderBy('id')->get();
+        $name_of_scheme  = NameOfSchema::orderBy('id')->get();
+        $name_of_project  = NameOfProject::orderBy('id')->get();
 
-        return view('pb_branch.basic_branch', compact('division_name', 'sub_division_name','district_name','taluka_name','work_type','type_work','budget','budget_work','mp_mla','sent_box','name_of_scheme','name_of_project','user','role'));
+        return view('pb_branch.basic_branch', compact('division_name', 'sub_division_name', 'district_name', 'taluka_name', 'work_type', 'type_work', 'budget', 'budget_work', 'mp_mla', 'sent_box', 'name_of_scheme', 'name_of_project', 'user', 'role'));
     }
-    
+
     // public function insert(Request $request)
     // {
 

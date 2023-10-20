@@ -62,8 +62,12 @@
                                                 <div class="col-lg-12">
                                                     <label class="form-label">File Preparation by Sub Division</label>
                                                     <select class="form-select" name="laq_file_sub" id="laq_file_sub">
-                                                        <option value="Kamrej"@selected($project_master->laq_file_sub == 'Kamrej')>Kamrej</option>
-                                                        <option value="Adajan"@selected($project_master->laq_file_sub == 'Adajan')>Adajan</option>
+                                                        <option value="">Select division Name</option>
+                                                        @foreach ($division_name as $value)
+                                                            <option
+                                                                value="{{ $value['id'] }}"{{ $project_master->laq_file_sub == $value['id'] ? 'selected' : '' }}>
+                                                                {{ $value['name'] }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -126,20 +130,20 @@
                                             value="{{ $project_master->laq_jms_office }}">
                                     </div>
                                     <div class="col-xl-2 col-lg-4">
-                                        <label class="form-label">JMS Date</label>
+                                        <label class="form-label">Letter Date</label>
                                         <input type="date" class="form-control" id="laq_approved_jms_date"
                                             name="laq_approved_jms_date"
                                             value="{{ $project_master->laq_approved_jms_date }}">
                                     </div>
                                     <div class="col-xl-6  col-lg-12">
-                                        <label class="form-label">File Upload</label>
+                                        <label class="form-label">Letter File Upload</label>
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="laq_upload_img"
                                                 name="laq_upload_img" value="{{ $project_master->laq_upload_img }}">
-                                                <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_upload_img) }}"
-                                                    target="_blank">
-                                                    <br>Open Image in New Tab
-                                                </a>
+                                            <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_upload_img) }}"
+                                                target="_blank">
+                                                <br>Open Image in New Tab
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-xl-6">

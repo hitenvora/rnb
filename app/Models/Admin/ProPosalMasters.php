@@ -11,6 +11,9 @@ class ProPosalMasters extends Model
     protected $table = 'pro_posal_masters';
     use HasFactory;
 
+    // protected $fillable = ['upload_img'];
+
+
     public function district_name()
     {
         return $this->hasOne('App\Models\Admin\District', 'id', 'district_id');

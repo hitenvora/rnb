@@ -22,10 +22,13 @@ return new class extends Migration
             $table->foreign('district_id')->references('id')->on('districts');
             $table->unsignedBigInteger('taluka_id')->nullable();
             $table->foreign('taluka_id')->references('id')->on('talukas');
+            
             $table->unsignedBigInteger('work_type_id')->nullable();
             $table->foreign('work_type_id')->references('id')->on('work_types');
-            $table->unsignedBigInteger('types_of_work_id')->nullable();
-            $table->foreign('types_of_work_id')->references('id')->on('types_of_works');
+            // $table->unsignedBigInteger('types_of_work_id')->nullable();
+            // $table->foreign('types_of_work_id')->references('id')->on('types_of_works');
+            $table->text('types_of_work')->nullable();
+
             $table->text('basic_type_work_name')->nullable();
             $table->unsignedBigInteger('budget_id')->nullable();
             $table->foreign('budget_id')->references('id')->on('budgets');
@@ -62,6 +65,9 @@ return new class extends Migration
             $table->foreign('sub_division_master_id')->references('id')->on('sub_division_masters');
             $table->text('basic_name_of_road')->nullable();
             $table->text('basic_category_of_road')->nullable();
+            $table->text('basic_sent_box_img')->nullable();
+
+            
 
             //proposal submitted details
             $table->text('initiated_name')->nullable();
@@ -202,6 +208,8 @@ return new class extends Migration
             //expnditure detail
             $table->text('ed_origin_work')->nullable();
             $table->text('ed_tender_cost')->nullable();
+            $table->text('ed_estimated_cost')->nullable();
+            $table->text('ed_project_cost')->nullable();
             $table->text('ed_paid_amount')->nullable();
             $table->text('ed_expenditure_amount')->nullable();
             $table->text('ed_expenditure')->nullable();
@@ -221,29 +229,33 @@ return new class extends Migration
             $table->text('ed_approval_letter_no')->nullable();
             $table->date('ed_approval_letter_date')->nullable();
             $table->text('ed_approval_letter_amount')->nullable();
+            $table->text('ed_approval_extra_amount')->nullable();
             $table->text('ed_item_detail')->nullable();
 
             //time limit extension
             $table->text('tle_proposal_letter_no')->nullable();
-            $table->date('tle_proposal_letter_date')->nullable();
-            $table->date('tle_proposal_extension_date')->nullable();
+            $table->text('tle_proposal_letter_date')->nullable();
+            $table->text('tle_proposal_extension_date')->nullable();
             $table->text('tle_proposal_letter_image')->nullable();
             $table->text('tle_approval_letter_no')->nullable();
-            $table->date('tle_approval_letter_date')->nullable();
-            $table->date('tle_approval_extension_date')->nullable();
+            $table->text('tle_approval_letter_date')->nullable();
+            $table->text('tle_approval_extension_date')->nullable();
             $table->text('tle_approval_letter_image')->nullable();
             $table->text('tle_status')->nullable();
 
             //work status
             $table->date('ws_sd_completion')->nullable();
             $table->date('ws_sd_release')->nullable();
-            $table->text('ws_sd_amount')->nullable();
+ 
 
             //fmg
             $table->date('fmg_completion_date')->nullable();
             $table->text('fmg_time')->nullable();
             $table->text('fmg_date')->nullable();
             $table->date('add_fmg_date')->nullable();
+            $table->text('fmg_dropdown')->nullable();
+            $table->text('fmg_entry_amount')->nullable();
+
 
             //fdr
             $table->date('fdr_work_date')->nullable();
@@ -252,9 +264,14 @@ return new class extends Migration
             $table->date('add_fdr_date')->nullable();
 
             //dlp
-            $table->date('dlp_completion_date')->nullable();
-            $table->date('dlp_released_date')->nullable();
+            $table->text('dlp_completion_date')->nullable();
+            $table->text('dlp_released_date')->nullable();
             $table->text('dlp_amount')->nullable();
+            $table->text('dlp_work_completion_date')->nullable();
+            $table->text('dlp_timeline')->nullable();
+            $table->text('dlp_dropdown')->nullable();
+
+
 
 
             //tender branch
@@ -300,17 +317,21 @@ return new class extends Migration
             $table->date('nit_latter_date')->nullable();
             $table->date('tender_proposal_date')->nullable();
             $table->longText('nit_validity_extension_date')->nullable();
+            $table->longText('nit_sent_circle_date')->nullable();
+            $table->longText('nit_sent_goverment_date')->nullable();
+
             $table->longText('latter_date_extension')->nullable();
 
 
             //deposit-order
             $table->text('do_agency_name')->nullable();
+            $table->text('tender_approved_by')->nullable();
             $table->text('do_letter_upload_img')->nullable();
             $table->text('do_above')->nullable();
             $table->text('do_above_perc')->nullable();
             $table->text('do_deposit_letter_upload')->nullable();
             $table->text('do_dep_by')->nullable();
-            $table->text('do_bg_exp_image')->nullable();
+
             $table->text('do_fdr_image')->nullable();
             $table->text('do_time_line_month')->nullable();
             $table->text('do_time_limit_any')->nullable();
@@ -320,13 +341,24 @@ return new class extends Migration
             $table->text('do_deposit_letter_no')->nullable();
             $table->text('do_deposit_letter_amount')->nullable();
             $table->text('do_submit_amount')->nullable();
-            $table->text('do_bg_exp_amount')->nullable();
+
             $table->text('do_fdr_amount')->nullable();
+            $table->text('do_bg_bank_name')->nullable();
+            $table->text('do_bg_bank_address')->nullable();
+            $table->text('do_bg_bank_verified')->nullable();
+            $table->text('do_condition_datails')->nullable();
+            $table->text('do_condition_approval')->nullable();
+
+
 
             $table->date('do_tender_date')->nullable();
+            $table->date('do_condition_date')->nullable();
+
             $table->date('do_deposit_letter_date')->nullable();
             $table->date('do_submit_date')->nullable();
-            $table->date('do_bg_exp_date')->nullable();
+            $table->date('do_bg_issue_date')->nullable();
+            $table->date('do_bg_expire_date')->nullable();
+
             $table->date('do_fdr_date')->nullable();
             $table->date('do_work_order_date')->nullable();
             $table->date('do_completion_date')->nullable();
@@ -370,6 +402,8 @@ return new class extends Migration
             $table->date('tpi_tender_proposal_date')->nullable();
             $table->text('tpi_validity_extension_letter_date')->nullable();
             $table->date('tpi_proposal_latter_date')->nullable();
+            $table->date('tpi_interview_date')->nullable();
+
 
             $table->timestamps();
         });

@@ -1,18 +1,11 @@
 <?php
 
-namespace App\Models\PbBranch;
+namespace App\Models\Tender;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-
-
-class NameOfSchema extends Model
+class AddTpiTenderForm extends Model
 {
     use HasFactory;
-    
-  protected $table ='name_of_schemas';
-
-    
 }

@@ -46,6 +46,7 @@
                                                         class="form-check-input">
                                                     Electric Pole
                                                 </a>
+
                                                 <a class="dropdown-item checkboxes" href="#">
                                                     <input type="checkbox" id="used_type[]" name="used_type[]"
                                                         @checked(in_array('Water Supply line', $used_type)) value="Water Supply line"
@@ -73,21 +74,16 @@
                                                 <a class="dropdown-item checkboxes" href="#">
                                                     <input type="checkbox" id="used_type[]" name="used_type[]"
                                                         @checked(in_array('Others', $used_type)) value="Others"
-                                                        class="form-check-input">
+                                                        data-toggle="usd_work_head" class="form-check-input">
                                                     Others
                                                 </a>
                                             </div>
                                         </div>
 
-                                        <!-- <label  class="form-label">Type of Utility </label>
-                                                                                                            <select class="form-select" id="name_project" name="name_project">
-                                                                                                                <option selected value="{{ $project_master->initiated_name }}">Electric Pole, Water Supply line, Drainage line, Telephone line, Gas line, Others </option>
-                                                                                                                <option value="{{ $project_master->initiated_name }}">Gondal</option>
-                                                                                                            </select> -->
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label class="form-label  d-lg-block d-none">&nbsp;</label>
+                                        <label id="header">&nbsp;</label>
                                         <input type="text" class="form-control" id="usd_work_head" name="usd_work_head"
                                             value="{{ $project_master->usd_work_head }}">
                                     </div>
@@ -137,7 +133,7 @@
                                                         @endphp
                                                         <tr>
                                                             <td>
-                                                                
+
                                                                 <input type="text" class="form-control"
                                                                     name="usd_utility_item[]" id="usd_utility_item[]"
                                                                     value="{{ $data }}">
@@ -322,6 +318,34 @@
         });
 
 
+
+
+
+        //other added
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get references to the checkboxes and the "usd_work_head" input field
+            const checkboxes = document.querySelectorAll('input[name="used_type[]"]');
+            const usdWorkHeadInput = document.getElementById('usd_work_head');
+
+
+            // Function to toggle the visibility of the "usd_work_head" input field
+            function toggleUsdWorkHead() {
+                if (checkboxes[5].checked) { // Assuming "Others" is the sixth checkbox (index 5)
+                    usdWorkHeadInput.style.display = 'block'; // Show the input field
+                } else {
+                    usdWorkHeadInput.style.display = 'none'; // Hide the input field
+                }
+            }
+
+            // Add change event listeners to all checkboxes
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', toggleUsdWorkHead);
+            });
+
+            // Call the toggleUsdWorkHead function to set the initial state
+            toggleUsdWorkHead();
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             const addContactButton = document.getElementById('add-contact');
             const contactFieldsContainer = document.getElementById('contect');
@@ -332,7 +356,8 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `   <div class="panel-group utility-shifting-tabel">
+                newContactField.innerHTML = `
+        <div class="panel-group utility-shifting-tabel">
                                         <div class="table-responsive">
                                             
                                             <table
@@ -342,7 +367,7 @@
                                                     <td>
                                                     <input type="text" class="form-control"
                                                                 name="usd_utility_item[]" id="usd_utility_item[]"
-                                                                value="XYZ">
+                            >
 
                                                         </td>
                                                         <td>
@@ -358,13 +383,13 @@
                                                         <td>
                                                             <input type="date" name="usd_date_input[]"
                                                                 class="form-control" id="usd_date_input[]"
-                                                                value="14/09/2023">
+                            >
                                                         </td>
 
                                                         <td>
                                                             <input type="text" name="usd_submitted_to[]"
                                                                 class="form-control" id="usd_submitted_to[]"
-                                                                value="-">
+                            >
                                                         </td>
 
                                                         <td>
@@ -382,20 +407,17 @@
 
                                                         <td>
                                                             <input type="text" name="usd_latter_no[]"
-                                                                class="form-control" id="usd_latter_no[]" value="12045">
-                                                        </td>
+                                                                class="form-control" id="usd_latter_no[]">
+                                                       </td>
 
                                                         <td>
                                                             <input type="date" name="usd_date_input_sec[]"
-                                                                class="form-control" id="usd_date_input_sec[]"
-                                                                value="14/09/2023">
+                                                                class="form-control" id="usd_date_input_sec[]">
                                                         </td>
-
                                                         <td>
-                                                            <input type="text" name="usd_amount[]"
-                                                                class="form-control" id="usd_amount[]" value="1000">
+                                                                <input type="text" name="usd_amount[]"
+                                                                class="form-control" id="usd_amount[]">
                                                         </td>
-
                                                         <td>
                                                             <select class="form-select" id="usd_payment[]"
                                                                 name="usd_payment[]">
@@ -403,30 +425,27 @@
                                                                 <option value="No">No</option>
                                                             </select>
                                                         </td>
-
-                                                        <td>
+<td>
                                                             <input type="date" name="usd_date_input_th[]"
-                                                                class="form-control" id="usd_date_input_th[]"
-                                                                value="14/09/2023">
+                                                                class="form-control" id="usd_date_input_th[]">
                                                         </td>
 
                                                         <td>
                                                             <input type="date" name="usd_date_input_fr[]"
-                                                                class="form-control" id="usd_date_input_fr[]"
-                                                                value="14/09/2023">
+                                                                class="form-control" id="usd_date_input_fr[]">
                                                         </td>
 
                                                         <td>
                                                             <input type="date" name="usd_date_input_fi[]"
                                                                 class="form-control" id="usd_date_input_fi[]"
-                                                                value="14/09/2023">
+                                                                >
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button> `;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -435,7 +454,26 @@
                         newContactField); // Remove the field when "Remove" is clicked
                     contactCount--; // Decrement contact count
                 });
+
                 contactFieldsContainer.appendChild(newContactField);
+            });
+
+            // Add event listener to all checkboxes
+            const checkboxes = document.querySelectorAll('input[name="used_type[]"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    if (checkbox.checked) {
+                        // If checkbox is checked, trigger the "Add" button click event
+                        addContactButton.click();
+                    } else {
+                        // If checkbox is unchecked, remove the last added table (if any)
+                        const closestTable = checkbox.closest('#contect').querySelector(
+                            'table');
+                        if (closestTable) {
+                            closestTable.remove();
+                        }
+                    }
+                });
             });
         });
     </script>

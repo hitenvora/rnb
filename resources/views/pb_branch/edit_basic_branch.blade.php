@@ -123,25 +123,84 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {{-- @endforeach --}}
+
                                                 <div class="col-xl-5 col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <label class="form-label">Type Of Work</label>
-                                                            <select class="form-select" id="types_of_work_id"
-                                                                name="types_of_work_id">
-                                                                <option value="">Select Work List</option>
-                                                                @foreach ($type_work as $value)
-                                                                    <option
-                                                                        value="{{ $value['id'] }}"data-work-name="{{ $value['name'] }}"
-                                                                        {{ $project_master->types_of_work_id == $value['id'] ? 'selected' : '' }}>
-                                                                        {{ $value['name'] }}
-                                                                    </option>
-                                                                @endforeach
+                                                            <select class="form-select" id="types_of_work"
+                                                                name="types_of_work">
+                                                                <option value="">Select Type Of Work</option>
+                                                                @if ($project_master->work_type_id == 1)
+                                                                    <option value="Re-Surfacing"
+                                                                        @if ($project_master->types_of_work === 'Re-Surfacing') selected @endif>
+                                                                        Re-Surfacing</option>
+                                                                    <option value="Strengthening"
+                                                                        @if ($project_master->types_of_work === 'Strengthening') selected @endif>
+                                                                        Strengthening</option>
+                                                                    <option value="3.75 to 5.5"
+                                                                        @if ($project_master->types_of_work === '3.75 to 5.5') selected @endif>
+                                                                        3.75 to 5.5</option>
+                                                                    <option value="3.75 to 7"
+                                                                        @if ($project_master->types_of_work === '3.75 to 7') selected @endif>
+                                                                        3.75 to 7</option>
+                                                                    <option value="3.75 to 10"
+                                                                        @if ($project_master->types_of_work === '3.75 to 10') selected @endif>
+                                                                        3.75 to 10</option>
+                                                                    <option value="5.5 to 7"
+                                                                        @if ($project_master->types_of_work === '5.5 to 7') selected @endif>
+                                                                        5.5 to 7</option>
+                                                                    <option value="5.5 to 10"
+                                                                        @if ($project_master->types_of_work === '5.5 to 10') selected @endif>
+                                                                        5.5 to 10</option>
+                                                                    <option value="10 to 4 lan"
+                                                                        @if ($project_master->types_of_work === '10 to 4 lan') selected @endif>10
+                                                                        to 4 lan</option>
+                                                                    <option value="7 to 10"
+                                                                        @if ($project_master->types_of_work === '7 to 10') selected @endif>7
+                                                                        to 10</option>
+                                                                    <option value="10 to 6 lan"
+                                                                        @if ($project_master->types_of_work === '10 to 6 lan') selected @endif>
+                                                                        10 to 6 lan</option>
+                                                                    <option value="4 lan to 6 lan"
+                                                                        @if ($project_master->types_of_work === '4 lan to 6 lan') selected @endif>
+                                                                        4 lan to 6 lan</option>
+                                                                @elseif ($project_master->work_type_id == 2)
+                                                                    <option value="New Buliding"
+                                                                        @if ($project_master->types_of_work === 'New Buliding') selected @endif>
+                                                                        New Buliding</option>
+                                                                    <option value="Addition Alternative"
+                                                                        @if ($project_master->types_of_work === 'Addition Alternative') selected @endif>
+                                                                        Addition Alternative</option>
+                                                                    <option value="Repairing Work"
+                                                                        @if ($project_master->types_of_work === 'Repairing Work') selected @endif>
+                                                                        Repairing Work</option>
+                                                                @elseif ($project_master->work_type_id == 3)
+                                                                    <option value="Rob"
+                                                                        @if ($project_master->types_of_work === 'Rob') selected @endif>
+                                                                        Rob</option>
+                                                                    <option value="WaterBody Bridge"
+                                                                        @if ($project_master->types_of_work === 'WaterBody Bridge') selected @endif>
+                                                                        WaterBody Bridge</option>
+                                                                    <option value="Flyover"
+                                                                        @if ($project_master->types_of_work === 'Flyover') selected @endif>
+                                                                        Flyover</option>
+                                                                @elseif ($project_master->work_type_id == 4)
+                                                                    <option value="Slab Drain"
+                                                                        @if ($project_master->types_of_work === 'Slab Drain') selected @endif>
+                                                                        Slab Drain</option>
+                                                                    <option value="Box Calvate"
+                                                                        @if ($project_master->types_of_work === 'Box Calvate') selected @endif>
+                                                                        Box Calvate</option>
+                                                                    <option value="Hp Drain"
+                                                                        @if ($project_master->types_of_work === 'Hp Drain') selected @endif>
+                                                                        Hp Drain</option>
+                                                                @endif
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-6">
-                                                            <label class="form-label d-xl-block d-none">&nbsp;</label>
+                                                            <label class="form-label d-xl-block d-none">Name Of
+                                                                Work</label>
                                                             <input type="text" class="form-control"
                                                                 id="basic_type_work_name" name="basic_type_work_name"
                                                                 value="{{ $project_master->basic_type_work_name }}">
@@ -157,7 +216,8 @@
                                                                 <option value="">Select budget List</option>
                                                                 @foreach ($budget as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"data-bu-name="{{ $value['name'] }}"{{ $project_master->budget_id == $value['id'] ? 'selected' : '' }}>
+                                                                        value="{{ $value['id'] }}"data-bu-name="{{ $value['name'] }}"
+                                                                        {{ $project_master->budget_id == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -170,15 +230,8 @@
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <label class="form-label">Budget Work / Item / Page No.</label>
-                                                            <select class="form-select" id="budget_work_id"
-                                                                name="budget_work_id">
-                                                                <option value="">Select budget Work List</option>
-                                                                @foreach ($budget_work as $value)
-                                                                    <option
-                                                                        value="{{ $value['id'] }}"data-item-name="{{ $value['name'] }}"{{ $project_master->budget_work_id == $value['id'] ? 'selected' : '' }}>
-                                                                        {{ $value['name'] }}</option>
-                                                                @endforeach
-                                                            </select>
+                                                            <input type="text" class="form-control"
+                                                                id="budget_work_id" name="budget_work_id">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -209,7 +262,8 @@
                                                                 <option value="">Select Mp MlaList</option>
                                                                 @foreach ($mp_mla as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"data-mla-name="{{ $value['name'] }}"{{ $project_master->basic_mp_mla == $value['id'] ? 'selected' : '' }}>
+                                                                        value="{{ $value['id'] }}"data-mla-name="{{ $value['name'] }}"
+                                                                        {{ $project_master->basic_mp_mla == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
                                                             </select>
@@ -249,10 +303,6 @@
                                                                     target="_blank">
                                                                     <br>Open Image in New Tab
                                                                 </a>
-
-
-                                                                {{-- <img src="{{ asset('uplode_images/basic/' . $project_master->basic_upload_img) }}"
-                                                                    alt="" height="50" srcset=""> --}}
                                                             </div>
 
 
@@ -267,7 +317,7 @@
                                                         value="{{ $project_master->basic_suggest }}">
                                                 </div>
 
-                                                <div class="col-lg-12 mt-3">
+                                                {{-- <div class="col-lg-12 mt-3">
                                                     <div class="contact_list">
                                                         <h6>Received Proposal</h6>
                                                         <div class="row p-0">
@@ -303,7 +353,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="col-lg-12 mt-3">
                                                     <div class="contact_list">
@@ -358,31 +408,48 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-
-                                                        <div class="col-lg-4">
-                                                            <label class="form-label d-xl-block d-none">&nbsp;</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basic_sent_box_name" name="basic_sent_box_name"
-                                                                value="{{ $project_master->basic_sent_box_name }}">
-                                                        </div>
-
                                                         <div class="col-lg-4">
                                                             <label class="form-label">Date</label>
                                                             <input type="date" class="form-control"
                                                                 id="basic_sent_box_date" name="basic_sent_box_date"
                                                                 value="{{ $project_master->basic_sent_box_date }}">
                                                         </div>
+
+
+                                                        <div class="col-lg-4">
+                                                            <label class="form-label">Amount</label>
+                                                            <input type="text" class="form-control"
+                                                                id="basic_sent_box_name" name="basic_sent_box_name"
+                                                                value="{{ $project_master->basic_sent_box_name }}">
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6 col-lg-12">
                                                     <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <label class="form-label">Remarks</label>
+                                                        <div class="col-lg-6">
+                                                            @if ($project_master->sent_box_id == 2)
+                                                                <label class="form-label" id="letter">Letter No</label>
+                                                            @else
+                                                                <label class="form-label" id="remarks">Remarks</label>
+                                                            @endif
                                                             <input type="text" class="form-control"
                                                                 id="basic_sent_box_remark" name="basic_sent_box_remark"
-                                                                placeholder="Enter Remarks..."
                                                                 value="{{ $project_master->basic_sent_box_remark }}">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label class="form-label">Letter Upload</label>
+                                                            <div class="input-group">
+                                                                <input type="file" class="form-control w-100"
+                                                                    id="basic_sent_box_img" name="basic_sent_box_img"
+                                                                    value="{{ $project_master->basic_sent_box_img }}">
+                                                                <a href="{{ asset('uplode_images/basic/' . $project_master->basic_sent_box_img) }}"
+                                                                    target="_blank">
+                                                                    <br>Open Image in New Tab
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -397,10 +464,10 @@
                                             value="{{ $project_master->basic_name_of_department }}">
                                     </div>
 
-                                    <div class="col-lg-3 branch-scheme-select">
-                                        <label class="form-label">District(Division)</label>
+                                    <div class="col-lg-2 branch-scheme-select">
+                                        <label class="form-label">Proposal Division</label>
                                         <select class="form-select" id="division_master_id" name="division_master_id">
-                                            <option value="">Select division name List</option>
+                                            <option value="">Select Division</option>
                                             @foreach ($division_name as $value)
                                                 <option
                                                     value="{{ $value['id'] }}"{{ $project_master->division_master_id == $value['id'] ? 'selected' : '' }}>
@@ -409,16 +476,24 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-3 branch-scheme-select">
-                                        <label class="form-label">Subdivision</label>
+                                    <div class="col-lg-2 branch-scheme-select">
+                                        <label class="form-label">Proposal Subdivision</label>
                                         <select class="form-select" id="sub_division_master_id"
                                             name="sub_division_master_id">
-                                            <option value="">Select Sub division Name List</option>
+                                            <option value="">Select SubDivision</option>
                                             @foreach ($sub_division_name as $value)
                                                 <option
                                                     value="{{ $value['id'] }}"{{ $project_master->sub_division_master_id == $value['id'] ? 'selected' : '' }}>
                                                     {{ $value['name'] }}</option>
                                             @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 branch-scheme-select">
+                                        <label class="form-label">Proposal Circle</label>
+                                        <select class="form-select" id="basic_circle_name" name="basic_circle_name">
+                                            <option value="">Select Circle</option>
+                                            <option value="Dabhoi">Dabhoi</option>
+
                                         </select>
                                     </div>
 
@@ -513,6 +588,7 @@
             </div>
         </div>
         </div>
+        <div id="selectedID" data-id="{{ $project_master->id }}"></div>
     </body>
 @endsection
 
@@ -567,6 +643,7 @@
             var formData = new FormData(this);
             var csrftoken = $('meta[name="csrf-token"]').attr('content');
             $(".text-danger").text('');
+            var selectedID = $("#selectedID").data("id");
 
             $.ajax({
                 type: 'POST',
@@ -586,7 +663,8 @@
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
-                        window.location.href = "{{ route('basic_branch') }}";
+                        window.location.href = "{{ url('edit-basic') }}/" + selectedID;
+
                     } else {
                         toastr.error(data.msg);
                     }
@@ -615,6 +693,7 @@
             var formData = new FormData(this);
             var csrftoken = $('meta[name="csrf-token"]').attr('content');
             $(".text-danger").text('');
+            var selectedID = $("#selectedID").data("id");
 
             $.ajax({
                 type: 'POST',
@@ -635,7 +714,7 @@
                             toastr.success("Proposal Master updated successfully.");
                         }
 
-                        window.location.href = "{{ route('basic_branch') }}";
+                        window.location.href = "{{ url('edit-basic') }}/" + selectedID;
                     } else {
                         toastr.error(data.msg);
                     }
@@ -652,41 +731,70 @@
             });
         });
 
+        document.getElementById('work_type_id').addEventListener('change', function() {
+            const workTypeSelect = document.getElementById('work_type_id');
+            const typeOfWorkSelect = document.getElementById('types_of_work');
 
-        $(document).ready(function () {
-        $('#types_of_work_id').on('change', function () {
-            var selectedOption = $(this).find(':selected');
-            var selectedWorkName = selectedOption.data('work-name');
-            $('#basic_type_work_name').val(selectedWorkName);
+            // Get the selected option's value
+            const selectedWorkTypeId = workTypeSelect.value;
+
+            // Clear the "Type Of Work" dropdown options
+            typeOfWorkSelect.innerHTML = '<option value="">Select Type Of Work</option>';
+
+            // Populate the "Type Of Work" dropdown based on the selected "Work Type"
+            if (selectedWorkTypeId === '1') {
+                // If "Work Type" is 1, add the options specific to that type
+                typeOfWorkSelect.innerHTML += `
+                <option value="Re-Surfacing">Re-Surfacing</option>
+                <option value="Strengthening">Strengthening</option>
+                <option value="3.75 to 5.5">3.75 to 5.5</option>
+                <option value="3.75 to 7">3.75 to 7</option>
+                <option value="3.75 to 10">3.75 to 10</option>
+                <option value="5.5 to 7">5.5 to 7</option>
+                <option value="5.5 to 10">5.5 to 10</option>
+                <option value="7 to 10">7 to 10</option>
+                <option value="10 to 4 lan">10 to 4 lan</option>
+                <option value="10 to 6 lan">10 to 6 lan</option>
+                <option value="4 lan to 6 lan">4 lan to 6 lan</option>`;
+            } else if (selectedWorkTypeId === '2') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+                <option value="New Buliding">New Buliding</option>
+                <option value="Addition Alternative">Addition Alternative</option>
+                <option value="Repairing Work">Repairing Work</option>`;
+            } else if (selectedWorkTypeId === '3') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+                <option value="Rob">Rob</option>
+                <option value="WaterBody Bridge">WaterBody Bridge</option>
+                <option value="Flyover">Flyover</option>`;
+            } else if (selectedWorkTypeId === '4') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+                <option value="Slab Drain">Slab Drain</option>
+                <option value="Box Calvate">Box Calvate</option>
+                <option value="Hp Drain">Hp Drain</option>`;
+            } else if (selectedWorkTypeId === '5') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+                <option value="Other">Other</option>`;
+            }
         });
-    });
 
+        $(document).ready(function() {
+            $('#sent_box_id').change(function() {
+                var selectedValue = $(this).val();
+                var label = $('#remarks');
+                var input = $('#basic_sent_box_remark');
 
+                if (selectedValue === '2') {
+                    label.text('Letter No');
 
-    $(document).ready(function () {
-        $('#budget_work_id').on('change', function () {
-            var selectedOption = $(this).find(':selected');
-            var selectedWorkName = selectedOption.data('item-name');
-            $('#basic_budget_work_name').val(selectedWorkName);
+                } else {
+                    label.text('Remarks');
+
+                }
+            })
         });
-    });
-
-
-    $(document).ready(function () {
-        $('#basic_mp_mla').on('change', function () {
-            var selectedOption = $(this).find(':selected');
-            var selectedWorkName = selectedOption.data('mla-name');
-            $('#basic_mp_mla_name').val(selectedWorkName);
-        });
-    });
-
-    $(document).ready(function () {
-        $('#budget_id').on('change', function () {
-            var selectedOption = $(this).find(':selected');
-            var selectedWorkName = selectedOption.data('bu-name');
-            $('#basic_budget_name').val(selectedWorkName);
-        });
-    });
-
     </script>
 @endsection

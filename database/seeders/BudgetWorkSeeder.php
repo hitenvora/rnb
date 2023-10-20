@@ -19,7 +19,7 @@ class BudgetWorkSeeder extends Seeder
                 'name' => 'Road',
             ],
             [
-                'name' => 'Surfacing',
+                'name' => 'Re-Surfacing',
             ],
             [
                 'name' => 'Strengthening',

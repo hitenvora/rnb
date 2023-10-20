@@ -23,15 +23,7 @@ class UserMasterController extends Controller
     public function insert(Request $request)
     {
 
-        $rules = [
-            'name' => 'required',
-            'email' => 'required',
-            'mobile_no' => 'required||numeric|min:10',
-            // 'user_password' => 'required|min:8',
-            'role_id' => 'required',
-        ];
-
-        $this->validate($request, $rules);
+       
 
         if ($request->user_id != '') {
             $user_master = AdminLogin::find($request->user_id);

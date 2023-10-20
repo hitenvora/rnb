@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('letter_reminder_masters', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->string('subject');
-            $table->string('upload_img');
-            $table->string('submit_to');
-            $table->date('expire_date');
+            $table->date('date')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('upload_img')->nullable();
+            $table->string('submit_to')->nullable();
+            $table->date('expire_date')->nullable();
             $table->tinyInteger('is_active')->default(1)->comment('1=>Active, 0=>Inactive');
             $table->timestamps();
         });

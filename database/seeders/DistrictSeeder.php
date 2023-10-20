@@ -15,20 +15,9 @@ class DistrictSeeder extends Seeder
     {
         DB::table('districts')->insert([
             [
-                'name' => 'Rajkot',
+                'name' => 'Baroda',
             ],
-            [
-                'name' => 'Bharuch',
-            ],
-            [
-                'name' => 'Amreli',
-            ],
-            [
-                'name' => 'Bhavnagar',
-            ],
-            [
-                'name' => 'Surat',
-            ],
+          
         ]);
     }
 }

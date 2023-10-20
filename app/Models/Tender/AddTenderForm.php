@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models\PbBranch;
+namespace App\Models\Tender;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProposalSubmittedDetail extends Model
+class AddTenderForm extends Model
 {
     use HasFactory;
-
-    protected $table = 'pro_posal_masters';
 }
