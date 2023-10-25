@@ -69,7 +69,7 @@ class DemoCron extends Command
 
                 if ($follow_up_date == $now_date) {
                     // notification table ma entry
-                    $admins = AdminLogin::whereIn('role_id', [1,4])->get();
+                    $admins = AdminLogin::whereIn('role_id', [1, 4])->get();
                     foreach ($admins as $admin) {
                         // Create notification entry for admin
                         Notification::create([
@@ -106,7 +106,4 @@ class DemoCron extends Command
             }
         }
     }
-
-    
-   
 }

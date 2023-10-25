@@ -654,8 +654,7 @@
                 <option value="Slab Drain">Slab Drain</option>
                 <option value="Box Calvate">Box Calvate</option>
                 <option value="Hp Drain">Hp Drain</option>`;
-            }
-            else if (selectedWorkTypeId === '5') {
+            } else if (selectedWorkTypeId === '5') {
                 // If "Work Type" is 2, add different options
                 typeOfWorkSelect.innerHTML += `
                 <option value="Other">Other</option>`;

@@ -204,6 +204,9 @@ return new class extends Migration
             $table->text('bd_continous')->nullable();
             $table->text('bd_page_no')->nullable();
             $table->text('bd_item_no')->nullable();
+            $table->text('budget_previous_year')->nullable();
+            $table->text('budget_previous_amount')->nullable();
+
 
             //expnditure detail
             $table->text('ed_origin_work')->nullable();
@@ -244,6 +247,8 @@ return new class extends Migration
             $table->text('tle_status')->nullable();
 
             //work status
+            $table->text('work_yes_no')->default('No');
+            $table->text('acctual_yes_no')->default('No');
             $table->date('ws_sd_completion')->nullable();
             $table->date('ws_sd_release')->nullable();
  

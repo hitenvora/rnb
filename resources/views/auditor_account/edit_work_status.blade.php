@@ -6,7 +6,6 @@
     @include('navbar.pb_branch.edit_pb_branch_navbar')
 
 
-
     <body>
         <div class="mg-b-23">
             <div class="container-fluid">
@@ -24,12 +23,13 @@
                                     <div class="col-lg-6">
                                         <label for="inputtitle1" class="form-label">Acctual Complate Date Yes/No</label>
                                         <select class="form-select" id="work_yes_no" name="work_yes_no">
-                                            <option value="Yes">Yes</option>
-                                            <option selected value="No">No</option>
+                                            <option value="Yes"@selected($project_master->work_yes_no == 'Yes')>Yes</option>
+                                            <option value="No"@selected($project_master->work_yes_no == 'No')>No</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label class="form-label"> Acctual Complate Date</label>
+                                        <label class="form-label" id="actual" style="display: none"> Acctual Complate
+                                            Date</label>
                                         <input type="date" class="form-control" id="ws_sd_completion"
                                             name="ws_sd_completion" placeholder="Enter SD(Security Deposit) Completion Date"
                                             value="{{ $project_master->ws_sd_completion }}" style="display: none">
@@ -37,13 +37,14 @@
                                     <div class="col-lg-6">
                                         <label for="inputtitle1" class="form-label">Date OF intiacle Yes/No</label>
                                         <select class="form-select" id="acctual_yes_no" name="acctual_yes_no">
-                                            <option value="Yes">Yes</option>
-                                            <option selected value="No">No</option>
+                                            <option value="Yes"@selected($project_master->acctual_yes_no == 'Yes')>Yes</option>
+                                            <option value="No"@selected($project_master->acctual_yes_no == 'No')>No</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label class="form-label">SD Release Date</label>
-                                        <input type="date" class="form-control" id="ws_sd_release" name="ws_sd_release"
+                                        <label class="form-label" id="sd_release" style="display: none">SD Release
+                                            Date</label>
+                                        <input type="date" class="form-control" id="ws_sd_release"  name="ws_sd_release"
                                             value="{{ $project_master->ws_sd_release }}" style="display: none">
                                     </div>
 
@@ -89,7 +90,7 @@
                         } else {
                             toastr.success("Project Master updated successfully.");
                         }
-                        dataTable.draw();
+                        // dataTable.draw();
                     } else {
                         toastr.error(data.msg);
                     }
@@ -132,6 +133,69 @@
                 } else {
                     // If 'No' is selected or nothing is selected, hide the z_zad_compilation input
                     zadCompilationInput.style.display = 'none';
+                }
+            });
+        });
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const workYesNoSelect = document.getElementById('work_yes_no');
+            const zadCompilationInput = document.getElementById('actual');
+
+            workYesNoSelect.addEventListener('change', function() {
+                if (workYesNoSelect.value === 'Yes') {
+                    // If 'Yes' is selected, show the z_zad_compilation input
+                    zadCompilationInput.style.display = 'block';
+                } else {
+                    // If 'No' is selected or nothing is selected, hide the z_zad_compilation input
+                    zadCompilationInput.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const workYesNoSelect = document.getElementById('acctual_yes_no');
+            const zadCompilationInput = document.getElementById('sd_release');
+
+            workYesNoSelect.addEventListener('change', function() {
+                if (workYesNoSelect.value === 'Yes') {
+                    // If 'Yes' is selected, show the z_zad_compilation input
+                    zadCompilationInput.style.display = 'block';
+                } else {
+                    // If 'No' is selected or nothing is selected, hide the z_zad_compilation input
+                    zadCompilationInput.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const workYesNoSelect = document.getElementById('work_yes_no');
+            const wsSdCompletionInput = document.getElementById('ws_sd_completion');
+            const databaseValueDiv = document.getElementById(
+                'database_value'); // Replace with the actual ID of your display element
+
+            workYesNoSelect.addEventListener('change', function() {
+                if (workYesNoSelect.value === 'Yes') {
+                    wsSdCompletionInput.style.display = 'block';
+
+                    // Make an AJAX request to fetch the database value
+                    // Replace '/server.php' with your actual server-side route
+                    const projectId = document.getElementById('master_id')
+                        .value; // Assuming you have an input with ID 'master_id'
+                    fetch(`/server.php?action=getDatabaseValue&project_id=${projectId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update the databaseValueDiv with the retrieved data
+                            databaseValueDiv.textContent = data.databaseValue;
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                } else {
+                    wsSdCompletionInput.style.display = 'none';
+                    // Hide the database value when "No" is selected
+                    databaseValueDiv.textContent = '';
                 }
             });
         });

@@ -476,6 +476,19 @@ class MasterController extends Controller
             $basic_branch->bd_item_no = $request->input('bd_item_no');
             $basic_branch->bd_page_no = $request->input('bd_page_no');
             $basic_branch->bd_continous = $request->input('bd_continous');
+
+
+            $budget_previous_year = $request->input('budget_previous_year');
+            if (isset($budget_previous_year) && sizeof($budget_previous_year)) {
+
+                $basic_branch->budget_previous_year = implode(",", $budget_previous_year);
+            }
+
+            $budget_previous_amount = $request->input('budget_previous_amount');
+            if (isset($budget_previous_amount) && sizeof($budget_previous_amount)) {
+
+                $basic_branch->budget_previous_amount = implode(",", $budget_previous_amount);
+            }
         }
 
         //expenditure-detail
@@ -638,6 +651,8 @@ class MasterController extends Controller
         if ($step == 'work_status') {
             $basic_branch->ws_sd_release = $request->input('ws_sd_release');
             $basic_branch->ws_sd_completion = $request->input('ws_sd_completion');
+            $basic_branch->work_yes_no = $request->input('work_yes_no');
+            $basic_branch->acctual_yes_no = $request->input('acctual_yes_no');
         }
         //FMG
         if ($step == 'fmg') {

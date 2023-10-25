@@ -876,11 +876,11 @@
                                             <th>Letter Upload :</th>
                                             <td>
 
-                                                <a href="{{ asset('uplode_images/basic/' . $proposal_show->upload_img) }}"
-                                                    class="font-primary text-decoration-underline" target="_blank">
+                                                <a href="" class="font-primary text-decoration-underline"y
+                                                    target="_blank">
                                                     View Image
 
-                                            </a>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>

@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-@include('navbar.pb_branch.edit_pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
 
     <body>
@@ -56,30 +56,25 @@
                                                 <th>Amount</th>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="2022">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="200000">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="2022">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="200000">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="2022">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="200000">
-                                                    </td>
-                                                </tr>
+                                                @foreach (explode(',', $project_master->budget_previous_year) as $key => $date)
+                                                    @php
+                                                        $budget_previous_amount = explode(',', $project_master->budget_previous_amount);
+
+                                                    @endphp
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                name="budget_previous_year[]" id="budget_previous_year"
+                                                                value="{{ $date }}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                name="budget_previous_amount[]"
+                                                                id="budget_previous_amount[]"
+                                                                value="{{ @$budget_previous_amount[$key] }}">
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                                 <tr>
                                                     <td class="text-end" colspan="2">
                                                         <a class="btn btn-light-warning px-3" id="add-contact">
@@ -91,7 +86,6 @@
                                                             </svg> Add
                                                         </a>
                                                     </td>
-
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -169,38 +163,18 @@
                 contactCount++; // Increment contact count
 
                 // Create a new input field (you can customize this as needed)
-                const newContactField = document.createElement('p');
+                const newContactField = document.createElement('tr');
                 newContactField.innerHTML = `
-                <table class="product_sub_menu table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="2022">
+              
+                <td>
+                                                        <input type="text" class="form-control" name="budget_previous_year[]" id="budget_previous_year">
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control" value="200000">
+                                                        <input type="text" class="form-control" name="budget_previous_amount[]" id="budget_previous_amount[]">
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="2022">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="200000">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="2022">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control" value="200000">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
-                        
+
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');

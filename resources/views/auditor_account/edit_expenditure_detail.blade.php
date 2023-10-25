@@ -300,8 +300,7 @@
                                                         <input type="text" class="form-control"
                                                             name="ed_expenditure[]"
                                                             id="with_amount" readonly
-                                                            placeholder="This Value is Automatically"
-                                                            ">
+                                                            placeholder="This Value is Automatically">
                                                     </td>
                                                 <td>
                                                     <input type="text" class="form-control"
@@ -369,7 +368,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const amountInputs = document.querySelectorAll('input[name="ed_expenditure_amount[]"]');
             const resultInputs = document.querySelectorAll('input[name="ed_expenditure[]"]');
-            const totalElements = document.querySelectorAll('.total_detail span[data-category]');
+            // const totalElements = document.querySelectorAll('.total_detail span[data-category]');
 
             function updateTotal(category) {
                 let total = 0;
@@ -382,13 +381,13 @@
                 return total;
             }
 
-            function updateTotals() {
-                for (let i = 0; i < totalElements.length; i++) {
-                    const category = totalElements[i].getAttribute('data-category');
-                    const total = updateTotal(category);
-                    totalElements[i].textContent = total.toFixed(2);
-                }
-            }
+            // function updateTotals() {
+            //     for (let i = 0; i < totalElements.length; i++) {
+            //         const category = totalElements[i].getAttribute('data-category');
+            //         const total = updateTotal(category);
+            //         totalElements[i].textContent = total.toFixed(2);
+            //     }
+            // }
 
             amountInputs.forEach(function(amountInput, index) {
                 const resultInput = resultInputs[index];
@@ -403,6 +402,8 @@
                 categoryDropdown.addEventListener('change', updateTotals);
             });
         });
+
+
 
 
         //total  function

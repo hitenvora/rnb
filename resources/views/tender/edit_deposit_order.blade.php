@@ -88,8 +88,8 @@
                                                 </div>
                                                 <div class="col-xl-2 col-lg-6">
                                                     <label class="form-label">Letter Date</label>
-                                                    <input type="date" class="form-control" id="do_deposit_letter_date"
-                                                        name="do_deposit_letter_date"
+                                                    <input type="date" class="form-control"
+                                                        id="do_deposit_letter_date" name="do_deposit_letter_date"
                                                         value="{{ $project_master->do_deposit_letter_date }}">
                                                 </div>
                                                 <div class="col-xl-2 col-lg-6">
@@ -120,9 +120,11 @@
                                             <h6>Deposit Condition</h6>
                                             <div class="row p-0">
                                                 <div class="col-lg-4">
-                                                    <label for="inputtitle1" class="form-label">Deposit Condition Date</label>
+                                                    <label for="inputtitle1" class="form-label">Deposit Condition
+                                                        Date</label>
                                                     <input class="form-control" type="date" id="do_condition_date"
-                                                        name="do_condition_date" placeholder="Enter Deposit Condition Date"
+                                                        name="do_condition_date"
+                                                        placeholder="Enter Deposit Condition Date"
                                                         value="{{ $project_master->do_condition_date }}">
                                                 </div>
                                                 <div class="col-lg-4">
@@ -132,7 +134,8 @@
                                                         value="{{ $project_master->do_condition_datails }}">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <label for="inputtitle1" class="form-label">Deposit Condition Approval</label>
+                                                    <label for="inputtitle1" class="form-label">Deposit Condition
+                                                        Approval</label>
                                                     <input class="form-control" type="text" id="do_condition_approval"
                                                         name="do_condition_approval" placeholder="Enter amount"
                                                         value="{{ $project_master->do_condition_approval }}">
@@ -189,30 +192,30 @@
                                                     <div class="input-group">
                                                         <input type="text" class="form-control w-100"
                                                             id="do_bg_bank_name" name="do_bg_bank_name"
-                                                            value="{{ $project_master->do_bg_bank_name }}"> 
+                                                            value="{{ $project_master->do_bg_bank_name }}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row p-0">
-                                            <div class="col-lg-6">
-                                                <label class="form-label">BG Bank Address</label>
-                                                <input type="text" class="form-control" id="do_bg_bank_address"
-                                                    name="do_bg_bank_address"
-                                                    value="{{ $project_master->do_bg_bank_address }}">
+                                                <div class="col-lg-6">
+                                                    <label class="form-label">BG Bank Address</label>
+                                                    <input type="text" class="form-control" id="do_bg_bank_address"
+                                                        name="do_bg_bank_address"
+                                                        value="{{ $project_master->do_bg_bank_address }}">
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label class="form-label">BG Bank Verified</label>
+                                                    <select class="form-control" id="do_bg_bank_verified"
+                                                        name="do_bg_bank_verified"
+                                                        value="{{ $project_master->do_bg_bank_verified }}">
+                                                        <option value="Yes"@selected($project_master->do_bg_bank_verified == 'Yes')>Yes</option>
+                                                        <option value="No"@selected($project_master->do_bg_bank_verified == 'No')>No</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <label class="form-label">BG Bank Verified</label>
-                                                <select class="form-control" id="do_bg_bank_verified"
-                                                    name="do_bg_bank_verified"
-                                                    value="{{ $project_master->do_bg_bank_verified }}">
-                                                    <option value="Yes"@selected($project_master->do_bg_bank_verified == 'Yes')>Yes</option>
-                                                    <option value="No"@selected($project_master->do_bg_bank_verified == 'No')>No</option>
-                                                </select>
-                                            </div>
-                                            </div>
-                                            
+
                                         </div>
-                                        
+
                                     </div>
                                     <div class="col-lg-12 mt-2">
                                         <div class="contact_list">
