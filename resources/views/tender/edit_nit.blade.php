@@ -281,8 +281,8 @@
 
                                                             <td>
                                                                 <select class="form-select" id="nit_tender_above[]"
-                                                                    name="nit_tender_above[]">
-                                                                    <option value=""> select option</option>
+                                                                    name="nit_tender_above[]" style="width: 100%">
+                                                                    <option value="">Select Option</option>
                                                                     <option value="Above" {{ $selectedAbove }}>Above
                                                                     </option>
                                                                     <option value="Below" {{ $selectedBelow }}>Below
@@ -402,32 +402,32 @@
                                         </div>
                                     </div>
                                     <!-- <div class="col-lg-12 mt-2">
-                                                                                                        <div class="contact_list">
-                                                                                                          <h6>DTP Approval</h6>
-                                                                                                            <div class="row p-0">
-                                                                                                                <div class="col-lg-3">
-                                                                                                                    <label class="form-label">Authority</label>
-                                                                                                                    <select class="form-select" name="Authority" id="Authority">
-                                                                                                                        <option value="exc">Executive Engineer</option>
-                                                                                                                        <option value="SE">Superintendent Engineer</option>
-                                                                                                                        <option value="CE">Chief Engineer</option>
-                                                                                                                      </select>
-                                                                                                                </div>
-                                                                                                                <div class="col-lg-3">
-                                                                                                                    <label class="form-label">Date</label>
-                                                                                                                    <input type="date" class="form-control" id="dtp_date" name="dtp_date" value="2023-09-13">
-                                                                                                                </div>
-                                                                                                                <div class="col-lg-3">
-                                                                                                                    <label for="inputtitle1" class="form-label">Letter No.</label>
-                                                                                                                    <input class="form-control" type="text" id="Letter_No" name="Letter_No" placeholder="Enter Letter No.">
-                                                                                                                </div>
-                                                                                                                <div class="col-lg-3">
-                                                                                                                    <label for="inputtitle1" class="form-label">Amount</label>
-                                                                                                                    <input class="form-control" type="text" id="Amount" name="Amount" placeholder="Enter Amount">
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div> -->
+                                                                                                                        <div class="contact_list">
+                                                                                                                          <h6>DTP Approval</h6>
+                                                                                                                            <div class="row p-0">
+                                                                                                                                <div class="col-lg-3">
+                                                                                                                                    <label class="form-label">Authority</label>
+                                                                                                                                    <select class="form-select" name="Authority" id="Authority">
+                                                                                                                                        <option value="exc">Executive Engineer</option>
+                                                                                                                                        <option value="SE">Superintendent Engineer</option>
+                                                                                                                                        <option value="CE">Chief Engineer</option>
+                                                                                                                                      </select>
+                                                                                                                                </div>
+                                                                                                                                <div class="col-lg-3">
+                                                                                                                                    <label class="form-label">Date</label>
+                                                                                                                                    <input type="date" class="form-control" id="dtp_date" name="dtp_date" value="2023-09-13">
+                                                                                                                                </div>
+                                                                                                                                <div class="col-lg-3">
+                                                                                                                                    <label for="inputtitle1" class="form-label">Letter No.</label>
+                                                                                                                                    <input class="form-control" type="text" id="Letter_No" name="Letter_No" placeholder="Enter Letter No.">
+                                                                                                                                </div>
+                                                                                                                                <div class="col-lg-3">
+                                                                                                                                    <label for="inputtitle1" class="form-label">Amount</label>
+                                                                                                                                    <input class="form-control" type="text" id="Amount" name="Amount" placeholder="Enter Amount">
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div> -->
 
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
@@ -456,7 +456,7 @@
                             <input type="hidden" name="add_name_of_tender_id" id="add_name_of_tender_id">
 
                             <div class="col-lg-12">
-                                <label class="form-label">Name Of Project</label>
+                                <label class="form-label">Name Of Tender</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     value="XYZ">
                             </div>

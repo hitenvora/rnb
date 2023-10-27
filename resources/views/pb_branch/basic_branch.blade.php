@@ -121,7 +121,52 @@
                                                             <label class="form-label">Type Of Work</label>
                                                             <select class="form-select" id="types_of_work"
                                                                 name="types_of_work">
-                                                                <option value="">Select Work List</option>
+                                                                <option value="">Select Type Of Work</option>
+
+                                                                <option value="Re-Surfacing">
+                                                                    Re-Surfacing</option>
+                                                                <option value="Strengthening">
+                                                                    Strengthening</option>
+                                                                <option value="3.75 to 5.5">
+                                                                    3.75 to 5.5</option>
+                                                                <option value="3.75 to 7">
+                                                                    3.75 to 7</option>
+                                                                <option value="3.75 to 10">
+                                                                    3.75 to 10</option>
+                                                                <option value="5.5 to 7">
+                                                                    5.5 to 7</option>
+                                                                <option value="5.5 to 10">
+                                                                    5.5 to 10</option>
+                                                                <option value="10 to 4 lan">10
+                                                                    to 4 lan</option>
+                                                                <option value="7 to 10">7
+                                                                    to 10</option>
+                                                                <option value="10 to 6 lan">
+                                                                    10 to 6 lan</option>
+                                                                <option value="4 lan to 6 lan">
+                                                                    4 lan to 6 lan</option>
+
+                                                                <option value="New Buliding">
+                                                                    New Buliding</option>
+                                                                <option value="Addition Alternative">
+                                                                    Addition Alternative</option>
+                                                                <option value="Repairing Work">
+                                                                    Repairing Work</option>
+
+                                                                <option value="Rob">
+                                                                    Rob</option>
+                                                                <option value="WaterBody Bridge">
+                                                                    WaterBody Bridge</option>
+                                                                <option value="Flyover">
+                                                                    Flyover</option>
+
+                                                                <option value="Slab Drain">
+                                                                    Slab Drain</option>
+                                                                <option value="Box Calvate">
+                                                                    Box Calvate</option>
+                                                                <option value="Hp Drain">
+                                                                    Hp Drain</option>
+
                                                             </select>
                                                         </div>
                                                         <div class="col-lg-6">
@@ -151,27 +196,229 @@
                                                                 id="basic_budget_name" name="basic_budget_name"
                                                                 value="">
                                                         </div>
+
                                                         <div class="col-lg-4">
                                                             <label class="form-label">Budget Work / Item / Page No.</label>
-                                                            <select class="form-select" id="budget_work_id"
-                                                                name="budget_work_id">
-                                                                <option value="">Select budget Work List</option>
-                                                                @foreach ($budget_work as $value)
-                                                                    <option value="{{ $value['id'] }}">
-                                                                        {{ $value['name'] }}</option>
-                                                                @endforeach
+
+                                                            <select class="form-select" id="basic_buget_work"
+                                                                name="basic_buget_work">
+                                                                <option value="">Select Work List</option>
+                                                                <option value="1/235">1/235
+                                                                </option>
+
+                                                                <option value="2/235" '2/235' )>2/235
+                                                                </option>
+                                                                <option value="3/235" '3/235' )>3/235
+                                                                </option>
+                                                                <option value="4/235" '4/235' )>4/235
+                                                                </option>
+                                                                <option value="6/235" '6/235' )>6/235
+                                                                </option>
+                                                                <option value="7/235" '7/235' )>7/235
+                                                                </option>
+                                                                <option value="8/236" '8/236' )>8/236
+                                                                </option>
+                                                                <option value="10/236" '10/236' )>10/236
+                                                                </option>
+                                                                <option value="11/236" '11/236' )>11/236
+                                                                </option>
+                                                                <option value="12/236" '12/236' )>12/236
+                                                                </option>
+                                                                <option value="13/236" '13/236' )>13/236
+                                                                </option>
+                                                                <option value="20/236" '20/236' )>20/236
+                                                                </option>
+                                                                <option value="22/236" '22/236' )>22/236
+                                                                </option>
+                                                                <option value="24/236" '24/236' )>24/236
+                                                                </option>
+                                                                <option value="27/236" '27/236' )>27/236
+                                                                </option>
+                                                                <option value="28/237" '28/237' )>28/237
+                                                                </option>
+                                                                <option value="32/237" '32/237' )>32/237
+                                                                </option>
+                                                                <option value="33/237" '33/237' )>33/237
+                                                                </option>
+                                                                <option value="35/237" '35/237' )>35/237
+                                                                </option>
+                                                                <option value="36/237" '36/237' )>36/237
+                                                                </option>
+                                                                <option value="38/237" '38/237' )>38/237
+                                                                </option>
+                                                                <option value="39/237" '39/237' )>39/237
+                                                                </option>
+                                                                <option value="40/237" '40/237' )>40/237
+                                                                </option>
+                                                                <option value="55/238" '55/238' )>55/238
+                                                                </option>
+                                                                <option value="61/238" '61/238' )>61/238
+                                                                </option>
+                                                                <option value="62/238" '62/238' )>62/238
+                                                                </option>
+                                                                <option value="63/238" '63/238' )>63/238
+                                                                </option>
+                                                                <option value="69/238" '69/238' )>69/238
+                                                                </option>
+                                                                <option value="70/239" '70/239' )>70/239
+                                                                </option>
+                                                                <option value="71/239" '71/239' )>71/239
+                                                                </option>
+                                                                <option value="72/239" '72/239' )>72/239
+                                                                </option>
+                                                                <option value="73/239" '73/239' )>73/239
+                                                                </option>
+                                                                <option value="74/239" '74/239' )>74/239
+                                                                </option>
+                                                                <option value="75/239" '75/239' )>75/239
+                                                                </option>
+                                                                <option value="76/239" '76/239' )>76/239
+                                                                </option>
+                                                                <option value="77/239" '77/239' )>77/239
+                                                                </option>
+                                                                <option value="78/239" '78/239' )>78/239
+                                                                </option>
+                                                                <option value="79/239" '79/239' )>79/239
+                                                                </option>
+                                                                <option value="81/240" '81/240' )>81/240
+                                                                </option>
+                                                                <option value="1/244" '1/244' )>1/244
+                                                                </option>
+                                                                <option value="7/248" '7/248' )>7/248
+                                                                </option>
+                                                                <option value="13/233" '13/233' )>13/233
+                                                                </option>
+                                                                <option value="/" '/' )>/
+                                                                </option>
+                                                                <option value="1/233" '1/233' )>1/233
+                                                                </option>
+                                                                <option value="17/233" '17/233' )>17/233
+                                                                </option>
+                                                                <option value="18/233" '18/233' )>18/233
+                                                                </option>
+                                                                <option value="19/233" '19/233' )>19/233
+                                                                </option>
+                                                                <option value="20/233" '20/233' )>20/233
+                                                                </option>
+                                                                <option value="/50" '/50' )>/50
+                                                                </option>
+                                                                <option value="2/0463" '2/0463' )>2/0463
+                                                                </option>
+                                                                <option value="7/463" '7/463' )>7/463
+                                                                </option>
+                                                                <option value="11/464" '11/464' )>11/464
+                                                                </option>
+                                                                <option value="13/447" '13/447' )>13/447
+                                                                </option>
+                                                                <option value="14/464" '14/464' )>14/464
+                                                                </option>
+                                                                <option value="15/464" '15/464' )>15/464
+                                                                </option>
+                                                                <option value="43/462" '43/462' )>43/462
+                                                                </option>
+                                                                <option value="48/462" '48/462' )>48/462
+                                                                </option>
+                                                                <option value="49/462" '49/462' )>49/462
+                                                                </option>
+                                                                <option value="50/462" '50/462' )>50/462
+                                                                </option>
+                                                                <option value="52/463" '52/463' )>52/463
+                                                                </option>
+                                                                <option value="53/463" '53/463' )>53/463
+                                                                </option>
+                                                                <option value="54/463" '54/463' )>54/463
+                                                                </option>
+                                                                <option value="55/463" '55/463' )>55/463
+                                                                </option>
+                                                                <option value="56/463" '56/463' )>56/463
+                                                                </option>
+                                                                <option value="57/463" '57/463' )>57/463
+                                                                </option>
+                                                                <option value="58/463" '58/463' )>58/463
+                                                                </option>
+                                                                <option value="6/425" '6/425' )>6/425
+                                                                </option>
+
+
+
                                                             </select>
                                                         </div>
+
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-5 col-lg-12">
                                                     <div class="row">
                                                         <div class="col-lg-6">
-                                                            <label class="form-label d-xl-block d-none">&nbsp;</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basic_budget_work_name" name="basic_budget_work_name"
-                                                                value="">
+                                                            <label class="form-label">Jogvay</label>
+                                                            <select class="form-select" id="basic_budget_work_name"
+                                                                name="basic_budget_work_name">
+                                                                <option value="">Select Jogvay List</option>
+                                                                <option value="50"50')>50
+                                                                </option>
+                                                                <option value="15"15')>15
+                                                                </option>
+                                                                <option value="100"100')>100
+                                                                </option>
+                                                                <option value="400"400')>400
+                                                                </option>
+                                                                <option value="10000"10000')>10000
+                                                                </option>
+                                                                <option value="0"0')>0
+                                                                </option>
+                                                                <option value="10480"10480')>10480
+                                                                </option>
+                                                                <option value="11500"11500')>11500
+                                                                </option>
+                                                                <option value="2500"2500')>2500
+                                                                </option>
+                                                                <option value="1200"1200')>1200
+                                                                </option>
+                                                                <option value="1"1')>1
+                                                                </option>
+                                                                <option value="35956"35956')>35956
+                                                                </option>
+                                                                <option value="1"1')>1
+                                                                </option>
+                                                                <option value="227033"227033')>227033
+                                                                </option>
+                                                                <option value="10"10')>10
+                                                                </option>
+                                                                <option value="2149"2149')>2149
+                                                                </option>
+                                                                <option value="2000"2000')>2000
+                                                                </option>
+                                                                <option value="6000"6000')>6000
+                                                                </option>
+                                                                <option value="2500"2500')>2500
+                                                                </option>
+                                                                <option value="3000"3000')>3000
+                                                                </option>
+                                                                <option value="10"10')>10
+                                                                </option>
+                                                                <option value="10500"10500')>10500
+                                                                </option>
+                                                                <option value="500"500')>500
+                                                                </option>
+                                                                <option value="17000"17000')>17000
+                                                                </option>
+                                                                <option value="32967"32967')>32967
+                                                                </option>
+                                                                <option value="22520"22520')>22520
+                                                                </option>
+                                                                <option value="14607"14607')>14607
+                                                                </option>
+                                                                <option value="21679"21679')>21679
+                                                                </option>
+                                                                <option value="21679"21679')>21679
+                                                                </option>
+                                                                <option value="22236"22236')>22236
+                                                                </option>
+                                                                <option value="22236"22236')>22236
+                                                                </option>
+
+
+                                                            </select>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <label class="form-label">Amount in Lakh</label>
@@ -320,28 +567,38 @@
                                                         </div>
 
                                                         <div class="col-lg-4">
-                                                            <label class="form-label d-xl-block d-none">&nbsp;</label>
-                                                            <input type="text" class="form-control"
-                                                                id="basic_sent_box_name" name="basic_sent_box_name"
-                                                                value="">
-                                                        </div>
-
-                                                        <div class="col-lg-4">
                                                             <label class="form-label">Date</label>
                                                             <input type="date" class="form-control"
-                                                                id="basic_sent_box_date" name="basic_sent_box_date"
-                                                                value="">
+                                                                id="basic_sent_box_date" name="basic_sent_box_date">
+                                                        </div>
+
+
+                                                        <div class="col-lg-4">
+                                                            <label class="form-label">Amount</label>
+                                                            <input type="text" class="form-control"
+                                                                id="basic_sent_box_name" name="basic_sent_box_name">
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6 col-lg-12">
                                                     <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <label class="form-label">Remarks</label>
+                                                        <div class="col-lg-6">
+
+                                                            <label class="form-label" id="letter">Letter No</label>
+
+                                                            <label class="form-label" id="remarks">Remarks</label>
+
                                                             <input type="text" class="form-control"
-                                                                id="basic_sent_box_remark" name="basic_sent_box_remark"
-                                                                placeholder="Enter Remarks..." value="">
+                                                                id="basic_sent_box_remark" name="basic_sent_box_remark">
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label class="form-label">Letter Upload</label>
+                                                            <div class="input-group">
+                                                                <input type="file" class="form-control w-100"
+                                                                    id="basic_sent_box_img" name="basic_sent_box_img">
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -356,26 +613,35 @@
                                             value="">
                                     </div>
 
-                                    <div class="col-lg-3 branch-scheme-select">
+                                    <div class="col-lg-2 branch-scheme-select">
                                         <label class="form-label">District(Division)</label>
                                         <select class="form-select" id="division_master_id" name="division_master_id">
-                                            <option value="">Select division name List</option>
+                                            <option value="">Select Division</option>
                                             @foreach ($division_name as $value)
                                                 <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-3 branch-scheme-select">
+                                    <div class="col-lg-2 branch-scheme-select">
                                         <label class="form-label">Subdivision</label>
                                         <select class="form-select" id="sub_division_master_id"
                                             name="sub_division_master_id">
-                                            <option value="">Select Sub division Name List</option>
+                                            <option value="">Select SubDivision</option>
                                             @foreach ($sub_division_name as $value)
                                                 <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col-lg-2 branch-scheme-select">
+                                        <label class="form-label">Proposal Circle</label>
+                                        <select class="form-select" id="basic_circle_name" name="basic_circle_name">
+                                            <option value="">Select Circle</option>
+                                            <option value="Dabhoi">Dabhoi</option>
+
+                                        </select>
+                                    </div>
+
 
                                     <div class="col-lg-6">
                                         <label class="form-label">Name of Road,Length & Width As Per F1-F2 with
@@ -392,6 +658,11 @@
                                         <input type="text" class="form-control" id="basic_category_of_road"
                                             name="basic_category_of_road"
                                             placeholder="Enter Category of Road(SH, MDR, ODR, VR) With Highway No.">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label class="form-label">Treatment Detail</label>
+                                        <textarea rows="9" class="form-control" id="ppd_treatment_detail" name="ppd_treatment_detail"
+                                            placeholder="Enter Treatment Detail"></textarea>
                                     </div>
 
                                     <div class="col-12 text-center">
@@ -611,6 +882,7 @@
             });
         });
 
+
         document.getElementById('work_type_id').addEventListener('change', function() {
             const workTypeSelect = document.getElementById('work_type_id');
             const typeOfWorkSelect = document.getElementById('types_of_work');
@@ -625,39 +897,716 @@
             if (selectedWorkTypeId === '1') {
                 // If "Work Type" is 1, add the options specific to that type
                 typeOfWorkSelect.innerHTML += `
-                <option value="Re-Surfacing">Re-Surfacing</option>
-                <option value="Strengthening">Strengthening</option>
-                <option value="3.75 to 5.5">3.75 to 5.5</option>
-                <option value="3.75 to 7">3.75 to 7</option>
-                <option value="3.75 to 10">3.75 to 10</option>
-                <option value="5.5 to 7">5.5 to 7</option>
-                <option value="5.5 to 10">5.5 to 10</option>
-                <option value="7 to 10">7 to 10</option>
-                <option value="10 to 4 lan">10 to 4 lan</option>
-                <option value="10 to 6 lan">10 to 6 lan</option>
-                <option value="4 lan to 6 lan">4 lan to 6 lan</option>`;
+            <option value="Re-Surfacing">Re-Surfacing</option>
+            <option value="Strengthening">Strengthening</option>
+            <option value="3.75 to 5.5">3.75 to 5.5</option>
+            <option value="3.75 to 7">3.75 to 7</option>
+            <option value="3.75 to 10">3.75 to 10</option>
+            <option value="5.5 to 7">5.5 to 7</option>
+            <option value="5.5 to 10">5.5 to 10</option>
+            <option value="7 to 10">7 to 10</option>
+            <option value="10 to 4 lan">10 to 4 lan</option>
+            <option value="10 to 6 lan">10 to 6 lan</option>
+            <option value="4 lan to 6 lan">4 lan to 6 lan</option>`;
             } else if (selectedWorkTypeId === '2') {
                 // If "Work Type" is 2, add different options
                 typeOfWorkSelect.innerHTML += `
-                <option value="New Buliding">New Buliding</option>
-                <option value="Addition Alternative">Addition Alternative</option>
-                <option value="Repairing Work">Repairing Work</option>`;
+            <option value="New Buliding">New Buliding</option>
+            <option value="Addition Alternative">Addition Alternative</option>
+            <option value="Repairing Work">Repairing Work</option>`;
             } else if (selectedWorkTypeId === '3') {
                 // If "Work Type" is 2, add different options
                 typeOfWorkSelect.innerHTML += `
-                <option value="Rob">Rob</option>
-                <option value="WaterBody Bridge">WaterBody Bridge</option>
-                <option value="Flyover">Flyover</option>`;
+            <option value="Rob">Rob</option>
+            <option value="WaterBody Bridge">WaterBody Bridge</option>
+            <option value="Flyover">Flyover</option>`;
             } else if (selectedWorkTypeId === '4') {
                 // If "Work Type" is 2, add different options
                 typeOfWorkSelect.innerHTML += `
-                <option value="Slab Drain">Slab Drain</option>
-                <option value="Box Calvate">Box Calvate</option>
-                <option value="Hp Drain">Hp Drain</option>`;
+            <option value="Slab Drain">Slab Drain</option>
+            <option value="Box Calvate">Box Calvate</option>
+            <option value="Hp Drain">Hp Drain</option>`;
             } else if (selectedWorkTypeId === '5') {
                 // If "Work Type" is 2, add different options
                 typeOfWorkSelect.innerHTML += `
-                <option value="Other">Other</option>`;
+            <option value="Other">Other</option>`;
+            }
+        });
+
+        $(document).ready(function() {
+            $('#sent_box_id').change(function() {
+                var selectedValue = $(this).val();
+                var label = $('#remarks');
+                var input = $('#basic_sent_box_remark');
+
+                if (selectedValue === '2') {
+                    label.text('Letter No');
+
+                } else {
+                    label.text('Remarks');
+
+                }
+            })
+        });
+
+        //name of schema
+        document.getElementById('basic_name_scheme').addEventListener('change', function() {
+            const workTypeSelect = document.getElementById('basic_name_scheme');
+            const typeOfWorkSelect = document.getElementById('basic_buget_work');
+
+            // Get the selected option's value
+            const selectedWorkTypeId = workTypeSelect.value;
+
+            // Clear the "Type Of Work" dropdown options
+            typeOfWorkSelect.innerHTML = '';
+
+            // Populate the "Type Of Work" dropdown based on the selected "Work Type"
+            if (selectedWorkTypeId === '1') {
+                // If "Work Type" is 1, add the options specific to that type
+                typeOfWorkSelect.innerHTML += `
+            <option value="1/235">1/235</option>`;
+            } else if (selectedWorkTypeId === '2') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2/235">2/235</option>
+            `;
+            } else if (selectedWorkTypeId === '3') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="3/235">3/235</option>`;
+            } else if (selectedWorkTypeId === '4') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="4/235">4/235</option>`;
+            } else if (selectedWorkTypeId === '5') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="6/235">6/235</option>`;
+            } else if (selectedWorkTypeId === '6') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="7/235">7/235</option>`;
+            } else if (selectedWorkTypeId === '7') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="8/236">8/236</option>`;
+            } else if (selectedWorkTypeId === '8') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="10/236">10/236</option>`;
+            } else if (selectedWorkTypeId === '9') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="11/236">11/236</option>`;
+            } else if (selectedWorkTypeId === '10') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="12/236">12/236</option>`;
+            } else if (selectedWorkTypeId === '11') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="13/236">13/236</option>`;
+            } else if (selectedWorkTypeId === '12') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="15/236">15/236</option>`;
+            } else if (selectedWorkTypeId === '13') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="16/236">16/236</option>`;
+            } else if (selectedWorkTypeId === '14') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="17/236">17/236</option>`;
+            } else if (selectedWorkTypeId === '15') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="20/236">20/236</option>`;
+            } else if (selectedWorkTypeId === '16') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="22/236">22/236</option>`;
+            } else if (selectedWorkTypeId === '17') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="24/236">24/236</option>`;
+            } else if (selectedWorkTypeId === '18') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="27/236">27/236</option>`;
+            } else if (selectedWorkTypeId === '19') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="28/237">28/237</option>`;
+            } else if (selectedWorkTypeId === '20') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="32/237">32/237</option>`;
+            } else if (selectedWorkTypeId === '21') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="33/237">33/237</option>`;
+            } else if (selectedWorkTypeId === '22') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="35/237">35/237</option>`;
+            } else if (selectedWorkTypeId === '23') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="36/237">36/237</option>`;
+            } else if (selectedWorkTypeId === '24') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="38/237">38/237</option>`;
+            } else if (selectedWorkTypeId === '25') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="39/237">39/237</option>`;
+            } else if (selectedWorkTypeId === '26') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="40/237">40/237</option>`;
+            } else if (selectedWorkTypeId === '27') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="42/237">42/237</option>`;
+            } else if (selectedWorkTypeId === '28') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="44/237">44/237</option>`;
+            } else if (selectedWorkTypeId === '29') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="No Option">No Option</option>`;
+            } else if (selectedWorkTypeId === '30') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="55/238">55/238</option>`;
+            } else if (selectedWorkTypeId === '31') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="61/238">61/238</option>`;
+            } else if (selectedWorkTypeId === '32') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="62/238">62/238</option>`;
+            } else if (selectedWorkTypeId === '33') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="63/238">63/238</option>`;
+            } else if (selectedWorkTypeId === '34') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="69/238">69/238</option>`;
+            } else if (selectedWorkTypeId === '35') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="70/239">70/239</option>`;
+            } else if (selectedWorkTypeId === '36') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="71/239">71/239</option>`;
+            } else if (selectedWorkTypeId === '37') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="72/239">72/239</option>`;
+            } else if (selectedWorkTypeId === '38') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value=" 73/239"> 73/239</option>`;
+            } else if (selectedWorkTypeId === '39') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="74/239">74/239</option>`;
+            } else if (selectedWorkTypeId === '40') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="75/239">75/239</option>`;
+            } else if (selectedWorkTypeId === '41') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="76/239">76/239</option>`;
+            } else if (selectedWorkTypeId === '42') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="77/239">77/239</option>`;
+            } else if (selectedWorkTypeId === '43') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="78/239">78/239</option>`;
+            } else if (selectedWorkTypeId === '44') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="79/239">79/239</option>`;
+            } else if (selectedWorkTypeId === '45') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="81/240">81/240</option>`;
+            } else if (selectedWorkTypeId === '46') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += ` <option value="No Option">No Option</option>
+           `;
+            } else if (selectedWorkTypeId === '47') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += ` <option value="No Option">No Option</option>
+        `;
+            } else if (selectedWorkTypeId === '48') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="No Option">No Option</option>`;
+            } else if (selectedWorkTypeId === '49') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1/244">1/244</option>`;
+            } else if (selectedWorkTypeId === '50') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="7/248">7/248</option>`;
+            } else if (selectedWorkTypeId === '51') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="/">/</option>`;
+            } else if (selectedWorkTypeId === '52') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="13/233">13/233</option>`;
+            } else if (selectedWorkTypeId === '53') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1/233">1/233</option>`;
+            } else if (selectedWorkTypeId === '54') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="17/233">17/233</option>`;
+            } else if (selectedWorkTypeId === '55') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="18/233">18/233</option>`;
+            } else if (selectedWorkTypeId === '56') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="19/233">19/233</option>`;
+            } else if (selectedWorkTypeId === '57') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="20/233">20/233</option>`;
+            } else if (selectedWorkTypeId === '58') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="/50">/50</option>`;
+            } else if (selectedWorkTypeId === '59') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2/0463">2/0463</option>`;
+            } else if (selectedWorkTypeId === '60') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="7/463">7/463</option>`;
+            } else if (selectedWorkTypeId === '61') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="11/464">11/464</option>`;
+            } else if (selectedWorkTypeId === '62') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="13/447">13/447</option>`;
+            } else if (selectedWorkTypeId === '63') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="14/464">14/464</option>`;
+            } else if (selectedWorkTypeId === '64') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="15/464">15/464</option>`;
+            } else if (selectedWorkTypeId === '65') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="42/462">42/462</option>`;
+            } else if (selectedWorkTypeId === '66') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="43/462">43/462</option>`;
+            } else if (selectedWorkTypeId === '67') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="48/462">48/462</option>`;
+            } else if (selectedWorkTypeId === '68') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="49/462">49/462</option>`;
+            } else if (selectedWorkTypeId === '69') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="50/462">50/462</option>`;
+            } else if (selectedWorkTypeId === '70') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="51/462">51/462</option>`;
+            } else if (selectedWorkTypeId === '71') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="52/463">52/463</option>`;
+            } else if (selectedWorkTypeId === '72') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="53/463">53/463</option>`;
+            } else if (selectedWorkTypeId === '73') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="54/463">54/463</option>`;
+            } else if (selectedWorkTypeId === '74') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="55/463">55/463</option>`;
+            } else if (selectedWorkTypeId === '75') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="56/463">56/463</option>`;
+            } else if (selectedWorkTypeId === '76') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="57/463">57/463</option>`;
+            } else if (selectedWorkTypeId === '77') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="58/463">58/463</option>`;
+            } else if (selectedWorkTypeId === '78') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="6/425">6/425</option>`;
+            } else if (selectedWorkTypeId === '79') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="72/239">72/239</option>`;
+            }
+        });
+
+
+        //jogvai auto filled
+        document.getElementById('basic_name_scheme').addEventListener('change', function() {
+            const workTypeSelect = document.getElementById('basic_name_scheme');
+            const typeOfWorkSelect = document.getElementById('basic_budget_work_name');
+
+            // Get the selected option's value
+            const selectedWorkTypeId = workTypeSelect.value;
+
+            // Clear the "Type Of Work" dropdown options
+            typeOfWorkSelect.innerHTML = '';
+
+            // Populate the "Type Of Work" dropdown based on the selected "Work Type"
+            if (selectedWorkTypeId === '1') {
+                // If "Work Type" is 1, add the options specific to that type
+                typeOfWorkSelect.innerHTML += `
+            <option value="50">50</option>`;
+            } else if (selectedWorkTypeId === '2') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="15">15</option>
+            `;
+            } else if (selectedWorkTypeId === '3') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="100">100</option>`;
+            } else if (selectedWorkTypeId === '4') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="400">400</option>`;
+            } else if (selectedWorkTypeId === '5') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="100">100</option>`;
+            } else if (selectedWorkTypeId === '6') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="10000">10000</option>`;
+            } else if (selectedWorkTypeId === '7') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '8') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '9') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '10') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="10480">10480</option>`;
+            } else if (selectedWorkTypeId === '11') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="11500">11500</option>`;
+            } else if (selectedWorkTypeId === '12') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2500">2500</option>`;
+            } else if (selectedWorkTypeId === '13') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1200">1200</option>`;
+            } else if (selectedWorkTypeId === '14') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1">1</option>`;
+            } else if (selectedWorkTypeId === '15') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="35956">35956</option>`;
+            } else if (selectedWorkTypeId === '16') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1">1</option>`;
+            } else if (selectedWorkTypeId === '17') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="227033">227033</option>`;
+            } else if (selectedWorkTypeId === '18') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="10">10</option>`;
+            } else if (selectedWorkTypeId === '19') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2149">2149</option>`;
+            } else if (selectedWorkTypeId === '20') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="100">100</option>`;
+            } else if (selectedWorkTypeId === '21') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2000">2000</option>`;
+            } else if (selectedWorkTypeId === '22') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="100">100</option>`;
+            } else if (selectedWorkTypeId === '23') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="6000">6000</option>`;
+            } else if (selectedWorkTypeId === '24') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2500">2500</option>`;
+            } else if (selectedWorkTypeId === '25') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="3000">3000</option>`;
+            } else if (selectedWorkTypeId === '26') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="10">10</option>`;
+            } else if (selectedWorkTypeId === '27') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="10500">10500</option>`;
+            } else if (selectedWorkTypeId === '28') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="500">500</option>`;
+            } else if (selectedWorkTypeId === '29') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '30') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="17000">17000</option>`;
+            } else if (selectedWorkTypeId === '31') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '32') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="500">500</option>`;
+            } else if (selectedWorkTypeId === '33') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2000">/2000</option>`;
+            } else if (selectedWorkTypeId === '34') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1">1</option>`;
+            } else if (selectedWorkTypeId === '35') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1">1</option>`;
+            } else if (selectedWorkTypeId === '36') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="14607">14607</option>`;
+            } else if (selectedWorkTypeId === '37') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="50">50</option>`;
+            } else if (selectedWorkTypeId === '38') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2000">2000</option>`;
+            } else if (selectedWorkTypeId === '39') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="14607.6923076923">14607.6923076923</option>`;
+            } else if (selectedWorkTypeId === '40') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="50">50</option>`;
+            } else if (selectedWorkTypeId === '41') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2000">2000</option>`;
+            } else if (selectedWorkTypeId === '42') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="21679">21679</option>`;
+            } else if (selectedWorkTypeId === '43') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="31610">31610</option>`;
+            } else if (selectedWorkTypeId === '44') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="22236">22236</option>`;
+            } else if (selectedWorkTypeId === '45') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="6500">6500</option>`;
+            } else if (selectedWorkTypeId === '46') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += ` <option value=" 100">  100</option>
+           `;
+            } else if (selectedWorkTypeId === '47') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += ` <option value="10">10</option>
+        `;
+            } else if (selectedWorkTypeId === '48') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '49') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="21000">21000</option>`;
+            } else if (selectedWorkTypeId === '50') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="600">600</option>`;
+            } else if (selectedWorkTypeId === '51') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '52') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="10">10</option>`;
+            } else if (selectedWorkTypeId === '53') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="5381">5381</option>`;
+            } else if (selectedWorkTypeId === '54') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="16989">16989</option>`;
+            } else if (selectedWorkTypeId === '55') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2500">2500</option>`;
+            } else if (selectedWorkTypeId === '56') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="7500">7500</option>`;
+            } else if (selectedWorkTypeId === '57') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="6120">6120</option>`;
+            } else if (selectedWorkTypeId === '58') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="62176">62176</option>`;
+            } else if (selectedWorkTypeId === '59') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="30214">30214</option>`;
+            } else if (selectedWorkTypeId === '60') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2500">2500</option>`;
+            } else if (selectedWorkTypeId === '61') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2000">2000</option>`;
+            } else if (selectedWorkTypeId === '62') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="12500">12500</option>`;
+            } else if (selectedWorkTypeId === '63') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="3000">3000</option>`;
+            } else if (selectedWorkTypeId === '64') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1000">1000</option>`;
+            } else if (selectedWorkTypeId === '65') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="8000">8000</option>`;
+            } else if (selectedWorkTypeId === '66') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2500">2500</option>`;
+            } else if (selectedWorkTypeId === '67') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="4000">4000</option>`;
+            } else if (selectedWorkTypeId === '68') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '69') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1000">1000</option>`;
+            } else if (selectedWorkTypeId === '70') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="0">0</option>`;
+            } else if (selectedWorkTypeId === '71') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1000">1000</option>`;
+            } else if (selectedWorkTypeId === '72') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="5000">5000</option>`;
+            } else if (selectedWorkTypeId === '73') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="1000">1000</option>`;
+            } else if (selectedWorkTypeId === '74') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="500">500</option>`;
+            } else if (selectedWorkTypeId === '75') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="14000">14000</option>`;
+            } else if (selectedWorkTypeId === '76') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="28900">28900</option>`;
+            } else if (selectedWorkTypeId === '77') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="43500">43500</option>`;
+            } else if (selectedWorkTypeId === '78') {
+                // If "Work Type" is 2, add different options
+                typeOfWorkSelect.innerHTML += `
+            <option value="2000">2000</option>`;
             }
         });
     </script>

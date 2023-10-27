@@ -22,8 +22,8 @@
                                 @csrf
                                 <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                 <input type="hidden" name="step" value="dlp">
-                                <div id="contect">
 
+                                <div id="contect">
                                     <div class="row">
                                         <div>
                                             @foreach (explode(',', $project_master->dlp_work_completion_date) as $key => $data)
@@ -68,7 +68,7 @@
                                             </select>
                                         </div>
 
-                                        
+
                                         <div class="col-lg-2">
                                             <label class="form-label">DLP Amount </label>
                                             <input type="text" class="form-control" id="dlp_amount" name="dlp_amount[]"
@@ -87,9 +87,11 @@
 
                                         <div class="col-12 text-center">
                                             <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
-                                                name="sub_client">Save</button>
+                                                name="sub_client">Save
+                                            </button>
                                         </div>
                                     </div>
+                                </div>
                             </form>
 
                         </div>

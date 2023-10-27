@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('district_id')->references('id')->on('districts');
             $table->unsignedBigInteger('taluka_id')->nullable();
             $table->foreign('taluka_id')->references('id')->on('talukas');
-            
+
             $table->unsignedBigInteger('work_type_id')->nullable();
             $table->foreign('work_type_id')->references('id')->on('work_types');
             // $table->unsignedBigInteger('types_of_work_id')->nullable();
@@ -33,8 +33,9 @@ return new class extends Migration
             $table->unsignedBigInteger('budget_id')->nullable();
             $table->foreign('budget_id')->references('id')->on('budgets');
             $table->text('basic_budget_name')->nullable();
-            $table->unsignedBigInteger('budget_work_id')->nullable();
-            $table->foreign('budget_work_id')->references('id')->on('budget_works');
+            // $table->unsignedBigInteger('budget_work_id')->nullable();
+            // $table->foreign('budget_work_id')->references('id')->on('budget_works');
+            $table->text('basic_buget_work')->nullable();
             $table->text('basic_budget_work_name')->nullable();
             $table->text('basic_amount')->nullable();
             $table->text('basic_mp_mla')->nullable();
@@ -67,7 +68,7 @@ return new class extends Migration
             $table->text('basic_category_of_road')->nullable();
             $table->text('basic_sent_box_img')->nullable();
 
-            
+
 
             //proposal submitted details
             $table->text('initiated_name')->nullable();
@@ -96,8 +97,10 @@ return new class extends Migration
             $table->text('bes_submit_letter')->nullable();
             $table->date('bes_submit_office_date')->nullable();
             $table->text('bes_office_letter_upload')->nullable();
-            $table->unsignedBigInteger('division_id')->nullable();
-            $table->foreign('division_id')->references('id')->on('division_masters');
+            // $table->unsignedBigInteger('division_id')->nullable();
+            // $table->foreign('division_id')->references('id')->on('division_masters');
+            $table->text('division_id')->nullable();
+
             $table->unsignedBigInteger('sub_division_id')->nullable();
             $table->foreign('sub_division_id')->references('id')->on('sub_division_masters');
             $table->text('bes_follow_up_date')->nullable();
@@ -216,8 +219,15 @@ return new class extends Migration
             $table->text('ed_paid_amount')->nullable();
             $table->text('ed_expenditure_amount')->nullable();
             $table->text('ed_expenditure')->nullable();
-            $table->text('ed_work')->nullable();
             $table->text('ed_amount_for')->nullable();
+            $table->text('ed_work')->nullable();
+            $table->text('expended_details')->nullable();
+            $table->text('ed_dtp_amount')->nullable();
+            $table->text('ed_qulity_cost')->nullable();
+            $table->text('ed_b')->nullable();
+            $table->text('ed_details')->nullable();
+            $table->text('ed_fincial')->nullable();
+     
 
             //excess details
             $table->text('ed_division_letter_no')->nullable();
@@ -251,7 +261,7 @@ return new class extends Migration
             $table->text('acctual_yes_no')->default('No');
             $table->date('ws_sd_completion')->nullable();
             $table->date('ws_sd_release')->nullable();
- 
+
 
             //fmg
             $table->date('fmg_completion_date')->nullable();

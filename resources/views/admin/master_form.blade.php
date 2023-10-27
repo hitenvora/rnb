@@ -134,7 +134,7 @@
                                 </li>
                             @endif
                             <li class="box-card">
-                                <a href="{{ route('project_master') }}">
+                                <a href="{{ route('curent_reaparing_master') }}">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28"
@@ -146,9 +146,24 @@
                                             </svg>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h5 class="m-0">Project Master</h5>
+                                            <h5 class="m-0">Current Repairs</h5>
                                         </div>
-
+                                        <li class="box-card">
+                                            <a href="{{ route('project_master') }}">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="28"
+                                                            viewBox="0 0 29 28" fill="none">
+                                                            <path
+                                                                d="M18.24 9.09999H9.83997H12.1309C12.941 9.09999 13.7179 9.43713 14.2908 10.0372C14.8636 10.6374 15.1854 11.4513 15.1854 12.3C15.1854 13.1487 14.8636 13.9626 14.2908 14.5627C13.7179 15.1628 12.941 15.5 12.1309 15.5H9.83997L14.4218 20.3M9.83997 12.3H18.24M25.24 14C25.24 20.1856 20.2256 25.2 14.04 25.2C7.85438 25.2 2.83997 20.1856 2.83997 14C2.83997 7.8144 7.85438 2.79999 14.04 2.79999C20.2256 2.79999 25.24 7.8144 25.24 14Z"
+                                                                stroke="white" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="m-0">Project Master</h5>
+                                                    </div>
+            
 
                                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                             viewBox="0 0 29 29" fill="none">

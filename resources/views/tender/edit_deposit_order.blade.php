@@ -268,8 +268,9 @@
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Completion Date</label>
-                                        <input type="date" class="form-control" id="do_completion_date"
-                                            name="do_completion_date" value="{{ $project_master->do_completion_date }}">
+                                        <input type="text" class="form-control" id="do_completion_date"
+                                            name="do_completion_date" value="{{ $project_master->do_completion_date }}"
+                                            readonly>
                                     </div>
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
@@ -329,5 +330,38 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const doWorkOrderDate = document.getElementById('do_work_order_date');
+        const doTimeLineMonth = document.getElementById('do_time_line_month');
+        const doCompletionDate = document.getElementById('do_completion_date');
+
+        // Function to update do_completion_date based on workOrderDate and timeLineMonth
+        function updateCompletionDate() {
+            const workOrderDate = new Date(doWorkOrderDate.value);
+            const timeLineMonth = parseInt(doTimeLineMonth.value);
+            
+            if (!isNaN(timeLineMonth)) {
+                const completionDate = new Date(workOrderDate);
+                completionDate.setMonth(workOrderDate.getMonth() + timeLineMonth);
+                const year = completionDate.getFullYear();
+                let month = completionDate.getMonth() + 1;
+                if (month < 10) {
+                    month = '0' + month;
+                }
+                const day = completionDate.getDate();
+                doCompletionDate.value = `${day}-${month}-${year}`;
+            }
+        }
+
+        // Call updateCompletionDate function when do_time_line_month changes
+        doTimeLineMonth.addEventListener('input', updateCompletionDate);
+
+        // Call updateCompletionDate function when do_work_order_date changes
+        doWorkOrderDate.addEventListener('input', updateCompletionDate);
+
+        // Initial update
+        updateCompletionDate();
+    });
     </script>
 @endsection

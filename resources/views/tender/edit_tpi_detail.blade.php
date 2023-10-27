@@ -288,7 +288,8 @@
                                                                         $tpi_tender_cost = explode(',', $project_master->tpi_tender_cost);
                                                                         $tpi_latter_no_2 = explode(',', $project_master->tpi_latter_no_2);
                                                                         $tpi_above_tender_form = explode(',', $project_master->tpi_above_tender_form);
-
+                                                                        $selectedAbove = isset($tpi_above_tender_form[$key]) && $tpi_above_tender_form[$key] == 'Above' ? 'selected' : '';
+                                                                        $selectedBelow = isset($tpi_above_tender_form[$key]) && $tpi_above_tender_form[$key] == 'Below' ? 'selected' : '';
                                                                     @endphp
                                                                     <tr>
                                                                         <td>
@@ -316,10 +317,16 @@
                                                                         <td>
                                                                             <select class="form-select"
                                                                                 id="tpi_above_tender_form[]"
-                                                                                name="tpi_above_tender_form[]">
-                                                                                <option selected value="Above">Above
+                                                                                name="tpi_above_tender_form[]"
+                                                                                style="width: 100%">
+                                                                                <option value="">Select Option
                                                                                 </option>
-                                                                                <option value="Below">Below</option>
+                                                                                <option value="Above"
+                                                                                    {{ $selectedAbove }}>Above
+                                                                                </option>
+                                                                                <option value="Below"
+                                                                                    {{ $selectedBelow }}>Below
+                                                                                </option>
                                                                             </select>
                                                                         </td>
                                                                     </tr>
@@ -491,7 +498,7 @@
                             <input type="hidden" name="add_tpi_name_of_tender_id" id="">
 
                             <div class="col-lg-12">
-                                <label class="form-label">Name Of Project</label>
+                                <label class="form-label">Name Of Tender</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     value="XYZ">
                             </div>

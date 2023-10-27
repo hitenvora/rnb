@@ -82,31 +82,20 @@
                                         </div>
                                         <div class="col-xl-3  col-lg-6">
                                             <div class="row">
-                                                <div class="col-lg-6">
-                                                    <label class="form-label">Division</label>
+                                                <div class="col-lg-12">
+                                                    <label class="form-label">Submitted_To</label>
                                                     <select class="form-select" id="division_id " name="division_id">
-                                                        @foreach ($division_name as $value)
-                                                            <option value="{{ $value['id'] }}"
-                                                                {{ $project_master->division_id == $value['id'] ? 'selected' : '' }}>
-                                                                {{ $value['name'] }}
-                                                            </option>
-                                                        @endforeach
+                                                        <option value="Government"@selected($project_master->division_id == 'Government')>Government
+                                                        </option>
+                                                        <option value="Circle"@selected($project_master->division_id == 'Circle')>Circle</option>
+                                                        <option value="Divison"@selected($project_master->division_id == 'Divison')>Divison</option>
+
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-6">
-                                                    <label class="form-label">Subdivision</label>
-                                                    <select class="form-select" id="sub_division_id" name="sub_division_id">
-                                                        @foreach ($sub_division_name as $value)
-                                                            <option value="{{ $value['id'] }}"
-                                                                {{ $project_master->sub_division_id == $value['id'] ? 'selected' : '' }}>
-                                                                {{ $value['name'] }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+
                                             </div>
                                         </div>
-                                        <div class="col-xl-12" id="contect">
+                                        <div class="col-xl-12">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="expen_table dtp_table table-responsive">
@@ -116,7 +105,7 @@
                                                                 <th>Status</th>
                                                                 <th>Remark</th>
                                                             </thead>
-                                                            <tbody>
+                                                            <tbody id="contect">
                                                                 @foreach (explode(',', $project_master->bes_follow_up_date) as $key => $date)
                                                                     @php
                                                                         $bes_status = explode(',', $project_master->bes_status);
@@ -124,8 +113,7 @@
                                                                     @endphp
                                                                     <tr>
                                                                         <td>
-                                                                            <input type="date"
-                                                                                id="bes_follow_up_date[]"
+                                                                            <input type="date" id="bes_follow_up_date[]"
                                                                                 name="bes_follow_up_date[]"
                                                                                 class="form-control"
                                                                                 value="{{ $date }}"
@@ -247,40 +235,35 @@
                 addContactButton.addEventListener('click', function() {
                     contactCount++; // Increment contact count
                     // Create a new input field (you can customize this as needed)
-                    const newContactField = document.createElement('p');
+                    const newContactField = document.createElement('tr');
                     newContactField.innerHTML = `
-                    <div class="col-xl-12">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="expen_table dtp_table table-responsive">
-                                                        <table class="exp_detail table-bordered">
-                                                            <tbody>
+                    <td>
+                                                                            <input type="date"
+                                                                                id="bes_follow_up_date[]"
+                                                                                name="bes_follow_up_date[]"
+                                                                                class="form-control"
+                                                                                value=""
+                                                                                placeholder="Enter Date">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="bes_status"
+                                                                                name="bes_status[]" class="form-control"
+                                                                                placeholder="Enter Remark"
+                                                                        
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" id="bes_remark"
+                                                                                name="bes_remark[]" class="form-control"
+                                                                                placeholder="Enter Remark"
+                                                                                >
+                                                                        </td>
+                                                             
 
-                                                                <tr>
-                                                                    <td>
-                                                                        <input type="date" id="bes_follow_up_date"
-                                                                            name="bes_follow_up_date[]"  class="form-control"
-                                                                            
-                                                                            placeholder="Enter Date">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="bes_status[]"
-                                                                            name="bes_status[]" class="form-control"
-                                                                            placeholder="Enter Status">
-                                                                    </td>
-                                                                    <td>
-                                                                        <input type="text" id="bes_remark[]"
-                                                                            name="bes_remark[]" class="form-control"
-                                                                            placeholder="Enter Remark">
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                         
+                                                  
+                                               
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
 
                     // Add an event listener to the "Remove" button
                     const removeButton = newContactField.querySelector('.remove-contact');

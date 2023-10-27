@@ -21,14 +21,19 @@
                                     <div class="table-responsive expen_table">
                                         <table class="exp_detail table-bordered">
                                             <thead>
-                                                <th>Original Work Expense On Date</th>
-                                                <th>Estimated Cost</th>
+                                                <th>Dtp Amount</th>
+                                                <th>AA Amount</th>
+                                                <th>Estimated Amount</th>
                                                 <th>Tender Cost</th>
-                                                <th>Project Cost(AA)</th>
-                                                <th>Paid Amount</th>
-                                                <th>Expenditure Amount</th>
-                                                <th>9% with CC Expenditure</th>
-                                                <th>Work(%)</th>
+                                                <th>Quality Contracts Cost</th>
+                                                <th>Relavted Tender Cost</th>
+                                                <th>B</th>
+                                                <th>Details</th>
+                                                <th>Expended Date</th>
+                                                <th> Expenditure Amount Without</th>
+                                                <th>Expenditure Amount 9% With</th>
+                                                <th>Work Phisical(%)</th>
+                                                <th>Work Fincial(%)</th>
                                                 <th>Amount For</th>
                                             </thead>
                                             <tbody id="contect">
@@ -43,6 +48,12 @@
                                                             $ed_tender_cost = explode(',', $project_master->ed_tender_cost);
                                                             $ed_estimated_cost = explode(',', $project_master->ed_estimated_cost);
                                                             $ed_project_cost = explode(',', $project_master->ed_project_cost);
+                                                            $ed_dtp_amount = explode(',', $project_master->ed_dtp_amount);
+                                                            $ed_qulity_cost = explode(',', $project_master->ed_qulity_cost);
+                                                            $ed_b = explode(',', $project_master->ed_b);
+                                                            $ed_details = explode(',', $project_master->ed_details);
+                                                            $expended_details = explode(',', $project_master->expended_details);
+                                                            $ed_fincial = explode(',', $project_master->ed_fincial);
 
                                                             $ed_paid_amount = explode(',', $project_master->ed_paid_amount);
                                                             $ed_expenditure_amount = explode(',', $project_master->ed_expenditure_amount);
@@ -52,9 +63,15 @@
 
                                                         @endphp
                                                         <td>
-                                                            <input type="date" id="ed_origin_work"
-                                                                name="ed_origin_work[]" value="{{ $data }}"
-                                                                class="form-control" placeholder="enter date">
+                                                            <input type="text" id="ed_dtp_amount" name="ed_dtp_amount[]"
+                                                                class="form-control" placeholder="Enter Amount"
+                                                                value="{{ @$ed_dtp_amount[$key] }}">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                name="ed_project_cost[]"
+                                                                value="{{ @$ed_project_cost[$key] }}" id="ed_project_cost"
+                                                                placeholder="Enter Project Cost">
                                                         </td>
                                                         <td>
                                                             <input type="text" id="ed_estimated_cost"
@@ -68,16 +85,33 @@
                                                                 id="ed_tender_cost" placeholder="Enter Tender Cost">
                                                         </td>
                                                         <td>
-                                                            <input type="text" class="form-control"
-                                                                name="ed_project_cost[]"
-                                                                value="{{ @$ed_project_cost[$key] }}" id="ed_project_cost"
-                                                                placeholder="Enter Project Cost">
+                                                            <input type="text" id="ed_qulity_cost"
+                                                                name="ed_qulity_cost[]" class="form-control"
+                                                                value="{{ @$ed_qulity_cost[$key] }}"
+                                                                placeholder="Enter Estimated Cost">
                                                         </td>
 
                                                         <td>
-                                                            <input type="text" class="form-control" id="ed_paid_amount"
-                                                                value="{{ @$ed_paid_amount[$key] }}" name="ed_paid_amount[]"
-                                                                placeholder="Enter Paid Amount">
+                                                            <input type="text" id="ed_origin_work"
+                                                                name="ed_origin_work[]" value="{{ $data }}"
+                                                                class="form-control"
+                                                                placeholder="Enter Relavent Tender Cost">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="ed_b"
+                                                                value="{{ @$ed_b[$key] }}" name="ed_b[]"
+                                                                placeholder="Enter B">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" class="form-control" id="ed_details"
+                                                                value="{{ @$ed_details[$key] }}" name="ed_details[]"
+                                                                placeholder="Enter Detils">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="expended_details"
+                                                                name="expended_details[]" placeholder="Enter Expende Date"
+                                                                value="{{ @$expended_details[$key] }}">
                                                         </td>
                                                         <td>
                                                             <input type="number" class="form-control"
@@ -88,13 +122,19 @@
                                                         <!-- show total + 9 % value -->
                                                         <td>
                                                             <input type="text" class="form-control"
-                                                                name="ed_expenditure[]" value="{{ @$ed_expenditure[$key] }}"
-                                                                id="ed_expenditure" readonly
-                                                                placeholder="This Value is Automatically">
+                                                                name="ed_expenditure[]"
+                                                                value="{{ @$ed_expenditure[$key] }}" id="ed_expenditure"
+                                                                readonly placeholder="This Value is Automatically">
                                                         </td>
                                                         <td>
                                                             <input type="text" class="form-control" name="ed_work[]"
-                                                                value="{{ @$ed_work[$key] }}" id="ed_work">
+                                                                value="{{ @$ed_work[$key] }}" id="ed_work"
+                                                                placeholder="Enter Physical (%)">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="ed_fincial[]"
+                                                                value="{{ @$ed_fincial[$key] }}" id="ed_fincial"
+                                                                placeholder="Enter Fincial(%)">
                                                         </td>
                                                         <td>
                                                             <select class="form-select" name="ed_amount_for[]"
@@ -114,9 +154,9 @@
                                                                 <option value="Financial Progress"
                                                                     {{ $ed_amount_for[$key] == 'Financial Progress' ? 'selected' : '' }}>
                                                                     Financial Progress</option>
-                                                                <option value="Figical Progress"
-                                                                    {{ $ed_amount_for[$key] == 'Figical Progress' ? 'selected' : '' }}>
-                                                                    Figical Progress</option>
+                                                                <option value="Physical  Progress"
+                                                                    {{ $ed_amount_for[$key] == 'Physical  Progress' ? 'selected' : '' }}>
+                                                                    Physical Progress</option>
                                                                 <option value="Tpi"
                                                                     {{ $ed_amount_for[$key] == 'Tpi' ? 'selected' : '' }}>
                                                                     Tpi</option>
@@ -152,58 +192,86 @@
         </div>
         </div>
         <div class="total">
-            <ul class="total_detail">
-                <li>
-                    <div class="d-flex">
-                        <h6>Utility</h6>
-                        <span id="totalUtility" data-category="Utility">0</span>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <ul class="total_detail">
+                            <li>
+                                <div class="d-flex">
+                                    <h6>TS (1%)</h6>
+                                    <span id="totalUtility" data-category="Utility">0</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Tpi+Test</h6>
+                                    <span id="totalUtility" data-category="Utility">0</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Percentage %</h6>
+                                    <span id="totalUtility" data-category="Utility">0</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-                <li>
-                    <div class="d-flex">
-                        <h6>Testing</h6>
-                        <span id="totalTesting" data-category="Testing">0</span>
-                    </div>
-                </li>
+                    <div class="col">
+                        <ul class="total_detail">
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Utility</h6>
+                                    <span id="totalUtility" data-category="Utility">0</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Testing</h6>
+                                    <span id="totalTesting" data-category="Testing">0</span>
+                                </div>
+                            </li>
 
-                <li>
-                    <div class="d-flex">
-                        <h6>Bill</h6>
-                        <span id="totalBill" data-category="Bill">0</span>
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Bill</h6>
+                                    <span id="totalBill" data-category="Bill">0</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Other</h6>
+                                    <span id="totalOther" data-category="Other">0</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Financial Progress</h6>
+                                    <span id="totalFinancial" data-category="Financial Progress">0</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Physical Progress</h6>
+                                    <span id="totalPhysical " data-category="Physical  Progress">0</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="d-flex">
+                                    <h6>Tpi</h6>
+                                    <span id="totalTpi" data-category="Tpi">0</span>
+                                </div>
+                            </li>
+                            <li class="total_field">
+                                <div class="d-flex">
+                                    <h6>Total</h6>
+                                    <span id="grandTotal" data-category="grandTotal">0</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-                <li>
-                    <div class="d-flex">
-                        <h6>Other</h6>
-                        <span id="totalOther" data-category="Other">0</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="d-flex">
-                        <h6>Financial Progress</h6>
-                        <span id="totalFinancial" data-category="Financial Progress">0</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="d-flex">
-                        <h6>Figical Progress</h6>
-                        <span id="totalFigical" data-category="Figical Progress">0</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="d-flex">
-                        <h6>Tpi</h6>
-                        <span id="totalTpi" data-category="Tpi">0</span>
-                    </div>
-                </li>
-                <li class="total_field">
-                    <div class="d-flex">
-                        <h6>Total</h6>
-                        <span id="grandTotal" data-category="grandTotal">0</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                </div>
+            </div>
+
 
         </div>
     </body>
@@ -270,53 +338,105 @@
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('tr');
                 newContactField.innerHTML = ` <td>
-                                                        <input type="date" id="ed_origin_work[]" name="ed_origin_work[]"
-                                                            class="form-control">
-                                                </td>
-                                                <td>
-                                                            <input type="text" id="ed_estimated_cost"
-                                                                name="ed_estimated_cost[]" 
-                                                                class="form-control">
+                                                            <input type="text" id="ed_dtp_amount" name="ed_dtp_amount[]"
+                                                               class="form-control"
+                                                                placeholder="Enter Amount"
+                                             >
                                                         </td>
-                                                <td>
-                                                    <input type="text" class="form-control" 
-                                                        name="ed_tender_cost[]" id="ed_tender_cost[]">
-                                                </td>
-                                                <td>
+                                                        <td>
                                                             <input type="text" class="form-control"
-                                                                name="ed_project_cost[]"id="ed_project_cost">
+                                                                name="ed_project_cost[]"
+                                                               id="ed_project_cost"
+                                                                placeholder="Enter Project Cost">
                                                         </td>
-                                                <td>
-                                                    <input type="text" class="form-control" 
-                                                        id="ed_paid_amount[]" name="ed_paid_amount[]">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control"
-                                             name="ed_expenditure_amount[]" id="amount"
-                                                        placeholder="Enter Expenditure Amount">
-                                                    </td>
-                                                    <!-- show total + 9 % value -->
-                                                    <td>
-                                                        <input type="text" class="form-control"
-                                                            name="ed_expenditure[]"
-                                                            id="with_amount" readonly
-                                                            placeholder="This Value is Automatically">
-                                                    </td>
-                                                <td>
-                                                    <input type="text" class="form-control"
-                                                        name="ed_work[]" id="ed_work[]">
-                                                </td>
-                                                <td>
-                                                    <select class="form-select" name="ed_amount_for[]" id="ed_amount_for[]">
-                                                        <option value="Utility">Utility</option>
-                                                        <option value="Testing">Testing </option>
-                                                        <option value="Bill">Bill</option>
-                                                        <option value="Other">Other </option>
-                                                        <option value="Financial Progress">Financial Progress </option>
-                                                        <option value="Figical Progress">Figical Progress </option>
-                                                        <option value="Tpi">Tpi </option>
-                                                    </select>
-                                                </td>
+                                                        <td>
+                                                            <input type="text" id="ed_estimated_cost"
+                                                                name="ed_estimated_cost[]"
+                                                                 class="form-control"
+                                                                placeholder="Enter Estimated Cost">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                name="ed_tender_cost[]"
+                                                                id="ed_tender_cost" placeholder="Enter Tender Cost">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="ed_qulity_cost"
+                                                                name="ed_qulity_cost[]" class="form-control" 
+                                                                 placeholder="Enter Estimated Cost">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" id="ed_origin_work"
+                                                                name="ed_origin_work[]" 
+                                                                class="form-control"
+                                                                placeholder="Enter Relavent Tender Cost">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="ed_b"
+                                                               name="ed_b[]"
+                                                                placeholder="Enter B">
+                                                        </td>
+
+                                                        <td>
+                                                            <input type="text" class="form-control" id="ed_details"
+                                                               name="ed_details[]"
+                                                                placeholder="Enter Detils">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="expended_details"
+                                                            
+                                                                name="expended_details[]" placeholder="Enter Expende Date">
+                                                        </td>
+                                                        <td>
+                                                            <input type="number" class="form-control"
+                                                                
+                                                                name="ed_expenditure_amount[]" id="ed_expenditure_amount"
+                                                                placeholder="Enter Expenditure Amount">
+                                                        </td>
+                                                        <!-- show total + 9 % value -->
+                                                        <td>
+                                                            <input type="text" class="form-control"
+                                                                name="ed_expenditure[]"
+                                                               id="ed_expenditure"
+                                                                readonly placeholder="This Value is Automatically">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="ed_work[]"
+                                                                id="ed_work"
+                                                                placeholder="Enter Physical (%)">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" class="form-control" name="ed_fincial[]"
+                                                                id="ed_fincial"
+                                                                placeholder="Enter Fincial(%)">
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-select" name="ed_amount_for[]"
+                                                                id="ed_amount_for">
+                                                                <option value="Utility"
+                                                                   >
+                                                                    Utility</option>
+                                                                <option value="Testing"
+                                                                   >
+                                                                    Testing</option>
+                                                                <option value="Bill"
+                                                                  >
+                                                                    Bill</option>
+                                                                <option value="Other"
+                                                                   >
+                                                                    Other</option>
+                                                                <option value="Financial Progress"
+                                                                     >
+                                                                    Financial Progress</option>
+                                                                <option value="Physical  Progress"
+                                                                    >
+                                                                    Physical Progress</option>
+                                                                <option value="Tpi"
+                                                                     >
+                                                                    Tpi</option>
+                                                            </select>
+                                                        </td>
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
@@ -381,13 +501,13 @@
                 return total;
             }
 
-            // function updateTotals() {
-            //     for (let i = 0; i < totalElements.length; i++) {
-            //         const category = totalElements[i].getAttribute('data-category');
-            //         const total = updateTotal(category);
-            //         totalElements[i].textContent = total.toFixed(2);
-            //     }
-            // }
+            function updateTotals() {
+                for (let i = 0; i < totalElements.length; i++) {
+                    const category = totalElements[i].getAttribute('data-category');
+                    const total = updateTotal(category);
+                    totalElements[i].textContent = total.toFixed(2);
+                }
+            }
 
             amountInputs.forEach(function(amountInput, index) {
                 const resultInput = resultInputs[index];
@@ -424,7 +544,7 @@
                 let totalBill = 0;
                 let totalOther = 0;
                 let totalFinancialProgress = 0;
-                let totalFigicalProgress = 0;
+                let totalPhysicalProgress = 0;
                 let totalTpi = 0;
 
                 // Loop through the inputs and calculate the total for each category
@@ -443,8 +563,8 @@
                         totalOther += amount;
                     } else if (selectedCategory === 'Financial Progress') {
                         totalFinancialProgress += amount;
-                    } else if (selectedCategory === 'Figical Progress') {
-                        totalFigicalProgress += amount;
+                    } else if (selectedCategory === 'Physical  Progress') {
+                        totalPhysicalProgress += amount;
                     } else if (selectedCategory === 'Tpi') {
                         totalTpi += amount;
                     }
@@ -452,7 +572,7 @@
 
                 // Calculate the grand total
                 const grandTotal = totalUtility + totalTesting + totalBill + totalOther + totalFinancialProgress +
-                    totalFigicalProgress + totalTpi;
+                    totalPhysicalProgress + totalTpi;
 
                 // Display the total for each category
                 totalElements[0].textContent = totalUtility;
@@ -460,7 +580,7 @@
                 totalElements[2].textContent = totalBill;
                 totalElements[3].textContent = totalOther;
                 totalElements[4].textContent = totalFinancialProgress;
-                totalElements[5].textContent = totalFigicalProgress;
+                totalElements[5].textContent = totalPhysicalProgress;
                 totalElements[6].textContent = totalTpi;
                 totalElements[7].textContent = grandTotal;
             }

@@ -19,12 +19,13 @@
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <input type="hidden" name="step" value="proposal">
-                                    
+
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Initiated By MP/MLA Name</label>
                                         {{-- @foreach ($proposal_show as $proposal_show1) --}}
                                         <input type="text" class="form-control" id="initiated_name" name="initiated_name"
-                                            placeholder="Enter Initiated By MP/MLA Name" value="{{ $project_master->initiated_name }}">
+                                            placeholder="Enter Initiated By MP/MLA Name"
+                                            value="{{ $project_master->initiated_name }}">
                                         {{-- @endforeach --}}
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
@@ -52,27 +53,31 @@
                                         <label class="form-label">Proposal Submitted Letter No.</label>
                                         <input type="text" class="form-control" id="ppd_proposal_submitted_letter_no"
                                             name="ppd_proposal_submitted_letter_no"
-                                            placeholder="Enter Proposal Submitted Letter No." value="{{ $project_master->ppd_proposal_submitted_letter_no }}">
+                                            placeholder="Enter Proposal Submitted Letter No."
+                                            value="{{ $project_master->ppd_proposal_submitted_letter_no }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Proposal Submitted Letter Date</label>
                                         <input type="date" class="form-control" id="ppd_proposal_submitted_letter_date"
-                                            name="ppd_proposal_submitted_letter_date" value="{{ $project_master->ppd_proposal_submitted_letter_date }}">
+                                            name="ppd_proposal_submitted_letter_date"
+                                            value="{{ $project_master->ppd_proposal_submitted_letter_date }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Proposal Submission Office</label>
                                         <input type="text" class="form-control" id="ppd_proposal_submission_office"
                                             name="ppd_proposal_submission_office"
-                                            placeholder="Enter Proposal Submission Office" value="{{ $project_master->ppd_proposal_submission_office }}">
+                                            placeholder="Enter Proposal Submission Office"
+                                            value="{{ $project_master->ppd_proposal_submission_office }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Letter Upload</label>
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="ppd_letter_upload"
                                                 name="ppd_letter_upload" value="{{ $project_master->ppd_letter_upload }}">
-                                                <a href="{{ asset('uplode_images/proposal_submitte_detail/' . $project_master->ppd_letter_upload) }}" target="_blank">
-                                                    <br>Open Image in New Tab
-                                                </a>
+                                            <a href="{{ asset('uplode_images/proposal_submitte_detail/' . $project_master->ppd_letter_upload) }}"
+                                                target="_blank">
+                                                <br>Open Image in New Tab
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">

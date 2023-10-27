@@ -43,6 +43,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SentBoxSeeder::class,
         ]);
+        $this->call([
+            ProjectShemaSeeder::class,
+        ]);
       
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

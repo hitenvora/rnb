@@ -121,7 +121,7 @@ class ProjectMasterController extends Controller
         $master_show = Master::orderBy('id')->get();
         $name_of_scheme  = NameOfSchema::orderBy('id')->get();
         $name_of_project  = NameOfProject::orderBy('id')->get();
-        return view('pb_branch.edit_basic_branch', compact('division_name', 'sub_division_name', 'project_master', 'district_name', 'taluka_name', 'work_type', 'type_work', 'budget', 'budget_work', 'mp_mla', 'sent_box', 'name_of_scheme', 'name_of_project','user','role'));
+        return view('pb_branch.edit_basic_branch', compact('division_name', 'sub_division_name', 'project_master', 'district_name', 'taluka_name', 'work_type', 'type_work', 'budget', 'budget_work', 'mp_mla', 'sent_box', 'name_of_scheme', 'name_of_project', 'user', 'role'));
     }
 
 

@@ -113,7 +113,7 @@ class MasterController extends Controller
             $basic_branch->basic_type_work_name = $request->input('basic_type_work_name');
             $basic_branch->budget_id = $request->input('budget_id');
             $basic_branch->basic_budget_name = $request->input('basic_budget_name');
-            $basic_branch->budget_work_id = $request->input('budget_work_id');
+            $basic_branch->basic_buget_work = $request->input('basic_buget_work');
             $basic_branch->basic_budget_work_name = $request->input('basic_budget_work_name');
             $basic_branch->basic_amount = $request->input('basic_amount');
             $basic_branch->basic_mp_mla = $request->input('basic_mp_mla');
@@ -550,6 +550,38 @@ class MasterController extends Controller
             if (isset($ed_amount_for) && sizeof($ed_amount_for)) {
 
                 $basic_branch->ed_amount_for = implode(",", $ed_amount_for);
+            }
+            $expended_details = $request->input('expended_details');
+            if (isset($expended_details) && sizeof($expended_details)) {
+
+                $basic_branch->expended_details = implode(",", $expended_details);
+            }
+
+
+            $ed_dtp_amount = $request->input('ed_dtp_amount');
+            if (isset($ed_dtp_amount) && sizeof($ed_dtp_amount)) {
+
+                $basic_branch->ed_dtp_amount = implode(",", $ed_dtp_amount);
+            }
+            $ed_qulity_cost = $request->input('ed_qulity_cost');
+            if (isset($ed_qulity_cost) && sizeof($ed_qulity_cost)) {
+
+                $basic_branch->ed_qulity_cost = implode(",", $ed_qulity_cost);
+            }
+            $ed_b = $request->input('ed_b');
+            if (isset($ed_b) && sizeof($ed_b)) {
+
+                $basic_branch->ed_b = implode(",", $ed_b);
+            }
+            $ed_details = $request->input('ed_details');
+            if (isset($ed_details) && sizeof($ed_details)) {
+
+                $basic_branch->ed_details = implode(",", $ed_details);
+            }
+            $ed_fincial = $request->input('ed_fincial');
+            if (isset($ed_fincial) && sizeof($ed_fincial)) {
+
+                $basic_branch->ed_fincial = implode(",", $ed_fincial);
             }
         }
 

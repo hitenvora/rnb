@@ -89,7 +89,7 @@
                                     </div>
 
 
-                                    <div class="panel-group utility-shifting-tabel" id="contect">
+                                    <div class="panel-group utility-shifting-tabel">
                                         <div class="table-responsive" id="display_data">
                                             <h5 class="proposal-sent-heading">Proposal Sent</h5>
                                             <table
@@ -113,7 +113,7 @@
                                                         <th>Work Complete Date</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="contect">
                                                     @foreach (explode(',', $project_master->usd_utility_item) as $key => $data)
                                                         @php
                                                             $usd_details = explode(',', $project_master->usd_details);
@@ -136,31 +136,36 @@
 
                                                                 <input type="text" class="form-control"
                                                                     name="usd_utility_item[]" id="usd_utility_item[]"
-                                                                    value="{{ $data }}">
+                                                                    value="{{ $data }}"
+                                                                    placeholder="Enter Utility Items">
 
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="usd_details[]"
                                                                     class="form-control class_test" id="usd_details[]"
-                                                                    value="{{ @$usd_details[$key] }}">
+                                                                    value="{{ @$usd_details[$key] }}"
+                                                                    placeholder="Enter datils">
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="estimated_usd_latter_no[]"
                                                                     class="form-control class_code"
                                                                     id="estimated_usd_latter_no[]"
-                                                                    value="{{ @$estimated_usd_latter_no[$key] }}">
+                                                                    value="{{ @$estimated_usd_latter_no[$key] }}"
+                                                                    placeholder="Enter Letter no">
                                                             </td>
 
                                                             <td>
                                                                 <input type="date" name="usd_date_input[]"
                                                                     class="form-control" id="usd_date_input[]"
-                                                                    value="{{ @$usd_date_input[$key] }}">
+                                                                    value="{{ @$usd_date_input[$key] }}"
+                                                                    placeholder="Enter Date">
                                                             </td>
 
                                                             <td>
                                                                 <input type="text" name="usd_submitted_to[]"
                                                                     class="form-control" id="usd_submitted_to[]"
-                                                                    value="{{ @$usd_submitted_to[$key] }}">
+                                                                    value="{{ @$usd_submitted_to[$key] }}"
+                                                                    placeholder="Enter Submitted To">
                                                             </td>
 
                                                             <td>
@@ -177,31 +182,35 @@
                                                             <td>
                                                                 <input type="text" name="usd_estimate_submited[]"
                                                                     class="form-control" id="usd_estimate_submited[]"
-                                                                    value="{{ @$usd_estimate_submited[$key] }}">
+                                                                    value="{{ @$usd_estimate_submited[$key] }}"
+                                                                    placeholder="Enter Submitted by">
                                                             </td>
 
                                                             <td>
                                                                 <input type="text" name="usd_latter_no[]"
                                                                     class="form-control" id="usd_latter_no[]"
-                                                                    value="{{ @$usd_latter_no[$key] }}">
+                                                                    value="{{ @$usd_latter_no[$key] }}"
+                                                                    placeholder="Enter Letter No">
                                                             </td>
 
                                                             <td>
                                                                 <input type="date" name="usd_date_input_sec[]"
                                                                     class="form-control" id="usd_date_input_sec[]"
-                                                                    value="{{ @$usd_date_input_sec[$key] }}">
+                                                                    value="{{ @$usd_date_input_sec[$key] }}"
+                                                                    placeholder="Enter Date">
                                                             </td>
 
                                                             <td>
                                                                 <input type="text" name="usd_amount[]"
                                                                     class="form-control " id="usd_amount[]"
-                                                                    value="{{ @$usd_amount[$key] }}">
+                                                                    value="{{ @$usd_amount[$key] }}"
+                                                                    placeholder="Enter Amount">
                                                             </td>
 
                                                             <td>
                                                                 <select class="form-select" id="usd_payment[]"
                                                                     name="usd_payment[]">
-                                                                    {{-- <option selected ></option> --}}
+
                                                                     <option value="Yes" @selected(@$usd_payment[$key] == 'Yes')>Yes
                                                                     </option>
                                                                     <option value="No"@selected(@$usd_payment[$key] == 'No')>No
@@ -310,7 +319,7 @@
                         var errors = $.parseJSON(response.responseText);
                         $.each(errors['errors'], function(key, val) {
                             console.log(key);
-                            $("#" + key + "_error").text(val[0]);
+                            $("#" + key + "_e   rror").text(val[0]);
                         });
                     }
                 }
@@ -346,105 +355,148 @@
             toggleUsdWorkHead();
         });
 
+
+        //add with name
         document.addEventListener('DOMContentLoaded', function() {
             const addContactButton = document.getElementById('add-contact');
             const contactFieldsContainer = document.getElementById('contect');
             let contactCount = 0; // Keep track of added contacts
 
+
+            const checkboxes = document.querySelectorAll('.checkboxes input[type="checkbox"]');
+
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    if (checkbox.checked) {
+                        // If checkbox is checked, trigger the "Add" button click event
+                        addContactButton.click();
+
+                        // Get the value of the clicked checkbox
+                        const checkboxValue = checkbox.value;
+
+                        // Add the checkbox value to the last added row's input field
+                        const lastAddedRow = contactFieldsContainer.lastElementChild;
+                        if (lastAddedRow) {
+                            const inputField = lastAddedRow.querySelector(
+                                '[name="usd_utility_item[]"]');
+                            inputField.value = checkboxValue;
+                        }
+                    } else {
+                        // If checkbox is unchecked, you can perform another action here
+                        // For example, reset the last added row's input field
+                        const lastAddedRow = contactFieldsContainer.lastElementChild;
+                        if (lastAddedRow) {
+                            const inputField = lastAddedRow.querySelector(
+                                '[name="usd_utility_item[]"]');
+                            inputField.value = '';
+                        }
+                    }
+                });
+            });
+
+
+
             addContactButton.addEventListener('click', function() {
                 contactCount++; // Increment contact count
 
                 // Create a new input field (you can customize this as needed)
-                const newContactField = document.createElement('p');
+                const newContactField = document.createElement('tr');
                 newContactField.innerHTML = `
-        <div class="panel-group utility-shifting-tabel">
-                                        <div class="table-responsive">
-                                            
-                                            <table
-                                                class="table no-margin class_tr_put utility-shifting-tabel-data utility-shifting-date">
-                                                
-                                                <tbody>
-                                                    <td>
-                                                    <input type="text" class="form-control"
-                                                                name="usd_utility_item[]" id="usd_utility_item[]"
-                            >
 
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="usd_details[]"
-                                                                class="form-control class_test" id="usd_details[]">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="estimated_usd_latter_no[]"
-                                                                class="form-control class_code"
-                                                                id="estimated_usd_latter_no[]">
-                                                        </td>
+                <td>
 
-                                                        <td>
-                                                            <input type="date" name="usd_date_input[]"
-                                                                class="form-control" id="usd_date_input[]"
-                            >
-                                                        </td>
-
-                                                        <td>
-                                                            <input type="text" name="usd_submitted_to[]"
-                                                                class="form-control" id="usd_submitted_to[]"
-                            >
-                                                        </td>
-
-                                                        <td>
-                                                            <select class="form-select joint-date-visit"
-                                                                id="usd_joint_visit[]" name="usd_joint_visit[]">
-                                                                <option selected value="Yes">Yes</option>
-                                                                <option value="No">No</option>
-                                                            </select>
-                                                        </td>
-
-                                                        <td>
-                                                            <input type="text" name="usd_estimate_submited[]"
-                                                                class="form-control" id="usd_estimate_submited[]">
-                                                        </td>
-
-                                                        <td>
-                                                            <input type="text" name="usd_latter_no[]"
-                                                                class="form-control" id="usd_latter_no[]">
-                                                       </td>
-
-                                                        <td>
-                                                            <input type="date" name="usd_date_input_sec[]"
-                                                                class="form-control" id="usd_date_input_sec[]">
-                                                        </td>
-                                                        <td>
-                                                                <input type="text" name="usd_amount[]"
-                                                                class="form-control" id="usd_amount[]">
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-select" id="usd_payment[]"
-                                                                name="usd_payment[]">
-                                                                <option selected value="Yes">Yes</option>
-                                                                <option value="No">No</option>
-                                                            </select>
-                                                        </td>
+<input type="text" class="form-control"
+    name="usd_utility_item[]" id="usd_utility_item[]"
+    placeholder="Enter Utility Items">
+</td>
 <td>
-                                                            <input type="date" name="usd_date_input_th[]"
-                                                                class="form-control" id="usd_date_input_th[]">
-                                                        </td>
+<input type="text" name="usd_details[]"
+    class="form-control class_test" id="usd_details[]"
+   placeholder="Enter datils">
+</td>
+<td>
+<input type="text" name="estimated_usd_latter_no[]"
+    class="form-control class_code"
+    id="estimated_usd_latter_no[]"
+   placeholder="Enter Letter no" >
+</td>
 
-                                                        <td>
-                                                            <input type="date" name="usd_date_input_fr[]"
-                                                                class="form-control" id="usd_date_input_fr[]">
-                                                        </td>
+<td>
+<input type="date" name="usd_date_input[]"
+    class="form-control" id="usd_date_input[]"
+   placeholder="Enter Date">
+</td>
 
-                                                        <td>
-                                                            <input type="date" name="usd_date_input_fi[]"
-                                                                class="form-control" id="usd_date_input_fi[]"
-                                                                >
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+<td>
+<input type="text" name="usd_submitted_to[]"
+    class="form-control" id="usd_submitted_to[]"
+ placeholder="Enter Submitted To">
+</td>
+
+<td>
+<select class="form-select joint-date-visit"
+    id="usd_joint_visit[]" name="usd_joint_visit[]">
+    <option selected
+        value="Yes">Yes
+    </option>
+    <option value="No">No
+    </option>
+</select>
+</td>
+
+<td>
+<input type="text" name="usd_estimate_submited[]"
+    class="form-control" id="usd_estimate_submited[]"
+    placeholder="Enter Submitted by">
+</td>
+
+<td>
+<input type="text" name="usd_latter_no[]"
+    class="form-control" id="usd_latter_no[]"
+   placeholder="Enter Letter No">
+</td>
+
+<td>
+<input type="date" name="usd_date_input_sec[]"
+    class="form-control" id="usd_date_input_sec[]"
+     placeholder="Enter Date">
+</td>
+
+<td>
+<input type="text" name="usd_amount[]"
+    class="form-control " id="usd_amount[]"
+    placeholder="Enter Amount">
+</td>
+
+<td>
+<select class="form-select" id="usd_payment[]"
+    name="usd_payment[]">
+   
+    <option value="Yes">Yes
+    </option>
+    <option value="No">No
+    </option>
+</select>
+</td>
+
+<td>
+<input type="date" name="usd_date_input_th[]"
+    class="form-control" id="usd_date_input_th[]"
+   >
+</td>
+
+<td>
+<input type="date" name="usd_date_input_fr[]"
+    class="form-control" id="usd_date_input_fr[]"
+    >
+</td>
+
+<td>
+<input type="date" name="usd_date_input_fi[]"
+    class="form-control" id="usd_date_input_fi[]"
+   >
+</td>
+                                                
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button> `;
 
                 // Add an event listener to the "Remove" button
@@ -457,24 +509,47 @@
 
                 contactFieldsContainer.appendChild(newContactField);
             });
-
-            // Add event listener to all checkboxes
-            const checkboxes = document.querySelectorAll('input[name="used_type[]"]');
-            checkboxes.forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
-                    if (checkbox.checked) {
-                        // If checkbox is checked, trigger the "Add" button click event
-                        addContactButton.click();
-                    } else {
-                        // If checkbox is unchecked, remove the last added table (if any)
-                        const closestTable = checkbox.closest('#contect').querySelector(
-                            'table');
-                        if (closestTable) {
-                            closestTable.remove();
-                        }
-                    }
-                });
-            });
         });
+
+        //     // Add event listener to all checkboxes
+        //     const checkboxes = document.querySelectorAll('input[name="used_type[]"]');
+        //     checkboxes.forEach(function(checkbox) {
+        //         checkbox.addEventListener('change', function() {
+        //             if (checkbox.checked) {
+        //                 // If checkbox is checked, trigger the "Add" button click event
+        //                 addContactButton.click();
+        //             } else {
+        //                 // If checkbox is unchecked, remove the last added table (if any)
+        //                 const closestTable = checkbox.closest('#contect').querySelector(
+        //                     'table');
+        //                 if (closestTable) {
+        //                     closestTable.remove();
+        //                 }
+        //             }
+        //         });
+        //     });
+
+        // });
+
+
+        // // //new
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const checkboxes = document.querySelectorAll('.checkboxes input[type="checkbox"]');
+
+        //     checkboxes.forEach(function(checkbox) {
+        //         checkbox.addEventListener('change', function() {
+        //             if (checkbox.checked) {
+        //                 // Checkbox is checked, you can manipulate elements here
+        //                 const inputField = document.querySelector('[name="usd_utility_item[]"]');
+        //                 inputField.value = checkbox.value;
+        //             } else {
+        //                 // Checkbox is unchecked, you can perform another action here
+        //                 // For example, reset the input field
+        //                 const inputField = document.querySelector('[name="usd_utility_item[]"]');
+        //                 inputField.value = '';
+        //             }
+        //         });
+        //     });
+        // });
     </script>
 @endsection

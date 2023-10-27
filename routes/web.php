@@ -16,6 +16,7 @@ use App\Http\Controllers\AuditorAccount\FdrController;
 use App\Http\Controllers\AuditorAccount\FmgController;
 use App\Http\Controllers\AuditorAccount\TimeExtensionController;
 use App\Http\Controllers\AuditorAccount\WorkStatusController;
+use App\Http\Controllers\CurrentReapringController;
 use App\Http\Controllers\Master\MasterController;
 use App\Http\Controllers\PbBranch\AdministrativeApprovalController;
 use App\Http\Controllers\PbBranch\BasicBranchController;
@@ -66,7 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
     //master-formproposal-master
     Route::get('/master-form', [MasterFormController::class, 'index'])->name('master_form');
 
-    
+
     //master insert
     Route::post('/master-insert', [MasterController::class, 'insert'])->name('master_insert');
 
@@ -242,5 +243,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/name-of-project-insert', [MasterController::class, 'name_of_project_insert'])->name('name_of_project_insert');
     Route::post('/name-of-tender-insert', [MasterController::class, 'name_of_tender_insert'])->name('name_of_tender_insert');
     Route::post('/name-tpi-of-tender-insert', [MasterController::class, 'tpi_name_of_tender_insert'])->name('tpi_name_of_tender_insert');
+
+
+    //current repairs
+    Route::get('/curent-reaparing-master', [CurrentReapringController::class, 'index'])->name('curent_reaparing_master');
+    Route::get('/curent-reaparing', [CurrentReapringController::class, 'current_reparing'])->name('curent_reaparing');
+    Route::post('/curent-reaparing-insert', [CurrentReapringController::class, 'insert'])->name('curent_reaparing_insert');
+    // Route::get('/curent-reaparing-basic', [CurrentReapringController::class, 'current_reparing_basic'])->name('curent_reaparing_basic');
+    Route::post('/curent-master', [CurrentReapringController::class, 'cr_edit'])->name('cr_master');
+    Route::get('/edit-current-repairs/{id}', [CurrentReapringController::class, 'edit_cr'])->name('edit_current_repairs');
+    Route::get('/edit-current-repairs-basic/{id}', [CurrentReapringController::class, 'edit_cr_basic'])->name('curent_reaparing_basic');
+    Route::get('/edit-details-of-work/{id}', [CurrentReapringController::class, 'edit_detils_of_work'])->name('edit_detils_of_work');
 
 });

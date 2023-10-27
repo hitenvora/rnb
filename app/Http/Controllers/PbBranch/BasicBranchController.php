@@ -15,6 +15,7 @@ use App\Models\Admin\SubDivisionMasters;
 use App\Models\Admin\Taluka;
 use App\Models\Admin\TypesOfWork;
 use App\Models\Admin\WorkTypes;
+use App\Models\Master\Master;
 use App\Models\PbBranch\Basic;
 use App\Models\PbBranch\NameOfProject;
 use App\Models\PbBranch\NameOfSchema;
@@ -22,8 +23,9 @@ use Illuminate\Http\Request;
 
 class BasicBranchController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request )
     {
+        // $project_master = Master::where('id')->get();
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         // $basic_show= Basic::orderBy('id')->get();

@@ -71,11 +71,11 @@
                                                 <a class="nav-link  {{ Route::is('edit_project_master') ? 'active' : '' }}"
                                                     href="{{ route('edit_project_master', $project_master->id) }}">Basic</a>
                                             </li>
-                                            <li class="nav-item">
+                                            {{-- <li class="nav-item">
                                                 <a class="nav-link  {{ Route::is('edit_proposal_submitted_detail') ? 'active' : '' }}"
                                                     href="{{ route('edit_proposal_submitted_detail', $project_master->id) }}">Proposal
                                                     Submitted Detail</a>
-                                            </li>
+                                            </li> --}}
                                             <li class="nav-item">
                                                 <a class="nav-link   {{ Route::is('edit_principal_approval_detail') ? 'active' : '' }}"
                                                     href="{{ route('edit_principal_approval_detail', $project_master->id) }}">Principal
