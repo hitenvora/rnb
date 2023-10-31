@@ -100,7 +100,7 @@
                                             <th>Road Name</th>
                                             <th>Name Of Section</th>
 
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody id="contactData">
@@ -154,10 +154,10 @@
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
                 },
-                {
-                    data: 'cr_road_name',
-                    name: 'cr_road_name'
-                },
+                // {
+                //     data: 'cr_road_name',
+                //     name: 'cr_road_name'
+                // },
                 {
                     data: 'cr_name_of_section',
                     name: 'cr_name_of_section'

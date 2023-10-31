@@ -249,6 +249,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/curent-reaparing-master', [CurrentReapringController::class, 'index'])->name('curent_reaparing_master');
     Route::get('/curent-reaparing', [CurrentReapringController::class, 'current_reparing'])->name('curent_reaparing');
     Route::post('/curent-reaparing-insert', [CurrentReapringController::class, 'insert'])->name('curent_reaparing_insert');
+    Route::post('/curent-reaparing-basic-agency', [CurrentReapringController::class, 'cr_agency_name'])->name('cr_agency_name_insert');
+
     // Route::get('/curent-reaparing-basic', [CurrentReapringController::class, 'current_reparing_basic'])->name('curent_reaparing_basic');
     Route::post('/curent-master', [CurrentReapringController::class, 'cr_edit'])->name('cr_master');
     Route::get('/edit-current-repairs/{id}', [CurrentReapringController::class, 'edit_cr'])->name('edit_current_repairs');

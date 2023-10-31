@@ -63,7 +63,7 @@
                                                             $bg = isset($fmg_dropdown[$key]) && $fmg_dropdown[$key] == 'BG' ? 'selected' : '';
                                                             $sd = isset($fmg_dropdown[$key]) && $fmg_dropdown[$key] == 'SD' ? 'selected' : '';
                                                             $fdr = isset($fmg_dropdown[$key]) && $fmg_dropdown[$key] == 'FDR' ? 'selected' : '';
-                                                    
+
                                                         @endphp
                                                         <tr>
                                                             <td>

@@ -21,40 +21,40 @@
                                     <input type="hidden" name="step" value="cr_detils_of_work">
 
                                     <div class="col-lg-3">
-                                        <label class="form-label">Name Of Road</label>
+                                        <label class="form-label">Date</label>
                                         <input type="date" class="form-control" id="cr_name_of_road"
-                                            name="cr_name_of_road">
+                                            name="cr_name_of_road" value="{{ $cr_update->cr_name_of_road }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Type Of Work</label>
                                         <input type="text" class="form-control" id="cr_type_work" name="cr_type_work"
-                                            value="">
+                                            value="{{ $cr_update->cr_type_work }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Chainge</label>
                                         <input type="text" class="form-control" id="cr_chainge" name="cr_chainge"
-                                            value="">
+                                            value="{{ $cr_update->cr_chainge }}">
                                     </div>
 
                                     <div class="col-lg-3">
                                         <label class="form-label" &nbsp></label>
                                         <input type="text" class="form-control  " id="cr_chainge_to" name="cr_chainge_to"
-                                            value="">
+                                            value="{{ $cr_update->cr_chainge_to }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Bill No</label>
                                         <input type="text" class="form-control" id="cr_dow_bill_no" name="cr_dow_bill_no"
-                                            value="">
+                                            value="{{ $cr_update->cr_dow_bill_no }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Bill Date</label>
                                         <input type="date" class="form-control" id="cr_dow_bill_date"
-                                            name="cr_dow_bill_date" value="">
+                                            name="cr_dow_bill_date" value="{{ $cr_update->cr_dow_bill_date }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Bill Amount</label>
                                         <input type="text" class="form-control" id="cr_dow_bill_amount"
-                                            name="cr_dow_bill_amount" value="">
+                                            name="cr_dow_bill_amount" value="{{ $cr_update->cr_dow_bill_amount }}">
                                     </div>
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"

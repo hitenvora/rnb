@@ -211,7 +211,7 @@
 
                                                 <div class="col-xl-7 col-lg-12">
                                                     <div class="row">
-                                                        <div class="col-lg-4">
+                                                        <div class="col-lg-6">
                                                             <label class="form-label">Budget</label>
                                                             <select class="form-select" id="budget_id" name="budget_id">
                                                                 <option value="">Select budget List</option>
@@ -223,13 +223,13 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="col-lg-4">
+                                                        {{-- <div class="col-lg-4">
                                                             <label class="form-label d-xl-block d-none">&nbsp;</label>
                                                             <input type="text" class="form-control"
                                                                 id="basic_budget_name" name="basic_budget_name"
                                                                 value="{{ $project_master->basic_budget_name }}">
-                                                        </div>
-                                                        <div class="col-lg-4">
+                                                        </div> --}}
+                                                        <div class="col-lg-6">
                                                             <label class="form-label">Budget Work / Item / Page No.</label>
 
                                                             <select class="form-select" id="basic_buget_work"

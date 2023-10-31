@@ -28,22 +28,17 @@
                                                     <th>Name</th>
                                                 </thead>
                                                 <tbody>
-                                                    {{-- @foreach (explode(',', $project_master->cr_road_name) as $key => $data) --}}
-                                                    {{-- @php
-                                                            $laq_amt = explode(',', $project_master->laq_amt);
-                                                            $laq_num = explode(',', $project_master->laq_num);
-                                                            $laq_date = explode(',', $project_master->laq_date);
-
-                                                        @endphp --}}
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" id="cr_road_name" name="cr_road_name[]"
-                                                                class="form-control" placeholder="Enter Road Name"
-                                                                value="">
-                                                        </td>
-
-                                                    </tr>
-                                                    {{-- @endforeach  --}}
+                                                    @foreach (explode(',', $cr_update->cr_road_name) as $key => $data)
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" id="cr_road_name"
+                                                                    name="cr_road_name[]" class="form-control"
+                                                                    placeholder="Enter Road Name"
+                                                                    value="{{ $data }}">
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                 
                                                     <tr>
                                                         <td class="text-end border" colspan="6">
                                                             <a class="btn btn-light-warning px-3" id="add-valuation">
@@ -67,7 +62,8 @@
                                         <select class="form-select" name="cr_division_id" id="cr_division_id">
                                             <option value="">Select Division Name</option>
                                             @foreach ($division_name as $value)
-                                                <option value="{{ $value['id'] }}">
+                                                <option value="{{ $value['id'] }}"
+                                                {{ $cr_update->cr_division_id == $value['id'] ? 'selected' : '' }}>
                                                     {{ $value['name'] }}</option>
                                             @endforeach
                                         </select>
@@ -78,14 +74,14 @@
 
                                     </div>
                                     <div class="col-lg-3" id="add-date">
-                                        <label class="form-label">Start Date</label>
-                                        <input type="date" class="form-control" id="cr_start_date[]" name="cr_start_date"
-                                            value="">
+                                        <label class="form-label">Chainage(From)</label>
+                                        <input type="text" class="form-control" id="cr_start_date" name="cr_start_date[]"
+                                            placeholder="Chainage(From)">
                                     </div>
                                     <div class="col-lg-3">
-                                        <label class="form-label">End Date</label>
-                                        <input type="date" class="form-control" id="cr_end_date[]" name="cr_end_date"
-                                            value="">
+                                        <label class="form-label">Chainage(To)</label>
+                                        <input type="text" class="form-control" id="cr_end_date" name="cr_end_date[]"
+                                            placeholder="Chainage(To)">
 
 
                                         <tr>
@@ -180,25 +176,28 @@
                 contactCount++; // Increment contact count
 
                 // Create a new input field (you can customize this as needed)
-                const newContactField = document.createElement('div');
+                const newContactField = document.createElement('p');
                 newContactField.innerHTML = `
                 <div class="container">
   <div class="row">
     <div class="col">
-        <input type="date" class="form-control" id="cr_start_date"
-                                                name="cr_start_date[]" value="">
-
+        <div class="col-lg-12">
+                                        <input type="text" class="form-control" id="cr_start_date" name="cr_start_date[]"
+                                      placeholder="Chainage(From)">
+                                        </div>
     </div>
     <div class="col">
-        <input type="date" class="form-control" id="cr_end_date[]" name="cr_end_date"
-                                                value="">
+    
+        <div class="col-lg-12">
+                                        <input type="text" class="form-control" id="cr_end_date" name="cr_end_date[]"
+                                        placeholder="Chainage(To)">
+                                        </div>
+                                     
     </div>
+  </div>
 </div>
-
-</div>
-
+             
                                   
-                                            
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
@@ -351,5 +350,5 @@
                 }
             });
         });
-    </script> --}}
+    </script>
 @endsection

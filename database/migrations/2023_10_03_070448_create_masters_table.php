@@ -227,7 +227,8 @@ return new class extends Migration
             $table->text('ed_b')->nullable();
             $table->text('ed_details')->nullable();
             $table->text('ed_fincial')->nullable();
-     
+        
+
 
             //excess details
             $table->text('ed_division_letter_no')->nullable();

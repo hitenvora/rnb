@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\admin\AdminLogin;
 use App\Models\Admin\DivisionMasters;
 use App\Models\Admin\TypesOfWork;
+use App\Models\current_reapring\AgencyName;
 use App\Models\current_reapring\CurrentReapring;
 use App\Models\Master\Master;
 use Illuminate\Http\Request;
@@ -35,13 +36,16 @@ class CurrentReapringController extends Controller
     public function edit_cr_basic($id)
 
     {
+
         $cr_update = CurrentReapring::where('id', $id)->first();
         // $project_master = Master::where('id', $id)->first();
         $division_name = DivisionMasters::orderBy('id')->get();
         $type_work = TypesOfWork::orderBy('id')->get();
+        $agency_name = AgencyName::orderBy('id')->get();
+
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
-        return view('current_repairs.edit_curent_repairs_basic', compact('user', 'role', 'division_name', 'type_work', 'cr_update'));
+        return view('current_repairs.edit_curent_repairs_basic', compact('user', 'role', 'division_name', 'type_work', 'cr_update', 'agency_name'));
     }
 
     public function insert(Request $request)
@@ -172,5 +176,29 @@ class CurrentReapringController extends Controller
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
 
         return view('current_repairs.edit_detail_of_work', compact('cr_update', 'user', 'role', 'division_name', 'type_work'));
+    }
+
+
+    public function cr_agency_name(Request $request)
+    {
+
+        $rules = [
+            'name' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        if ($request->current_agency_id != '') {
+            $add_name_of_project = AgencyName::find($request->current_agency_id);
+            if (!$add_name_of_project) {
+                return response()->json(['status' => 400, 'msg' => 'Tender not found!']);
+            }
+        } else {
+            $add_name_of_project = new AgencyName();
+        }
+        $add_name_of_project->name = $request->input('name');
+        $add_name_of_project->save();
+
+        return response()->json(['status' => '200', 'msg' => 'success']);
     }
 }
