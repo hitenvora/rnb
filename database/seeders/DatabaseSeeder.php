@@ -46,7 +46,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProjectShemaSeeder::class,
         ]);
-      
+        $this->call([
+            CurrentRepairSeeder::class,
+        ]);
+        $this->call([
+            RoadNameSeeder::class,
+        ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

@@ -7,6 +7,7 @@ use App\Models\Admin\DivisionMasters;
 use App\Models\Admin\TypesOfWork;
 use App\Models\current_reapring\AgencyName;
 use App\Models\current_reapring\CurrentReapring;
+use App\Models\current_reapring\RoadName;
 use App\Models\Master\Master;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -26,11 +27,12 @@ class CurrentReapringController extends Controller
 
     {
         // $project_master = Master::where('id', $id)->first();
+        $road_name = RoadName::orderBy('id')->get();
         $division_name = DivisionMasters::orderBy('id')->get();
         $type_work = TypesOfWork::orderBy('id')->get();
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
-        return view('current_repairs.curent_repairs', compact('user', 'role', 'division_name', 'type_work'));
+        return view('current_repairs.curent_repairs', compact('user', 'role', 'division_name', 'type_work', 'road_name'));
     }
 
     public function edit_cr_basic($id)
@@ -69,23 +71,11 @@ class CurrentReapringController extends Controller
 
             $cr_master->cr_division_id = $request->input('cr_division_id');
             $cr_master->cr_name_of_section = $request->input('cr_name_of_section');
+            $cr_master->cr_road_name = $request->input('cr_road_name');
+            $cr_master->cr_start_date = $request->input('cr_start_date');
+            $cr_master->cr_end_date = $request->input('cr_end_date');
 
-            $cr_road_name = $request->input('cr_road_name');
 
-            if (isset($cr_road_name) && sizeof($cr_road_name)) {
-
-                $cr_master->cr_road_name = implode(",", $cr_road_name);
-            }
-            $cr_start_date = $request->input('cr_start_date');
-            if (isset($cr_start_date) && sizeof($cr_start_date)) {
-
-                $cr_master->cr_start_date = implode(",", $cr_start_date);
-            }
-            $cr_end_date = $request->input('cr_end_date');
-            if (isset($cr_end_date) && sizeof($cr_end_date)) {
-
-                $cr_master->cr_end_date = implode(",", $cr_end_date);
-            }
             $cr_master->cr_type_of_work_id = $request->input('cr_type_of_work_id');
         }
 
@@ -158,13 +148,14 @@ class CurrentReapringController extends Controller
 
     public function edit_cr($id)
     {
+        $road_name = RoadName::orderBy('id')->get();
         $division_name = DivisionMasters::orderBy('id')->get();
         $type_work = TypesOfWork::orderBy('id')->get();
         $cr_update = CurrentReapring::where('id', $id)->first();
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
 
-        return view('current_repairs.edit_curent_repairs', compact('cr_update', 'user', 'role', 'division_name', 'type_work'));
+        return view('current_repairs.edit_curent_repairs', compact('cr_update', 'user', 'role', 'division_name', 'type_work', 'road_name'));
     }
 
     public function edit_detils_of_work($id)

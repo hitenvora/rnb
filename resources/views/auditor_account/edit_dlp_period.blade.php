@@ -84,12 +84,13 @@
                                                     </svg> Add
                                                 </a>
                                         </div>
-
-                                        <div class="col-12 text-center">
-                                            <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
-                                                name="sub_client">Save
-                                            </button>
-                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
+                                            name="sub_client">Save
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -161,6 +162,7 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
+                newContactField.classList.add("position-relative");
                 newContactField.innerHTML = `
             
             
@@ -198,7 +200,7 @@
                             </div>
                     
            
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact position-absolute end-0" style="top:-25px;" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');

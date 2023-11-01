@@ -28,33 +28,18 @@
                                                     <th>Name</th>
                                                 </thead>
                                                 <tbody>
-                                                    {{-- @foreach (explode(',', $project_master->cr_road_name) as $key => $data) --}}
-                                                    {{-- @php
-                                                            $laq_amt = explode(',', $project_master->laq_amt);
-                                                            $laq_num = explode(',', $project_master->laq_num);
-                                                            $laq_date = explode(',', $project_master->laq_date);
 
-                                                        @endphp --}}
                                                     <tr>
                                                         <td>
-                                                            <input type="text" id="cr_road_name" name="cr_road_name[]"
-                                                                class="form-control" placeholder="Enter Road Name"
-                                                                value="">
-                                                        </td>
+                                                            <select class="form-select" name="cr_road_name"
+                                                                id="cr_road_name">
+                                                                <option value="">Select Road Name</option>
+                                                                @foreach ($road_name as $value)
+                                                                    <option value="{{ $value['id'] }}">
+                                                                        {{ $value['name'] }}</option>
+                                                                @endforeach
+                                                            </select>
 
-                                                    </tr>
-                                                    {{-- @endforeach  --}}
-                                                    <tr>
-                                                        <td class="text-end border" colspan="6">
-                                                            <a class="btn btn-light-warning px-3" id="add-valuation">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                    height="20" viewBox="0 0 20 20" fill="none">
-                                                                    <path
-                                                                        d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
-                                                                        stroke="#802B81" stroke-width="1.67"
-                                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                                </svg> Add
-                                                            </a>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -75,32 +60,23 @@
                                         <label class="form-label">Name Of Section</label>
                                         <input type="text" class="form-control" id="cr_name_of_section"
                                             name="cr_name_of_section" value="">
-
                                     </div>
-                                    <div class="col-lg-3" id="add-date">
-                                        <label class="form-label">Start Date</label>
-                                        <input type="date" class="form-control" id="cr_start_date[]" name="cr_start_date"
-                                            value="">
+
+                                    <div class="col-lg-3">
+                                        <label class="form-label">Chainage(From)</label>
+                                        <select class="form-select" name="cr_start_date" id="cr_start_date">
+                                            <option value="">Select Chainage(From)</option>
+
+                                        </select>
+
                                     </div>
                                     <div class="col-lg-3">
-                                        <label class="form-label">End Date</label>
-                                        <input type="date" class="form-control" id="cr_end_date[]" name="cr_end_date"
-                                            value="">
+                                        <label class="form-label">Chainage(To)</label>
+                                        <select class="form-select" name="cr_end_date" id="cr_end_date">
+                                            <option value="">Select Chainage(To)</option>
 
+                                        </select>
 
-                                        <tr>
-                                            <td class="text-end border" colspan="10">
-                                                <a class="btn btn-light-warning px-3" id="add_date"
-                                                    style="margin-left: 85%">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                        viewBox="0 0 20 20" fill="none">
-                                                        <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
-                                                            stroke="#802B81" stroke-width="1.67" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg> Add
-                                                </a>
-                                            </td>
-                                        </tr>
                                     </div>
 
                                     <div class="col-lg-6">
@@ -127,93 +103,95 @@
 
 @section('script')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const addContactButton = document.getElementById('add-valuation');
-            const contactFieldsContainer = document.getElementById('add_Valuation');
-            let contactCount = 0; // Keep track of added contacts
+        //         document.addEventListener('DOMContentLoaded', function() {
+        //             const addContactButton = document.getElementById('add-valuation');
+        //             const contactFieldsContainer = document.getElementById('add_Valuation');
+        //             let contactCount = 0; // Keep track of added contacts
 
-            addContactButton.addEventListener('click', function() {
-                contactCount++; // Increment contact count
+        //             addContactButton.addEventListener('click', function() {
+        //                 contactCount++; // Increment contact count
 
-                // Create a new input field (you can customize this as needed)
-                const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
-               
-                <table class="exp_detail table-bordered">
-                                                
-                                                <tbody>
-                                                    
-                                                        <tr>
-                                                            <td>
-                                                                <input type="text" id="cr_road_name"
-                                                                    name="cr_road_name[]"
-                                                                    class="form-control"
-                                                                    placeholder="Enter Road Name"
-                                                                    value="">
-                                                            </td>
-                                                          
-                                                        </tr>
-                                                  
-                                                </tbody>
-                                            </table>
-                                            
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+        //                 // Create a new input field (you can customize this as needed)
+        //                 const newContactField = document.createElement('p');
+        //                 newContactField.innerHTML = `
 
-                // Add an event listener to the "Remove" button
-                const removeButton = newContactField.querySelector('.remove-contact');
-                removeButton.addEventListener('click', function() {
-                    contactFieldsContainer.removeChild(
-                        newContactField); // Remove the field when "Remove" is clicked
-                    contactCount--; // Decrement contact count
-                });
-                contactFieldsContainer.appendChild(newContactField);
-            });
-        });
+    //                 <table class="exp_detail table-bordered">
 
-        //date multiple
-        document.addEventListener('DOMContentLoaded', function() {
-            const addContactButton = document.getElementById('add_date');
-            const contactFieldsContainer = document.getElementById('add-date');
-            let contactCount = 0; // Keep track of added contacts
+    //                                                 <tbody>
 
-            addContactButton.addEventListener('click', function() {
-                contactCount++; // Increment contact count
+    //                                                         <tr>
+    //                                                             <td>
+    //                                                                 <input type="text" id="cr_road_name"
+    //                                                                     name="cr_road_name[]"
+    //                                                                     class="form-control"
+    //                                                                     placeholder="Enter Road Name"
+    //                                                                     value="">
+    //                                                             </td>
 
-                // Create a new input field (you can customize this as needed)
-                const newContactField = document.createElement('div');
-                newContactField.innerHTML = `
-                <div class="container">
-  <div class="row">
-    <div class="col">
-        <input type="date" class="form-control" id="cr_start_date"
-                                                name="cr_start_date[]" value="">
+    //                                                         </tr>
 
-    </div>
-    <div class="col">
-        <input type="date" class="form-control" id="cr_end_date[]" name="cr_end_date"
-                                                value="">
-    </div>
-</div>
+    //                                                 </tbody>
+    //                                             </table>
 
-</div>
+    //                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
 
-                                  
-                                            
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+        //                 // Add an event listener to the "Remove" button
+        //                 const removeButton = newContactField.querySelector('.remove-contact');
+        //                 removeButton.addEventListener('click', function() {
+        //                     contactFieldsContainer.removeChild(
+        //                         newContactField); // Remove the field when "Remove" is clicked
+        //                     contactCount--; // Decrement contact count
+        //                 });
+        //                 contactFieldsContainer.appendChild(newContactField);
+        //             });
+        //         });
 
-                // Add an event listener to the "Remove" button
-                const removeButton = newContactField.querySelector('.remove-contact');
-                removeButton.addEventListener('click', function() {
-                    contactFieldsContainer.removeChild(
-                        newContactField); // Remove the field when "Remove" is clicked
-                    contactCount--; // Decrement contact count
-                });
-                contactFieldsContainer.appendChild(newContactField);
-            });
-        });
+        //         //date multiple
+        //         document.addEventListener('DOMContentLoaded', function() {
+        //             const addContactButton = document.getElementById('add_date');
+        //             const contactFieldsContainer = document.getElementById('add-date');
+        //             let contactCount = 0; // Keep track of added contacts
+
+        //             addContactButton.addEventListener('click', function() {
+        //                 contactCount++; // Increment contact count
+
+        //                 // Create a new input field (you can customize this as needed)
+        //                 const newContactField = document.createElement('div');
+        //                 newContactField.innerHTML = `
+    //                 <div class="container">
+    //   <div class="row">
+    //     <div class="col">
+    //         <input type="date" class="form-control" id="cr_start_date"
+    //                                                 name="cr_start_date[]" value="">
+
+    //     </div>
+    //     <div class="col">
+    //         <input type="date" class="form-control" id="cr_end_date[]" name="cr_end_date"
+    //                                                 value="">
+    //     </div>
+    // </div>
+
+    // </div>
+
+
+
+    //                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+
+        //                 // Add an event listener to the "Remove" button
+        //                 const removeButton = newContactField.querySelector('.remove-contact');
+        //                 removeButton.addEventListener('click', function() {
+        //                     contactFieldsContainer.removeChild(
+        //                         newContactField); // Remove the field when "Remove" is clicked
+        //                     contactCount--; // Decrement contact count
+        //                 });
+        //                 contactFieldsContainer.appendChild(newContactField);
+        //             });
+        //         });
+        //     
     </script>
+    //
     <script>
-        var token = "{{ csrf_token() }}";
+        //         var token = "{{ csrf_token() }}";
 
 
         $('#master_form').submit(function(e) {
@@ -351,5 +329,5 @@
                 }
             });
         });
-    </script> --}}
+    </script>
 @endsection

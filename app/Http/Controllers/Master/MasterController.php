@@ -583,8 +583,6 @@ class MasterController extends Controller
 
                 $basic_branch->ed_fincial = implode(",", $ed_fincial);
             }
-
-    
         }
 
         if ($step == 'excess_details') {
