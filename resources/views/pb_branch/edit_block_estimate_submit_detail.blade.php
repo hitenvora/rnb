@@ -111,9 +111,10 @@
                                                                         $bes_status = explode(',', $project_master->bes_status);
                                                                         $bes_remark = explode(',', $project_master->bes_remark);
                                                                     @endphp
-                                                                    <tr>
+                                                                    <tr style="position: relative;">
                                                                         <td>
-                                                                            <input type="date" id="bes_follow_up_date[]"
+                                                                            <input type="date"
+                                                                                id="bes_follow_up_date[]"
                                                                                 name="bes_follow_up_date[]"
                                                                                 class="form-control"
                                                                                 value="{{ $date }}"
@@ -130,6 +131,10 @@
                                                                                 name="bes_remark[]" class="form-control"
                                                                                 placeholder="Enter Remark"
                                                                                 value="{{ @$bes_remark[$key] }}">
+                                                                            <button type="button"
+                                                                                class="btn-close remove-contact-static"
+                                                                                style="position: absolute;right: 7px;top: -2px;"
+                                                                                aria-label="Close"></button>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -275,6 +280,9 @@
                         });
                     contactFieldsContainer.appendChild(newContactField);
                 });
+            });
+            $(document).on('click', '.remove-contact-static', function(e) {
+                $(this).closest("tr").remove();
             });
         </script>
     @endsection

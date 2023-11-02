@@ -256,5 +256,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/edit-current-repairs/{id}', [CurrentReapringController::class, 'edit_cr'])->name('edit_current_repairs');
     Route::get('/edit-current-repairs-basic/{id}', [CurrentReapringController::class, 'edit_cr_basic'])->name('curent_reaparing_basic');
     Route::get('/edit-details-of-work/{id}', [CurrentReapringController::class, 'edit_detils_of_work'])->name('edit_detils_of_work');
+    Route::get('/get-road-names/{divisionId}', [CurrentReapringController::class, 'getRoadNames'])->name('current_road_name');
 
+    Route::get('/get-road-info/{roadId}',  [CurrentReapringController::class, 'getRoadInfo'])->name('road_name_id');
 });

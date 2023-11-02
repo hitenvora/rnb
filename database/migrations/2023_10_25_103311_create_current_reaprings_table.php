@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('current_reaprings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cr_road_name')->nullable();
+            $table->text('cr_road_name')->nullable();
             $table->unsignedBigInteger('cr_division_id')->nullable();
-            $table->foreign('cr_division_id')->references('id')->on('division_masters');
             $table->text('cr_name_of_section')->nullable();
             $table->text('cr_start_date')->nullable();
             $table->text('cr_end_date')->nullable();
+            $table->text('total_lentch')->nullable();
+            $table->text('cr_catogry')->nullable();
             $table->unsignedBigInteger('cr_type_of_work_id')->nullable();
             //cr basic
             $table->text('cr_subdivision_to')->nullable();

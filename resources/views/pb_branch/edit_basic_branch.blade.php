@@ -409,8 +409,7 @@
                                                                 </option>
                                                                 <option value="35956"@selected($project_master->basic_budget_work_name == '35956')>35956
                                                                 </option>
-                                                                <option value="1"@selected($project_master->basic_budget_work_name == '1')>1
-                                                                </option>
+
                                                                 <option value="227033"@selected($project_master->basic_budget_work_name == '227033')>227033
                                                                 </option>
                                                                 <option value="10"@selected($project_master->basic_budget_work_name == '10')>10
@@ -506,7 +505,7 @@
                                                                 <input type="file" class="form-control w-100"
                                                                     id="basic_upload_img" name="basic_upload_img"
                                                                     value="{{ $project_master->basic_upload_img }}">
-                                                                <a href="{{ asset('uplode_images/basic/' . $project_master->basic_upload_img) }}"
+                                                                <a href="{{ asset('images/masters/') }}/{{ $project_master->basic_upload_img }}"
                                                                     target="_blank">
                                                                     <br>Open Image in New Tab
                                                                 </a>
@@ -652,7 +651,7 @@
                                                                 <input type="file" class="form-control w-100"
                                                                     id="basic_sent_box_img" name="basic_sent_box_img"
                                                                     value="{{ $project_master->basic_sent_box_img }}">
-                                                                <a href="{{ asset('uplode_images/basic/' . $project_master->basic_sent_box_img) }}"
+                                                                <a href="{{ asset('images/masters/' . $project_master->basic_sent_box_img) }}"
                                                                     target="_blank">
                                                                     <br>Open Image in New Tab
                                                                 </a>

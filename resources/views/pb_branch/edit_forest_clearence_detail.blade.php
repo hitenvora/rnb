@@ -54,12 +54,12 @@
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">No. Of Trees</label>
                                         <input type="text" class="form-control" id="forest_no_trees"
-                                            name="forest_no_trees" value="200">
+                                            name="forest_no_trees" value="{{ $project_master->forest_no_trees }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label class="form-label">Area(hect.)</label>
                                         <input type="text" class="form-control" id="forest_area_hect"
-                                            name="forest_area_hect" value="200">
+                                            name="forest_area_hect" value="{{ $project_master->forest_area_hect }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6 mt-1">
                                         <label class="form-label">Approval to be accorded by District/State/Gandhinagar

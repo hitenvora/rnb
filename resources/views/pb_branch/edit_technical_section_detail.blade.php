@@ -34,16 +34,17 @@
                                     <div class="col-lg-4">
                                         <label class="form-label">Amount</label>
                                         <input type="text" class="form-control" id="tsd_amount" name="tsd_amount"
-                                            value="{{ $project_master->initiated_name }}">
+                                            value="{{ $project_master->tsd_amount }}">
                                     </div>
                                     <div class="col-lg-8">
                                         <label class="form-label">Letter Upload</label>
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="tsd_letter_upload"
                                                 name="tsd_letter_upload" value="{{ $project_master->tsd_letter_upload }}">
-                                                <a href="{{ asset('uplode_images/technical_section_detail/' . $project_master->tsd_letter_upload) }}" target="_blank">
-                                                    <br>Open Image in New Tab
-                                                </a>
+                                            <a href="{{ asset('uplode_images/technical_section_detail/' . $project_master->tsd_letter_upload) }}"
+                                                target="_blank">
+                                                <br>Open Image in New Tab
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">

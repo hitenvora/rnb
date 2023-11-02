@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use Database\Seeders\PbBranch\PbBranchLoginSeeder;
+use Database\Seeders\rnb\database\seeders\RoadNameSeeder;
+use Database\Seeders\RoadNameSeeder as SeedersRoadNameSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -46,11 +48,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProjectShemaSeeder::class,
         ]);
+        
         $this->call([
-            CurrentRepairSeeder::class,
-        ]);
-        $this->call([
-            RoadNameSeeder::class,
+            CrRoadNameSeeder::class,
         ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

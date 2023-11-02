@@ -15,40 +15,12 @@
                                 <h5 class="mb-0 font-primary text-center">Current Reapirs</h5>
                             </div>
                             <div class="card-body">
-                                <form class="row" method="post" enctype="multipart/form-data" id="master_form">
+                                <form class="row" method="post" enctype="multipart/form-data" id="master_form" v>
                                     @csrf
-                                    <input type="hidden" name="master_id" id="master_id">
+                                    <input type="hidden" name="master_id" id="master_id" value="">
                                     <input type="hidden" name="step" value="cr">
-
-                                    <div class="col-lg-6">
-                                        <label class="form-label">Name of Road</label>
-                                        <div class="expen_table laq_table table-responsive">
-                                            <table class="exp_detail table-bordered" id="add_Valuation">
-                                                <thead>
-                                                    <th>Name</th>
-                                                </thead>
-                                                <tbody>
-
-                                                    <tr>
-                                                        <td>
-                                                            <select class="form-select" name="cr_road_name"
-                                                                id="cr_road_name">
-                                                                <option value="">Select Road Name</option>
-                                                                @foreach ($road_name as $value)
-                                                                    <option value="{{ $value['id'] }}">
-                                                                        {{ $value['name'] }}</option>
-                                                                @endforeach
-                                                            </select>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-3">
                                         <label class="form-label">Subdivision Name</label>
-
                                         <select class="form-select" name="cr_division_id" id="cr_division_id">
                                             <option value="">Select Division Name</option>
                                             @foreach ($division_name as $value)
@@ -56,16 +28,25 @@
                                                     {{ $value['name'] }}</option>
                                             @endforeach
                                         </select>
-                                        <br><br>
-                                        <label class="form-label">Name Of Section</label>
-                                        <input type="text" class="form-control" id="cr_name_of_section"
-                                            name="cr_name_of_section" value="">
+                                    </div>
+
+
+
+                                    <div class="col-lg-3">
+                                        <label class="form-label">Name of Road</label>
+
+                                        <select class="form-select" name="cr_road_name" id="cr_road_name">
+                                            <option value="">Select Road Name</option>
+
+                                        </select>
                                     </div>
 
                                     <div class="col-lg-3">
                                         <label class="form-label">Chainage(From)</label>
                                         <select class="form-select" name="cr_start_date" id="cr_start_date">
-                                            <option value="">Select Chainage(From)</option>
+                                            <option value=""></option>
+
+
 
                                         </select>
 
@@ -73,13 +54,36 @@
                                     <div class="col-lg-3">
                                         <label class="form-label">Chainage(To)</label>
                                         <select class="form-select" name="cr_end_date" id="cr_end_date">
-                                            <option value="">Select Chainage(To)</option>
+
+                                            <option value=""></option>
 
                                         </select>
 
                                     </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label">Total Length</label>
+                                        <select class="form-select" name="total_lentch" id="total_lentch">
 
-                                    <div class="col-lg-6">
+                                            <option value=""></option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label">Category</label>
+                                        <select class="form-select" name="cr_catogry" id="cr_catogry">
+                                            <option value=""></option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label">Name Of Section</label>
+                                        <input type="text" class="form-control" id="cr_name_of_section"
+                                            name="cr_name_of_section" value="">
+                                    </div>
+
+                                    <div class="col-lg-3">
                                         <label class="form-label">Type OF Work</label>
                                         <select class="form-select" name="cr_type_of_work_id" id="cr_type_of_work_id">
                                             <option value="">Select Section Name</option>
@@ -188,9 +192,7 @@
         //             });
         //         });
         //     
-    </script>
-    //
-    <script>
+
         //         var token = "{{ csrf_token() }}";
 
 
@@ -328,6 +330,62 @@
                     }
                 }
             });
+        });
+
+
+        document.getElementById('cr_division_id').addEventListener('change', function() {
+            var divisionId = this.value;
+            var roadNameDropdown = document.getElementById('cr_road_name');
+
+            // Clear existing options
+            roadNameDropdown.innerHTML = '<option value="">Select Road Name</option>';
+
+            if (divisionId) {
+                // Use AJAX to fetch road names for the selected division
+                fetch('/get-road-names/' + divisionId)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(road => {
+                            var option = document.createElement('option');
+                            option.value = road.id;
+                            option.text = road.name;
+                            roadNameDropdown.appendChild(option);
+                        });
+                    });
+            }
+        });
+
+
+        document.getElementById('cr_road_name').addEventListener('change', function() {
+            var roadId = this.value;
+
+            if (roadId) {
+                // Use AJAX to fetch additional road information
+                fetch('/get-road-info/' + roadId)
+                    .then(response => response.json()) // Convert response to JSON
+                    .then(data => {
+
+                        // Assuming 'chainage_from' and 'chainage_to' are properties of the JSON data
+                        document.getElementById('cr_start_date').innerHTML =
+                            `<option value="${data.chainage_from}">${data.chainage_from}</option>`;
+                        document.getElementById('cr_end_date').innerHTML =
+                            `<option value="${data.chainage_to}">${data.chainage_to}</option>`;
+                        document.getElementById('total_lentch').innerHTML =
+                            `<option value="${data.chainage_to}">${data.total_length}</option>`;
+                        document.getElementById('cr_catogry').innerHTML =
+                            `<option value="${data.chainage_to}">${data.cat}</option>`;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                // Clear all data elements
+                document.getElementById('cr_start_date').textContent = '';
+                document.getElementById('cr_end_date').textContent = '';
+                document.getElementById('total_lentch').textContent = '';
+                document.getElementById('cr_catogry').textContent = '';
+
+            }
         });
     </script>
 @endsection

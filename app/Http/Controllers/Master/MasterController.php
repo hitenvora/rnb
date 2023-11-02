@@ -122,13 +122,9 @@ class MasterController extends Controller
             $basic_branch->basic_letter_date = $request->input('basic_letter_date');
 
             if (isset($request->basic_upload_img)) {
-
-
                 $basic_branch->basic_upload_img = $this->storeImage($request->basic_upload_img, 'images/masters/');
             }
             if (isset($request->basic_sent_box_img)) {
-
-
                 $basic_branch->basic_sent_box_img = $this->storeImage($request->basic_sent_box_img, 'images/masters/');
             }
 
@@ -151,6 +147,8 @@ class MasterController extends Controller
             $basic_branch->sub_division_master_id = $request->input('sub_division_master_id');
             $basic_branch->basic_name_of_road = $request->input('basic_name_of_road');
             $basic_branch->basic_category_of_road = $request->input('basic_category_of_road');
+            $basic_branch->basic_circle_name = $request->input('basic_circle_name');
+            $basic_branch->ppd_treatment_detail = $request->input('ppd_treatment_detail');
         }
         //proposal approval
         if ($step == 'proposal') {
@@ -158,7 +156,7 @@ class MasterController extends Controller
             $basic_branch->ppd_letter_no = $request->input('ppd_letter_no');
             $basic_branch->ppd_letter_date = $request->input('ppd_letter_date');
             $basic_branch->ppd_amount = $request->input('ppd_amount');
-            $basic_branch->ppd_treatment_detail = $request->input('ppd_treatment_detail');
+
             $basic_branch->ppd_proposal_submitted_letter_no = $request->input('ppd_proposal_submitted_letter_no');
             $basic_branch->ppd_proposal_submitted_letter_date = $request->input('ppd_proposal_submitted_letter_date');
             $basic_branch->ppd_proposal_submission_office = $request->input('ppd_proposal_submission_office');
@@ -183,7 +181,10 @@ class MasterController extends Controller
             $basic_branch->bes_letter_no = $request->input('bes_letter_no');
             $basic_branch->bes_letter_date = $request->input('bes_letter_date');
             $basic_branch->bes_amount = $request->input('bes_amount');
-            $basic_branch->bes_letter_upload = $request->input('bes_letter_upload');
+            if (isset($request->bes_letter_upload)) {
+                $basic_branch->bes_letter_upload = $this->storeImage($request->bes_letter_upload, 'uplode_images/block_estimate_submitted_detail/');
+            }
+
             $basic_branch->bes_provision_in_estimate = $request->input('bes_provision_in_estimate');
             $basic_branch->bes_submit_letter = $request->input('bes_submit_letter');
             $basic_branch->bes_submit_office_date = $request->input('bes_submit_office_date');
@@ -796,7 +797,7 @@ class MasterController extends Controller
             $basic_branch->nit_pq_approval_date = $request->input('nit_pq_approval_date');
             $basic_branch->nit_sent_circle_date = $request->input('nit_sent_circle_date');
             $basic_branch->nit_sent_goverment_date = $request->input('nit_sent_goverment_date');
-
+            $basic_branch->tender_proposal_date = $request->input('tender_proposal_date');
             $basic_branch->nit_validity_date = $request->input('nit_validity_date');
             $basic_branch->nit_tender_form = $request->input('nit_tender_form');
             $basic_branch->nit_tender_proposal = $request->input('nit_tender_proposal');
@@ -912,7 +913,7 @@ class MasterController extends Controller
                 $basic_branch->do_letter_upload_img = $this->storeImage($request->do_letter_upload_img, 'uplode_images/deposit_order_bank_guarantee_detail/');
             }
 
-
+            $basic_branch->tender_approved_by = $request->input('tender_approved_by');
             $basic_branch->do_above = $request->input('do_above');
             $basic_branch->do_above_perc = $request->input('do_above_perc');
             $basic_branch->do_deposit_letter_no = $request->input('do_deposit_letter_no');

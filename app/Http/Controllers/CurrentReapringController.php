@@ -6,6 +6,7 @@ use App\Models\admin\AdminLogin;
 use App\Models\Admin\DivisionMasters;
 use App\Models\Admin\TypesOfWork;
 use App\Models\current_reapring\AgencyName;
+use App\Models\current_reapring\CRSubDivisions;
 use App\Models\current_reapring\CurrentReapring;
 use App\Models\current_reapring\RoadName;
 use App\Models\Master\Master;
@@ -14,8 +15,8 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CurrentReapringController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+    /** 
+     * Display a listing of the resource.   
      */
     public function index()
     {
@@ -28,7 +29,7 @@ class CurrentReapringController extends Controller
     {
         // $project_master = Master::where('id', $id)->first();
         $road_name = RoadName::orderBy('id')->get();
-        $division_name = DivisionMasters::orderBy('id')->get();
+        $division_name = CRSubDivisions::orderBy('id')->get();
         $type_work = TypesOfWork::orderBy('id')->get();
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
@@ -74,8 +75,8 @@ class CurrentReapringController extends Controller
             $cr_master->cr_road_name = $request->input('cr_road_name');
             $cr_master->cr_start_date = $request->input('cr_start_date');
             $cr_master->cr_end_date = $request->input('cr_end_date');
-
-
+            $cr_master->cr_catogry = $request->input('cr_catogry');
+            $cr_master->total_lentch = $request->input('total_lentch');
             $cr_master->cr_type_of_work_id = $request->input('cr_type_of_work_id');
         }
 
@@ -149,7 +150,7 @@ class CurrentReapringController extends Controller
     public function edit_cr($id)
     {
         $road_name = RoadName::orderBy('id')->get();
-        $division_name = DivisionMasters::orderBy('id')->get();
+        $division_name = CRSubDivisions::orderBy('id')->get();
         $type_work = TypesOfWork::orderBy('id')->get();
         $cr_update = CurrentReapring::where('id', $id)->first();
         $user = auth()->user();
@@ -191,5 +192,20 @@ class CurrentReapringController extends Controller
         $add_name_of_project->save();
 
         return response()->json(['status' => '200', 'msg' => 'success']);
+    }
+
+    public function getRoadNames($divisionId)
+    {
+        // Fetch road names from your database based on $divisionId
+        $roadNames = RoadName::where('sub_division_id', $divisionId)->get();
+
+        return response()->json($roadNames);
+    }
+
+    public function getRoadInfo($roadId)
+    {
+        // Fetch road information from your database based on $roadId
+        $roadInfo = RoadName::where('id', $roadId)->first();
+        return response()->json($roadInfo);
     }
 }

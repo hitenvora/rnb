@@ -876,8 +876,8 @@
                                             <th>Letter Upload :</th>
                                             <td>
 
-                                                <a href="" class="font-primary text-decoration-underline"y
-                                                    target="_blank">
+                                                <a href="" target="_blank"
+                                                    class="view-upload_img font-primary text-decoration-underline">
                                                     View Image
 
                                                 </a>
@@ -1202,6 +1202,8 @@
         }
 
 
+        var base_url = "{{ url('/') }}"
+
         function viewproposal(id) {
             $('span[id$="_error"]').text('');
             $('.view-districts').text("");
@@ -1273,6 +1275,8 @@
                     $('.view-sent_proposal').text(data.data.sent_proposal ? data.data.sent_proposal : 'N/a');
                     $('.view-sent_letter_no').text(data.data.sent_proposal_letter_no ? data.data
                         .sent_proposal_letter_no : 'N/a');
+                    let img = base_url + '/uplode_images/masters/' + data.data.upload_img;
+                    $('.view-upload_img').attr("href", img);
                     $('.view-sent_letter_date').text(data.data.sent_proposal_date ? data.data
                         .sent_proposal_date : 'N/a');
                     $('.view-sent_amount').text(data.data.sent_proposal_amount ? data.data

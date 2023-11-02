@@ -39,7 +39,7 @@ class ProposalMasterController extends Controller
         $mpmla = MpMlaSuggested::orderBy('id')->get();
         $sentbox = SentBox::orderBy('id')->get();
 
-        return view('admin.proposal_master', compact('districtname', 'talukaname', 'worktype', 'typework', 'budget', 'budgetwork', 'mpmla', 'sentbox', 'user', 'role','proposal_show'));
+        return view('admin.proposal_master', compact('districtname', 'talukaname', 'worktype', 'typework', 'budget', 'budgetwork', 'mpmla', 'sentbox', 'user', 'role', 'proposal_show'));
     }
     public function storeImage($img, $path)
     {

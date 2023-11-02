@@ -67,6 +67,8 @@ return new class extends Migration
             $table->text('basic_name_of_road')->nullable();
             $table->text('basic_category_of_road')->nullable();
             $table->text('basic_sent_box_img')->nullable();
+            $table->text('basic_circle_name')->nullable();
+
 
 
 
@@ -227,7 +229,7 @@ return new class extends Migration
             $table->text('ed_b')->nullable();
             $table->text('ed_details')->nullable();
             $table->text('ed_fincial')->nullable();
-        
+
 
 
             //excess details
@@ -377,7 +379,7 @@ return new class extends Migration
 
             $table->date('do_fdr_date')->nullable();
             $table->date('do_work_order_date')->nullable();
-            $table->date('do_completion_date')->nullable();
+            $table->text('do_completion_date')->nullable();
 
             //tpi details
             $table->text('tpi_pq_open')->nullable();

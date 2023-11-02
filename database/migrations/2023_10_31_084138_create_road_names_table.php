@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('road_names', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('sub_division_id');
+            $table->string('chainage_to');
+            $table->string('total_length');
+            $table->string('cat');
             $table->string('chainage_from')->nullable();
-
-            $table->timestamps();   
+            $table->timestamps();
         });
     }
 

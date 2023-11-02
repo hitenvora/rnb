@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
                                         <label for="inputtitle1" class="form-label">Letter No.</label>
-                                        <input class="form-control" type="text" id="do_letter_No" name="do_etter_No"
+                                        <input class="form-control" type="text" id="do_letter_No" name="do_letter_No"
                                             placeholder="Enter Letter No." value="{{ $project_master->do_letter_No }}">
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
@@ -255,7 +255,7 @@
                                     <div class="col-xl-3 col-lg-6">
                                         <label for="inputtitle1" class="form-label">Time Line As Per Work Order In
                                             Month</label>
-                                        <input class="form-control" type="text" id="do_time_line_month"
+                                        <input class="form-control" type="number" id="do_time_line_month"
                                             name="do_time_line_month"
                                             placeholder="Enter Time Line As Per Work Order In Month"
                                             value="{{ $project_master->do_time_line_month }}">
