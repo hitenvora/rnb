@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\admin\AdminLogin;
 use App\Models\Admin\Budget;
-use App\Models\Admin\BudgetWork;
-use App\Models\Admin\District;
-use App\Models\Admin\DivisionMasters;
-use App\Models\Admin\MpMlaSuggested;
-use App\Models\Admin\ProPosalMasters;
-use App\Models\Admin\SentBox;
-use App\Models\Admin\SubDivisionMasters;
 use App\Models\Admin\Taluka;
-use App\Models\Admin\TypesOfWork;
-use App\Models\Admin\WorkTypes;
-use App\Models\Master\Master;
-use App\Models\Tender\AddTenderForm;
-use App\Models\Tender\AddTpiTenderForm;
 use Illuminate\Http\Request;
+use App\Models\Admin\SentBox;
+use App\Models\Master\Master;
+use App\Models\Admin\District;
+use App\Models\Admin\WorkTypes;
+use App\Models\admin\AdminLogin;
+use App\Models\Admin\BudgetWork;
+use App\Models\Admin\TypesOfWork;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Admin\MpMlaSuggested;
+use App\Models\Tender\AddTenderForm;
+use App\Models\Admin\DivisionMasters;
+use App\Models\Admin\ProPosalMasters;
+use App\Models\Tender\AddTpiTenderForm;
+use App\Models\Admin\SubDivisionMasters;
 use Yajra\DataTables\Facades\DataTables;
 
 

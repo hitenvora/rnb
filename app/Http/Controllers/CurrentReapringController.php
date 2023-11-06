@@ -132,9 +132,9 @@ class CurrentReapringController extends Controller
             $actionUrl = route('edit_current_repairs', $id);
 
             $sheetUrl = route('cr_master', $id);
-            $action = '<a class="btn btn-success btn-sm me-1" href="' . $sheetUrl . '"><i class="fa fa-file-excel-o"></i></a>';
+            // $action = '<a class="btn btn-success btn-sm me-1" href="' . $sheetUrl . '"><i class="fa fa-file-excel-o"></i></a>';
 
-            $action .= '<a class="btn btn-primary btn-sm me-1" href="' . $actionUrl . '"><i class="fa fa-pencil"></i></a>';
+            $action = '<a class="btn btn-primary btn-sm me-1" href="' . $actionUrl . '"><i class="fa fa-pencil"></i></a>';
             if (in_array(auth()->user()->role_id, [1])) {
                 $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
             }

@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-end">
-                                    <a class="btn btn-white add-user" id="exportButton" href="#" download>
+                                    {{-- <a class="btn btn-white add-user" id="exportButton" href="#" download>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                             viewBox="0 0 18 18" fill="none">
                                             <path
@@ -36,7 +36,7 @@
                                                 stroke-width="1.63636" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                         Export
-                                    </a>
+                                    </a> --}}
                                     <a class="btn btn-primary ms-2 add-user" data-bs-toggle="modal" data-bs-target="#add_user">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 20 20" fill="none">
