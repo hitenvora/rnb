@@ -496,17 +496,12 @@ class MasterController extends Controller
 
         if ($step == 'expenditure_detail') {
 
-            $ed_origin_work = $request->input('ed_origin_work');
-            if (isset($ed_origin_work) && sizeof($ed_origin_work)) {
 
-                $basic_branch->ed_origin_work = implode(",", $ed_origin_work);
-            }
+            $basic_branch->ed_origin_work = $request->input('ed_origin_work');
 
-            $ed_tender_cost = $request->input('ed_tender_cost');
-            if (isset($ed_tender_cost) && sizeof($ed_tender_cost)) {
 
-                $basic_branch->ed_tender_cost = implode(",", $ed_tender_cost);
-            }
+
+            $basic_branch->ed_tender_cost = $request->input('ed_tender_cost');
 
 
             $ed_paid_amount = $request->input('ed_paid_amount');
@@ -516,18 +511,12 @@ class MasterController extends Controller
             }
 
 
-            $ed_estimated_cost = $request->input('ed_estimated_cost');
-            if (isset($ed_estimated_cost) && sizeof($ed_estimated_cost)) {
 
-                $basic_branch->ed_estimated_cost = implode(",", $ed_estimated_cost);
-            }
+            $basic_branch->ed_estimated_cost = $request->input('ed_estimated_cost');
 
 
-            $ed_project_cost = $request->input('ed_project_cost');
-            if (isset($ed_project_cost) && sizeof($ed_project_cost)) {
 
-                $basic_branch->ed_project_cost = implode(",", $ed_project_cost);
-            }
+            $basic_branch->ed_project_cost = $request->input('ed_project_cost');
 
             $ed_expenditure_amount = $request->input('ed_expenditure_amount');
             if (isset($ed_expenditure_amount) && sizeof($ed_expenditure_amount)) {
@@ -558,17 +547,10 @@ class MasterController extends Controller
                 $basic_branch->expended_details = implode(",", $expended_details);
             }
 
+            $basic_branch->ed_dtp_amount = $request->input('ed_dtp_amount');
 
-            $ed_dtp_amount = $request->input('ed_dtp_amount');
-            if (isset($ed_dtp_amount) && sizeof($ed_dtp_amount)) {
 
-                $basic_branch->ed_dtp_amount = implode(",", $ed_dtp_amount);
-            }
-            $ed_qulity_cost = $request->input('ed_qulity_cost');
-            if (isset($ed_qulity_cost) && sizeof($ed_qulity_cost)) {
-
-                $basic_branch->ed_qulity_cost = implode(",", $ed_qulity_cost);
-            }
+            $basic_branch->ed_qulity_cost = $request->input('ed_qulity_cost');
             $ed_b = $request->input('ed_b');
             if (isset($ed_b) && sizeof($ed_b)) {
 

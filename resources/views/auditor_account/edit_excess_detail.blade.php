@@ -183,7 +183,7 @@
                     if (data.status == 200) {
                         $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
-                            toastr.success("Project Master added successfully.");
+                            toastr.success("Excess Details added successfully.");
                         } else {
                             toastr.success("Project Master updated successfully.");
                         }

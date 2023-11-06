@@ -120,9 +120,9 @@
                     if (data.status == 200) {
                         $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
-                            toastr.success("Proposal Master added successfully.");
+                            toastr.success("Detils Of Work added successfully.");
                         } else {
-                            toastr.success("Proposal Master updated successfully.");
+                            toastr.success("Detils Of Work updated successfully.");
                         }
                         // dataTable.draw();
                         // window.location.href = "{{ route('curent_reaparing_master') }}";

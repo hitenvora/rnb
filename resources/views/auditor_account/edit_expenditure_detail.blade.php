@@ -17,17 +17,52 @@
                             </div>
                             <form class="row" method="post" enctype="multipart/form-data" id="master_id_form">
                                 @csrf
+
                                 <div class="card-body">
-                                    <div class="table-responsive expen_table">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label for="ed_dtp_amount" class="form-label">Dtp Amount</label>
+                                            <input type="text" id="ed_dtp_amount" name="ed_dtp_amount"
+                                                class="form-control" value="{{ $project_master->dtp_amt }}" readonly>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="ed_project_cost" class="form-label">AA Amount</label>
+                                            <input type="text" class="form-control" name="ed_project_cost"
+                                                value="{{ $project_master->aa_amount }}" id="ed_project_cost" readonly>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="ed_estimated_cost" class="form-label">Estimated Amount</label>
+                                            <input type="text" id="ed_estimated_cost" name="ed_estimated_cost"
+                                                value="{{ $project_master->bes_amount }}" class="form-control" readonly>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="ed_tender_cost" class="form-label">Tender Cost</label>
+                                            <input type="text" class="form-control ed_tender_cost" name="ed_tender_cost"
+                                                value="{{ $project_master->do_tender_amt }}" id="ed_tender_cost" readonly>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="ed_qulity_cost" class="form-label">Quality Contracts Cost</label>
+                                            <input type="text" id="ed_qulity_cost" name="ed_qulity_cost"
+                                                class="form-control" value="{{ $project_master->tpi_tendure_amount }}"
+                                                readonly>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="ed_origin_work" class="form-label">Received Tender Cost</label>
+                                            <input type="text" id="ed_origin_work" name="ed_origin_work"
+                                                value="{{ $project_master->tsd_amount }}" class="form-control" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive expen_table mt-2">
                                         <table class="exp_detail table-bordered">
                                             <thead>
-                                                <th>Dtp Amount</th>
+                                                {{-- <th>Dtp Amount</th>
                                                 <th>AA Amount</th>
                                                 <th>Estimated Amount</th>
                                                 <th>Tender Cost</th>
                                                 <th>Quality Contracts Cost</th>
-                                                <th>Relavted Tender Cost</th>
-                                                <th>B</th>
+                                                <th>Relavted Tender Cost</th> --}}
+                                                <th>Bill No.</th>
                                                 <th>Details</th>
                                                 <th>Expended Date</th>
                                                 <th> Expenditure Amount Without</th>
@@ -43,14 +78,13 @@
                                                         value="{{ $project_master->id }}">
                                                     <input type="hidden" name="step" value="expenditure_detail">
 
-                                                    @foreach (explode(',', $project_master->ed_origin_work) as $key => $data)
+                                                    @foreach (explode(',', $project_master->ed_b) as $key => $data)
                                                         @php
-                                                            $ed_tender_cost = explode(',', $project_master->ed_tender_cost);
-                                                            $ed_estimated_cost = explode(',', $project_master->ed_estimated_cost);
-                                                            $ed_project_cost = explode(',', $project_master->ed_project_cost);
-                                                            $ed_dtp_amount = explode(',', $project_master->ed_dtp_amount);
-                                                            $ed_qulity_cost = explode(',', $project_master->ed_qulity_cost);
-                                                            $ed_b = explode(',', $project_master->ed_b);
+                                                            // $ed_estimated_cost = explode(',', $project_master->ed_estimated_cost);
+                                                            // $ed_project_cost = explode(',', $project_master->ed_project_cost);
+                                                            // $ed_dtp_amount = explode(',', $project_master->ed_dtp_amount);
+                                                            // $ed_qulity_cost = explode(',', $project_master->ed_qulity_cost);
+                                                            // $ed_b = explode(',', $);
                                                             $ed_details = explode(',', $project_master->ed_details);
                                                             $expended_details = explode(',', $project_master->expended_details);
                                                             $ed_fincial = explode(',', $project_master->ed_fincial);
@@ -61,45 +95,45 @@
                                                             $ed_work = explode(',', $project_master->ed_work);
 
                                                         @endphp
-                                                        <td>
+                                                        {{-- <td>
                                                             <input type="text" id="ed_dtp_amount" name="ed_dtp_amount[]"
                                                                 class="form-control" placeholder="Enter Amount"
                                                                 value="{{ @$ed_dtp_amount[$key] }}">
-                                                        </td>
-                                                        <td>
+                                                        </td> --}}
+                                                        {{-- <td>
                                                             <input type="text" class="form-control"
                                                                 name="ed_project_cost[]"
                                                                 value="{{ @$ed_project_cost[$key] }}" id="ed_project_cost"
                                                                 placeholder="Enter Project Cost">
-                                                        </td>
-                                                        <td>
+                                                        </td> --}}
+                                                        {{-- <td>
                                                             <input type="text" id="ed_estimated_cost"
                                                                 name="ed_estimated_cost[]"
                                                                 value="{{ @$ed_estimated_cost[$key] }}" class="form-control"
                                                                 placeholder="Enter Estimated Cost">
-                                                        </td>
-                                                        <td>
+                                                        </td> --}}
+                                                        {{-- <td>
                                                             <input type="text" class="form-control ed_tender_cost"
                                                                 name="ed_tender_cost[]" value="{{ @$ed_tender_cost[$key] }}"
                                                                 id="ed_tender_cost" placeholder="Enter Tender Cost">
-                                                        </td>
-                                                        <td>
+                                                        </td> --}}
+                                                        {{-- <td>
                                                             <input type="text" id="ed_qulity_cost"
                                                                 name="ed_qulity_cost[]" class="form-control"
                                                                 value="{{ @$ed_qulity_cost[$key] }}"
                                                                 placeholder="Enter Estimated Cost">
-                                                        </td>
+                                                        </td> --}}
 
-                                                        <td>
+                                                        {{-- <td>
                                                             <input type="text" id="ed_origin_work"
                                                                 name="ed_origin_work[]" value="{{ $data }}"
                                                                 class="form-control"
                                                                 placeholder="Enter Relavent Tender Cost">
-                                                        </td>
+                                                        </td> --}}
                                                         <td>
                                                             <input type="text" class="form-control" id="ed_b"
-                                                                value="{{ @$ed_b[$key] }}" name="ed_b[]"
-                                                                placeholder="Enter B">
+                                                                value="{{ $data }}" name="ed_b[]"
+                                                                placeholder="Enter Bill Number">
                                                         </td>
 
                                                         <td>
@@ -131,9 +165,9 @@
                                                                 placeholder="Enter Physical (%)">
                                                         </td>
                                                         <td>
-                                                            <input type="text" class="form-control" name="ed_fincial[]"
-                                                                value="{{ @$ed_fincial[$key] }}" id="ed_fincial"
-                                                                placeholder="Enter Fincial(%)">
+                                                            <input type="text" class="form-control"
+                                                                name="ed_fincial[]" value="{{ @$ed_fincial[$key] }}"
+                                                                id="ed_fincial" placeholder="Enter Fincial(%)">
                                                         </td>
                                                         <td>
                                                             <select class="form-select" name="ed_amount_for[]"
@@ -209,13 +243,13 @@
                             <li>
                                 <div class="d-flex">
                                     <h6>Tpi+Test</h6>
-                                    <span id="" data-category="">0</span>
+                                    <span id="tpitest" data-category="tpitest">0</span>
                                 </div>
                             </li>
                             <li>
                                 <div class="d-flex">
                                     <h6>Percentage %</h6>
-                                    <span id="" data-category="">0</span>
+                                    <span id="percentage" data-category="">0</span>
                                 </div>
                             </li>
                         </ul>
@@ -311,11 +345,12 @@
                     if (data.status == 200) {
                         $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
-                            toastr.success("Proposal Master added successfully.");
+                            toastr.success("Expenditure Datils added successfully.");
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
                         // dataTable.draw();
+                        location.reload();
                     } else {
                         toastr.error(data.msg);
                     }
@@ -347,44 +382,9 @@
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('tr');
                 newContactField.innerHTML = ` <td>
-                                                            <input type="text" id="ed_dtp_amount" name="ed_dtp_amount[]"
-                                                               class="form-control"
-                                                                placeholder="Enter Amount"
-                                             >
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control"
-                                                                name="ed_project_cost[]"
-                                                               id="ed_project_cost"
-                                                                placeholder="Enter Project Cost">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="ed_estimated_cost"
-                                                                name="ed_estimated_cost[]"
-                                                                 class="form-control"
-                                                                placeholder="Enter Estimated Cost">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" class="form-control ed_tender_cost"
-                                                                name="ed_tender_cost[]"
-                                                                id="ed_tender_cost" placeholder="Enter Tender Cost">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" id="ed_qulity_cost"
-                                                                name="ed_qulity_cost[]" class="form-control" 
-                                                                 placeholder="Enter Estimated Cost">
-                                                        </td>
-
-                                                        <td>
-                                                            <input type="text" id="ed_origin_work"
-                                                                name="ed_origin_work[]" 
-                                                                class="form-control"
-                                                                placeholder="Enter Relavent Tender Cost">
-                                                        </td>
-                                                        <td>
                                                             <input type="text" class="form-control" id="ed_b"
                                                                name="ed_b[]"
-                                                                placeholder="Enter B">
+                                                                placeholder="Enter Bill Number">
                                                         </td>
 
                                                         <td>
@@ -479,15 +479,29 @@
             }
         }
 
+        var totalUtility = 0;
+        var totalTesting = 0;
+        var totalBill = 0;
+        var totalOther = 0;
+        var totalFinancialProgress = 0;
+        var totalPhysicalProgress = 0;
+        var totalTpi = 0;
+        var reducedGrandTotal = 0;
+        var per = 0;
+        var tpitestValue = 0;
+        updateTotal();
 
         function updateTotal() {
-            const amountInputs = document.querySelectorAll('#ed_tender_cost');
+            const amountInputs = document.querySelectorAll('#ed_expenditure_amount');
             const categoryDropdowns = document.querySelectorAll('#ed_amount_for');
             const totalElements = document.querySelectorAll('.total_detail span');
 
 
             const grandTotalElement = document.getElementById('grandTotal');
             const reducedGrand = document.getElementById('reducedGrand');
+            const tpitest = document.getElementById('tpitest');
+
+
 
 
             // Add an input event listener to each amount input and dropdown
@@ -497,13 +511,7 @@
                 categoryDropdowns[index].addEventListener('change', updateTotal);
             });
 
-            let totalUtility = 0;
-            let totalTesting = 0;
-            let totalBill = 0;
-            let totalOther = 0;
-            let totalFinancialProgress = 0;
-            let totalPhysicalProgress = 0;
-            let totalTpi = 0;
+
 
             // Loop through the inputs and calculate the total for each category
             amountInputs.forEach(function(input, index) {
@@ -531,8 +539,9 @@
             // Calculate the grand total
             const grandTotal = totalUtility + totalTesting + totalBill + totalOther + totalFinancialProgress +
                 totalPhysicalProgress + totalTpi;
+            const ed_origin_work = $('#ed_origin_work').val();
 
-            const reducedGrandTotal = grandTotal * 0.99;
+            reducedGrandTotal = ed_origin_work * (1 / 100);
 
             // Display the total for each category
             totalElements[0].textContent = totalUtility;
@@ -546,13 +555,18 @@
             // Display the grand total
             grandTotalElement.textContent = grandTotal;
             reducedGrand.textContent = reducedGrandTotal;
+            tpitestValue = totalTpi + totalTesting;
+            tpitest.textContent = tpitestValue;
+            per = (tpitestValue * 100) / reducedGrandTotal;
+            $("#percentage").text(per.toFixed(2));
         }
 
-        document.querySelectorAll('#ed_tender_cost').forEach(function(input) {
+        tpitestValue = totalTpi + totalTesting;
+        tpitest.textContent = tpitestValue;
+        per = (tpitestValue * 100) / reducedGrandTotal;
+        $("#percentage").text(per.toFixed(2));
+        document.querySelectorAll('#ed_expenditure_amount').forEach(function(input) {
             input.addEventListener('input', updateTotal);
         });
-
-
-        updateTotal();
     </script>
 @endsection

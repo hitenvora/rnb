@@ -458,7 +458,7 @@
                             <div class="col-lg-12">
                                 <label class="form-label">Name Of Tender</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    value="XYZ">
+                                    >
                             </div>
 
                             <div class="col-12 text-center">
@@ -499,7 +499,7 @@
                     if (data.status == 200) {
                         $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
-                            toastr.success("Project Master added successfully.");
+                            toastr.success("Nit  added successfully.");
                         } else {
                             toastr.success("Project Master updated successfully.");
                         }

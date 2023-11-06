@@ -305,7 +305,7 @@
                     if (data.status == 200) {
                         $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
-                            toastr.success("Proposal Master added successfully.");
+                            toastr.success("Utility Shifting added successfully.");
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }

@@ -825,9 +825,9 @@
                     if (data.status == 200) {
                         $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
-                            toastr.success("Proposal Master added successfully.");
+                            toastr.success("Basic added successfully.");
                         } else {
-                            toastr.success("Proposal Master updated successfully.");
+                            toastr.success("Basic added successfully");
                         }
                         dataTable.draw();
                     } else {
@@ -867,7 +867,7 @@
                     if (data.status == 200) {
                         $('#name_of_scheme_id').modal('hide');
                         if ($('#name_of_scheme_id').val() == '') {
-                            toastr.success("Proposal Master added successfully.");
+                            toastr.success("Name Of Scheme added successfully.");
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
@@ -913,7 +913,7 @@
                     if (data.status == 200) {
                         $('#add_name_of_project_id').modal('hide');
                         if ($('#add_name_of_project_id').val() == '') {
-                            toastr.success("Proposal Master added successfully.");
+                            toastr.success("Name Of Project added successfully.");
                         } else {
                             toastr.success("Proposal Master updated successfully.");
                         }
@@ -951,15 +951,15 @@
                 typeOfWorkSelect.innerHTML += `
                 <option value="Re-Surfacing">Re-Surfacing</option>
                 <option value="Strengthening">Strengthening</option>
-                <option value="3.75 to 5.5">3.75 to 5.5</option>
-                <option value="3.75 to 7">3.75 to 7</option>
-                <option value="3.75 to 10">3.75 to 10</option>
-                <option value="5.5 to 7">5.5 to 7</option>
-                <option value="5.5 to 10">5.5 to 10</option>
-                <option value="7 to 10">7 to 10</option>
-                <option value="10 to 4 lan">10 to 4 lan</option>
-                <option value="10 to 6 lan">10 to 6 lan</option>
-                <option value="4 lan to 6 lan">4 lan to 6 lan</option>`;
+                <option value=" Widening 3.75 to 5.5">Widening 3.75 to 5.5</option>
+                <option value=" Widening 3.75 to 7">Widening 3.75 to 7</option>
+                <option value=" Widening 3.75 to 10">Widening 3.75 to 10</option>
+                <option value=" Widening 5.5 to 7">Widening 5.5 to 7</option>
+                <option value=" Widening 5.5 to 10">Widening 5.5 to 10</option>
+                <option value=" Widening 7 to 10">Widening 7 to 10</option>
+                <option value=" Widening 10 to 4 lan">Widening 10 to 4 lan</option>
+                <option value=" Widening 10 to 6 lan">Widening 10 to 6 lan</option>
+                <option value=" Widening 4 lan to 6 lan">Widening 4 lan to 6 lan</option>`;
             } else if (selectedWorkTypeId === '2') {
                 // If "Work Type" is 2, add different options
                 typeOfWorkSelect.innerHTML += `

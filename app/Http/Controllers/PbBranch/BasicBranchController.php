@@ -23,7 +23,7 @@ use Illuminate\Http\Request;
 
 class BasicBranchController extends Controller
 {
-    public function index(Request $request )
+    public function index(Request $request)
     {
         // $project_master = Master::where('id')->get();
         $user = auth()->user();
