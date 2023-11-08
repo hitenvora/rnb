@@ -80,6 +80,10 @@
                                                 href="{{ route('edit_detils_of_work', $cr_update->id) }}">Detils Of
                                                 Work</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link  {{ Route::is('edit_bill_no') ? 'active' : '' }}"
+                                                href="{{ route('edit_bill_no', $cr_update->id) }}">Bill No</a>
+                                        </li>
                                     </ul>
 
                                 </div>

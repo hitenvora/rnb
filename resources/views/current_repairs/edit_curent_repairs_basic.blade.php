@@ -19,72 +19,93 @@
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $cr_update->id }}">
                                     <input type="hidden" name="step" value="cr_basic">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <label class="form-label">Subdivision To</label>
                                         <input type="text" class="form-control" id="cr_subdivision_to"
                                             name="cr_subdivision_to" value="{{ $cr_update->cr_subdivision_to }}">
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <label class="form-label">Name Of Section</label>
-                                        <input type="date" class="form-control" id="cr_letter_date_name_of_section"
+                                        <input type="text" class="form-control" id="cr_letter_date_name_of_section"
                                             name="cr_letter_date_name_of_section"
                                             value="{{ $cr_update->cr_letter_date_name_of_section }}">
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <label class="form-label">Section</label>
                                         <input type="text" class="form-control" id="cr_section" name="cr_section"
                                             value="{{ $cr_update->cr_section }}">
                                     </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Tsi Persoul</label>
-                                        <input type="text" class="form-control" id="ct_tsi" name="ct_tsi"
-                                            value="{{ $cr_update->ct_tsi }}">
-                                    </div>
-
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-12">
                                         <label class="form-label">Name Of Work</label>
                                         <input type="text" class="form-control" id="ct_work" name="ct_work"
                                             value="{{ $cr_update->ct_work }}">
                                     </div>
-                                    <div class="col-lg-3">
+                                    <!-- <div class="col-lg-3">
+                                            <label class="form-label">Tsi Persoul</label>
+                                            <input type="text" class="form-control" id="ct_tsi" name="ct_tsi"
+                                                value="{{ $cr_update->ct_tsi }}">
+                                        </div> -->
+                                    <!-- <div class="col-lg-3">
+                                            <label class="form-label">Ts/Persual</label>
+                                            <input type="text" class="form-control" id="ct_persual" name="ct_persual"
+                                                value="{{ $cr_update->ct_persual }}">
+                                        </div> -->
+
+                                    <div class="col-lg-12">
                                         <label class="form-label">Ts/Persual</label>
-                                        <input type="text" class="form-control" id="ct_persual" name="ct_persual"
-                                            value="{{ $cr_update->ct_persual }}">
+                                        <select class="form-control" id="ts_persual" name="ts_persual">
+                                            <option value="">Select Ts/Persual</option>
+                                            <option value="Ts"
+                                                {{ $cr_update->ct_ts_persual == 'Ts' ? 'selected' : '' }}>Ts</option>
+                                            <option value="Persual"
+                                                {{ $cr_update->ct_ts_persual == 'Persual' ? 'selected' : '' }}>Persual
+                                            </option>
+                                        </select>
                                     </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Ts No</label>
-                                        <input type="text" class="form-control" id="ct_ts_no" name="ct_ts_no"
-                                            value="{{ $cr_update->ct_ts_no }}">
+                                    <div class="col-lg-12" id="ts_data"
+                                        @if ($cr_update->ct_ts_persual != 'Ts') style="display:none;" @endif>
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="form-label">Ts No</label>
+                                                <input type="text" class="form-control" id="ct_ts_no" name="ct_ts_no"
+                                                    value="{{ $cr_update->ct_ts_no }}">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-label">Ts Date</label>
+                                                <input type="text" class="form-control" id="ct_date" name="ct_date"
+                                                    value="{{ $cr_update->ct_date }}">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-label">Ts Letter No</label>
+                                                <input type="text" class="form-control" id="ct_letter_no"
+                                                    name="ct_letter_no" value="{{ $cr_update->ct_letter_no }}">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-label">Ts Amount</label>
+                                                <input type="text" class="form-control" id="ct_amount" name="ct_amount"
+                                                    value="{{ $cr_update->ct_amount }}">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Ts Date</label>
-                                        <input type="text" class="form-control" id="ct_date" name="ct_date"
-                                            value="{{ $cr_update->ct_date }}">
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Ts Letter No</label>
-                                        <input type="text" class="form-control" id="ct_letter_no" name="ct_letter_no"
-                                            value="{{ $cr_update->ct_letter_no }}">
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Ts Amount</label>
-                                        <input type="text" class="form-control" id="ct_amount" name="ct_amount"
-                                            value="{{ $cr_update->ct_amount }}">
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Persual Letter No</label>
-                                        <input type="text" class="form-control" id="ct_leter_no" name="ct_leter_no"
-                                            value="{{ $cr_update->ct_leter_no }}">
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Persual Date</label>
-                                        <input type="text" class="form-control" id="ct_persual_date"
-                                            name="ct_persual_date" value="{{ $cr_update->ct_persual_date }}">
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Persual Amount</label>
-                                        <input type="text" class="form-control" id="ct_persual_amount"
-                                            name="ct_persual_amount" value="{{ $cr_update->ct_persual_amount }}">
+                                    <div class="col-lg-12" id="persual_data"
+                                        @if ($cr_update->ct_ts_persual != 'Persual') style="display:none;" @endif>
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="form-label">Persual Letter No</label>
+                                                <input type="text" class="form-control" id="ct_leter_no"
+                                                    name="ct_leter_no" value="{{ $cr_update->ct_leter_no }}">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-label">Persual Date</label>
+                                                <input type="text" class="form-control" id="ct_persual_date"
+                                                    name="ct_persual_date" value="{{ $cr_update->ct_persual_date }}">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-label">Persual Amount</label>
+                                                <input type="text" class="form-control" id="ct_persual_amount"
+                                                    name="ct_persual_amount" value="{{ $cr_update->ct_persual_amount }}">
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-xl-4 col-lg-6 branch-scheme-select">
                                         <label class="form-label">Name of Agency</label>
@@ -155,6 +176,19 @@
 
 @section('script')
     <script>
+        $("#ts_persual").change(function() {
+            if ($(this).val() == 'Ts') {
+                $("#persual_data").hide();
+                $("#ts_data").show();
+            } else if ($(this).val() == 'Persual') {
+                $("#ts_data").hide();
+                $("#persual_data").show();
+            } else {
+                $("#ts_data").hide();
+                $("#persual_data").hide();
+            }
+        });
+
         $('#master_form').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
