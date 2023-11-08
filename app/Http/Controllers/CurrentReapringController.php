@@ -10,6 +10,7 @@ use App\Models\current_reapring\CRSubDivisions;
 use App\Models\current_reapring\CurrentReapring;
 use App\Models\current_reapring\RoadName;
 use App\Models\Master\Master;
+use App\Models\ReparingBill;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -60,10 +61,10 @@ class CurrentReapringController extends Controller
         $division_name = DivisionMasters::orderBy('id')->get();
         $type_work = TypesOfWork::orderBy('id')->get();
         $agency_name = AgencyName::orderBy('id')->get();
-
+        $reparing_bills = ReparingBill::where('current_reapring_id', $id)->get();
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
-        return view('current_repairs.crrent_reapirs_bill_no', compact('user', 'role', 'division_name', 'type_work', 'cr_update', 'agency_name'));
+        return view('current_repairs.crrent_reapirs_bill_no', compact('user', 'role', 'division_name', 'type_work', 'cr_update', 'agency_name', 'reparing_bills'));
     }
 
     public function insert(Request $request)
@@ -156,10 +157,49 @@ class CurrentReapringController extends Controller
             $cr_master->cr_egncy_name = $request->input('cr_egncy_name');
         }
 
+        if ($step == 'cr_bill') {
+            if (sizeof($request->bill_status) > 0) {
+                $bill_status = $request->bill_status;
+                $amount = $request->amount;
+                $bill_date = $request->bill_date;
+                $is_final = $request->is_final;
+                for ($i = 0; $i < sizeof($request->bill_status); $i++) {
+                    $reparing_bill = ReparingBill::where('current_reapring_id', $request->master_id)->where('bill_status', $bill_status[$i])->first();
+                    if (isset($reparing_bill)) {
+                        $reparing_bill->bill_status = $request->bill_status[$i];
+                        $reparing_bill->amount = $amount[$i];
+                        $reparing_bill->bill_date = $bill_date[$i];
+                        if (isset($is_final[$i])) {
+                            $reparing_bill->is_final = $is_final[$i];
+                        } else {
+                            $reparing_bill->is_final = null;
+                        }
+                    } else {
+                        $reparing_bill = new ReparingBill();
+                        $reparing_bill->bill_status = $request->bill_status[$i];
+                        $reparing_bill->amount = $amount[$i];
+                        $reparing_bill->bill_date = $bill_date[$i];
+                        if (isset($is_final[$i])) {
+                            $reparing_bill->is_final = $is_final[$i];
+                        } else {
+                            $reparing_bill->is_final = null;
+                        }
+                    }
+                    $reparing_bill->current_reapring_id = $request->master_id;
+                    $reparing_bill->save();
+                }
+            }
+        }
+
 
         $cr_master->save();
 
         return response()->json(['status' => '200', 'msg' => 'success']);
+    }
+
+    public function delete_repairing_bill(Request $request)
+    {
+        ReparingBill::where('id',$request->bill_id)->delete();
     }
 
     public function cr_edit(Request $request)
