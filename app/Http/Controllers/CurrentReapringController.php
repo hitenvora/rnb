@@ -15,8 +15,8 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CurrentReapringController extends Controller
 {
-    /** 
-     * Display a listing of the resource.   
+    /**
+     * Display a listing of the resource.
      */
     public function index()
     {
@@ -49,6 +49,21 @@ class CurrentReapringController extends Controller
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         return view('current_repairs.edit_curent_repairs_basic', compact('user', 'role', 'division_name', 'type_work', 'cr_update', 'agency_name'));
+    }
+
+    public function edit_bill_no($id)
+
+    {
+
+        $cr_update = CurrentReapring::where('id', $id)->first();
+        // $project_master = Master::where('id', $id)->first();
+        $division_name = DivisionMasters::orderBy('id')->get();
+        $type_work = TypesOfWork::orderBy('id')->get();
+        $agency_name = AgencyName::orderBy('id')->get();
+
+        $user = auth()->user();
+        $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        return view('current_repairs.crrent_reapirs_bill_no', compact('user', 'role', 'division_name', 'type_work', 'cr_update', 'agency_name'));
     }
 
     public function insert(Request $request)
@@ -126,9 +141,11 @@ class CurrentReapringController extends Controller
             $cr_master->cr_subdivision_to = $request->input('cr_subdivision_to');
             $cr_master->cr_letter_date_name_of_section = $request->input('cr_letter_date_name_of_section');
             $cr_master->cr_section = $request->input('cr_section');
-            $cr_master->ct_tsi = $request->input('ct_tsi');
+            // $cr_master->ct_tsi = $request->input('ct_tsi');
+            // $cr_master->ct_persual = $request->input('ct_persual');
+
+            $cr_master->ct_ts_persual = $request->input('ts_persual');
             $cr_master->ct_work = $request->input('ct_work');
-            $cr_master->ct_persual = $request->input('ct_persual');
             $cr_master->ct_ts_no = $request->input('ct_ts_no');
             $cr_master->ct_date = $request->input('ct_date');
             $cr_master->ct_letter_no = $request->input('ct_letter_no');

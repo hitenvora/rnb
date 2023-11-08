@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('cr_section')->nullable();
             $table->text('ct_tsi')->nullable();
             $table->text('ct_work')->nullable();
+            $table->text('ct_ts_persual')->nullable();
             $table->text('ct_persual')->nullable();
             $table->text('ct_ts_no')->nullable();
             $table->text('ct_date')->nullable();
