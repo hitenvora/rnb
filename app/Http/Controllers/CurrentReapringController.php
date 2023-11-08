@@ -8,6 +8,7 @@ use App\Models\Admin\TypesOfWork;
 use App\Models\current_reapring\AgencyName;
 use App\Models\current_reapring\CRSubDivisions;
 use App\Models\current_reapring\CurrentReapring;
+use App\Models\current_reapring\DetailOfWorkName;
 use App\Models\current_reapring\RoadName;
 use App\Models\Master\Master;
 use Illuminate\Http\Request;
@@ -124,17 +125,7 @@ class CurrentReapringController extends Controller
         }
 
 
-        //detils of work
 
-        if ($step == 'cr_detils_of_work') {
-            $cr_master->cr_name_of_road = $request->input('cr_name_of_road');
-            $cr_master->cr_type_work = $request->input('cr_type_work');
-            $cr_master->cr_chainge = $request->input('cr_chainge');
-            $cr_master->cr_chainge_to = $request->input('cr_chainge_to');
-            $cr_master->cr_dow_bill_no = $request->input('cr_dow_bill_no');
-            $cr_master->cr_dow_bill_date = $request->input('cr_dow_bill_date');
-            $cr_master->cr_dow_bill_amount = $request->input('cr_dow_bill_amount');
-        }
 
         //basic
         if ($step == 'cr_basic') {
@@ -161,6 +152,72 @@ class CurrentReapringController extends Controller
 
         return response()->json(['status' => '200', 'msg' => 'success']);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    //detils of work
+    public function detils_of_work(Request $request)
+
+    {
+      
+
+        if ($request->master_id != '') {
+            $datils_of_work = DetailOfWorkName::find($request->master_id);
+            if (!$datils_of_work) {
+                return response()->json(['status' => 400, 'msg' => 'division not found!']);
+            }
+        } else {
+            $datils_of_work = new DetailOfWorkName();
+        }
+
+
+        $dow_name_road = $request->input('dow_name_road');
+        if (isset($dow_name_road) && sizeof($dow_name_road)) {
+
+            $datils_of_work->dow_name_road = implode(",", $dow_name_road);
+        }
+        $dow_catogry = $request->input('dow_catogry');
+        if (isset($dow_catogry) && sizeof($dow_catogry)) {
+
+            $datils_of_work->dow_catogry = implode(",", $dow_catogry);
+        }
+        $dow_chainge_to = $request->input('dow_chainge_to');
+        if (isset($dow_chainge_to) && sizeof($dow_chainge_to)) {
+
+            $datils_of_work->dow_chainge_to = implode(",", $dow_chainge_to);
+        }
+        $dow_chainge_from = $request->input('dow_chainge_from');
+        if (isset($dow_chainge_from) && sizeof($dow_chainge_from)) {
+
+            $datils_of_work->dow_chainge_from = implode(",", $dow_chainge_from);
+        }
+        $dow_type_of_work = $request->input('dow_type_of_work');
+        if (isset($dow_type_of_work) && sizeof($dow_type_of_work)) {
+
+            $datils_of_work->dow_type_of_work = implode(",", $dow_type_of_work);
+        }
+        $dow_bill_amt = $request->input('dow_bill_amt');
+        if (isset($dow_bill_amt) && sizeof($dow_bill_amt)) {
+
+            $datils_of_work->dow_bill_amt = implode(",", $dow_bill_amt);
+        }
+        
+        $datils_of_work->current_repairs_id = $request->input('master_id');
+        $datils_of_work->save();
+
+        return response()->json(['status' => '200', 'msg' => 'success']);
+    }
+
+
 
     public function cr_edit(Request $request)
     {

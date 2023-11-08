@@ -18,34 +18,46 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_form">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $cr_update->id }}">
-                                    <input type="hidden" name="step" value="cr_detils_of_work">
+                                    @foreach (explode(',', $cr_update->cr_road_name) as $key => $data)
+                                        @php
+                                            $cr_catogry = explode(',', $cr_update->cr_catogry);
+                                            $cr_start_date = explode(',', $cr_update->cr_start_date);
+                                            $cr_end_date = explode(',', $cr_update->cr_end_date);
+                                            $cr_type_of_work_id = explode(',', $cr_update->cr_type_of_work_id);
+                                        @endphp
+                                        <div class="col-lg-2">
 
-                                    <div class="col-lg-2">
-                                        <label class="form-label">Name Of Road</label>
-                                        <input type="text" class="form-control" id="cr_name_of_road"
-                                            name="cr_name_of_road" value="{{ $cr_update->cr_name_of_road }}">
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <label class="form-label">Type Of Work</label>
-                                        <input type="text" class="form-control" id="cr_type_work" name="cr_type_work"
-                                            value="{{ $cr_update->cr_type_work }}">
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <label class="form-label">Chainge</label>
-                                        <input type="text" class="form-control" id="cr_chainge" name="cr_chainge"
-                                            value="{{ $cr_update->cr_chainge }}">
-                                    </div>
+                                            <label class="form-label">Name Of Road</label>
+                                            <input type="text" class="form-control" id="dow_name_road"
+                                                name="dow_name_road[]" value="{{ $data }}">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-label">Category</label>
+                                            <input type="text" class="form-control" id="dow_catogry[]"
+                                                name="dow_catogry[]" value="{{ @$cr_catogry[$key] }}">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-label">Chainge(to)</label>
+                                            <input type="text" class="form-control" id="dow_chainge_to"
+                                                name="dow_chainge_to[]" value="{{ @$cr_start_date[$key] }}">
+                                        </div>
 
-                                    <div class="col-lg-2">
-                                        <label class="form-label" &nbsp>Chainge(from)</label>
-                                        <input type="text" class="form-control  " id="cr_chainge_to" name="cr_chainge_to"
-                                            value="{{ $cr_update->cr_chainge_to }}">
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <label class="form-label">Bill Amount</label>
-                                        <input type="text" class="form-control" id="cr_dow_bill_no" name="cr_dow_bill_no"
-                                            value="{{ $cr_update->cr_dow_bill_no }}">
-                                    </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-label" &nbsp>Chainge(from)</label>
+                                            <input type="text" class="form-control" id="dow_chainge_from"
+                                                name="dow_chainge_from[]" value="{{ @$cr_end_date[$key] }}">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-label">Type Of Work</label>
+                                            <input type="text" class="form-control" id="dow_type_of_work"
+                                                name="dow_type_of_work[]" value="{{ @$cr_type_of_work_id[$key] }}">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label class="form-label">Bill Amount</label>
+                                            <input type="text" class="form-control" id="dow_bill_amt"
+                                                name="dow_bill_amt[]" value="">
+                                        </div>
+                                    @endforeach
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
                                             name="sub_client">Save</button>
@@ -98,7 +110,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{{ route('curent_reaparing_insert') }}",
+                url: "{{ route('detils_of_work_insert') }}",
                 headers: {
                     'X-CSRF-Token': csrftoken,
                 },

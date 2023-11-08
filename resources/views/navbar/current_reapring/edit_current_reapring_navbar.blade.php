@@ -82,7 +82,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link  {{ Route::is('edit_bill_no') ? 'active' : '' }}"
-                                                href="{{ route('edit_bill_no', $cr_update->id) }}">Bill No</a>
+                                                href="{{ route('edit_bill_no', $cr_update->id) }}">Bill</a>
                                         </li>
                                     </ul>
 

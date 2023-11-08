@@ -435,6 +435,9 @@
                                             name="cr_end_date[]" value="">
                                         </select>
 
+                                    </div>
+                                    
+                                
                                  
 
                                     <div class="col-lg-2">
@@ -447,7 +450,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-                   
                                                
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button><div`;
 
