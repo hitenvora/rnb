@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\admin\AdminLogin;
+use App\Models\Admin\AdminLogin;
 use App\Models\admin\Role;
 use App\Models\Master\Master;
 use App\Models\Notification\Notification;

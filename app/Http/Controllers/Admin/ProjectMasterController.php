@@ -18,7 +18,7 @@ use App\Models\PbBranch\NameOfSchema;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Exports\ExportMasters;
-use App\Models\admin\AdminLogin;
+use App\Models\Admin\AdminLogin;
 use App\Models\PbBranch\NameOfProject;
 use Maatwebsite\Excel\Facades\Excel;
 

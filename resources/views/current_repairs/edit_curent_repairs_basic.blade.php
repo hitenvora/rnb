@@ -96,7 +96,6 @@
                                                         {{ $cr_update->cr_egncy_name == $value['id'] ? 'selected' : '' }}>
                                                         {{ $value['name'] }}</option>
                                                 @endforeach
-
                                             </select>
 
                                             <div class="pluse-badge" data-bs-toggle="modal"

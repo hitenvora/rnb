@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\PbBranch;
 
 use App\Http\Controllers\Controller;
-use App\Models\admin\AdminLogin;
+use App\Models\Admin\AdminLogin;
 use App\Models\PbBranch\AdministrativeApproval;
 use Illuminate\Http\Request;
 

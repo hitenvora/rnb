@@ -19,7 +19,7 @@
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $cr_update->id }}">
                                     <input type="hidden" name="step" value="cr">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-6">
                                         <label class="form-label">Subdivision Name</label>
                                         <select class="form-select" name="cr_division_id" id="cr_division_id">
                                             <option value="">Select Division Name</option>
@@ -32,86 +32,88 @@
                                     </div>
 
 
-
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Name of Road</label>
-
-                                        <select class="form-select" name="cr_road_name" id="cr_road_name">
-                                            <option value="">Select Road Name</option>
-                                            @foreach ($road_name as $value)
-                                                <option value="{{ $value['id'] }}"
-                                                    {{ $cr_update->cr_road_name == $value['id'] ? 'selected' : '' }}>
-                                                    {{ $value['name'] }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Chainage(From)</label>
-                                        <select class="form-select" name="cr_start_date" id="cr_start_date">
-                                            <option value="{{ $cr_update->cr_start_date }}">{{ $cr_update->cr_start_date }}
-                                            </option>
-
-
-
-                                        </select>
-
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Chainage(To)</label>
-                                        <select class="form-select" name="cr_end_date" id="cr_end_date">
-
-                                            <option value="{{ $cr_update->cr_end_date }}">{{ $cr_update->cr_end_date }}
-                                            </option>
-
-                                        </select>
-
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Total Length</label>
-                                        <select class="form-select" name="total_lentch" id="total_lentch">
-
-                                            <option value="{{ $cr_update->total_lentch }}">{{ $cr_update->total_lentch }}
-                                            </option>
-
-                                        </select>
-
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Category</label>
-                                        <select class="form-select" name="cr_catogry" id="cr_catogry">
-                                            <option value="{{ $cr_update->cr_catogry }}">{{ $cr_update->cr_catogry }}
-                                            </option>
-
-                                        </select>
-
-                                    </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-6">
                                         <label class="form-label">Name Of Section</label>
                                         <input type="text" class="form-control" id="cr_name_of_section"
                                             name="cr_name_of_section" value="{{ $cr_update->cr_name_of_section }}">
                                     </div>
 
-                                    <div class="col-lg-3">
-                                        <label class="form-label">Type OF Work</label>
-                                        <select class="form-select" name="cr_type_of_work_id" id="cr_type_of_work_id">
-                                            <option value="">Select Section Name</option>
-                                            @foreach ($type_work as $value)
-                                                <option value="{{ $value['id'] }}"
-                                                    {{ $cr_update->cr_type_of_work_id == $value['id'] ? 'selected' : '' }}>
-                                                    {{ $value['name'] }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-12 text-center mt-3">
-                                        <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
-                                            name="btn_save">Save</button>
-                                    </div>
+                                    @foreach (explode(',', $cr_update->cr_road_name) as $key => $data)
+                                        @php
+                                            $cr_catogry = explode(',', $cr_update->cr_catogry);
+                                            $cr_start_date = explode(',', $cr_update->cr_start_date);
+                                            $cr_end_date = explode(',', $cr_update->cr_end_date);
+
+                                            $cr_type_of_work_id = explode(',', $cr_update->cr_type_of_work_id);
+
+                                        @endphp
+                                        <div class="col-lg-12" id="road_data">
+                                            <div class="row">
+                                                <div class="col-lg-2" id="contect">
+                                                    <label class="form-label">Name of Road</label>
+
+                                                    <select class="form-select" name="cr_road_name[]" id="cr_road_name[]">
+                                                        <option value="">Select Road Name</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <label class="form-label">Category</label>
+                                                    <input type="text" class="form-control" id="cr_catogry[]"
+                                                        name="cr_catogry[]" value="{{ @$cr_catogry[$key] }}">
+
+
+
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <label class="form-label">Chainage(From)</label>
+
+                                                    <input type="text" class="form-control" id="cr_start_date[]"
+                                                        name="cr_start_date[]" value="{{ @$cr_start_date[$key] }}">
+
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <label class="form-label">Chainage(To)</label>
+                                                    <input type="text" class="form-control" id="cr_end_date[]"
+                                                        name="cr_end_date[]" value="{{ @$cr_end_date[$key] }}">
+                                                    </select>
+
+                                                </div>
+
+                                            <div class="col-lg-2">
+    <label class="form-label">Type OF Work</label>
+    <select class="form-select" name="cr_type_of_work_id[]" id="cr_type_of_work_id">
+        <option value="">Select Section Name</option>
+        @foreach ($type_work as $work)
+            <option value="{{ $work['id'] }}" @if(in_array($work['id'], explode(',', $cr_update->cr_type_of_work_id)) || old('cr_type_of_work_id') == $work['id']) selected @endif>
+                {{ $work['name'] }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
+                                    @endforeach
+                                    <span class="text-end col-lg-1" colspan="2">
+                                        <a class="btn btn-light-warning px-3" id="add-contact">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20" fill="none">
+                                                <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337" stroke="#802B81"
+                                                    stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg> Add
+                                        </a>
+                                    </span>
                             </div>
                         </div>
-                    </div>
 
-                    </form>
+                        <div class="col-12 text-center mt-3">
+                            <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
+                                name="btn_save">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
     </body>
 @endsection
 
@@ -207,10 +209,9 @@
             });
         });
 
-
         document.getElementById('cr_division_id').addEventListener('change', function() {
             var divisionId = this.value;
-            var roadNameDropdown = document.getElementById('cr_road_name');
+            var roadNameDropdown = document.getElementById('cr_road_name[]');
 
             // Clear existing options
             roadNameDropdown.innerHTML = '<option value="">Select Road Name</option>';
@@ -230,8 +231,7 @@
             }
         });
 
-
-        document.getElementById('cr_road_name').addEventListener('change', function() {
+        document.getElementById('cr_road_name[]').addEventListener('change', function() {
             var roadId = this.value;
 
             if (roadId) {
@@ -241,13 +241,13 @@
                     .then(data => {
 
                         // Assuming 'chainage_from' and 'chainage_to' are properties of the JSON data
-                        document.getElementById('cr_start_date').innerHTML =
+                        document.getElementById('cr_start_date[]').innerHTML =
                             `<option value="${data.chainage_from}">${data.chainage_from}</option>`;
-                        document.getElementById('cr_end_date').innerHTML =
+                        document.getElementById('cr_end_date[]').innerHTML =
                             `<option value="${data.chainage_to}">${data.chainage_to}</option>`;
                         document.getElementById('total_lentch').innerHTML =
                             `<option value="${data.chainage_to}">${data.total_length}</option>`;
-                        document.getElementById('cr_catogry').innerHTML =
+                        document.getElementById('cr_catogry[]').innerHTML =
                             `<option value="${data.chainage_to}">${data.cat}</option>`;
                     })
                     .catch(error => {
@@ -255,14 +255,13 @@
                     });
             } else {
                 // Clear all data elements
-                document.getElementById('cr_start_date').textContent = '';
-                document.getElementById('cr_end_date').textContent = '';
+                document.getElementById('cr_start_date[]').textContent = '';
+                document.getElementById('cr_end_date[]').textContent = '';
                 document.getElementById('total_lentch').textContent = '';
-                document.getElementById('cr_catogry').textContent = '';
+                document.getElementById('cr_catogry[]').textContent = '';
 
             }
         });
-
 
 
 
@@ -914,5 +913,86 @@
     //         <option value="11/8">11/8</option>`;
         //     }
         // }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addContactButton = document.getElementById('add-contact');
+            const contactFieldsContainer = document.getElementById('contect');
+            // const roadData = document.getElementById('road_data');
+            let contactCount = 0; // Keep track of added contacts
+
+            addContactButton.addEventListener('click', function() {
+                contactCount++; // Increment contact count
+                // Create a new input field (you can customize this as needed)
+                // const newContactField = document.createElement('tr');
+                html = `<div class="row">
+                    <div class="col-lg-2">
+                                        <label class="form-label">Name of Road</label>
+
+                                        <select class="form-select" name="cr_road_name[]" id="cr_road_name[]">
+                                            <option value="">Select Road Name</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Category</label>
+                                            <input type="text" class="form-control" id="cr_catogry[]"
+                                            name="cr_catogry[]" value="">
+
+                                      
+
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Chainage(From)</label>
+
+                                            <input type="text" class="form-control" id="cr_start_date[]"
+                                            name="cr_start_date[]" value="">
+
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Chainage(To)</label>
+                                            <input type="text" class="form-control" id="cr_end_date[]"
+                                            name="cr_end_date[]" value="">
+                                        </select>
+
+                                    </div>
+                                    <!-- <div class="col-lg-2">
+                                        <label class="form-label">Total Length</label>
+                                        <select class="form-select" name="total_lentch" id="total_lentch">
+
+                                            <option value=""></option>
+
+                                        </select>
+
+                                    </div> -->
+                                
+                                 
+
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Type OF Work</label>
+                                        <select class="form-select" name="cr_type_of_work_id[]" id="cr_type_of_work_id[]">
+                                            <option value="">Select Section Name</option>
+                                            @foreach ($type_work as $value)
+                                                <option value="{{ $value['id'] }}">
+                                                    {{ $value['name'] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                   
+                                               
+                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button><div`;
+
+                $("#road_data").append(html);
+                // Add an event listener to the "Remove" button
+
+            });
+        });
+
+        $(document).on('click', '.remove-contact', function(e) {
+            $(this).closest(".row").remove();
+        });
+        $(document).on('click', '.remove-contact-static', function(e) {
+            $(this).closest("tr").remove();
+        });
     </script>
 @endsection

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('cr_end_date')->nullable();
             $table->text('total_lentch')->nullable();
             $table->text('cr_catogry')->nullable();
-            $table->unsignedBigInteger('cr_type_of_work_id')->nullable();
+            $table->text('cr_type_of_work_id')->nullable();
             //cr basic
             $table->text('cr_subdivision_to')->nullable();
             $table->text('cr_letter_date_name_of_section')->nullable();

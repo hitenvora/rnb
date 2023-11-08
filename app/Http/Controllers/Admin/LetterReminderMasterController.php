@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\admin\AdminLogin;
+use App\Models\Admin\AdminLogin;
 use App\Models\Admin\LetterReminderMasters;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;

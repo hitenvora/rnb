@@ -9,7 +9,7 @@ use App\Models\Admin\SentBox;
 use App\Models\Master\Master;
 use App\Models\Admin\District;
 use App\Models\Admin\WorkTypes;
-use App\Models\admin\AdminLogin;
+use App\Models\Admin\AdminLogin;
 use App\Models\Admin\BudgetWork;
 use App\Models\Admin\TypesOfWork;
 use Illuminate\Support\Facades\DB;

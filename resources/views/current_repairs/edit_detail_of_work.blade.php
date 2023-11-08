@@ -83,7 +83,7 @@
                             <input type="hidden" name="add_name_of_project_id" id="add_name_of_project_id">
                             <div class="col-lg-12">
                                 <label class="form-label">Name Of Agency</label>
-                                <input type="text" class="form-control" id="name" name="name" value="XYZ">
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
 
                             <div class="col-12 text-center mt-3">
@@ -120,9 +120,9 @@
                     if (data.status == 200) {
                         $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
-                            toastr.success("Detils Of Work added successfully.");
+                            toastr.success("Detils Of Work added successfully");
                         } else {
-                            toastr.success("Detils Of Work updated successfully.");
+                            toastr.success("Detils Of Work updated successfully");
                         }
                         // dataTable.draw();
                         // window.location.href = "{{ route('curent_reaparing_master') }}";

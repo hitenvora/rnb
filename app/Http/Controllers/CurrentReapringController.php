@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\admin\AdminLogin;
+use App\Models\Admin\AdminLogin;
 use App\Models\Admin\DivisionMasters;
 use App\Models\Admin\TypesOfWork;
 use App\Models\current_reapring\AgencyName;
@@ -72,13 +72,42 @@ class CurrentReapringController extends Controller
 
             $cr_master->cr_division_id = $request->input('cr_division_id');
             $cr_master->cr_name_of_section = $request->input('cr_name_of_section');
-            $cr_master->cr_road_name = $request->input('cr_road_name');
-            $cr_master->cr_start_date = $request->input('cr_start_date');
-            $cr_master->cr_end_date = $request->input('cr_end_date');
-            $cr_master->cr_catogry = $request->input('cr_catogry');
-            $cr_master->total_lentch = $request->input('total_lentch');
-            $cr_master->cr_type_of_work_id = $request->input('cr_type_of_work_id');
+
+            $cr_road_name = $request->input('cr_road_name');
+            if (isset($cr_road_name) && sizeof($cr_road_name)) {
+                $cr_master->cr_road_name = implode(",", $cr_road_name);
+            }
+
+
+            $cr_catogry = $request->input('cr_catogry');
+            if (isset($cr_catogry) && sizeof($cr_catogry)) {
+
+                $cr_master->cr_catogry = implode(",", $cr_catogry);
+            }
+            $cr_start_date = $request->input('cr_start_date');
+            if (isset($cr_start_date) && sizeof($cr_start_date)) {
+
+                $cr_master->cr_start_date = implode(",", $cr_start_date);
+            }
+            $cr_end_date = $request->input('cr_end_date');
+            if (isset($cr_end_date) && sizeof($cr_end_date)) {
+
+                $cr_master->cr_end_date = implode(",", $cr_end_date);
+            }
+
+            $total_lentch = $request->input('total_lentch');
+            if (isset($total_lentch) && sizeof($total_lentch)) {
+
+                $cr_master->total_lentch = implode(",", $total_lentch);
+            }
+
+            $cr_type_of_work_id = $request->input('cr_type_of_work_id');
+            if (isset($cr_type_of_work_id) && sizeof($cr_type_of_work_id)) {
+
+                $cr_master->cr_type_of_work_id = implode(",", $cr_type_of_work_id);
+            }
         }
+
 
         //detils of work
 
