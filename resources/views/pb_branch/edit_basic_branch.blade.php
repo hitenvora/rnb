@@ -19,7 +19,19 @@
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <input type="hidden" name="step" value="basic">
-                                    <div class="col-xl-4 col-lg-6 branch-scheme-select">
+                                    <div class="col-lg-6">
+                                        <label class="form-label">Budget</label>
+                                        <select class="form-select" id="budget_id" name="budget_id">
+                                            <option value="">Select budget List</option>
+                                            @foreach ($budget as $value)
+                                                <option
+                                                    value="{{ $value['id'] }}"data-bu-name="{{ $value['name'] }}"
+                                                    {{ $project_master->budget_id == $value['id'] ? 'selected' : '' }}>
+                                                    {{ $value['name'] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 branch-scheme-select">
                                         <label class="form-label">Name of Scheme</label>
                                         <div class="d-flex">
                                             {{-- @foreach ($basic_show as $basic_showas1) --}}
@@ -33,18 +45,18 @@
                                                 @endforeach
                                             </select>
                                             {{-- @endforeach --}}
-                                            <div class="pluse-badge" data-bs-toggle="modal"
+                                            {{-- <div class="pluse-badge" data-bs-toggle="modal"
                                                 data-bs-target="#add_name_of_scheme">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
                                                     viewBox="0 0 25 24" fill="none">
                                                     <path d="M12.5 6L12.5 18M18.5 12L6.5 12" stroke="white"
                                                         stroke-width="1.67" stroke-linecap="round" />
                                                 </svg>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
 
-                                    <div class="col-xl-4 col-lg-6 branch-scheme-select">
+                                    <div class="col-lg-6 branch-scheme-select">
                                         <label class="form-label">Name of Project</label>
                                         <div class="d-flex">
                                             <select class="form-select" id="basic_name_project" name="basic_name_project">
@@ -67,7 +79,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xl-4 col-lg-12">
+                                    <div class="col-xl-6 col-lg-12">
                                         <label class="form-label">WMS Work Head</label>
                                         <input type="text" class="form-control" id="basic_wms_work_head"
                                             name="basic_wms_work_head" placeholder="Enter WMS  Head"
@@ -211,18 +223,7 @@
 
                                                 <div class="col-xl-7 col-lg-12">
                                                     <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <label class="form-label">Budget</label>
-                                                            <select class="form-select" id="budget_id" name="budget_id">
-                                                                <option value="">Select budget List</option>
-                                                                @foreach ($budget as $value)
-                                                                    <option
-                                                                        value="{{ $value['id'] }}"data-bu-name="{{ $value['name'] }}"
-                                                                        {{ $project_master->budget_id == $value['id'] ? 'selected' : '' }}>
-                                                                        {{ $value['name'] }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
+
                                                         {{-- <div class="col-lg-4">
                                                             <label class="form-label d-xl-block d-none">&nbsp;</label>
                                                             <input type="text" class="form-control"

@@ -15,13 +15,28 @@ class BudgetSeeder extends Seeder
     {
         DB::table('budgets')->insert([
             [
-                'name' => '1L',
+                'id'   => 1,
+                'name' => '101 Bridge',
             ],
             [
-                'name' => '2L',
+                'id'   => 2,
+                'name' => '5054 Lump',
             ],
             [
-                'name' => '3L',
+                'id'   => 3,
+                'name' => 'Pravasipath',
+            ],
+            [
+                'id'   => 4,
+                'name' => '3054 SR',
+            ],
+            [
+                'id'   => 5,
+                'name' => 'Deposited Work',
+            ],
+            [
+                'id'   => 6,
+                'name' => '50:50 Cost Sharing ROB - 5054 Lump',
             ],
         ]);
     }

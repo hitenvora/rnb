@@ -241,10 +241,12 @@ class ProposalMasterController extends Controller
     public function  edit_budgetary_detail($id)
     {
         $project_master = Master::where('id', $id)->first();
+        $budget = Budget::where('id',$project_master->budget_id)->first();
         $user = auth()->user();
+
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
 
-        return view('auditor_account.edit_budgetary_detail', compact('project_master', 'user', 'role'));
+        return view('auditor_account.edit_budgetary_detail', compact('project_master', 'user', 'role','budget'));
     }
     public function  edit_expenditure_detail($id)
     {
