@@ -32,7 +32,7 @@
                                         <label class="form-label">Detail Budget Head</label>
                                         <input type="text" class="form-control" id="bd_detail_head" name="bd_detail_head"
                                             placeholder="Enter Detail Budget Head"
-                                            value="{{ $project_master->bd_detail_head }}">
+                                            value="{{ $budget->name ?? ''}}" readonly>
                                     </div>
                                     <div class="col-lg-6">
                                         <label class="form-label">Budget Item No.</label>
@@ -165,7 +165,7 @@
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('tr');
                 newContactField.innerHTML = `
-              
+
                 <td>
                                                         <input type="text" class="form-control" name="budget_previous_year[]" id="budget_previous_year">
                                                     </td>
