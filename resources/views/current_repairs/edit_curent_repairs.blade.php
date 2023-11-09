@@ -84,11 +84,11 @@
                                                 <div class="col-lg-2">
                                                     <label class="form-label">Type OF Work</label>
                                                     <select class="form-select" name="cr_type_of_work_id[]"
-                                                        id="cr_type_of_work_id">
+                                                        id="cr_type_of_work_id[]">
                                                         <option value="">Select Section Name</option>
                                                         @foreach ($type_work as $work)
                                                             <option value="{{ $work['id'] }}"
-                                                                @if (in_array($work['id'], explode(',', $cr_update->cr_type_of_work_id)) || old('cr_type_of_work_id') == $work['id']) selected @endif>
+                                                                {{ in_array($work['id'], explode(',', $cr_type_of_work_id[$key])) ? 'selected' : '' }}>
                                                                 {{ $work['name'] }}
                                                             </option>
                                                         @endforeach
@@ -102,15 +102,14 @@
                             <div class="row">
                                 <span class="text-end" style="width: 90%">
                                     <a class="btn btn-light-warning px-3 border" id="add-contact">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                            height="20" viewBox="0 0 20 20" fill="none">
-                                            <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
-                                                stroke="#802B81" stroke-width="1.67" stroke-linecap="round"
-                                                stroke-linejoin="round" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none">
+                                            <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337" stroke="#802B81"
+                                                stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg> Add
                                     </a>
                                 </span>
-                        </div>
+                            </div>
                             <div class="col-12 text-center mt-3">
                                 <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
                                     name="btn_save">Save</button>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\admin;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,14 +9,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class AdminLogin extends Authenticatable
 {
-    use HasFactory ,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    
+
     protected $guard = 'admin';
     protected $table = 'admins';
 
     protected $fillable = [
-        'name','password'
+        'name', 'password'
     ];
 
     protected $hidden = [
@@ -32,6 +32,4 @@ class AdminLogin extends Authenticatable
     {
         return $this->hasOne('App\Models\Admin\Role', 'id', 'role_id');
     }
-
 }
-

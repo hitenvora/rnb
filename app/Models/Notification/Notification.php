@@ -2,7 +2,7 @@
 
 namespace App\Models\Notification;
 
-use App\Models\admin\Role;
+use App\Models\Admin\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

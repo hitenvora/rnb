@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\admin\AdminLogin;
-use App\Models\admin\Role;
-use App\Models\admin\UserMaster;
+use App\Models\Admin\AdminLogin;
+use App\Models\Admin\Role;
+use App\Models\Admin\UserMaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;

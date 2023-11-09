@@ -15,5 +15,5 @@ class ReparingBill extends Model
         'amount',
         'bill_date',
         'is_final'
-];
+    ];
 }

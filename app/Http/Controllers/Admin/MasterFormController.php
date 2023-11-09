@@ -19,11 +19,13 @@ class MasterFormController extends Controller
 
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
-        // $notifications = Notification::with('rolename')->where('id', '=', $user->id)->first();
+        $notifications = Notification::with('rolename')->where('id', '=', $user->id)->first();
         $notifications = Notification::where('master_id', $user->id)
-        ->where('role_id', $role->role_id)
-        ->get();
-        return view('admin.master_form', compact('user', 'role','notifications'));
+            ->where('role_id', $role->role_id)
+            ->get();
+        
+        // return($notifications);
+        return view('admin.master_form', compact('user', 'role', 'notifications'));
     }
 
 

@@ -49,7 +49,7 @@ class DemoCron extends Command
                                 'master_id' => $Master->id,
                                 'admin_id' => $admin->id,
                                 'role_id' => $admin->role_id,
-                                'message' => 'Your notification message for admin here.',
+                                'message' => 'Your Follow Up date Issued.',
                             ]);
                         }
                     }
@@ -63,7 +63,7 @@ class DemoCron extends Command
             if ($do_deposit_letter_date) {
                 info("do_deposit_letter_date: " . $do_deposit_letter_date); // Log the date for debugging
 
-                $follow_up_date = Carbon::createFromDate($do_deposit_letter_date)->addDays(8)->format('d-m-Y');
+                $follow_up_date = Carbon::createFromDate($do_deposit_letter_date)->addDays(1)->format('d-m-Y');
                 $now_date = Carbon::now()->format('d-m-Y');
 
 
@@ -76,7 +76,7 @@ class DemoCron extends Command
                             'master_id' => $Master->id,
                             'admin_id' => $admin->id,
                             'role_id' => $admin->role_id,
-                            'message' => 'Your notification message for admin here.',
+                            'message' => 'Your Deposit Issued Letter Date Issued.',
                         ]);
                     }
                 }
@@ -98,7 +98,7 @@ class DemoCron extends Command
                                 'master_id' => $Master->id,
                                 'admin_id' => $admin->id,
                                 'role_id' => $admin->role_id,
-                                'message' => 'Your notification message for admin here.',
+                                'message' => 'Your Dtp Approval Date Issued',
                             ]);
                         }
                     }
