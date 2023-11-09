@@ -128,7 +128,7 @@ class ProjectMasterController extends Controller
     public function delete(Request $request)
     {
         $id =  $request->input('id');
-        $project_master = Master::find($id);
+        $project_master = Master::where('id',$id)->first();
         $project_master->delete();
 
         return response()->json(['status' => '200', 'msg' => 'success']);

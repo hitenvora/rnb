@@ -18,13 +18,17 @@
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_form">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $cr_update->id }}">
+                                    @php
+                                        $cr_catogry = explode(',', $cr_update->cr_catogry);
+                                        $cr_start_date = explode(',', $cr_update->cr_start_date);
+                                        $cr_end_date = explode(',', $cr_update->cr_end_date);
+                                        $cr_type_of_work_id = explode(',', $cr_update->cr_type_of_work_id);
+                                        $amt = [];
+                                        if(isset($detail_of_work) && isset($detail_of_work->dow_bill_amt)){
+                                            $amt = explode(',',$detail_of_work->dow_bill_amt);
+                                        }
+                                    @endphp
                                     @foreach (explode(',', $cr_update->cr_road_name) as $key => $data)
-                                        @php
-                                            $cr_catogry = explode(',', $cr_update->cr_catogry);
-                                            $cr_start_date = explode(',', $cr_update->cr_start_date);
-                                            $cr_end_date = explode(',', $cr_update->cr_end_date);
-                                            $cr_type_of_work_id = explode(',', $cr_update->cr_type_of_work_id);
-                                        @endphp
                                         <div class="col-lg-2">
 
                                             <label class="form-label">Name Of Road</label>
@@ -55,7 +59,7 @@
                                         <div class="col-lg-2">
                                             <label class="form-label">Bill Amount</label>
                                             <input type="text" class="form-control" id="dow_bill_amt"
-                                                name="dow_bill_amt[]" value="">
+                                                name="dow_bill_amt[]" value="{{$amt[$key] ?? ''}}">
                                         </div>
                                     @endforeach
                                     <div class="col-12 text-center">
@@ -120,7 +124,6 @@
                 processData: false,
                 success: (data) => {
                     if (data.status == 200) {
-                        $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
                             toastr.success("Detils Of Work added successfully");
                         } else {

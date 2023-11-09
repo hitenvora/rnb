@@ -16,8 +16,8 @@
                             <div class="card-header">
                                 <h5 class="mb-0 font-primary text-center">Bill</h5>
                             </div>
-                            <div class="text-center">
-                                <span class="text-end">
+                            <div class="row">
+                                <span class="text-end" style="width: 80%;">
                                     <a class="btn btn-light-warning px-3 border rounded" id="add-bill">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 20 20" fill="none">
@@ -33,7 +33,7 @@
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $cr_update->id }}">
                                     <input type="hidden" name="step" value="cr_bill">
                                     <div class="" id="bill-data">
-                                        @forelse ($reparing_bills as $bill)
+                                        @forelse ($reparing_bills as $key => $bill)
                                             <div class="row">
                                                 <div class="col-lg-2">
                                                     <label class="form-label">Bill Status</label>
@@ -60,8 +60,8 @@
                                                             Is Final
                                                         </label>
                                                     </div>
-                                                    <input class="form-check-input" type="checkbox" name="is_final[]"
-                                                        @checked($bill->is_final)>
+                                                    <input class="form-check-input is_final" type="checkbox"
+                                                        name="is_final[$key]" @checked($bill->is_final)>
                                                 </div>
                                                 <div class="col-lg-1">
                                                     <span class="text-end" colspan="2">
@@ -97,7 +97,8 @@
                                                             Is Final
                                                         </label>
                                                     </div>
-                                                    <input class="form-check-input" type="checkbox" name="is_final[]">
+                                                    <input class="form-check-input is_final" type="checkbox"
+                                                        name="is_final[0]">
                                                 </div>
                                             </div>
                                         @endforelse
@@ -139,9 +140,9 @@
                     if (data.status == 200) {
                         $('#master_id').modal('hide');
                         if ($('#master_id').val() == '') {
-                            toastr.success("Detils Of Work added successfully");
+                            toastr.success("Bill added successfully");
                         } else {
-                            toastr.success("Detils Of Work updated successfully");
+                            toastr.success("Bill updated successfully");
                         }
                         // dataTable.draw();
                         // window.location.href = "{{ route('curent_reaparing_master') }}";
@@ -154,7 +155,6 @@
                     if (response.status === 422) {
                         var errors = $.parseJSON(response.responseText);
                         $.each(errors['errors'], function(key, val) {
-                            console.log(key);
                             $("#" + key + "_error").text(val[0]);
                         });
                     }
@@ -187,7 +187,7 @@
                                                         Is Final
                                                     </label>
                                                 </div>
-                                                <input class="form-check-input" type="checkbox" name="is_final[]">
+                                                <input class="form-check-input is_final" type="checkbox" name="is_final[]">
                                             </div>
                                             <div class="col-lg-1">
                                                 <span class="text-end" colspan="2">
@@ -198,25 +198,34 @@
                                             </div>
                                         </div>`;
             $("#bill-data").append(html);
+            $.each($('.is_final'), function(index, value) {
+                $(value).attr('name', `is_final[${index}]`);
+            });
         });
 
         $(document).on('click', '.remove-btn', function() {
             $(this).closest('.row').remove();
+            $.each($('.is_final'), function(index, value) {
+                $(value).attr('name', `is_final[${index}]`);
+            });
         });
+
         $(document).on('click', '.delete-btn', function() {
             let bill_id = $(this).data('bill_id');
             var csrftoken = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 type: 'POST',
                 url: "{{ route('delete_repairing_bill') }}",
-                data:{
+                data: {
                     _token: "{{ csrf_token() }}",
-                    bill_id:bill_id,
+                    bill_id: bill_id,
                 },
                 success: (data) => {
                     // $(this).closest('.row').remove();
                     location.reload();
-
+                    $.each($('.is_final'), function(index, value) {
+                        $(value).attr('name', `is_final[${index}]`);
+                    });
                 },
             });
         });
