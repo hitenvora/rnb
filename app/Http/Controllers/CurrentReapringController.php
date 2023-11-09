@@ -203,7 +203,7 @@ class CurrentReapringController extends Controller
     public function detils_of_work(Request $request)
 
     {
-      
+
 
         if ($request->master_id != '') {
             $datils_of_work = DetailOfWorkName::find($request->master_id);
@@ -245,7 +245,7 @@ class CurrentReapringController extends Controller
 
             $datils_of_work->dow_bill_amt = implode(",", $dow_bill_amt);
         }
-        
+
         $datils_of_work->current_repairs_id = $request->input('master_id');
         $datils_of_work->save();
 
@@ -256,7 +256,7 @@ class CurrentReapringController extends Controller
 
     public function delete_repairing_bill(Request $request)
     {
-        ReparingBill::where('id',$request->bill_id)->delete();
+        ReparingBill::where('id', $request->bill_id)->delete();
     }
 
     public function cr_edit(Request $request)
@@ -288,11 +288,19 @@ class CurrentReapringController extends Controller
             ->rawColumns(['action', 'district_name_view', 'taluka_name_view', 'work_type_view', 'type_work_view', 'budget_name_view', 'budgetwork_name_view', 'mla_name_view', 'sent_box_name_view', 'eye_icon', 'name_of_schema', 'project_name'])
             ->make(true);
     }
+    public function delete(Request $request)
+    {
+        $id =  $request->input('id');
+        $project_master = CurrentReapring::find($id);
+        $project_master->delete();
 
+        return response()->json(['status' => '200', 'msg' => 'success']);
+    }
 
     public function edit_cr($id)
     {
-        $road_name = RoadName::orderBy('id')->get();
+        $division_id = [1, 2, 3];
+        $road_name = RoadName::where('sub_division_id', $division_id)->orderBy('id')->get();
         $division_name = CRSubDivisions::orderBy('id')->get();
         $type_work = TypesOfWork::orderBy('id')->get();
         $cr_update = CurrentReapring::where('id', $id)->first();
