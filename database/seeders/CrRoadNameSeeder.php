@@ -347,7 +347,7 @@ class CrRoadNameSeeder extends Seeder
 
 
             [
-                'name' => ' Lilora - Shankarpura - Mudhera - Khakhria - 
+                'name' => ' Lilora - Shankarpura - Mudhera - Khakhria -
  Bhagana - Muvada - Madhvas road (Lilora -Paldi- Khakhariya-Madhvas Road)',
                 'chainage_from' => '0/0',
                 'chainage_to' => '20/7',
@@ -501,6 +501,14 @@ class CrRoadNameSeeder extends Seeder
                 'sub_division_id' => 1,
 
             ],
+            [
+                'name' => 'other',
+                'chainage_from' => '',
+                'chainage_to' => '',
+                'total_length' => '',
+                'cat' => 'OTHER',
+                'sub_division_id' =>1,
+            ],
 
             [
                 'name' => ' Sankarda - Bhadarva - Savli Road',
@@ -548,7 +556,16 @@ class CrRoadNameSeeder extends Seeder
                 'cat' => 'MDR',
                 'sub_division_id' => 2
 
-            ], [
+            ],
+            [
+                'name' => 'other',
+                'chainage_from' => '',
+                'chainage_to' => '',
+                'total_length' => '',
+                'cat' => 'OTHER',
+                'sub_division_id' => 2,
+            ],
+            [
                 'name' => ' Rajli - Mandala Road',
                 'chainage_from' => '0/0',
                 'chainage_to' => '15/00',
@@ -566,7 +583,7 @@ class CrRoadNameSeeder extends Seeder
 
             ],
             [
-                'name' => ' Chhatral - Khanpur - Kayavarohan Road Km. 0/0 to 6/6',
+                'name' => 'Chhatral - Khanpur - Kayavarohan Road Km. 0/0 to 6/6',
                 'chainage_from' => '0/0',
                 'chainage_to' => '6/6',
                 'total_length' => '6.600',
@@ -575,14 +592,21 @@ class CrRoadNameSeeder extends Seeder
 
 
             ], [
-                'name' => '  Segwa - Barkal road',
+                'name' => 'Segwa - Barkal road',
                 'chainage_from' => '6/5',
                 'chainage_to' => '11/8',
                 'total_length' => '5.30',
                 'cat' => 'ODR',
                 'sub_division_id' => 3,
             ],
-
+            [
+                'name' => 'other',
+                'chainage_from' => '',
+                'chainage_to' => '',
+                'total_length' => '',
+                'cat' => 'OTHER',
+                'sub_division_id' => 3,
+            ],
 
 
         ]);
