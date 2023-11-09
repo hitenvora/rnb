@@ -200,9 +200,10 @@ class CurrentReapringController extends Controller
 
     {
 
+        $datils_of_work = DetailOfWorkName::where('current_repairs_id', $request->master_id)->delete();
+
 
         // if ($request->master_id != '') {
-        //     $datils_of_work = DetailOfWorkName::find($request->master_id);
         //     if (!$datils_of_work) {
         //         return response()->json(['status' => 400, 'msg' => 'division not found!']);
         //     }
@@ -242,6 +243,7 @@ class CurrentReapringController extends Controller
             $datils_of_work->dow_bill_amt = implode(",", $dow_bill_amt);
         }
 
+        $datils_of_work->total_amount = $request->input('total_amount');
         $datils_of_work->current_repairs_id = $request->input('master_id');
         $datils_of_work->save();
 
@@ -326,7 +328,8 @@ class CurrentReapringController extends Controller
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
         $detail_of_work = DetailOfWorkName::where('current_repairs_id', $id)->first();
-        return view('current_repairs.edit_detail_of_work', compact('cr_update', 'user', 'role', 'division_name', 'detail_of_work', 'type_work'));
+        $roadNames = RoadName::select(['id', 'name'])->get();
+        return view('current_repairs.edit_detail_of_work', compact('cr_update', 'user', 'role', 'division_name', 'roadNames', 'detail_of_work', 'type_work'));
     }
 
 

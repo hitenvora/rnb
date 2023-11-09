@@ -24,16 +24,18 @@
                                         $cr_end_date = explode(',', $cr_update->cr_end_date);
                                         $cr_type_of_work_id = explode(',', $cr_update->cr_type_of_work_id);
                                         $amt = [];
-                                        if(isset($detail_of_work) && isset($detail_of_work->dow_bill_amt)){
-                                            $amt = explode(',',$detail_of_work->dow_bill_amt);
+                                        if (isset($detail_of_work) && isset($detail_of_work->dow_bill_amt)) {
+                                            $amt = explode(',', $detail_of_work->dow_bill_amt);
                                         }
                                     @endphp
                                     @foreach (explode(',', $cr_update->cr_road_name) as $key => $data)
+                                        @php
+                                            $road_value = $roadNames->where('id', $data)->first();
+                                        @endphp
                                         <div class="col-lg-2">
-
                                             <label class="form-label">Name Of Road</label>
                                             <input type="text" class="form-control" id="dow_name_road"
-                                                name="dow_name_road[]" value="{{ $data }}" readonly>
+                                                name="dow_name_road[]" value="{{ $road_value->name }}" readonly>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="form-label">Category</label>
@@ -58,10 +60,23 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="form-label">Bill Amount</label>
-                                            <input type="text" class="form-control" id="dow_bill_amt"
-                                                name="dow_bill_amt[]" value="{{$amt[$key] ?? ''}}">
+                                            <input type="number" class="form-control" id="dow_bill_amt"
+                                                onkeyup="setAmount()"  name="dow_bill_amt[]" value="{{ $amt[$key] ?? '' }}">
                                         </div>
                                     @endforeach
+                                    <div class="row">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-2 text-end">
+                                            <b> Total Amount</b>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <input type="text" class="form-control" name="total_amount"
+                                                id="total_amount" value="{{$detail_of_work->total_amount ?? 0}}">
+                                        </div>
+                                    </div>
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
                                             name="sub_client">Save</button>
@@ -106,6 +121,14 @@
 
 @section('script')
     <script>
+        function setAmount() {
+            let amt = 0;
+            $.each($('[name="dow_bill_amt[]"]'), function(index, value) {
+                amt += +($(value).val());
+            });
+            $("#total_amount").val(amt);
+        }
+
         $('#master_form').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);

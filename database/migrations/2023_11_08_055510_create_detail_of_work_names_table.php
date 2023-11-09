@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('dow_chainge_from')->nullable();
             $table->text('dow_type_of_work')->nullable();
             $table->text('dow_bill_amt')->nullable();
+            $table->string('total_amount')->nullable();
 
             $table->timestamps();
         });
