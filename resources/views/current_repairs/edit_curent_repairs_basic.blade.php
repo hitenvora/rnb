@@ -72,7 +72,7 @@
                                             </div>
                                             <div class="col-lg-3">
                                                 <label class="form-label">Ts Date</label>
-                                                <input type="text" class="form-control" id="ct_date" name="ct_date"
+                                                <input type="date" class="form-control" id="ct_date" name="ct_date"
                                                     value="{{ $cr_update->ct_date }}">
                                             </div>
                                             <div class="col-lg-3">
@@ -97,7 +97,7 @@
                                             </div>
                                             <div class="col-lg-3">
                                                 <label class="form-label">Persual Date</label>
-                                                <input type="text" class="form-control" id="ct_persual_date"
+                                                <input type="date" class="form-control" id="ct_persual_date"
                                                     name="ct_persual_date" value="{{ $cr_update->ct_persual_date }}">
                                             </div>
                                             <div class="col-lg-3">

@@ -84,7 +84,6 @@ class CurrentReapringController extends Controller
         if ($step == '') {
             return response()->json(['status' => '400', 'msg' => 'Invalid step']);
         }
-
         if ($step == 'cr') {
 
             $cr_master->cr_division_id = $request->input('cr_division_id');
@@ -124,9 +123,6 @@ class CurrentReapringController extends Controller
                 $cr_master->cr_type_of_work_id = implode(",", $cr_type_of_work_id);
             }
         }
-
-
-
 
         //basic
         if ($step == 'cr_basic') {
@@ -205,14 +201,14 @@ class CurrentReapringController extends Controller
     {
 
 
-        if ($request->master_id != '') {
-            $datils_of_work = DetailOfWorkName::find($request->master_id);
-            if (!$datils_of_work) {
-                return response()->json(['status' => 400, 'msg' => 'division not found!']);
-            }
-        } else {
-            $datils_of_work = new DetailOfWorkName();
-        }
+        // if ($request->master_id != '') {
+        //     $datils_of_work = DetailOfWorkName::find($request->master_id);
+        //     if (!$datils_of_work) {
+        //         return response()->json(['status' => 400, 'msg' => 'division not found!']);
+        //     }
+        // } else {
+        $datils_of_work = new DetailOfWorkName();
+        // }
 
 
         $dow_name_road = $request->input('dow_name_road');
@@ -323,8 +319,8 @@ class CurrentReapringController extends Controller
         $cr_update = CurrentReapring::where('id', $id)->first();
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
-
-        return view('current_repairs.edit_detail_of_work', compact('cr_update', 'user', 'role', 'division_name', 'type_work'));
+        $detail_of_work = DetailOfWorkName::where('current_repairs_id', $id)->first();
+        return view('current_repairs.edit_detail_of_work', compact('cr_update', 'user', 'role', 'division_name', 'detail_of_work', 'type_work'));
     }
 
 
@@ -364,5 +360,14 @@ class CurrentReapringController extends Controller
         // Fetch road information from your database based on $roadId
         $roadInfo = RoadName::where('id', $roadId)->first();
         return response()->json($roadInfo);
+    }
+
+    public function currentReapringDelete(Request $request)
+    {
+        $id =  $request->input('id');
+        $currentRepairing = CurrentReapring::where('id',$id)->first();
+        ReparingBill::where('current_reapring_id', $currentRepairing->id)->delete();
+        $currentRepairing->delete();
+        return response()->json(['status' => '200', 'msg' => 'success']);
     }
 }

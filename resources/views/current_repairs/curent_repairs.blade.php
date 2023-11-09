@@ -40,7 +40,7 @@
                                             <div class="col-lg-2" id="contect">
                                                 <label class="form-label">Name of Road</label>
 
-                                                <select class="form-select" name="cr_road_name[]" id="cr_road_name[]">
+                                                <select class="form-select" name="cr_road_name[]">
                                                     <option value="">Select Road Name</option>
                                                 </select>
                                             </div>
@@ -195,7 +195,7 @@
         //                 contactFieldsContainer.appendChild(newContactField);
         //             });
         //         });
-        //     
+        //
 
         //         var token = "{{ csrf_token() }}";
 
@@ -337,62 +337,66 @@
         });
 
 
-        document.getElementById('cr_division_id').addEventListener('change', function() {
-            var divisionId = this.value;
-            var roadNameDropdown = document.getElementById('cr_road_name[]');
+        // document.getElementById('cr_division_id').addEventListener('change', function() {
+        //     var divisionId = this.value;
+        //     var roadNameDropdown = document.getElementById('cr_road_name[]');
 
-            // Clear existing options
-            roadNameDropdown.innerHTML = '<option value="">Select Road Name</option>';
+        //     // Clear existing options
+        //     roadNameDropdown.innerHTML = '<option value="">Select Road Name</option>';
 
-            if (divisionId) {
-                // Use AJAX to fetch road names for the selected division
-                fetch('/get-road-names/' + divisionId)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(road => {
-                            var option = document.createElement('option');
-                            option.value = road.id;
-                            option.text = road.name;
-                            roadNameDropdown.appendChild(option);
-                        });
-                    });
-            }
+        //     if (divisionId) {
+        //         // Use AJAX to fetch road names for the selected division
+        //         fetch('/get-road-names/' + divisionId)
+        //             .then(response => response.json())
+        //             .then(data => {
+        //                 data.forEach(road => {
+        //                     var option = document.createElement('option');
+        //                     option.value = road.id;
+        //                     option.text = road.name;
+        //                     roadNameDropdown.appendChild(option);
+        //                 });
+        //             });
+        //     }
+        // });
+
+
+        // document.getElementById('cr_road_name[]').addEventListener('change', function() {
+        //     var roadId = this.value;
+
+        //     if (roadId) {
+        //         // Use AJAX to fetch additional road information
+        //         fetch('/get-road-info/' + roadId)
+        //             .then(response => response.json()) // Convert response to JSON
+        //             .then(data => {
+
+        //                 // Assuming 'chainage_from' and 'chainage_to' are properties of the JSON data
+        //                 document.getElementById('cr_start_date[]').innerHTML =
+        //                     `<option value="${data.chainage_from}">${data.chainage_from}</option>`;
+        //                 document.getElementById('cr_end_date[]').innerHTML =
+        //                     `<option value="${data.chainage_to}">${data.chainage_to}</option>`;
+        //                 document.getElementById('total_lentch[]').innerHTML =
+        //                     `<option value="${data.chainage_to}">${data.total_length}</option>`;
+        //                 document.getElementById('cr_catogry[]').innerHTML =
+        //                     `<option value="${data.chainage_to}">${data.cat}</option>`;
+        //             })
+        //             .catch(error => {
+        //                 console.error('Error:', error);
+        //             });
+        //     } else {
+        //         // Clear all data elements
+        //         document.getElementById('cr_start_date[]').textContent = '';
+        //         document.getElementById('cr_end_date[]').textContent = '';
+        //         document.getElementById('total_lentch[]').textContent = '';
+        //         document.getElementById('cr_catogry[]').textContent = '';
+
+        //     }
+        // });
+
+        $("#cr_division_id").change(function() {
+            let cr_division_id = $(this).val();
+            console.log(cr_division_id);
+            getNameOfRoadData(cr_division_id);
         });
-
-
-        document.getElementById('cr_road_name[]').addEventListener('change', function() {
-            var roadId = this.value;
-
-            if (roadId) {
-                // Use AJAX to fetch additional road information
-                fetch('/get-road-info/' + roadId)
-                    .then(response => response.json()) // Convert response to JSON
-                    .then(data => {
-
-                        // Assuming 'chainage_from' and 'chainage_to' are properties of the JSON data
-                        document.getElementById('cr_start_date[]').innerHTML =
-                            `<option value="${data.chainage_from}">${data.chainage_from}</option>`;
-                        document.getElementById('cr_end_date[]').innerHTML =
-                            `<option value="${data.chainage_to}">${data.chainage_to}</option>`;
-                        document.getElementById('total_lentch[]').innerHTML =
-                            `<option value="${data.chainage_to}">${data.total_length}</option>`;
-                        document.getElementById('cr_catogry[]').innerHTML =
-                            `<option value="${data.chainage_to}">${data.cat}</option>`;
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            } else {
-                // Clear all data elements
-                document.getElementById('cr_start_date[]').textContent = '';
-                document.getElementById('cr_end_date[]').textContent = '';
-                document.getElementById('total_lentch[]').textContent = '';
-                document.getElementById('cr_catogry[]').textContent = '';
-
-            }
-        });
-
-
 
         document.addEventListener('DOMContentLoaded', function() {
             const addContactButton = document.getElementById('add-contact');
@@ -408,7 +412,7 @@
                     <div class="col-lg-2">
                                         <label class="form-label">Name of Road</label>
 
-                                        <select class="form-select" name="cr_road_name[]" id="cr_road_name[]">
+                                        <select class="form-select" name="cr_road_name[]">
                                             <option value="">Select Road Name</option>
                                         </select>
                                     </div>
@@ -418,7 +422,7 @@
                                             <input type="text" class="form-control" id="cr_catogry[]"
                                             name="cr_catogry[]" value="">
 
-                                      
+
 
                                     </div>
 
@@ -436,9 +440,9 @@
                                         </select>
 
                                     </div>
-                                    
-                                
-                                 
+
+
+
 
                                     <div class="col-lg-2">
                                         <label class="form-label">Type OF Work</label>
@@ -450,14 +454,47 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                               
+
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button><div`;
 
                 $("#road_data").append(html);
                 // Add an event listener to the "Remove" button
+                getNameOfRoadData($("#cr_division_id").val(), ($('[name="cr_road_name[]"]').length - 1));
 
             });
         });
+
+        function getNameOfRoadData(id = '', count = '') {
+            var csrftoken = $('meta[name="csrf-token"]').attr('content');
+            if (id != '') {
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('get_name_of_road_data') }}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        sub_division_id: id,
+                    },
+                    success: (data) => {
+                        let roadHtml = '<option value="">Select Road Name</option>';
+                        $.each(data, function(index, value) {
+                            roadHtml += `<option value='${value.id}'>${value.name}</option>`;
+                        });
+                        if (count != '') {
+                            $.each($('[name="cr_road_name[]"]'), function(index, value) {
+                                if (index == count) {
+                                    $(value).html(roadHtml);
+                                }
+                            });
+                        } else {
+                            $.each($('[name="cr_road_name[]"]'), function(index, value) {
+                                $(value).html(roadHtml);
+                            });
+                        }
+
+                    },
+                });
+            }
+        }
 
         $(document).on('click', '.remove-contact', function(e) {
             $(this).closest(".row").remove();
