@@ -93,7 +93,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/project-master-delete', [ProjectMasterController::class, 'delete'])->name('project_master_delete');
     Route::get('/project-master-export', [ProjectMasterController::class, 'project_export'])->name('project_export');
     Route::get('/project-sheet', [ProjectMasterController::class, 'projectSheet'])->name('project_sheet');
-
+    // Route::get('/get-scheme-name/{roadScheme}', [ProjectMasterController::class, 'name_scheme'])->name('sheme_name');
+    Route::get('/get-basic-name-scheme/{selectedBudgetId}', [ProjectMasterController::class, 'getBasicNameScheme']);
     //division_master
     Route::get('/division-master', [DivisionMasterController::class, 'index'])->name('division_master');
     Route::post('/division-insert', [DivisionMasterController::class, 'insert'])->name('division_insert');
@@ -256,6 +257,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Route::get('/curent-reaparing-basic', [CurrentReapringController::class, 'current_reparing_basic'])->name('curent_reaparing_basic');
     Route::post('/curent-master', [CurrentReapringController::class, 'cr_edit'])->name('cr_master');
+    Route::post('/curent-delete', [CurrentReapringController::class, 'delete'])->name('cr_delete');
+
     Route::get('/edit-current-repairs/{id}', [CurrentReapringController::class, 'edit_cr'])->name('edit_current_repairs');
     Route::get('/edit-current-repairs-basic/{id}', [CurrentReapringController::class, 'edit_cr_basic'])->name('curent_reaparing_basic');
     Route::get('/edit-details-of-work/{id}', [CurrentReapringController::class, 'edit_detils_of_work'])->name('edit_detils_of_work');

@@ -121,7 +121,9 @@ class ProjectMasterController extends Controller
         $master_show = Master::orderBy('id')->get();
         $name_of_scheme  = NameOfSchema::orderBy('id')->get();
         $name_of_project  = NameOfProject::orderBy('id')->get();
-        return view('pb_branch.edit_basic_branch', compact('division_name', 'sub_division_name', 'project_master', 'district_name', 'taluka_name', 'work_type', 'type_work', 'budget', 'budget_work', 'mp_mla', 'sent_box', 'name_of_scheme', 'name_of_project', 'user', 'role'));
+
+        $selectedSchemeId = $project_master->basic_name_scheme;
+        return view('pb_branch.edit_basic_branch', compact('division_name', 'sub_division_name', 'project_master', 'district_name', 'taluka_name', 'work_type', 'type_work', 'budget', 'budget_work', 'mp_mla', 'sent_box', 'name_of_scheme', 'name_of_project', 'user', 'role', 'selectedSchemeId'));
     }
 
 
@@ -142,5 +144,13 @@ class ProjectMasterController extends Controller
     public function projectSheet()
     {
         return view('admin.project_master.project_sheet');
+    }
+
+    public function getBasicNameScheme($selectedBudgetId)
+    {
+        // Query your database to get data based on $selectedBudgetId
+        $data = NameOfSchema::where('budget_id', $selectedBudgetId)->get();
+
+        return response()->json($data);
     }
 }

@@ -12,7 +12,7 @@
                     <div class="col-lg-12">
                         <div class="card branch-card">
                             <div class="card-header">
-                                <h5 class="mb-0 font-primary text-center">Basic </h5>
+                                <h5 class="mb-0 font-primary text-center">Detail Of Work </h5>
                             </div>
                             <div class="card-body">
                                 <form class="row" method="post" enctype="multipart/form-data" id="master_form">
@@ -33,28 +33,28 @@
 
                                             <label class="form-label">Name Of Road</label>
                                             <input type="text" class="form-control" id="dow_name_road"
-                                                name="dow_name_road[]" value="{{ $data }}">
+                                                name="dow_name_road[]" value="{{ $data }}" readonly>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="form-label">Category</label>
                                             <input type="text" class="form-control" id="dow_catogry[]"
-                                                name="dow_catogry[]" value="{{ @$cr_catogry[$key] }}">
+                                                name="dow_catogry[]" value="{{ @$cr_catogry[$key] }}" readonly>
                                         </div>
                                         <div class="col-lg-2">
-                                            <label class="form-label">Chainge(to)</label>
+                                            <label class="form-label">Chainge(from)</label>
                                             <input type="text" class="form-control" id="dow_chainge_to"
-                                                name="dow_chainge_to[]" value="{{ @$cr_start_date[$key] }}">
+                                                name="dow_chainge_to[]" value="{{ @$cr_start_date[$key] }}" readonly>
                                         </div>
 
                                         <div class="col-lg-2">
-                                            <label class="form-label" &nbsp>Chainge(from)</label>
+                                            <label class="form-label" &nbsp>Chainge(to)</label>
                                             <input type="text" class="form-control" id="dow_chainge_from"
-                                                name="dow_chainge_from[]" value="{{ @$cr_end_date[$key] }}">
+                                                name="dow_chainge_from[]" value="{{ @$cr_end_date[$key] }}" readonly>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="form-label">Type Of Work</label>
                                             <input type="text" class="form-control" id="dow_type_of_work"
-                                                name="dow_type_of_work[]" value="{{ @$cr_type_of_work_id[$key] }}">
+                                                name="dow_type_of_work[]" value="{{ @$cr_type_of_work_id[$key] }}" readonly>
                                         </div>
                                         <div class="col-lg-2">
                                             <label class="form-label">Bill Amount</label>
