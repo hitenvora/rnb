@@ -264,6 +264,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/edit-details-of-work/{id}', [CurrentReapringController::class, 'edit_detils_of_work'])->name('edit_detils_of_work');
     Route::get('/get-road-names/{divisionId}', [CurrentReapringController::class, 'getRoadNames'])->name('current_road_name');
     Route::post('/get_name_of_road_data', [CurrentReapringController::class, 'getNameOfRoadData'])->name('get_name_of_road_data');
+    Route::post('/get_name_of_road', [CurrentReapringController::class, 'getNameOfRoad'])->name('get_name_of_road');
 
     Route::get('/get-edit-bill/{id}', [CurrentReapringController::class, 'edit_bill_no'])->name('edit_bill_no');
     Route::post('/delete-repairing-bill', [CurrentReapringController::class, 'delete_repairing_bill'])->name('delete_repairing_bill');

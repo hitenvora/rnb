@@ -51,7 +51,7 @@
                                                 <div class="col-lg-2" id="contect">
                                                     <label class="form-label">Name of Road</label>
 
-                                                    <select class="form-select" name="cr_road_name[]">
+                                                    <select class="form-select" name="cr_road_name[]" onchange="setNameOfRoadData(this)">
                                                         <option value="">Select Road Name</option>
                                                         @foreach ($roadNames as $road)
                                                             <option value="{{ $road->id }}"
@@ -293,7 +293,23 @@
             }
         }
 
-
+        function setNameOfRoadData(e) {
+            let road_id = $(e).val();
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('get_name_of_road') }}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    road_id: road_id,
+                },
+                success: (data) => {
+                    let row = $(e).closest('.row');
+                    $(row).find('[name="cr_catogry[]"]').val(`${data.cat}`);
+                    $(row).find('[name="cr_start_date[]"]').val(`${data.chainage_from}`);
+                    $(row).find('[name="cr_end_date[]"]').val(`${data.chainage_to}`);
+                },
+            });
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             const addContactButton = document.getElementById('add-contact');
@@ -309,7 +325,7 @@
                 html = `<div class="row">
                     <div class="col-lg-2">
                                         <label class="form-label">Name of Road</label>
-                                        <select class="form-select" name="cr_road_name[]">
+                                        <select class="form-select" name="cr_road_name[]" onchange="setNameOfRoadData(this)">
                                             <option value="">Select Road Name</option>
                                         </select>
                                     </div>

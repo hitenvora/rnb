@@ -312,6 +312,12 @@ class CurrentReapringController extends Controller
         return response()->json($roadNames);
     }
 
+    public function getNameOfRoad(Request $request)
+    {
+        $roadName = RoadName::where('id', $request->road_id)->first();
+        return response()->json($roadName);
+    }
+
     public function edit_detils_of_work($id)
     {
         $division_name = DivisionMasters::orderBy('id')->get();
@@ -365,7 +371,7 @@ class CurrentReapringController extends Controller
     public function currentReapringDelete(Request $request)
     {
         $id =  $request->input('id');
-        $currentRepairing = CurrentReapring::where('id',$id)->first();
+        $currentRepairing = CurrentReapring::where('id', $id)->first();
         ReparingBill::where('current_reapring_id', $currentRepairing->id)->delete();
         $currentRepairing->delete();
         return response()->json(['status' => '200', 'msg' => 'success']);

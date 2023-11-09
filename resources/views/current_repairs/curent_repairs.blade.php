@@ -40,7 +40,8 @@
                                             <div class="col-lg-2" id="contect">
                                                 <label class="form-label">Name of Road</label>
 
-                                                <select class="form-select" name="cr_road_name[]">
+                                                <select class="form-select" name="cr_road_name[]"
+                                                    onchange="setNameOfRoadData(this)">
                                                     <option value="">Select Road Name</option>
                                                 </select>
                                             </div>
@@ -235,7 +236,6 @@
                     if (response.status === 422) {
                         var errors = $.parseJSON(response.responseText);
                         $.each(errors['errors'], function(key, val) {
-                            console.log(key);
                             $("#" + key + "_error").text(val[0]);
                         });
                     }
@@ -279,7 +279,6 @@
                     if (response.status === 422) {
                         var errors = $.parseJSON(response.responseText);
                         $.each(errors['errors'], function(key, val) {
-                            console.log(key);
                             $("#" + key + "_error").text(val[0]);
                         });
                     }
@@ -328,7 +327,6 @@
                     if (response.status === 422) {
                         var errors = $.parseJSON(response.responseText);
                         $.each(errors['errors'], function(key, val) {
-                            console.log(key);
                             $("#" + key + "_error").text(val[0]);
                         });
                     }
@@ -394,7 +392,6 @@
 
         $("#cr_division_id").change(function() {
             let cr_division_id = $(this).val();
-            console.log(cr_division_id);
             getNameOfRoadData(cr_division_id);
         });
 
@@ -412,7 +409,7 @@
                     <div class="col-lg-2">
                                         <label class="form-label">Name of Road</label>
 
-                                        <select class="form-select" name="cr_road_name[]">
+                                        <select class="form-select" name="cr_road_name[]"  onchange="setNameOfRoadData(this)">
                                             <option value="">Select Road Name</option>
                                         </select>
                                     </div>
@@ -502,5 +499,23 @@
         $(document).on('click', '.remove-contact-static', function(e) {
             $(this).closest("tr").remove();
         });
+
+        function setNameOfRoadData(e) {
+            let road_id = $(e).val();
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('get_name_of_road') }}",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    road_id: road_id,
+                },
+                success: (data) => {
+                    let row = $(e).closest('.row');
+                    $(row).find('[name="cr_catogry[]"]').val(`${data.cat}`);
+                    $(row).find('[name="cr_start_date[]"]').val(`${data.chainage_from}`);
+                    $(row).find('[name="cr_end_date[]"]').val(`${data.chainage_to}`);
+                },
+            });
+        }
     </script>
 @endsection
