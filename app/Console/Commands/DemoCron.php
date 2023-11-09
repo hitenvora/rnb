@@ -63,9 +63,8 @@ class DemoCron extends Command
             if ($do_deposit_letter_date) {
                 info("do_deposit_letter_date: " . $do_deposit_letter_date); // Log the date for debugging
 
-                $follow_up_date = Carbon::createFromDate($do_deposit_letter_date)->addDays(1)->format('d-m-Y');
+                $follow_up_date = Carbon::createFromDate($do_deposit_letter_date)->addDays(8)->format('d-m-Y');
                 $now_date = Carbon::now()->format('d-m-Y');
-
 
                 if ($follow_up_date == $now_date) {
                     // notification table ma entry

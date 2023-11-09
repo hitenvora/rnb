@@ -122,8 +122,6 @@
                                             <div class="flex-grow-1">
                                                 <h5 class="m-0">Letter Reminder Master</h5>
                                             </div>
-
-
                                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                                 viewBox="0 0 29 29" fill="none">
                                                 <path d="M11.9864 8.90002L17.5864 14.5L11.9864 20.1" stroke-width="2"
@@ -146,8 +144,14 @@
                                             </svg>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h5 class="m-0">Current Repairs</h5>
+                                            <h5 class="m-0">Current Repairs </h5>
                                         </div>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                            viewBox="0 0 29 29" fill="none">
+                                            <path d="M11.9864 8.90002L17.5864 14.5L11.9864 20.1" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
                             <li class="box-card">
                                 <a href="{{ route('project_master') }}">
                                     <div class="d-flex align-items-center">
@@ -181,15 +185,15 @@
                         <ul class="message-list d-flex flex-wrap" id="menu-list">
                             @forelse($notifications as $notification)
                                 <li class="msg-card">
-                                    <a href="{{ route('basic_branch') }}">
-                                        <div class="alert alert-light-primary w-100 alert-dismissible d-flex"
-                                            role="alert">
-                                            <div class="flex-grow-1">
-                                                <span>{{ $notification->message }}</span>
-                                            </div>
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
+                                    <div class="alert alert-light-primary w-100 alert-dismissible d-flex" role="alert">
+                                        <div class="flex-grow-1">
+                                            <span>{{ $notification->message }}</span>
                                         </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"
+                                            onclick="deleteNotification({{ $notification->id }})"></button>
+
+                                    </div>
                                     </a>
                                 </li>
                             @empty
@@ -237,4 +241,33 @@
 @endsection
 
 @section('script')
+    <script>
+        function deleteNotification(notificationId) {
+            // Ask for confirmation
+            if (confirm('Are you sure you want to delete this notification?')) {
+                // Make an AJAX request to delete the notification
+                fetch(`/delete-notification/${notificationId}`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Remove the notification element from the DOM
+                            const notificationElement = document.querySelector(`#notification-${notificationId}`);
+                            notificationElement.remove();
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Notification Succefully Delete.');
+                    });
+            }
+        }
+    </script>
 @endsection

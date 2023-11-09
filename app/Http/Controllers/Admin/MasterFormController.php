@@ -19,15 +19,27 @@ class MasterFormController extends Controller
 
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
-        $notifications = Notification::with('rolename')->where('id', '=', $user->id)->first();
-        $notifications = Notification::where('master_id', $user->id)
-            ->where('role_id', $role->role_id)
-            ->get();
-        
+        // $notifications = Notification::with('rolename')->where('id', '=', $user->id)->first();
+        $notifications = Notification::all();
+
         // return($notifications);
         return view('admin.master_form', compact('user', 'role', 'notifications'));
     }
 
+    public function delete(Request $request, $id)
+    {
+        // Find the notification by ID
+        $notification = Notification::find($id);
+
+        if ($notification) {
+            // Delete the notification
+            $notification->delete();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Notification not found']);
+    }
 
     // public function schedule(Schedule $schedule)
     // {

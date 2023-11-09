@@ -270,4 +270,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/delete-repairing-bill', [CurrentReapringController::class, 'delete_repairing_bill'])->name('delete_repairing_bill');
 
     Route::get('/get-road-info/{roadId}',  [CurrentReapringController::class, 'getRoadInfo'])->name('road_name_id');
+    Route::post('/delete-notification/{id}', [MasterFormController::class, 'delete'])->name('notification_delete');
 });
