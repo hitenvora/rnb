@@ -15,7 +15,7 @@
                                 <h5 class="mb-0 font-primary text-center">Current Reapirs</h5>
                             </div>
                             <div class="card-body">
-                                <form class="row" method="post" enctype="multipart/form-data" id="master_form" v>
+                                <form class="row" method="post" enctype="multipart/form-data" id="master_form">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $cr_update->id }}">
                                     <input type="hidden" name="step" value="cr">
@@ -45,13 +45,18 @@
                                             $cr_end_date = explode(',', $cr_update->cr_end_date);
                                             $cr_type_of_work_id = explode(',', $cr_update->cr_type_of_work_id);
                                         @endphp
+
                                         <div class="col-lg-12" id="road_data">
                                             <div class="row">
                                                 <div class="col-lg-2" id="contect">
                                                     <label class="form-label">Name of Road</label>
 
-                                                    <select class="form-select" name="cr_road_name[]" id="cr_road_name[]">
+                                                    <select class="form-select" name="cr_road_name[]">
                                                         <option value="">Select Road Name</option>
+                                                        @foreach ($roadNames as $road)
+                                                            <option value="{{ $road->id }}"
+                                                                @selected($data == $road->id)>{{ $road->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
 
@@ -59,9 +64,6 @@
                                                     <label class="form-label">Category</label>
                                                     <input type="text" class="form-control" id="cr_catogry[]"
                                                         name="cr_catogry[]" value="{{ @$cr_catogry[$key] }}">
-
-
-
                                                 </div>
 
                                                 <div class="col-lg-2">
@@ -92,27 +94,31 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                <button type="button" class="btn-close remove-contact"
+                                                    aria-label="Close"></button>
+                                            </div>
                                     @endforeach
-                                    <span class="text-end col-lg-1" colspan="2">
-                                        <a class="btn btn-light-warning px-3" id="add-contact">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 20 20" fill="none">
-                                                <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337" stroke="#802B81"
-                                                    stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg> Add
-                                        </a>
-                                    </span>
                             </div>
+                            <div class="row">
+                                <span class="text-end" style="width: 90%">
+                                    <a class="btn btn-light-warning px-3 border" id="add-contact">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
+                                                stroke="#802B81" stroke-width="1.67" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg> Add
+                                    </a>
+                                </span>
                         </div>
-
-                        <div class="col-12 text-center mt-3">
-                            <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
-                                name="btn_save">Save</button>
+                            <div class="col-12 text-center mt-3">
+                                <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
+                                    name="btn_save">Save</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            </form>
+                </form>
     </body>
 @endsection
 
@@ -209,27 +215,65 @@
         });
 
 
-        document.getElementById('cr_division_id').addEventListener('change', function() {
-            var divisionId = this.value;
-            var roadNameDropdown = document.getElementById('cr_road_name[]');
+        // document.getElementById('cr_division_id').addEventListener('change', function() {
+        //     var divisionId = this.value;
+        //     var roadNameDropdown = document.getElementById('cr_road_name[]');
 
-            // Clear existing options
-            roadNameDropdown.innerHTML = '<option value="">Select Road Name</option>';
+        //     // Clear existing options
+        //     roadNameDropdown.innerHTML = '<option value="">Select Road Name</option>';
 
-            if (divisionId) {
-                // Use AJAX to fetch road names for the selected division
-                fetch('/get-road-names/' + divisionId)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(road => {
-                            var option = document.createElement('option');
-                            option.value = road.id;
-                            option.text = road.name;
-                            roadNameDropdown.appendChild(option);
-                        });
-                    });
-            }
+        //     if (divisionId) {
+        //         // Use AJAX to fetch road names for the selected division
+        //         fetch('/get-road-names/' + divisionId)
+        //             .then(response => response.json())
+        //             .then(data => {
+        //                 data.forEach(road => {
+        //                     var option = document.createElement('option');
+        //                     option.value = road.id;
+        //                     option.text = road.name;
+        //                     roadNameDropdown.appendChild(option);
+        //                 });
+        //             });
+        //     }
+        // });
+
+
+        $("#cr_division_id").change(function() {
+            let cr_division_id = $(this).val();
+            getNameOfRoadData(cr_division_id);
         });
+
+        function getNameOfRoadData(id = '', count = '') {
+            var csrftoken = $('meta[name="csrf-token"]').attr('content');
+            if (id != '') {
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('get_name_of_road_data') }}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        sub_division_id: id,
+                    },
+                    success: (data) => {
+                        let roadHtml = '<option value="">Select Road Name</option>';
+                        $.each(data, function(index, value) {
+                            roadHtml += `<option value='${value.id}'>${value.name}</option>`;
+                        });
+                        if (count != '') {
+                            $.each($('[name="cr_road_name[]"]'), function(index, value) {
+                                if (index == count) {
+                                    $(value).html(roadHtml);
+                                }
+                            });
+                        } else {
+                            $.each($('[name="cr_road_name[]"]'), function(index, value) {
+                                $(value).html(roadHtml);
+                            });
+                        }
+
+                    },
+                });
+            }
+        }
 
         function roadname(divisionId, roadNameDropdown) {
             // Clear existing options
@@ -266,7 +310,7 @@
                 html = `<div class="row">
                     <div class="col-lg-2">
                                         <label class="form-label">Name of Road</label>
-                                        <select class="form-select" name="cr_road_name[]" id="cr_road_name[]">
+                                        <select class="form-select" name="cr_road_name[]">
                                             <option value="">Select Road Name</option>
                                         </select>
                                     </div>
@@ -299,20 +343,21 @@
                                                     {{ $value['name'] }}</option>
                                             @endforeach
                                         </select>
-                                    </div>                            
+                                    </div>
                         <button type="button" class="btn-close remove-contact" aria-label="Close"></button><div`;
                 newContactField.innerHTML = html;
                 const roadData = document.getElementById('road_data');
                 roadData.appendChild(newContactField);
 
                 // Add an event listener to the "Division" dropdown for this row
-                const divisionDropdown = newContactField.querySelector(`#cr_division_id`);
-                const roadNameDropdown = newContactField.querySelector(`#cr_road_name_${contactCount}`);
+                // const divisionDropdown = newContactField.querySelector(`#cr_division_id`);
 
-                divisionDropdown.addEventListener('change', function() {
-                    var divisionId = this.value;
-                    roadname(divisionId, roadNameDropdown);
-                });
+                const roadNameDropdown = newContactField.querySelector(`#cr_road_name_${contactCount}`);
+                getNameOfRoadData($("#cr_division_id").val(), ($('[name="cr_road_name[]"]').length - 1));
+                // divisionDropdown.addEventListener('change', function() {
+                //     var divisionId = this.value;
+                //     roadname(divisionId, roadNameDropdown);
+                // });
             });
         });
 

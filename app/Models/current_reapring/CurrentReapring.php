@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CurrentReapring extends Model
 {
     use HasFactory;
+
+    
 }
