@@ -203,7 +203,7 @@ class CurrentReapringController extends Controller
     public function detils_of_work(Request $request)
 
     {
-      
+
 
         if ($request->master_id != '') {
             $datils_of_work = DetailOfWorkName::find($request->master_id);
@@ -245,7 +245,7 @@ class CurrentReapringController extends Controller
 
             $datils_of_work->dow_bill_amt = implode(",", $dow_bill_amt);
         }
-        
+
         $datils_of_work->current_repairs_id = $request->input('master_id');
         $datils_of_work->save();
 
@@ -256,7 +256,7 @@ class CurrentReapringController extends Controller
 
     public function delete_repairing_bill(Request $request)
     {
-        ReparingBill::where('id',$request->bill_id)->delete();
+        ReparingBill::where('id', $request->bill_id)->delete();
     }
 
     public function cr_edit(Request $request)
@@ -298,8 +298,14 @@ class CurrentReapringController extends Controller
         $cr_update = CurrentReapring::where('id', $id)->first();
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
+        $roadNames = RoadName::where('sub_division_id', $cr_update->cr_division_id)->select(['id','name'])->get();
+        return view('current_repairs.edit_curent_repairs', compact('cr_update', 'user', 'role', 'division_name', 'type_work', 'road_name','roadNames'));
+    }
 
-        return view('current_repairs.edit_curent_repairs', compact('cr_update', 'user', 'role', 'division_name', 'type_work', 'road_name'));
+    public function getNameOfRoadData(Request $request)
+    {
+        $roadNames = RoadName::where('sub_division_id', $request->sub_division_id)->select(['id','name'])->get();
+        return response()->json($roadNames);
     }
 
     public function edit_detils_of_work($id)

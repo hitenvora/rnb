@@ -251,7 +251,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/curent-reaparing-insert', [CurrentReapringController::class, 'insert'])->name('curent_reaparing_insert');
     Route::post('/curent-reaparing-detail-of-work-insert', [CurrentReapringController::class, 'detils_of_work'])->name('detils_of_work_insert');
 
-    
+
     Route::post('/curent-reaparing-basic-agency', [CurrentReapringController::class, 'cr_agency_name'])->name('cr_agency_name_insert');
 
     // Route::get('/curent-reaparing-basic', [CurrentReapringController::class, 'current_reparing_basic'])->name('curent_reaparing_basic');
@@ -260,6 +260,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/edit-current-repairs-basic/{id}', [CurrentReapringController::class, 'edit_cr_basic'])->name('curent_reaparing_basic');
     Route::get('/edit-details-of-work/{id}', [CurrentReapringController::class, 'edit_detils_of_work'])->name('edit_detils_of_work');
     Route::get('/get-road-names/{divisionId}', [CurrentReapringController::class, 'getRoadNames'])->name('current_road_name');
+    Route::post('/get_name_of_road_data', [CurrentReapringController::class, 'getNameOfRoadData'])->name('get_name_of_road_data');
 
     Route::get('/get-edit-bill/{id}', [CurrentReapringController::class, 'edit_bill_no'])->name('edit_bill_no');
     Route::post('/delete-repairing-bill', [CurrentReapringController::class, 'delete_repairing_bill'])->name('delete_repairing_bill');
