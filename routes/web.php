@@ -94,9 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/project-master-export', [ProjectMasterController::class, 'project_export'])->name('project_export');
     Route::get('/project-sheet', [ProjectMasterController::class, 'projectSheet'])->name('project_sheet');
     // Route::get('/get-scheme-name/{roadScheme}', [ProjectMasterController::class, 'name_scheme'])->name('sheme_name');
-    Route::get('/get-basic-name-scheme/{selectedBudgetId}',[ProjectMasterController::class, 'getBasicNameScheme']);
-
-
+    Route::get('/get-basic-name-scheme/{selectedBudgetId}', [ProjectMasterController::class, 'getBasicNameScheme']);
     //division_master
     Route::get('/division-master', [DivisionMasterController::class, 'index'])->name('division_master');
     Route::post('/division-insert', [DivisionMasterController::class, 'insert'])->name('division_insert');
@@ -271,5 +269,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/delete-repairing-bill', [CurrentReapringController::class, 'delete_repairing_bill'])->name('delete_repairing_bill');
 
     Route::get('/get-road-info/{roadId}',  [CurrentReapringController::class, 'getRoadInfo'])->name('road_name_id');
-
 });

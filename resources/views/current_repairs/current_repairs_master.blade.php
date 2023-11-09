@@ -263,7 +263,7 @@
                     _data['id'] = id;
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('project_master_delete') }}",
+                        url: "{{ route('cr_delete') }}",
                         headers: {
                             'X-CSRF-Token': token,
                         },

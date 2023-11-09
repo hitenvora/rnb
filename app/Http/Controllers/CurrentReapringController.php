@@ -306,13 +306,13 @@ class CurrentReapringController extends Controller
         $cr_update = CurrentReapring::where('id', $id)->first();
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
-        $roadNames = RoadName::where('sub_division_id', $cr_update->cr_division_id)->select(['id','name'])->get();
-        return view('current_repairs.edit_curent_repairs', compact('cr_update', 'user', 'role', 'division_name', 'type_work', 'road_name','roadNames'));
+        $roadNames = RoadName::where('sub_division_id', $cr_update->cr_division_id)->select(['id', 'name'])->get();
+        return view('current_repairs.edit_curent_repairs', compact('cr_update', 'user', 'role', 'division_name', 'type_work', 'road_name', 'roadNames'));
     }
 
     public function getNameOfRoadData(Request $request)
     {
-        $roadNames = RoadName::where('sub_division_id', $request->sub_division_id)->select(['id','name'])->get();
+        $roadNames = RoadName::where('sub_division_id', $request->sub_division_id)->select(['id', 'name'])->get();
         return response()->json($roadNames);
     }
 
