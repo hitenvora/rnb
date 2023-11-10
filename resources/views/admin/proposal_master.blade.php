@@ -61,8 +61,8 @@
                                             <th>Work Type</th>
                                             <th>Type Of Work</th>
                                             <th>Budget</th>
-                                            <th>Letter No.</th>
                                             <th>Date</th>
+                                            <th>Letter No.</th>
                                             <th>Amt. in Lakh</th>
                                             <th>Received From</th>
                                             <th>Action</th>
