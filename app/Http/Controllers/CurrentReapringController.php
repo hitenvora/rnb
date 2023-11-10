@@ -279,7 +279,7 @@ class CurrentReapringController extends Controller
             if (in_array(auth()->user()->role_id, [1])) {
                 $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
             }
-            $roadNames = RoadName::whereIn('id',explode(",",$record->cr_road_name))->select(['id', 'name'])->implode("name",',');
+            $roadNames = RoadName::whereIn('id', explode(",", $record->cr_road_name))->select(['id', 'name'])->implode("name", ',');
             $project_master[$key]['road_name_new'] =  $roadNames;
             $project_master[$key]['action'] =  $action;
         }
@@ -319,7 +319,14 @@ class CurrentReapringController extends Controller
     public function getNameOfRoad(Request $request)
     {
         $roadName = RoadName::where('id', $request->road_id)->first();
-        return response()->json($roadName);
+        $road_id = $request->road_id;
+        $current_reparing = CurrentReapring::whereRaw("FIND_IN_SET($road_id, cr_road_name)")->where('created_at', '>=', now()->subMonths(6))->first();
+        $is_set = 0;
+        if(isset($current_reparing)){
+            $is_set = 1;
+        }
+        $data = compact('roadName','is_set');
+        return response()->json($data);
     }
 
     public function edit_detils_of_work($id)

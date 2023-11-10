@@ -59,7 +59,7 @@
                                                 <label class="form-label">Chainage(From)</label>
 
                                                 <input type="text" class="form-control" id="cr_start_date[]"
-                                                    name="cr_start_date[]" value="">
+                                                    name="cr_start_date[]" value="" onkeyup="checkRoadRecord(this)">
 
                                             </div>
                                             <div class="col-lg-2">
@@ -426,7 +426,7 @@
                                     <div class="col-lg-2">
                                         <label class="form-label">Chainage(From)</label>
 
-                                            <input type="text" class="form-control" id="cr_start_date[]"
+                                            <input type="text" class="form-control" id="cr_start_date[]" onkeyup="checkRoadRecord(this)"
                                             name="cr_start_date[]" value="">
 
                                     </div>
@@ -511,11 +511,18 @@
                 },
                 success: (data) => {
                     let row = $(e).closest('.row');
-                    $(row).find('[name="cr_catogry[]"]').val(`${data.cat}`);
-                    $(row).find('[name="cr_start_date[]"]').val(`${data.chainage_from}`);
-                    $(row).find('[name="cr_end_date[]"]').val(`${data.chainage_to}`);
+                    $(row).find('[name="cr_catogry[]"]').val(`${data.roadName.cat}`);
+                    $(row).find('[name="cr_start_date[]"]').val(`${data.roadName.chainage_from}`);
+                    $(row).find('[name="cr_end_date[]"]').val(`${data.roadName.chainage_to}`);
+                    if(data.is_set == 1){
+                        alert('You have already set this road record in the last six months.');
+                    }
                 },
             });
         }
+
+        // function checkRoadRecord(e){
+
+        // }
     </script>
 @endsection
