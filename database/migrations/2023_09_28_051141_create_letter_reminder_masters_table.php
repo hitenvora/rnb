@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date')->nullable();
             $table->string('subject')->nullable();
-            $table->string('upload_img')->nullable();
+            $table->text('upload_img_letter')->nullable();
             $table->string('submit_to')->nullable();
             $table->date('expire_date')->nullable();
             $table->tinyInteger('is_active')->default(1)->comment('1=>Active, 0=>Inactive');

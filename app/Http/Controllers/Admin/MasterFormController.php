@@ -41,35 +41,5 @@ class MasterFormController extends Controller
         return response()->json(['success' => false, 'message' => 'Notification not found']);
     }
 
-    // public function schedule(Schedule $schedule)
-    // {
-    //     $schedule->call(function () {
-    //         // add this function in CRON job
-    //         info("Cron Job running at " . now());
-
-    //         $Masters = Master::get();
-    //         foreach ($Masters as $Master) {
-    //             if ($Master->bes_follow_up_date != '' || $Master->bes_follow_up_date != null) {
-    //                 $bes_follow_up_dates = explode(',', $Master->bes_follow_up_date);
-    //                 foreach ($bes_follow_up_dates as $key => $date) {
-    //                     $follow_up_date = Carbon::createFromDate($date)->addDays(5)->format('d-m-Y');
-    //                     $now_date = Carbon::now()->format('d-m-Y');
-    //                     if ($follow_up_date == $follow_up_date) {
-    //                         // notification table ma entry
-    //                         Notification::create([
-    //                             'name' => $date['name']
-
-    //                         ]);
-    //                     }
-    //                 }
-    //             }
-    //         }
-
-    //         $eightDaysFromNow = Carbon::now()->addDays(2);
-    //         $usersWithUpcomingDates = Master::where('bes_follow_up_date', '=', $eightDaysFromNow)->get();
-    //         foreach ($usersWithUpcomingDates as $user) {
-    //             $user->notify(new CustomNotification);
-    //         }
-    //     })->daily();
-    // }
+ 
 }

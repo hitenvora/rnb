@@ -47,8 +47,9 @@ class LetterReminderMasterController extends Controller
         }
         $letter_reminder->date = $request->input('date');
         $letter_reminder->subject = $request->input('subject');
-        if (isset($request->upload_img)) {
-            $letter_reminder->upload_img = $this->storeImage($request->upload_img, 'uplode/Letter-reminder/');
+        
+        if (isset($request->upload_img_letter)) {
+            $letter_reminder->upload_img_letter = $this->storeImage($request->upload_img_letter, 'uplode_images/Letter-reminder/');
         }
 
         $letter_reminder->submit_to = $request->input('submit_to');
@@ -70,7 +71,7 @@ class LetterReminderMasterController extends Controller
             } else {
                 $letter_reminder[$key]['active_button'] = '<span class="badge bg-success">Active</span>';
             }
-            $letter_reminder[$key]['eye_icon'] =  '<a href="upload/Letter-reminder/' . $record->upload_img . '" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/829/829117.png" alt="map" style="height: 20px; width: 20px; "></a>';
+            $letter_reminder[$key]['eye_icon'] = '<a href="/uplode_images/Letter-reminder/' . urlencode($record->upload_img_letter) . '" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/829/829117.png" alt="map" style="height: 20px; width: 20px;"></a>';
             $action = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="editsubdivision(' . $id . ')" title="Edit"><i class="fa fa-pencil"></i></button>';
             $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
             $letter_reminder[$key]['action'] =  $action;

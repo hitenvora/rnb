@@ -329,7 +329,7 @@
                             <input type="hidden" name="letter_reminder_id" id="letter_reminder_id">
                             <div class="col-lg-6">
                                 <label class="form-label">Date</label>
-                                <input type="date" class="form-control" id="date" name="date" value="2023-09-13">
+                                <input type="date" class="form-control" id="date" name="date">
                                 <span class="text-danger" id="date_error"></span>
                             </div>
                             <div class="col-lg-6">
@@ -341,9 +341,10 @@
                             <div class="col-lg-12">
                                 <label class="form-label">Letter Upload</label>
                                 <div class="input-group">
-                                    <input type="file" class="form-control w-100" id="upload_img" name="upload_img">
+                                    <input type="file" class="form-control w-100" id="upload_img_letter"
+                                        name="upload_img_letter">
                                 </div>
-                                <span class="text-danger" id="upload_img_error"></span>
+
                             </div>
                             <div class="col-lg-6">
                                 <label class="form-label">Submitted To</label>
@@ -562,6 +563,7 @@
                     $('#letter_reminder_id').val(data.data.id);
                     $('#date').val(data.data.date);
                     $('#subject').val(data.data.subject);
+                    // $('#upload_img').val(data.data.upload_img);
                     $('#submit_to').val(data.data.submit_to);
                     $('#expire_date').val(data.data.expire_date);
 

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('work_type_id')->nullable();
        
             $table->text('types_of_work')->nullable();
+            $table->text('type_work')->nullable();
+
             $table->unsignedBigInteger('type_work_id')->nullable();
          
             $table->unsignedBigInteger('budget_id')->nullable();

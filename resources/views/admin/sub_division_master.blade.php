@@ -272,17 +272,17 @@
                                     placeholder="Enter Subdivision">
                                     <span class="text-danger" id="name_error"></span>
                                         <div class="flex-shrink-0 btn-plus">
-                                        <a type="submit" class="btn btn-warning add w-auto" id="add_item"
+                                        {{-- <a type="submit" class="btn btn-warning add w-auto" id="add_item"
                                             name="add_item">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18"
                                                 viewBox="0 0 19 18" fill="none">
                                                 <path d="M9.5 3.75V14.25M4.25 9H14.75" stroke="white" stroke-width="1.67"
                                                     stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
-                                <ul class="d-flex select_menu">
+                                {{-- <ul class="d-flex select_menu">
                                     <li>
                                         <a href="#">
                                             Surat
@@ -359,7 +359,7 @@
                                             </svg>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> --}}
                             </div>
                             <div class="col-12 text-center">
                                 <button type="submit" class="btn submit-btn" id="btn_save"
