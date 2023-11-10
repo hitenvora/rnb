@@ -304,9 +304,12 @@
                 },
                 success: (data) => {
                     let row = $(e).closest('.row');
-                    $(row).find('[name="cr_catogry[]"]').val(`${data.cat}`);
-                    $(row).find('[name="cr_start_date[]"]').val(`${data.chainage_from}`);
-                    $(row).find('[name="cr_end_date[]"]').val(`${data.chainage_to}`);
+                    $(row).find('[name="cr_catogry[]"]').val(`${data.roadName.cat}`);
+                    $(row).find('[name="cr_start_date[]"]').val(`${data.roadName.chainage_from}`);
+                    $(row).find('[name="cr_end_date[]"]').val(`${data.roadName.chainage_to}`);
+                    if(data.is_set == 1){
+                        alert('You have already set this road record in the last six months.');
+                    }
                 },
             });
         }
