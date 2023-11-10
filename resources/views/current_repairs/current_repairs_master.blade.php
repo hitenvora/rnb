@@ -154,10 +154,10 @@
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
                 },
-                // {
-                //     data: 'cr_road_name',
-                //     name: 'cr_road_name'
-                // },
+                {
+                    data: 'road_name_new',
+                    name: 'road_name_new'
+                },
                 {
                     data: 'cr_name_of_section',
                     name: 'cr_name_of_section'

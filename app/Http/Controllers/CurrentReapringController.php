@@ -279,11 +279,13 @@ class CurrentReapringController extends Controller
             if (in_array(auth()->user()->role_id, [1])) {
                 $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
             }
+            $roadNames = RoadName::whereIn('id',explode(",",$record->cr_road_name))->select(['id', 'name'])->implode("name",',');
+            $project_master[$key]['road_name_new'] =  $roadNames;
             $project_master[$key]['action'] =  $action;
         }
         return DataTables::of($project_master)
             ->addIndexColumn()
-            ->rawColumns(['action', 'district_name_view', 'taluka_name_view', 'work_type_view', 'type_work_view', 'budget_name_view', 'budgetwork_name_view', 'mla_name_view', 'sent_box_name_view', 'eye_icon', 'name_of_schema', 'project_name'])
+            ->rawColumns(['action'])
             ->make(true);
     }
     public function delete(Request $request)
