@@ -56,7 +56,9 @@
                                             <select class="form-select" id="basic_name_project" name="basic_name_project">
                                                 @foreach ($name_of_project as $value)
                                                     <option value="{{ $value['id'] }}"
-                                                        {{ $project_master->basic_name_project == $value['id'] ? 'selected' : '' }}>
+                                                        @isset($project_master)
+                                                       {{ $project_master->basic_name_project == $value['id'] ? 'selected' : '' }}
+                                                       @endisset>
                                                         {{ $value['name'] }}
                                                     </option>
                                                 @endforeach

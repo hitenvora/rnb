@@ -115,8 +115,8 @@
                                             <th>Treatment details</th>
                                             <th>Amount (in Lacs.)</th>
                                             <th>Proposal submitted vide letter no.,date,submission office</th>
-                                            <th>Project Start Date</th>
-                                            <th>Project over All Status</th>
+                                            {{-- <th>Project Start Date</th> --}}
+                                            {{-- <th>Project over All Status</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody id="contactData">
@@ -179,8 +179,8 @@
                     name: 'basic_name_of_department'
                 },
                 {
-                    data: 'name_of_schema',
-                    name: 'name_of_schema'
+                    data: 'basic_name_scheme_new',
+                    name: 'basic_name_scheme_new'
                 },
                 {
                     data: 'project_name',
@@ -200,8 +200,11 @@
                     name: 'basic_category_of_road'
                 },
                 {
-                    data: 'initiated_name',
-                    name: 'initiated_name'
+                    data: null,
+                    name: 'basic_mp_mla_name_basic_letter_no',
+                    render: function(data, type, full, meta) {
+                        return full.basic_mp_mla_name + ' ,' + full.basic_letter_no;
+                    }
                 },
                 {
                     data: 'ppd_treatment_detail',
@@ -220,11 +223,12 @@
                 //     name: 'ppd_proposal_submitted_letter_date'
                 // },
                 {
-                    data: 'ppd_proposal_submission_office',
-                    name: 'ppd_proposal_submission_office'
+                    data: null,
+                    name: 'basic_sent_proposal-basic_sent_proposal_letter_no-basic_sent_proposal_date',
+                    render: function(data, type, full, meta) {
+                        return full.basic_sent_proposal + ' ,' + full.basic_sent_proposal_letter_no+ ' ,' + full.basic_sent_proposal_date;
+                    }
                 },
-
-
 
             ],
 

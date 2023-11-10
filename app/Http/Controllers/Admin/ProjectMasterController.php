@@ -90,6 +90,7 @@ class ProjectMasterController extends Controller
                 $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
             }
             $project_master[$key]['action'] =  $action;
+            $project_master[$key]['basic_name_scheme_new'] = NameOfSchema::whereIn('id',explode(",",$record->basic_name_scheme))->implode('name', ', ');
         }
         return DataTables::of($project_master)
             ->addIndexColumn()
