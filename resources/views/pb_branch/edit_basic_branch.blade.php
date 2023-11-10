@@ -1689,6 +1689,8 @@
 
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
+            $('.select2-container').css("width", "100%");
+            $('.select2-selection--multiple').css("padding", "7px");
         });
     </script>
 @endsection

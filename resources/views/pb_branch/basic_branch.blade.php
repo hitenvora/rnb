@@ -44,7 +44,7 @@
                                                 data-bs-target="#add_name_of_scheme">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
                                                     viewBox="0 0 25 24" fill="none">
-                                                    <path d="M12.5 6L12.5 18M18.5 12L6.5 12" stroke="white" 
+                                                    <path d="M12.5 6L12.5 18M18.5 12L6.5 12" stroke="white"
                                                         stroke-width="1.67" stroke-linecap="round" />
                                                 </svg>
                                             </div> --}}
@@ -1403,6 +1403,8 @@
 
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
+            $('.select2-container').css("width", "100%");
+            $('.select2-selection--multiple').css("padding", "7px");
         });
     </script>
 @endsection
