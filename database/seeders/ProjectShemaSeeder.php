@@ -66,6 +66,42 @@ class ProjectShemaSeeder extends Seeder
                 'budget_id' => 6,
                 'name' => '૫૦ : ૫૦ ટકા સહભાગીદારી - આર. ઓ. બી',
             ],
+            [
+                'budget_id' => 7,
+                'name' => 'કાયદા વિભાગ (રહેઠાણ)',
+            ],
+            [
+                'budget_id' => 8,
+                'name' => 'કાયદા વિભાગ',
+            ],
+            [
+                'budget_id' => 8,
+                'name' => 'કાયદા વિભાગ (બિનરહેઠાણ)',
+            ], [
+                'budget_id' => 8,
+                'name' => 'નોર્મલ (બિનરહેઠાણ)',
+            ], [
+                'budget_id' => 9,
+                'name' => 'Laboure&Employment',
+            ], [
+                'budget_id' => 10,
+                'name' => 'આદિજાતિ વિકાસ',
+            ], [
+                'budget_id' => 11,
+                'name' => 'હાઉસિંગ',
+            ], [
+                'budget_id' => 12,
+                'name' => 'Public Work',
+            ], [
+                'budget_id' => 13,
+                'name' => 'ચાલુ મચમન ',
+            ], [
+                'budget_id' => 14,
+                'name' => 'અપડરઈપિંગ',
+            ], [
+                'budget_id' => 15,
+                'name' => 'VVip Seruice',
+            ],
         ]);
     }
 }

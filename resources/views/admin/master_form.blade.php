@@ -122,7 +122,7 @@
                                             <div class="flex-grow-1">
                                                 <h5 class="m-0">Letter Reminder Master</h5>
                                             </div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="38" height="33"
                                                 viewBox="0 0 29 29" fill="none">
                                                 <path d="M11.9864 8.90002L17.5864 14.5L11.9864 20.1" stroke-width="2"
                                                     stroke-linecap="round" stroke-linejoin="round" />

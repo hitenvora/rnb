@@ -66,7 +66,9 @@ class ProposalMasterController extends Controller
         $proposal_master->district_id = $request->input('district_id');
         $proposal_master->taluka_id = $request->input('taluka_id');
         $proposal_master->work_type_id = $request->input('work_type_id');
+
         $proposal_master->type_work_id = $request->input('type_work_id');
+        $proposal_master->type_work = $request->input('type_work');
 
         $proposal_master->budget_id = $request->input('budget_id');
         $proposal_master->budget = $request->input('budget');
