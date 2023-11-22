@@ -61,8 +61,8 @@
                                             <th>Work Type</th>
                                             <th>Type Of Work</th>
                                             <th>Budget</th>
-                                            <th>Date</th>
                                             <th>Letter No.</th>
+                                            <th>Letter Date</th>
                                             <th>Amt. in Lakh</th>
                                             <th>Received From</th>
                                             <th>Action</th>
@@ -1074,13 +1074,13 @@
                     data: 'work_type_view',
                     name: 'work_type_view'
                 },
-                // {
-                //     data: 'type_work_view',
-                //     name: 'type_work_view'
-                // },
                 {
-                    data: 'budget',
-                    name: 'budget'
+                    data: 'type_work_view',
+                    name: 'type_work_view'
+                },
+                {
+                    data: 'budget_name_view',
+                    name: 'budget_name_view'
                 },
                 {
                     data: 'letter_no',
@@ -1098,10 +1098,10 @@
                     data: 'recever_from',
                     name: 'recever_from'
                 },
-                {
-                    data: 'sent_proposal',
-                    name: 'sent_proposal'
-                },
+                // {
+                //     data: 'sent_proposal',
+                //     name: 'sent_proposal'
+                // },
                 {
                     data: 'action',
                     name: 'action'
@@ -1252,7 +1252,7 @@
                         .work_type.name : 'N/a');
                     $('.view-type_of_work').text(data.data.type_work && data.data.type_work.name ? data.data
                         .type_work.name : 'N/a');
-                    $('.view-budget').text(data.data.budget ? data.data.budget : 'N/a');
+                    $('.view-budget').text(data.data.budgets && data.data.budgets.name ? data.data.budgets.name : 'N/a');
                     $('.view-budget_work').text(data.data.budgetwork_name && data.data.budgetwork_name.name ?
                         data.data.budgetwork_name.name : 'N/a');
                     $('.view-amount').text(data.data.amount ? data.data.amount : 'N/a');

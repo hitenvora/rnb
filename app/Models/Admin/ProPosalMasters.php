@@ -54,4 +54,16 @@ class ProPosalMasters extends Model
         return $this->hasOne('App\Models\Admin\SentBox', 'id', 'sent_box_id');
     }
 
+    public function work_types(){
+        return $this->belongsTo(WorkTypes::class,'work_type_id');
+    }
+
+    public function types_of_works(){
+        return $this->belongsTo(TypesOfWork::class,'type_work_id');
+    }
+
+    public function budgets()
+    {
+        return $this->belongsTo(Budget::class,'budget_id');
+    }
 }

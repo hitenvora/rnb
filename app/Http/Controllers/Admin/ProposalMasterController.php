@@ -105,15 +105,14 @@ class ProposalMasterController extends Controller
 
     public function get_proposal_master(Request $request)
     {
-        $proposal_master = ProPosalMasters::orderBy('id', 'desc')->get();
-
+        $proposal_master = ProPosalMasters::with(['work_types','types_of_works','budgets'])->orderBy('id', 'desc')->get();
         foreach ($proposal_master as $key => $record) {
             $id = $record->id;
             $proposal_master[$key]['district_name_view'] =  $record->district_name->name ?? 'N/A';
             $proposal_master[$key]['taluka_name_view'] =  $record->taluka_name->name ?? 'N/A';
-            $proposal_master[$key]['work_type_view'] =  $record->work_type->name ?? 'N/A';
-            // $proposal_master[$key]['type_work_view'] =  $record->type_work->name;
-            $proposal_master[$key]['budget_name_view'] =  $record->budget_name->name ?? 'N/A';
+            $proposal_master[$key]['work_type_view'] =  $record->work_types->name ?? 'N/A';
+            $proposal_master[$key]['type_work_view'] =  $record->types_of_works->name;
+            $proposal_master[$key]['budget_name_view'] =  $record->budgets->name ?? 'N/A';
             $proposal_master[$key]['budgetwork_name_view'] =  $record->budgetwork_name->name ?? 'N/A';
             $proposal_master[$key]['mla_name_view'] =  $record->mla_name->name ?? 'N/A';
             $proposal_master[$key]['sent_box_name_view'] =  $record->sent_box_name->name ?? 'N/A';
@@ -354,7 +353,7 @@ class ProposalMasterController extends Controller
 
     public function show_proposal_master($id)
     {
-        $proposal_master = ProPosalMasters::with('district_name', 'taluka_name', 'work_type', 'type_work', 'budget_name', 'budgetwork_name', 'mla_name', 'sent_box_name')->where('id', $id)->first();
+        $proposal_master = ProPosalMasters::with('district_name', 'taluka_name', 'work_type', 'type_work', 'budget_name', 'budgetwork_name', 'mla_name', 'sent_box_name','budgets')->where('id', $id)->first();
         if ($proposal_master) {
             return response()->json([
                 'status' => '200',
