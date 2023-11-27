@@ -40,7 +40,7 @@
                                             <div class="col-lg-2" id="contect">
                                                 <label class="form-label">Name of Road</label>
 
-                                                <select class="form-select" name="cr_road_name[]"
+                                                <select class="form-select nameofroad" name="cr_road_name[]"
                                                     onchange="setNameOfRoadData(this)">
                                                     <option value="">Select Road Name</option>
                                                 </select>
@@ -59,13 +59,14 @@
                                                 <label class="form-label">Chainage(From)</label>
 
                                                 <input type="text" class="form-control" id="cr_start_date[]"
-                                                    name="cr_start_date[]" value="" onkeyup="checkRoadRecord(this)">
+                                                    name="cr_start_date[]" value="" onkeyup="checkRoadRecord(this)"
+                                                    onblur="validateFraction(this)">
 
                                             </div>
                                             <div class="col-lg-2">
                                                 <label class="form-label">Chainage(To)</label>
-                                                <input type="text" class="form-control" id="cr_end_date[]"
-                                                    name="cr_end_date[]" value="">
+                                                <input type="text" class="form-control" id="cr_end_date[]" onkeyup="checkRoadRecord(this)"
+                                                    name="cr_end_date[]" value="" onblur="validateFraction(this)">
                                                 </select>
 
                                             </div>
@@ -409,7 +410,7 @@
                     <div class="col-lg-2">
                                         <label class="form-label">Name of Road</label>
 
-                                        <select class="form-select" name="cr_road_name[]"  onchange="setNameOfRoadData(this)">
+                                        <select class="form-select nameofroad" name="cr_road_name[]"  onchange="setNameOfRoadData(this)">
                                             <option value="">Select Road Name</option>
                                         </select>
                                     </div>
@@ -426,16 +427,14 @@
                                     <div class="col-lg-2">
                                         <label class="form-label">Chainage(From)</label>
 
-                                            <input type="text" class="form-control" id="cr_start_date[]" onkeyup="checkRoadRecord(this)"
+                                            <input type="text" class="form-control" id="cr_start_date[]" onkeyup="checkRoadRecord(this)" onblur="validateFraction(this)"
                                             name="cr_start_date[]" value="">
 
                                     </div>
                                     <div class="col-lg-2">
                                         <label class="form-label">Chainage(To)</label>
-                                            <input type="text" class="form-control" id="cr_end_date[]"
-                                            name="cr_end_date[]" value="">
-                                        </select>
-
+                                            <input type="text" class="form-control" id="cr_end_date[]" onkeyup="checkRoadRecord(this)"
+                                            name="cr_end_date[]" value="" onblur="validateFraction(this)">
                                     </div>
 
 
@@ -514,15 +513,55 @@
                     $(row).find('[name="cr_catogry[]"]').val(`${data.roadName.cat}`);
                     $(row).find('[name="cr_start_date[]"]').val(`${data.roadName.chainage_from}`);
                     $(row).find('[name="cr_end_date[]"]').val(`${data.roadName.chainage_to}`);
-                    if(data.is_set == 1){
+                    if (data.is_set == 1) {
                         alert('You have already set this road record in the last six months.');
                     }
                 },
             });
         }
 
-        // function checkRoadRecord(e){
+        function checkRoadRecord(e) {
+            let cr_division_id = $("#cr_division_id").val();
+            let road_id = $(e).closest('.row').find('.nameofroad').val();
+            let chainage_from = $(e).val();
+            var inputValue = $(e).val();
+            var regex = /^\d+\/\d+$/;
+            if (regex.test(inputValue)) {
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('check_chainage_value') }}",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        road_id: road_id,
+                        cr_division_id: cr_division_id,
+                        chainage_from: chainage_from,
+                    },
+                    success: (data) => {
+                        if (data.is_set == 1) {
+                            alert('You have already set this road record in the last six months.');
+                        }
+                    },
+                });
+            }
+        }
 
-        // }
+
+        function validateFraction(e) {
+            var inputValue = $(e).val();
+            $(e).next('.error-message').remove();
+            // Define a regular expression for the format "8/3"
+            var regex = /^\d+\/\d+$/;
+            // Test the input against the regular expression
+            if (!regex.test(inputValue)) {
+                // alert('Input is not in the correct format. Please use the format "0/0".');
+
+                // Create a new <span> element for the error message
+                var errorMessage = $('<span>').addClass('error-message text-danger').text(
+                    'Input is not in the correct format. Please use the format 0/0.');
+
+                // Append the error message to the parent container or next to the input field
+                $(e).parent().append(errorMessage);
+            }
+        }
     </script>
 @endsection

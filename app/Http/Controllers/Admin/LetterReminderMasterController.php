@@ -67,11 +67,15 @@ class LetterReminderMasterController extends Controller
         foreach ($letter_reminder as $key => $record) {
             $id = $record->id;
             if ($record->is_active == 0) {
-                $letter_reminder[$key]['active_button'] = '<span class="badge bg-warning">In Active</span>';
+                $letter_reminder[$key]['active_button'] = '<span class="badge bg-warning">In-active</span>';
             } else {
                 $letter_reminder[$key]['active_button'] = '<span class="badge bg-success">Active</span>';
             }
-            $letter_reminder[$key]['eye_icon'] = '<a href="/uplode_images/Letter-reminder/' . urlencode($record->upload_img_letter) . '" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/829/829117.png" alt="map" style="height: 20px; width: 20px;"></a>';
+            if(isset($record->upload_img_letter)){
+                $letter_reminder[$key]['eye_icon'] = '<a href="/uplode_images/Letter-reminder/' . urlencode($record->upload_img_letter) . '" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/829/829117.png" alt="map" style="height: 20px; width: 20px;"></a>';
+            }else{
+                $letter_reminder[$key]['eye_icon'] = '<p>-</p>';
+            }
             $action = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="editsubdivision(' . $id . ')" title="Edit"><i class="fa fa-pencil"></i></button>';
             $action .= '<button type="button" class="btn btn-danger btn-sm" onclick="daletetabledata(' . $id . ')" title="Delete"><i class="fa fa-trash"></i></button>';
             $letter_reminder[$key]['action'] =  $action;

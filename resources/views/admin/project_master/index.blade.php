@@ -203,7 +203,11 @@
                     data: null,
                     name: 'basic_mp_mla_name_basic_letter_no',
                     render: function(data, type, full, meta) {
-                        return full.basic_mp_mla_name + ' ,' + full.basic_letter_no;
+                        if(full.basic_mp_mla_name != null ||  full.basic_letter_no != null){
+                            return full.basic_mp_mla_name + ' ,' + full.basic_letter_no;
+                        }else{
+                            return '-';
+                        }
                     }
                 },
                 {
@@ -226,7 +230,11 @@
                     data: null,
                     name: 'basic_sent_proposal-basic_sent_proposal_letter_no-basic_sent_proposal_date',
                     render: function(data, type, full, meta) {
-                        return full.basic_sent_proposal + ' ,' + full.basic_sent_proposal_letter_no+ ' ,' + full.basic_sent_proposal_date;
+                        if(full.basic_sent_proposal != null || full.basic_sent_proposal_letter_no != null || full.basic_sent_proposal_date != null){
+                            return full.basic_sent_proposal + ' ,' + full.basic_sent_proposal_letter_no+ ' ,' + full.basic_sent_proposal_date;
+                        }else{
+                            return '-';
+                        }
                     }
                 },
 

@@ -252,6 +252,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/curent-reaparing-insert', [CurrentReapringController::class, 'insert'])->name('curent_reaparing_insert');
     Route::post('/curent-reaparing-detail-of-work-insert', [CurrentReapringController::class, 'detils_of_work'])->name('detils_of_work_insert');
     Route::post('/current-repairing-delete', [CurrentReapringController::class, 'currentReapringDelete'])->name('current_repairing_delete');
+    Route::post('/check-chainage-value', [CurrentReapringController::class, 'checkChainageValue'])->name('check_chainage_value');
+
 
     Route::post('/curent-reaparing-basic-agency', [CurrentReapringController::class, 'cr_agency_name'])->name('cr_agency_name_insert');
 

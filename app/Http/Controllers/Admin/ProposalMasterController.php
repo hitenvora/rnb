@@ -108,14 +108,14 @@ class ProposalMasterController extends Controller
         $proposal_master = ProPosalMasters::with(['work_types','types_of_works','budgets'])->orderBy('id', 'desc')->get();
         foreach ($proposal_master as $key => $record) {
             $id = $record->id;
-            $proposal_master[$key]['district_name_view'] =  $record->district_name->name ?? 'N/A';
-            $proposal_master[$key]['taluka_name_view'] =  $record->taluka_name->name ?? 'N/A';
-            $proposal_master[$key]['work_type_view'] =  $record->work_types->name ?? 'N/A';
-            $proposal_master[$key]['type_work_view'] =  $record->types_of_works->name;
-            $proposal_master[$key]['budget_name_view'] =  $record->budgets->name ?? 'N/A';
-            $proposal_master[$key]['budgetwork_name_view'] =  $record->budgetwork_name->name ?? 'N/A';
-            $proposal_master[$key]['mla_name_view'] =  $record->mla_name->name ?? 'N/A';
-            $proposal_master[$key]['sent_box_name_view'] =  $record->sent_box_name->name ?? 'N/A';
+            $proposal_master[$key]['district_name_view'] =  $record->district_name->name ?? '-';
+            $proposal_master[$key]['taluka_name_view'] =  $record->taluka_name->name ?? '-';
+            $proposal_master[$key]['work_type_view'] =  $record->work_types->name ?? '-';
+            $proposal_master[$key]['type_work_view'] =  $record->types_of_works->name ?? '-';
+            $proposal_master[$key]['budget_name_view'] =  $record->budgets->name ?? '-';
+            $proposal_master[$key]['budgetwork_name_view'] =  $record->budgetwork_name->name ?? '-';
+            $proposal_master[$key]['mla_name_view'] =  $record->mla_name->name ?? '-';
+            $proposal_master[$key]['sent_box_name_view'] =  $record->sent_box_name->name ?? '-';
 
             $proposal_master[$key]['eye_icon'] = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="viewproposal(' . $record->id . ')"  title="View"><i class="fa fa-eye"></i></button>
             <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#proposal_view" aria-label="View" data-bs-original-title="View';

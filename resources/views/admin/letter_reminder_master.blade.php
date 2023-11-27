@@ -359,7 +359,7 @@
                                 <div class="col-lg-6 edit-form">
                                     <label for="inputtitle1" class="form-label">Is Active</label>
                                     <select class="form-select" name="is_active" id="is_active">
-                                        <option value="1">Is active</option>
+                                        <option value="1">Active</option>
                                         <option value="0">Inactive</option>
                                     </select>
                                     <span class="text-danger" id="is_active_error"></span>
@@ -566,6 +566,7 @@
                     // $('#upload_img').val(data.data.upload_img);
                     $('#submit_to').val(data.data.submit_to);
                     $('#expire_date').val(data.data.expire_date);
+                    $('#is_active').val(data.data.is_active);
 
                     // Show edit modal
                     $('#add_letter').modal('show');

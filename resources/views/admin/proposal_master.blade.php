@@ -874,12 +874,11 @@
                                         </tr>
                                         <tr>
                                             <th>Letter Upload :</th>
-                                            <td>
+                                            <td id="letter_upload">
 
                                                 <a href="" target="_blank"
                                                     class="view-upload_img font-primary text-decoration-underline">
                                                     View Image
-
                                                 </a>
                                             </td>
                                         </tr>
@@ -1245,42 +1244,48 @@
 
                     console.log('id', id);
                     $('.view-districts').text(data.data.district_name && data.data.district_name.name ? data
-                        .data.district_name.name : 'N/a');
+                        .data.district_name.name : '-');
                     $('.view-taluka').text(data.data.taluka_name && data.data.taluka_name.name ? data.data
-                        .taluka_name.name : 'N/a');
+                        .taluka_name.name : '-');
                     $('.view-work_type').text(data.data.work_type && data.data.work_type.name ? data.data
-                        .work_type.name : 'N/a');
+                        .work_type.name : '-');
                     $('.view-type_of_work').text(data.data.type_work && data.data.type_work.name ? data.data
-                        .type_work.name : 'N/a');
-                    $('.view-budget').text(data.data.budgets && data.data.budgets.name ? data.data.budgets.name : 'N/a');
+                        .type_work.name : '-');
+                    $('.view-budget').text(data.data.budgets && data.data.budgets.name ? data.data.budgets
+                        .name : '-');
                     $('.view-budget_work').text(data.data.budgetwork_name && data.data.budgetwork_name.name ?
-                        data.data.budgetwork_name.name : 'N/a');
-                    $('.view-amount').text(data.data.amount ? data.data.amount : 'N/a');
+                        data.data.budgetwork_name.name : '-');
+                    $('.view-amount').text(data.data.amount ? data.data.amount : '-');
                     $('.view-mp_mla').text(data.data.mla_name && data.data.mla_name.name ? data.data.mla_name
-                        .name : 'N/a');
-                    $('.view-letter_no').text(data.data.letter_no ? data.data.letter_no : 'N/a');
-                    $('.view-date').text(data.data.letter_date ? data.data.letter_date : 'N/a');
-                    $('.view-suggestion').text(data.data.suggest ? data.data.suggest : 'N/a');
+                        .name : '-');
+                    $('.view-letter_no').text(data.data.letter_no ? data.data.letter_no : '-');
+                    $('.view-date').text(data.data.letter_date ? data.data.letter_date : '-');
+                    $('.view-suggestion').text(data.data.suggest ? data.data.suggest : '-');
                     $('.view-sent_box').text(data.data.sent_box_name && data.data.sent_box_name.name ? data.data
-                        .sent_box_name.name : 'N/a');
-                    $('.view-sent_box_date').text(data.data.sent_box_date ? data.data.sent_box_date : 'N/a');
-                    $('.view-remark').text(data.data.sent_box_remark ? data.data.sent_box_remark : 'N/a');
-                    $('.view-received_proposal').text(data.data.recever_from ? data.data.recever_from : 'N/a');
+                        .sent_box_name.name : '-');
+                    $('.view-sent_box_date').text(data.data.sent_box_date ? data.data.sent_box_date : '-');
+                    $('.view-remark').text(data.data.sent_box_remark ? data.data.sent_box_remark : '-');
+                    $('.view-received_proposal').text(data.data.recever_from ? data.data.recever_from : '-');
                     $('.view-received_letter_no').text(data.data.rec_letter_no ? data.data.rec_letter_no :
-                        'N/a');
+                        '-');
                     $('.view-received_letter_date').text(data.data.rec_letter_date ? data.data.rec_letter_date :
-                        'N/a');
+                        '-');
                     $('.view-recevid_amount').text(data.data.rec_letter_amount ? data.data.rec_letter_amount :
-                        'N/a');
-                    $('.view-sent_proposal').text(data.data.sent_proposal ? data.data.sent_proposal : 'N/a');
+                        '-');
+                    $('.view-sent_proposal').text(data.data.sent_proposal ? data.data.sent_proposal : '-');
                     $('.view-sent_letter_no').text(data.data.sent_proposal_letter_no ? data.data
-                        .sent_proposal_letter_no : 'N/a');
-                    let img = base_url + '/uplode_images/masters/' + data.data.upload_img;
-                    $('.view-upload_img').attr("href", img);
+                        .sent_proposal_letter_no : '-');
+                    if (data.data.upload_img != null) {
+                        let img = base_url + '/uplode_images/masters/' + data.data.upload_img;
+                        $('.view-upload_img').attr("href", img);
+                    } else {
+                        $('.view-upload_img').hide();
+                        $("#letter_upload").html('-');
+                    }
                     $('.view-sent_letter_date').text(data.data.sent_proposal_date ? data.data
-                        .sent_proposal_date : 'N/a');
+                        .sent_proposal_date : '-');
                     $('.view-sent_amount').text(data.data.sent_proposal_amount ? data.data
-                        .sent_proposal_amount : 'N/a');
+                        .sent_proposal_amount : '-');
 
 
                     $('#contactData');

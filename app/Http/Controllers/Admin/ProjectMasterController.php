@@ -26,7 +26,6 @@ class ProjectMasterController extends Controller
 {
     public function index()
     {
-
         $user = auth()->user();
         $role = AdminLogin::with('rolename')->where('id', '=', $user->id)->first();
 
@@ -58,7 +57,7 @@ class ProjectMasterController extends Controller
         // dd($project_master);
         foreach ($project_master as $key => $record) {
             $id = $record->id;
-            $project_master[$key]['district_name_view'] =  $record->district->name ?? 'N/A';
+            $project_master[$key]['district_name_view'] =  $record->district->name ?? '-';
             // $project_master[$key]['taluka_name_view'] =  $record->taluka_name->name;
             // $project_master[$key]['work_type_view'] =  $record->work_type->name;
             // // $project_master[$key]['type_work_view'] =  $record->type_work->name;
@@ -66,9 +65,9 @@ class ProjectMasterController extends Controller
             // $project_master[$key]['budgetwork_name_view'] =  $record->budgetwork_name->name;
             // $project_master[$key]['mla_name_view'] =  $record->mla_name->name;
             // $project_master[$key]['sent_box_name_view'] =  $record->sent_box_name->name;
-            // $project_master[$key]['wms_work_head_view'] =  $record->basic_wms_work_head ?? 'N/A';
-            $project_master[$key]['name_of_schema'] =  $record->name_of_deputere->name ?? 'N/A';
-            $project_master[$key]['project_name'] =  $record->name_of_project->name ?? 'N/A';
+            // $project_master[$key]['wms_work_head_view'] =  $record->basic_wms_work_head ?? '-';
+            $project_master[$key]['name_of_schema'] =  $record->name_of_deputere->name ?? '-';
+            $project_master[$key]['project_name'] =  $record->name_of_project->name ?? '-';
 
             $project_master[$key]['eye_icon'] = '<button type="button" class="btn btn-primary btn-sm me-1" onclick="viewproposal(' . $record->id . ')"  title="View"><i class="fa fa-eye"></i></button>
             <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#proposal_view" aria-label="View" data-bs-original-title="View';

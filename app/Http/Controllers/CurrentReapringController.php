@@ -322,10 +322,10 @@ class CurrentReapringController extends Controller
         $road_id = $request->road_id;
         $current_reparing = CurrentReapring::whereRaw("FIND_IN_SET($road_id, cr_road_name)")->where('created_at', '>=', now()->subMonths(6))->first();
         $is_set = 0;
-        if(isset($current_reparing)){
+        if (isset($current_reparing)) {
             $is_set = 1;
         }
-        $data = compact('roadName','is_set');
+        $data = compact('roadName', 'is_set');
         return response()->json($data);
     }
 
@@ -387,5 +387,36 @@ class CurrentReapringController extends Controller
         ReparingBill::where('current_reapring_id', $currentRepairing->id)->delete();
         $currentRepairing->delete();
         return response()->json(['status' => '200', 'msg' => 'success']);
+    }
+
+    public function checkChainageValue(Request $request)
+    {
+        $roadName = RoadName::where('id', $request->road_id)->first();
+        $road_id = $request->road_id;
+        $current_reparing = CurrentReapring::whereRaw("FIND_IN_SET($road_id, cr_road_name)")->where('created_at', '>=', now()->subMonths(6))->get();
+        // dd($request->all());
+        // dd($current_reparing);
+        $is_set = 0;
+        if (sizeof($current_reparing) > 0) {
+            foreach ($current_reparing as $cr) {
+                $chainage_from = explode('/', $request->chainage_from)[0];
+                $start = $cr->cr_start_date;
+                $end = $cr->cr_end_date;
+                if (isset($start) && isset($end)) {
+                    $arr_start = explode(",", $start);
+                    $arr_end = explode(",", $end);
+                    foreach ($arr_start as $key => $chainage) {
+                        $min = $chainage;
+                        $max = $arr_end[$key];
+                        if ($chainage_from >= $min && $chainage_from <= $max) {
+                            $is_set = 1;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        $data = compact('roadName', 'is_set');
+        return response()->json($data);
     }
 }

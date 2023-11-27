@@ -19,7 +19,6 @@ class DivisionMasterController extends Controller
 
     public function insert(Request $request)
     {
-
         $rules = [
             'name' => 'required',
         ];

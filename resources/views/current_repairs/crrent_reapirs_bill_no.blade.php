@@ -65,7 +65,7 @@
                                                 </div>
                                                 <div class="col-lg-1">
                                                     <span class="text-end" colspan="2">
-                                                        <a class="btn btn-light-warning px-3  delete-btn"
+                                                        <a class="btn btn-light-warning px-3  delete-btn text-danger" 
                                                             data-bill_id="{{ $bill->id }}">
                                                             Remove
                                                         </a>
@@ -191,7 +191,7 @@
                                             </div>
                                             <div class="col-lg-1">
                                                 <span class="text-end" colspan="2">
-                                                    <a class="btn btn-light-warning px-3 remove-btn">
+                                                    <a class="btn btn-light-warning px-3 remove-btn text-danger">
                                                         Remove
                                                     </a>
                                                 </span>
