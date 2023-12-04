@@ -114,7 +114,7 @@
                                             value="{{ $project_master->nit_sent_circle_date }}">
                                     </div>
                                     <div class="col-lg-3">
-                                        <label for="inputtitle1" class="form-label">Circle To Goverment Submission Date
+                                        <label for="inputtitle1" class="form-label">Circle To Government Submission Date
                                         </label>
                                         <input class="form-control" type="date" id="nit_sent_goverment_date"
                                             name="nit_sent_goverment_date" placeholder="Enter Submitted Date"

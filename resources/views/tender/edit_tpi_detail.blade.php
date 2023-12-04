@@ -458,9 +458,9 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
-                                        <label class="form-label">Aggrement No.</label>
+                                        <label class="form-label">Agreement No.</label>
                                         <input type="text" class="form-control" id="tpi_aggr_no" name="tpi_aggr_no"
-                                            placeholder="Enter Aggrement Number"
+                                            placeholder="Enter Agreement Number"
                                             value="{{ $project_master->tpi_aggr_no }}">
                                     </div>
                                     <div class="col-lg-3">

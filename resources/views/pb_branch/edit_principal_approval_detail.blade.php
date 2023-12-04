@@ -3,7 +3,7 @@
 @endsection
 
 @section('content')
-@include('navbar.pb_branch.edit_pb_branch_navbar')
+    @include('navbar.pb_branch.edit_pb_branch_navbar')
 
     <body>
         <div class="mg-b-23">
@@ -15,8 +15,7 @@
                                 <h5 class="mb-0 font-primary text-center">Principal Approval Detail </h5>
                             </div>
                             <div class="card-body">
-                                <form class="row" method="post" enctype="multipart/form-data"
-                                    id="master_id">
+                                <form class="row" method="post" enctype="multipart/form-data" id="master_id">
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <input type="hidden" name="step" value="principal">
@@ -26,7 +25,8 @@
                                     @endforeach --}}
                                     <div class="col-lg-3">
                                         <label class="form-label">Letter No.</label>
-                                        <input type="text" class="form-control" id="pad_letter_no" name="pad_letter_no" value="{{ $project_master->pad_letter_no }}">
+                                        <input type="text" class="form-control" id="pad_letter_no" name="pad_letter_no"
+                                            value="{{ $project_master->pad_letter_no }}">
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Letter Date</label>
@@ -40,7 +40,8 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <label class="form-label">Approved By</label>
-                                        <select class="form-select" id="pad_approved_by" name="pad_approved_by" value="{{ $project_master->pad_approved_by }}"> 
+                                        <select class="form-select" id="pad_approved_by" name="pad_approved_by"
+                                            value="{{ $project_master->pad_approved_by }}">
                                             <option value="Government"@selected($project_master->pad_approved_by == 'Government')>Government</option>
                                             <option value="Circle"@selected($project_master->pad_approved_by == 'Circle')>Circle</option>
                                             <option value="Divison"@selected($project_master->pad_approved_by == 'Divison')>Divison</option>
@@ -51,9 +52,12 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="pad_letter_upload"
                                                 name="pad_letter_upload" value="{{ $project_master->pad_letter_upload }}">
-                                                <a href="{{ asset('uplode_images/principal_approval_detail/' . $project_master->pad_letter_upload) }}" target="_blank">
+                                            @isset($project_master->pad_letter_upload)
+                                                <a href="{{ asset('uplode_images/principal_approval_detail/' . $project_master->pad_letter_upload) }}"
+                                                    target="_blank">
                                                     <br>Open Image in New Tab
                                                 </a>
+                                            @endisset
                                         </div>
                                     </div>
                                     <div class="col-12 text-center">

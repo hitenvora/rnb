@@ -91,7 +91,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/get-project-master', [ProjectMasterController::class, 'get_project_master'])->name('get_project_master');
     Route::get('/edit-basic/{id}', [ProjectMasterController::class, 'master_edit'])->name('edit_project_master');
     Route::post('/project-master-delete', [ProjectMasterController::class, 'delete'])->name('project_master_delete');
-    Route::get('/project-master-export', [ProjectMasterController::class, 'project_export'])->name('project_export');
+    Route::get('/project-master-export-page', [ProjectMasterController::class, 'project_export_page'])->name('project_export_page');
+    Route::post('/project-master-export', [ProjectMasterController::class, 'project_export'])->name('project_export');
     Route::get('/project-sheet', [ProjectMasterController::class, 'projectSheet'])->name('project_sheet');
     // Route::get('/get-scheme-name/{roadScheme}', [ProjectMasterController::class, 'name_scheme'])->name('sheme_name');
     Route::get('/get-basic-name-scheme/{selectedBudgetId}', [ProjectMasterController::class, 'getBasicNameScheme']);

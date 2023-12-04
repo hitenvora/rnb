@@ -10,32 +10,45 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 
 class ExportMasters implements FromCollection, WithHeadings, WithStyles
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
+    protected $customVariable, $customHeadings;
+
+    public function __construct($customVariable, $customHeadings)
+    {
+        $this->customVariable = $customVariable;
+        $this->customHeadings = $customHeadings;
+    }
+
     public function collection()
     {
-        return Master::with('district')->get();
+        // dd($this->customHeadings);
+        // return Master::select($this->customVariable)->with('district')->get();
+        $master =  Master::select($this->customVariable)->with('district')->get();
+        // dd($master);
+        $phpArray = [];
+        foreach($master as $i => $ms){
+            // $obj['id'] = $i + 1;
+            $obj['district_id'] = $ms->district->name;
+            $phpArray[] = $obj;
+        }
+
+        // Convert the PHP array to a Laravel collection
+        $laravelCollection = collect($phpArray);
+
+        
+        return $laravelCollection;
     }
 
     public function headings(): array
     {
-        return [
-            'Serial No',
-            'WMS Work Head.',
-            'Name of Department',
-            'Name of Scheme',
-            'Name of Project',
-            'District',
-            'Name of Road, length and width as per F1-F2 with Chainage',
-            'Category of road (SH/MDR/ODR/VR)(with highway no.)',
-            'Initiated by MLA/MP Name, letter no.',
-            'Treatment details',
-            'Amount (in Lacs.)',
-            'Proposal submitted vide letter no., date, submission office',
-            'Project Start Date',
-            'Project over All Status'
-        ];
+        $headings = [];
+
+        foreach ($this->customVariable as $column) {
+            // Convert column names to user-friendly headings
+            // $headings[] = ucfirst(str_replace('_', ' ', $column));
+            $headings[] =  $this->customHeadings[$column];
+        }
+
+        return $headings;
     }
 
     public function styles($sheet)
@@ -57,22 +70,22 @@ class ExportMasters implements FromCollection, WithHeadings, WithStyles
     public function map($row): array
     {
         $district = District::where('id', $row->district_id)->select('id', 'name')->first();
-        return [
-            $row->id,
-            $row->basic_wms_work_head,
-            $row->basic_name_of_department,
-            $row->basic_name_scheme,
-            $row->basic_name_project,
-            $district->name,
-            $row->basic_name_of_road,
-            $row->basic_category_of_road,
-            $row->initiated_name,
-            $row->ppd_treatment_detail,
-            $row->basic_amount,
-            $row->ppd_proposal_submission_office,
-            $row->ppd_proposal_submission_office,
-            $row->ppd_proposal_submission_office,
 
-        ];
+        // Map all selected columns
+        $data = [];
+        
+        foreach ($this->customVariable as $column) {
+            // if ($column == 'id') {
+            //     $data['Sr.No'] = $incrementingId++;
+            //     // $data['id'] = $incrementingId++;
+            // }
+            // if ($column == 'district_id') {
+            //     $data['Basic - Received Proposal - District'] = $district->name;
+            //     // $data['district_id'] = $district->name;
+            // }
+            $data[] = $row->$column;
+        }
+
+        return $data;
     }
 }

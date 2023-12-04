@@ -140,33 +140,35 @@
                                                                     <option value="Strengthening"
                                                                         @if ($project_master->types_of_work === 'Strengthening') selected @endif>
                                                                         Strengthening</option>
-                                                                    <option value="3.75 to 5.5"
-                                                                        @if ($project_master->types_of_work === '3.75 to 5.5') selected @endif>
-                                                                        3.75 to 5.5</option>
-                                                                    <option value="3.75 to 7"
-                                                                        @if ($project_master->types_of_work === '3.75 to 7') selected @endif>
-                                                                        3.75 to 7</option>
-                                                                    <option value="3.75 to 10"
-                                                                        @if ($project_master->types_of_work === '3.75 to 10') selected @endif>
-                                                                        3.75 to 10</option>
-                                                                    <option value="5.5 to 7"
-                                                                        @if ($project_master->types_of_work === '5.5 to 7') selected @endif>
-                                                                        5.5 to 7</option>
-                                                                    <option value="5.5 to 10"
-                                                                        @if ($project_master->types_of_work === '5.5 to 10') selected @endif>
-                                                                        5.5 to 10</option>
-                                                                    <option value="10 to 4 lan"
-                                                                        @if ($project_master->types_of_work === '10 to 4 lan') selected @endif>10
+                                                                    <option value="Widening 3.75 to 5.5"
+                                                                        @if ($project_master->types_of_work === 'Widening 3.75 to 5.5') selected @endif>
+                                                                        Widening 3.75 to 5.5</option>
+                                                                    <option value="Widening 3.75 to 7"
+                                                                        @if ($project_master->types_of_work === 'Widening 3.75 to 7') selected @endif>
+                                                                        Widening 3.75 to 7</option>
+                                                                    <option value="Widening 3.75 to 10"
+                                                                        @if ($project_master->types_of_work === 'Widening 3.75 to 10') selected @endif>
+                                                                        Widening 3.75 to 10</option>
+                                                                    <option value="Widening 5.5 to 7"
+                                                                        @if ($project_master->types_of_work === 'Widening 5.5 to 7') selected @endif>
+                                                                        Widening 5.5 to 7</option>
+                                                                    <option value="Widening 5.5 to 10"
+                                                                        @if ($project_master->types_of_work === 'Widening 5.5 to 10') selected @endif>
+                                                                        Widening 5.5 to 10</option>
+                                                                    <option value="Widening 10 to 4 lan"
+                                                                        @if ($project_master->types_of_work === 'Widening 10 to 4 lan') selected @endif>
+                                                                        Widening 10
                                                                         to 4 lan</option>
-                                                                    <option value="7 to 10"
-                                                                        @if ($project_master->types_of_work === '7 to 10') selected @endif>7
+                                                                    <option value="Widening 7 to 10"
+                                                                        @if ($project_master->types_of_work === 'Widening 7 to 10') selected @endif>
+                                                                        Widening 7
                                                                         to 10</option>
-                                                                    <option value="10 to 6 lan"
-                                                                        @if ($project_master->types_of_work === '10 to 6 lan') selected @endif>
-                                                                        10 to 6 lan</option>
-                                                                    <option value="4 lan to 6 lan"
-                                                                        @if ($project_master->types_of_work === '4 lan to 6 lan') selected @endif>
-                                                                        4 lan to 6 lan</option>
+                                                                    <option value="Widening 10 to 6 lan"
+                                                                        @if ($project_master->types_of_work === 'Widening 10 to 6 lan') selected @endif>
+                                                                        Widening 10 to 6 lan</option>
+                                                                    <option value="Widening 4 lan to 6 lan"
+                                                                        @if ($project_master->types_of_work === 'Widening 4 lan to 6 lan') selected @endif>
+                                                                        Widening 4 lan to 6 lan</option>
                                                                 @elseif ($project_master->work_type_id == 2)
                                                                     <option value="New Buliding"
                                                                         @if ($project_master->types_of_work === 'New Buliding') selected @endif>
@@ -495,10 +497,12 @@
                                                                 <input type="file" class="form-control w-100"
                                                                     id="basic_upload_img" name="basic_upload_img"
                                                                     value="{{ $project_master->basic_upload_img }}">
-                                                                <a href="{{ asset('images/masters/') }}/{{ $project_master->basic_upload_img }}"
-                                                                    target="_blank">
-                                                                    <br>Open Image in New Tab
-                                                                </a>
+                                                                @isset($project_master->basic_upload_img)
+                                                                    <a href="{{ asset('images/masters/') }}/{{ $project_master->basic_upload_img }}"
+                                                                        target="_blank">
+                                                                        <br>Open Image in New Tab
+                                                                    </a>
+                                                                @endisset
                                                             </div>
 
 
@@ -641,10 +645,12 @@
                                                                 <input type="file" class="form-control w-100"
                                                                     id="basic_sent_box_img" name="basic_sent_box_img"
                                                                     value="{{ $project_master->basic_sent_box_img }}">
-                                                                <a href="{{ asset('images/masters/' . $project_master->basic_sent_box_img) }}"
-                                                                    target="_blank">
-                                                                    <br>Open Image in New Tab
-                                                                </a>
+                                                                @isset($project_master->basic_sent_box_img)
+                                                                    <a href="{{ asset('images/masters/' . $project_master->basic_sent_box_img) }}"
+                                                                        target="_blank">
+                                                                        <br>Open Image in New Tab
+                                                                    </a>
+                                                                @endisset
                                                             </div>
                                                         </div>
                                                     </div>
@@ -688,7 +694,7 @@
                                         <label class="form-label">Proposal Circle</label>
                                         <select class="form-select" id="basic_circle_name" name="basic_circle_name">
                                             <option value="">Select Circle</option>
-                                            <option value="Dabhoi">Dabhoi</option>
+                                            <option value="Dabhoi" @selected($project_master->basic_circle_name == 'Dabhoi')>Dabhoi</option>
 
                                         </select>
                                     </div>

@@ -45,10 +45,12 @@
                                                 <input type="file" class="form-control w-100" id="bes_letter_upload"
                                                     name="bes_letter_upload"
                                                     value="{{ $project_master->bes_letter_upload }}">
-                                                <a href="{{ asset('uplode_images/block_estimate_submitted_detail/' . $project_master->bes_letter_upload) }}"
-                                                    target="_blank">
-                                                    <br>Open Image in New Tab
-                                                </a>
+                                                @isset($project_master->bes_letter_upload)
+                                                    <a href="{{ asset('uplode_images/block_estimate_submitted_detail/' . $project_master->bes_letter_upload) }}"
+                                                        target="_blank">
+                                                        <br>Open Image in New Tab
+                                                    </a>
+                                                @endisset
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -74,10 +76,12 @@
                                                 <input type="file" class="form-control w-100"
                                                     id="bes_office_letter_upload" name="bes_office_letter_upload"
                                                     value="{{ $project_master->bes_office_letter_upload }}">
-                                                <a href="{{ asset('uplode_images/block_estimate_submitted_detail/' . $project_master->bes_office_letter_upload) }}"
-                                                    target="_blank">
-                                                    <br>Open Image in New Tab
-                                                </a>
+                                                @isset($project_master->bes_office_letter_upload)
+                                                    <a href="{{ asset('uplode_images/block_estimate_submitted_detail/' . $project_master->bes_office_letter_upload) }}"
+                                                        target="_blank">
+                                                        <br>Open Image in New Tab
+                                                    </a>
+                                                @endisset
                                             </div>
                                         </div>
                                         <div class="col-xl-3  col-lg-6">
@@ -111,32 +115,36 @@
                                                                         $bes_status = explode(',', $project_master->bes_status);
                                                                         $bes_remark = explode(',', $project_master->bes_remark);
                                                                     @endphp
-                                                                    <tr style="position: relative;">
-                                                                        <td>
-                                                                            <input type="date"
-                                                                                id="bes_follow_up_date[]"
-                                                                                name="bes_follow_up_date[]"
-                                                                                class="form-control"
-                                                                                value="{{ $date }}"
-                                                                                placeholder="Enter Date">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" id="bes_status"
-                                                                                name="bes_status[]" class="form-control"
-                                                                                placeholder="Enter Remark"
-                                                                                value="{{ @$bes_status[$key] }}">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" id="bes_remark"
-                                                                                name="bes_remark[]" class="form-control"
-                                                                                placeholder="Enter Remark"
-                                                                                value="{{ @$bes_remark[$key] }}">
-                                                                            <button type="button"
-                                                                                class="btn-close remove-contact-static"
-                                                                                style="position: absolute;right: 7px;top: -2px;"
-                                                                                aria-label="Close"></button>
-                                                                        </td>
-                                                                    </tr>
+                                                                    @if (!empty($date))
+                                                                        <tr style="position: relative;">
+                                                                            <td>
+                                                                                <input type="date"
+                                                                                    id="bes_follow_up_date[]"
+                                                                                    name="bes_follow_up_date[]"
+                                                                                    class="form-control"
+                                                                                    value="{{ $date }}"
+                                                                                    placeholder="Enter Date">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" id="bes_status"
+                                                                                    name="bes_status[]"
+                                                                                    class="form-control"
+                                                                                    placeholder="Enter Remark"
+                                                                                    value="{{ @$bes_status[$key] }}">
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" id="bes_remark"
+                                                                                    name="bes_remark[]"
+                                                                                    class="form-control"
+                                                                                    placeholder="Enter Remark"
+                                                                                    value="{{ @$bes_remark[$key] }}">
+                                                                                <button type="button"
+                                                                                    class="btn-close remove-contact-static"
+                                                                                    style="position: absolute;right: 7px;top: -2px;"
+                                                                                    aria-label="Close"></button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endif
                                                                 @endforeach
 
 

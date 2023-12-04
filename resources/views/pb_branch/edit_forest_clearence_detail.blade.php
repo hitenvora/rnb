@@ -91,10 +91,12 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="forest_upload_img"
                                                 name="forest_upload_img" value="{{ $project_master->forest_upload_img }}">
-                                            <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_upload_img) }}"
-                                                target="_blank">
-                                                <br>Open Image in New Tab
-                                            </a>
+                                            @isset($project_master->forest_upload_img)
+                                                <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_upload_img) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
+                                            @endisset
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-6">
@@ -133,10 +135,12 @@
                                             <input type="file" class="form-control w-100" id="forest_letter_img"
                                                 name="forest_letter_img"
                                                 value="{{ $project_master->forest_letter_img }}">
-                                            <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_letter_img) }}"
-                                                target="_blank">
-                                                <br>Open Image in New Tab
-                                            </a>
+                                            @isset($project_master->forest_letter_img)
+                                                <a href="{{ asset('uplode_images/forest_clearance_detail/' . $project_master->forest_letter_img) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
+                                            @endisset
                                         </div>
                                     </div>
                                     <div class="col-lg-12">

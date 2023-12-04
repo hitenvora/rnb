@@ -128,7 +128,7 @@
                                                         value="{{ $project_master->do_condition_date }}">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <label class="form-label">Deposit Condition Datails</label>
+                                                    <label class="form-label">Deposit Condition Details</label>
                                                     <input type="date" class="form-control" id="do_condition_datails"
                                                         name="do_condition_datails"
                                                         value="{{ $project_master->do_condition_datails }}">

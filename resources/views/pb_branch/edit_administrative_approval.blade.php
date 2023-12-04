@@ -21,7 +21,7 @@
                                     @csrf
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <input type="hidden" name="step" value="administring_approval">
-                                    
+
                                     {{-- @foreach ($aa_show as $item)
                                         
                                     @endforeach --}}
@@ -45,9 +45,12 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100 validate" id="aa_letter_upload"
                                                 name="aa_letter_upload" value="{{ $project_master->aa_letter_upload }}">
-                                                <a href="{{ asset('uplode_images/administrative_approval/' . $project_master->aa_letter_upload) }}" target="_blank">
+                                            @isset($project_master->aa_letter_upload)
+                                                <a href="{{ asset('uplode_images/administrative_approval/' . $project_master->aa_letter_upload) }}"
+                                                    target="_blank">
                                                     <br>Open Image in New Tab
                                                 </a>
+                                            @endisset
                                         </div>
                                     </div>
                                     <div class="col-lg-4">

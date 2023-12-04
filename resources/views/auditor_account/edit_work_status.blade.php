@@ -21,14 +21,14 @@
                                     <input type="hidden" name="master_id" id="master_id" value="{{ $project_master->id }}">
                                     <input type="hidden" name="step" value="work_status">
                                     <div class="col-lg-6">
-                                        <label for="inputtitle1" class="form-label">Acctual Complate Date Yes/No</label>
+                                        <label for="inputtitle1" class="form-label">Actual Complete Date Yes/No</label>
                                         <select class="form-select" id="work_yes_no" name="work_yes_no">
                                             <option value="Yes"@selected($project_master->work_yes_no == 'Yes')>Yes</option>
                                             <option value="No"@selected($project_master->work_yes_no == 'No')>No</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label class="form-label" id="actual" style="display: none"> Acctual Complate
+                                        <label class="form-label" id="actual" style="display: none"> Actual Complete
                                             Date</label>
                                         <input type="date" class="form-control" id="ws_sd_completion"
                                             name="ws_sd_completion" placeholder="Enter SD(Security Deposit) Completion Date"

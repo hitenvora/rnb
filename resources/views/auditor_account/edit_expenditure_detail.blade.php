@@ -67,7 +67,7 @@
                                                 <th>Expended Date</th>
                                                 <th> Expenditure Amount Without</th>
                                                 <th>Expenditure Amount 9% With</th>
-                                                <th>Work Phisical(%)</th>
+                                                <th>Work Physical(%)</th>
                                                 <th>Work Fincial(%)</th>
                                                 <th>Amount For</th>
                                             </thead>

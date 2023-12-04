@@ -230,10 +230,13 @@
                                                                     value="{{ @$usd_date_input_fr[$key] }}">
                                                             </td>
 
-                                                            <td>
+                                                            <td style="position: relative;">
                                                                 <input type="date" name="usd_date_input_fi[]"
                                                                     class="form-control" id="usd_date_input_fi[]"
                                                                     value="{{ @$usd_date_input_fi[$key] }}">
+                                                                <button type="button" class="btn-close remove-contact"
+                                                                    style="position: absolute;right: 3px;top: 0;"
+                                                                    aria-label="Close"></button>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -551,5 +554,9 @@
         //         });
         //     });
         // });
+
+        $(document).on("click",'.remove-contact',function(){
+            $(this).closest("tr").remove();
+        });
     </script>
 @endsection
