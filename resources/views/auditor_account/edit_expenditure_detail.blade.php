@@ -169,7 +169,7 @@
                                                                 name="ed_fincial[]" value="{{ @$ed_fincial[$key] }}"
                                                                 id="ed_fincial" placeholder="Enter Fincial(%)">
                                                         </td>
-                                                        <td>
+                                                        <td  class="position-relative">
                                                             <select class="form-select" name="ed_amount_for[]"
                                                                 id="ed_amount_for">
                                                                 <option value="Utility"
@@ -194,6 +194,7 @@
                                                                     {{ $ed_amount_for[$key] == 'Tpi' ? 'selected' : '' }}>
                                                                     Tpi</option>
                                                             </select>
+                                                            <button type="button" class="btn-close remove-row position-absolute top-0 end-0" aria-label="Close"></button>
                                                         </td>
                                                 </tr>
                                                 @endforeach
@@ -567,6 +568,10 @@
         $("#percentage").text(per.toFixed(2));
         document.querySelectorAll('#ed_expenditure_amount').forEach(function(input) {
             input.addEventListener('input', updateTotal);
+        });
+
+        $(document).on('click','.remove-row',function(){
+            $(this).closest('tr').remove();
         });
     </script>
 @endsection

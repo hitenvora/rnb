@@ -67,7 +67,7 @@
                                                         @endphp
                                                         <tr>
                                                             <td>
-                                                                <select class="form-select" id="fmg_dropdown[]"
+                                                                <select class="form-select" 
                                                                     name="fmg_dropdown[]">
                                                                     <option value="BG"{{ $bg }}>BG
                                                                     </option>
@@ -75,10 +75,11 @@
                                                                     <option value="FDR"{{ $fdr }}>FDR</option>
                                                                 </select>
                                                             </td>
-                                                            <td>
+                                                            <td class="position-relative">
                                                                 <input type="text" name="fmg_entry_amount[]"
-                                                                    class="form-control" id="fmg_entry_amount[]"
+                                                                    class="form-control" 
                                                                     value="{{ $data }}">
+                                                                    <button type="button" class="btn-close remove-fmg" style="position: absolute;top: -5px;right: -3px;" aria-label="Close"></button>
                                                             </td>
 
                                                         </tr>
@@ -169,6 +170,7 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
+                newContactField.style.position="relative";
                 newContactField.innerHTML = `
                
                 <div class="panel-group utility-shifting-tabel pt-0" id="Agency_Entry">
@@ -182,7 +184,6 @@
                                                         <tr>
                                                             <td>
                                                                 <select class="form-select"
-                                                                    id="fmg_dropdown[]"
                                                                     name="fmg_dropdown[]">
                                                                     <option selected value="BG">BG
                                                                     </option>
@@ -192,9 +193,7 @@
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="fmg_entry_amount[]"
-                                                                    class="form-control"
-                                                                    id="fmg_entry_amount[]"
-                                                                    value="{{ $data }}">
+                                                                    class="form-control">
                                                             </td>
                                                            
                                                         </tr>
@@ -206,7 +205,7 @@
                                     </div>
 
 
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact" style="position: absolute;top: -5px;right: -5px;" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -217,6 +216,10 @@
                 });
                 contactFieldsContainer.appendChild(newContactField);
             });
+        });
+
+        $(document).on("click",'.remove-fmg',function(){
+            $(this).closest('tr').remove();
         });
     </script>
 @endsection

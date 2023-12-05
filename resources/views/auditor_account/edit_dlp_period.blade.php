@@ -24,67 +24,69 @@
                                 <input type="hidden" name="step" value="dlp">
 
                                 <div id="contect">
-                                    <div class="row">
-                                        <div>
-                                            @foreach (explode(',', $project_master->dlp_work_completion_date) as $key => $data)
-                                                @php
-                                                    $dlp_timeline = explode(',', $project_master->dlp_timeline);
-                                                    $dlp_completion_date = explode(',', $project_master->dlp_completion_date);
-                                                    $dlp_released_date = explode(',', $project_master->dlp_released_date);
-                                                    $dlp_dropdown = explode(',', $project_master->dlp_dropdown);
-                                                    $dlp_amount = explode(',', $project_master->dlp_amount);
-                                                    $bg = isset($dlp_dropdown[$key]) && $dlp_dropdown[$key] == 'BG' ? 'selected' : '';
-                                                    $sd = isset($dlp_dropdown[$key]) && $dlp_dropdown[$key] == 'SD' ? 'selected' : '';
-                                                    $fdr = isset($dlp_dropdown[$key]) && $dlp_dropdown[$key] == 'FDR' ? 'selected' : '';
-                                                @endphp
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <label class="form-label">Work Completion Date</label>
-                                            <input type="date" class="form-control" id="dlp_work_completion_date"
-                                                name="dlp_work_completion_date[]" value="{{ $data }}">
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <label class="form-label">DLP Timeline In Month</label>
-                                            <input type="text" class="form-control" id="dlp_timeline"
-                                                name="dlp_timeline[]" value="{{ @$dlp_timeline[$key] }}">
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <label class="form-label">DLP Completion Date</label>
-                                            <input type="date" class="form-control" id="dlp_completion_date"
-                                                name="dlp_completion_date[]" value="{{ @$dlp_completion_date[$key] }}">
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <label class="form-label">DLP Released Date</label>
-                                            <input type="date" class="form-control" id="dlp_released_date"
-                                                name="dlp_released_date[]" value="{{ @$dlp_released_date[$key] }}">
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <label class="form-label">DLP</label>
-                                            <select class="form-select" id="dlp_dropdown" name="dlp_dropdown[]"
-                                                value="{{ $project_master->dlp_dropdown }}">
-                                                <option value="BG"{{ $bg }}>BG</option>
-                                                <option value="SD"{{ $sd }}>SD</option>
-                                                <option value="FDR"{{ $fdr }}>FDR</option>
-                                            </select>
-                                        </div>
+                                    @foreach (explode(',', $project_master->dlp_work_completion_date) as $key => $data)
+                                        @php
+                                            $dlp_timeline = explode(',', $project_master->dlp_timeline);
+                                            $dlp_completion_date = explode(',', $project_master->dlp_completion_date);
+                                            $dlp_released_date = explode(',', $project_master->dlp_released_date);
+                                            $dlp_dropdown = explode(',', $project_master->dlp_dropdown);
+                                            $dlp_amount = explode(',', $project_master->dlp_amount);
+                                            $bg = isset($dlp_dropdown[$key]) && $dlp_dropdown[$key] == 'BG' ? 'selected' : '';
+                                            $sd = isset($dlp_dropdown[$key]) && $dlp_dropdown[$key] == 'SD' ? 'selected' : '';
+                                            $fdr = isset($dlp_dropdown[$key]) && $dlp_dropdown[$key] == 'FDR' ? 'selected' : '';
+                                        @endphp
+                                        <div class="row">
+                                            <div class="col-lg-2">
+                                                <label class="form-label">Work Completion Date</label>
+                                                <input type="date" class="form-control" id="dlp_work_completion_date"
+                                                    name="dlp_work_completion_date[]" value="{{ $data }}">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <label class="form-label">DLP Timeline In Month</label>
+                                                <input type="text" class="form-control" id="dlp_timeline"
+                                                    name="dlp_timeline[]" value="{{ @$dlp_timeline[$key] }}">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <label class="form-label">DLP Completion Date</label>
+                                                <input type="date" class="form-control" id="dlp_completion_date"
+                                                    name="dlp_completion_date[]" value="{{ @$dlp_completion_date[$key] }}">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <label class="form-label">DLP Released Date</label>
+                                                <input type="date" class="form-control" id="dlp_released_date"
+                                                    name="dlp_released_date[]" value="{{ @$dlp_released_date[$key] }}">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <label class="form-label">DLP</label>
+                                                <select class="form-select" id="dlp_dropdown" name="dlp_dropdown[]"
+                                                    value="{{ $project_master->dlp_dropdown }}">
+                                                    <option value="BG"{{ $bg }}>BG</option>
+                                                    <option value="SD"{{ $sd }}>SD</option>
+                                                    <option value="FDR"{{ $fdr }}>FDR</option>
+                                                </select>
+                                            </div>
 
 
-                                        <div class="col-lg-2">
-                                            <label class="form-label">DLP Amount </label>
-                                            <input type="text" class="form-control" id="dlp_amount" name="dlp_amount[]"
-                                                value="{{ @$dlp_amount[$key] }}">
-                                            @endforeach
-                                            <td class="text-end" colspan="14">
-                                                <a class="btn btn-light-warning px-3" id="add-dlp">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                        viewBox="0 0 20 20" fill="none">
-                                                        <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
-                                                            stroke="#802B81" stroke-width="1.67" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg> Add
-                                                </a>
+                                            <div class="col-lg-2 position-relative">
+                                                <label class="form-label">DLP Amount </label>
+                                                <input type="text" class="form-control" id="dlp_amount"
+                                                    name="dlp_amount[]" value="{{ @$dlp_amount[$key] }}">
+                                                <button type="button" class="btn-close remove-dlp position-absolute end-0"
+                                                    style="top:10px;" aria-label="Close"></button>
+                                            </div>
                                         </div>
+                                    @endforeach
+                                    <hr>
+                                    <div class="text-end" colspan="14">
+                                        <a class="btn btn-light-warning px-3 border" id="add-dlp">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20" fill="none">
+                                                <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337" stroke="#802B81"
+                                                    stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg> Add
+                                        </a>
                                     </div>
+                                    <hr>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 text-center">
@@ -163,7 +165,8 @@
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
                 newContactField.classList.add("position-relative");
-                newContactField.innerHTML = `
+                newContactField.innerHTML =
+                    `
             
             
                         <div class="row mt-5">
@@ -211,6 +214,10 @@
                 });
                 contactFieldsContainer.appendChild(newContactField);
             });
+        });
+
+        $(document).on("click", '.remove-dlp', function() {
+            $(this).closest('.row').remove();
         });
     </script>
 @endsection

@@ -141,17 +141,18 @@
                                                                 $nit_with_reason = explode(',', $project_master->nit_with_reason);
 
                                                             @endphp
-                                                            <td>
+                                                            <td style="width: 10%;">
                                                                 <input type="date" name="nit_re_invited_date[]"
-                                                                    class="form-control" id="nit_re_invited_date[]"
-                                                                    value="{{ $date }}">
+                                                                    class="form-control" value="{{ $date }}">
                                                             </td>
 
-                                                            <td>
+                                                            <td class="position-relative">
                                                                 <input type="text" name="nit_with_reason[]"
-                                                                    class="form-control" id="nit_with_reason[]"
-                                                                    placeholder="Enter Reason"
+                                                                    class="form-control" placeholder="Enter Reason"
                                                                     value="{{ @$nit_with_reason[$key] }}">
+                                                                <button type="button"
+                                                                    class="btn-close remove-proposal position-absolute top-0 end-0"
+                                                                    aria-label="Close"></button>
                                                             </td>
                                                     </tr>
                                                     @endforeach
@@ -229,10 +230,12 @@
                                             <input type="file" class="form-control w-100" id="nit_upload_letter"
                                                 name="nit_upload_letter"
                                                 value="{{ $project_master->nit_upload_letter }}">
-                                            <a href="{{ asset('uplode_images/nit/' . $project_master->nit_upload_letter) }}"
-                                                target="_blank">
-                                                <br>Open Image in New Tab
-                                            </a>
+                                            @isset($project_master->nit_upload_letter)
+                                                <a href="{{ asset('uplode_images/nit/' . $project_master->nit_upload_letter) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
+                                            @endisset
                                         </div>
                                     </div>
 
@@ -279,7 +282,7 @@
                                                                     value="{{ @$nit_latter_no_2[$key] }}">
                                                             </td>
 
-                                                            <td>
+                                                            <td class="position-relative">
                                                                 <select class="form-select" id="nit_tender_above[]"
                                                                     name="nit_tender_above[]" style="width: 100%">
                                                                     <option value="">Select Option</option>
@@ -288,6 +291,9 @@
                                                                     <option value="Below" {{ $selectedBelow }}>Below
                                                                     </option>
                                                                 </select>
+                                                                <button type="button"
+                                                                    class="btn-close remove-agency position-absolute top-0 end-0"
+                                                                    aria-label="Close"></button>
                                                             </td>
                                                     </tr>
                                                     @endforeach
@@ -368,17 +374,23 @@
                                                                     value="{{ @$latter_date_extension[$key] }}">
                                                             </td>
 
-                                                            <td>
+                                                            <td class="position-relative">
                                                                 <div class="input-group">
                                                                     <input type="file" class="form-control w-100"
                                                                         id="latter_image_extension[]"
-                                                                        name="latter_image_extension[]"
-                                                                        value="{{ @$latter_image_extension[$key] }}">
-                                                                    <a href="{{ asset('uplode_images/nit/' . $project_master->latter_image_extension) }}"
-                                                                        target="_blank">
-                                                                        <br>Open Image in New Tab
-                                                                    </a>
+                                                                        name="latter_image_extension[]">
+                                                                    @if ($latter_image_extension[0] != '')
+                                                                        @isset($latter_image_extension[$key])
+                                                                            <a href="{{ asset('uplode_images/nit/' . $latter_image_extension[$key]) }}"
+                                                                                target="_blank">
+                                                                                <br>Open Image in New Tab
+                                                                            </a>
+                                                                        @endisset
+                                                                    @endif
                                                                 </div>
+                                                                <button type="button"
+                                                                    class="btn-close remove-extension position-absolute top-0 end-0"
+                                                                    aria-label="Close"></button>
                                                             </td>
                                                     </tr>
                                                     @endforeach
@@ -402,32 +414,32 @@
                                         </div>
                                     </div>
                                     <!-- <div class="col-lg-12 mt-2">
-                                                                                                                        <div class="contact_list">
-                                                                                                                          <h6>DTP Approval</h6>
-                                                                                                                            <div class="row p-0">
-                                                                                                                                <div class="col-lg-3">
-                                                                                                                                    <label class="form-label">Authority</label>
-                                                                                                                                    <select class="form-select" name="Authority" id="Authority">
-                                                                                                                                        <option value="exc">Executive Engineer</option>
-                                                                                                                                        <option value="SE">Superintendent Engineer</option>
-                                                                                                                                        <option value="CE">Chief Engineer</option>
-                                                                                                                                      </select>
-                                                                                                                                </div>
-                                                                                                                                <div class="col-lg-3">
-                                                                                                                                    <label class="form-label">Date</label>
-                                                                                                                                    <input type="date" class="form-control" id="dtp_date" name="dtp_date" value="2023-09-13">
-                                                                                                                                </div>
-                                                                                                                                <div class="col-lg-3">
-                                                                                                                                    <label for="inputtitle1" class="form-label">Letter No.</label>
-                                                                                                                                    <input class="form-control" type="text" id="Letter_No" name="Letter_No" placeholder="Enter Letter No.">
-                                                                                                                                </div>
-                                                                                                                                <div class="col-lg-3">
-                                                                                                                                    <label for="inputtitle1" class="form-label">Amount</label>
-                                                                                                                                    <input class="form-control" type="text" id="Amount" name="Amount" placeholder="Enter Amount">
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div> -->
+                                                                                                                                                <div class="contact_list">
+                                                                                                                                                  <h6>DTP Approval</h6>
+                                                                                                                                                    <div class="row p-0">
+                                                                                                                                                        <div class="col-lg-3">
+                                                                                                                                                            <label class="form-label">Authority</label>
+                                                                                                                                                            <select class="form-select" name="Authority" id="Authority">
+                                                                                                                                                                <option value="exc">Executive Engineer</option>
+                                                                                                                                                                <option value="SE">Superintendent Engineer</option>
+                                                                                                                                                                <option value="CE">Chief Engineer</option>
+                                                                                                                                                              </select>
+                                                                                                                                                        </div>
+                                                                                                                                                        <div class="col-lg-3">
+                                                                                                                                                            <label class="form-label">Date</label>
+                                                                                                                                                            <input type="date" class="form-control" id="dtp_date" name="dtp_date" value="2023-09-13">
+                                                                                                                                                        </div>
+                                                                                                                                                        <div class="col-lg-3">
+                                                                                                                                                            <label for="inputtitle1" class="form-label">Letter No.</label>
+                                                                                                                                                            <input class="form-control" type="text" id="Letter_No" name="Letter_No" placeholder="Enter Letter No.">
+                                                                                                                                                        </div>
+                                                                                                                                                        <div class="col-lg-3">
+                                                                                                                                                            <label for="inputtitle1" class="form-label">Amount</label>
+                                                                                                                                                            <input class="form-control" type="text" id="Amount" name="Amount" placeholder="Enter Amount">
+                                                                                                                                                        </div>
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                            </div> -->
 
                                     <div class="col-12 text-center">
                                         <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
@@ -457,8 +469,7 @@
 
                             <div class="col-lg-12">
                                 <label class="form-label">Name Of Tender</label>
-                                <input type="text" class="form-control" id="name" name="name"
-                                    >
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
 
                             <div class="col-12 text-center">
@@ -582,26 +593,20 @@
                                                 class="table no-margin class_tr_put utility-shifting-tabel-data proposal-sent-tabel-data">
                                                 <tbody>
                                                     <tr>
-                                                        <td>
+                                                        <td style="width:10%;">
                                                             <input type="date" name="nit_re_invited_date[]"
-                                                               id="nit_re_invited_date[]"
-                                                               class="form-control" 
-                                                                >
+                                                               class="form-control">
                                                         </td>
 
-                                                        <td>
+                                                        <td class="position-relative">
                                                             <input type="text" name="nit_with_reason[]"
-                                                                class="form-control" id="nit_with_reason[]"
+                                                                class="form-control" 
                                                                 placeholder="Enter Reason">
+                                                                <button type="button" class="btn-close remove-contact position-absolute top-0 end-0" aria-label="Close"></button>
                                                         </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                     
                                                     </tr>
                                                 </tbody>
-                                            </table>
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                                            </table>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -627,7 +632,9 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
+                newContactField.style.position = 'relative';
+                newContactField.innerHTML =
+                    `
                 <div class="panel-group utility-shifting-tabel pt-0" id="engncy_entry" >
                                         <div class="table-responsive" id="display_data">
                                             <h5 class="proposal-sent-heading">Agency Entry</h5>
@@ -652,7 +659,7 @@
                                                         </td>
 
                                                         <td>
-                                                            <select class="form-select" id="nit_tender_above[]"
+                                                            <select class="form-select w-100" id="nit_tender_above[]"
                                                                 name="nit_tender_above[]">
                                                                 <option selected value="Above">Above</option>
                                                                 <option value="Below">Below</option>
@@ -665,7 +672,7 @@
                                             </table>
                                         </div>
                                     </div>
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact position-absolute top-0 end-0" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -693,7 +700,9 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
+                newContactField.style.position = 'relative';
+                newContactField.innerHTML =
+                    `
                
                 <div class="panel-group utility-shifting-tabel pt-0" id="add_extension">
                                         <div class="table-responsive" id="display_data">
@@ -738,7 +747,7 @@
                                             </table>
                                         </div>
                                     </div>
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact position-absolute top-0 end-0"  aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -749,6 +758,18 @@
                 });
                 contactFieldsContainer.appendChild(newContactField);
             });
+        });
+
+        $(document).on('click', '.remove-proposal', function() {
+            $(this).closest('tr').remove();
+        });
+
+        $(document).on('click', '.remove-agency', function() {
+            $(this).closest('tr').remove();
+        });
+
+        $(document).on('click', '.remove-extension', function() {
+            $(this).closest('tr').remove();
         });
     </script>
 @endsection

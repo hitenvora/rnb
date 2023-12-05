@@ -144,7 +144,7 @@
                                                                 <input type="text" name="usd_details[]"
                                                                     class="form-control class_test" id="usd_details[]"
                                                                     value="{{ @$usd_details[$key] }}"
-                                                                    placeholder="Enter datils">
+                                                                    placeholder="Enter details">
                                                             </td>
                                                             <td>
                                                                 <input type="text" name="estimated_usd_latter_no[]"
@@ -279,7 +279,6 @@
     <script>
         var token = "{{ csrf_token() }}";
 
-
         $(document).on('click', '.add-division', function() {
             $('.modal-title').text('Add Proposal Master');
             $('#master_id').val('');
@@ -329,17 +328,11 @@
             });
         });
 
-
-
-
-
         //other added
         document.addEventListener('DOMContentLoaded', function() {
             // Get references to the checkboxes and the "usd_work_head" input field
             const checkboxes = document.querySelectorAll('input[name="used_type[]"]');
             const usdWorkHeadInput = document.getElementById('usd_work_head');
-
-
             // Function to toggle the visibility of the "usd_work_head" input field
             function toggleUsdWorkHead() {
                 if (checkboxes[5].checked) { // Assuming "Others" is the sixth checkbox (index 5)
@@ -389,6 +382,7 @@
                         // For example, reset the last added row's input field
                         const lastAddedRow = contactFieldsContainer.lastElementChild;
                         if (lastAddedRow) {
+                            console.log(contactFieldsContainer,'lastAddedRow');
                             const inputField = lastAddedRow.querySelector(
                                 '[name="usd_utility_item[]"]');
                             inputField.value = '';
@@ -415,7 +409,7 @@
 <td>
 <input type="text" name="usd_details[]"
     class="form-control class_test" id="usd_details[]"
-   placeholder="Enter datils">
+   placeholder="Enter details">
 </td>
 <td>
 <input type="text" name="estimated_usd_latter_no[]"
@@ -509,7 +503,7 @@
                         newContactField); // Remove the field when "Remove" is clicked
                     contactCount--; // Decrement contact count
                 });
-
+                console.log(contactFieldsContainer.querySelectorAll('tr').length,'contactFieldsContainer,contactFieldsContainer');
                 contactFieldsContainer.appendChild(newContactField);
             });
         });
@@ -555,7 +549,7 @@
         //     });
         // });
 
-        $(document).on("click",'.remove-contact',function(){
+        $(document).on("click", '.remove-contact', function() {
             $(this).closest("tr").remove();
         });
     </script>

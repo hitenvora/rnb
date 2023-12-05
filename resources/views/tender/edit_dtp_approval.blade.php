@@ -98,16 +98,16 @@
                                                                         placeholder="Enter Status"
                                                                         value="{{  @$dtp_f_status[$key] }}">
                                                                 </td>
-                                                                <td>
+                                                                <td class="position-relative">
                                                                     <input type="text" id="dtp_f_remark"
                                                                         name="dtp_f_remark[]" class="form-control"
                                                                         placeholder="Enter Remark"
                                                                         value="{{ @$dtp_f_remark[$key] }}">
-
+                                                                        <button type="button" class="btn-close remove-dtp" style="position: absolute;top: -5px;right: 0px;" aria-label="Close"></button>
                                                                 </td>
                                                             </tr>
                                                            
-@endforeach
+                                                                @endforeach
                                                             <tr>
                                                                 <td class="text-end border" colspan="6">
                                                                     <a class="btn btn-light-warning px-3" id="add-contact">
@@ -199,6 +199,7 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
+                newContactField.style.position = 'relative';
                 newContactField.innerHTML = `
                     <div class="col-xl-12">
                                             <div class="row">
@@ -230,7 +231,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact" style="position: absolute;top: -5px;right: 0px;" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -243,6 +244,9 @@
             });
         });
 
+        $(document).on('click','.remove-dtp',function(){
+            $(this).closest('tr').remove();
+        });
 
     </script>
 @endsection

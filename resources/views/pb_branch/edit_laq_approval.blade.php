@@ -48,10 +48,12 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="laq_letter_uplode"
                                                 name="laq_letter_uplode" value="{{ $project_master->laq_letter_uplode }}">
-                                            <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_letter_uplode) }}"
-                                                target="_blank">
-                                                <br>Open Image in New Tab
-                                            </a>
+                                            @isset($project_master->laq_letter_uplode)
+                                                <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_letter_uplode) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
+                                            @endisset
                                         </div>
 
                                     </div>
@@ -138,10 +140,12 @@
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="laq_upload_img"
                                                 name="laq_upload_img" value="{{ $project_master->laq_upload_img }}">
-                                            <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_upload_img) }}"
-                                                target="_blank">
-                                                <br>Open Image in New Tab
-                                            </a>
+                                            @isset($project_master->laq_upload_img)
+                                                <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_upload_img) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
+                                            @endisset
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
@@ -350,10 +354,12 @@
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100" id="laq_23_img"
                                                             name="laq_23_img" value="{{ $project_master->laq_23_img }}">
-                                                        <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_23_img) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                        @isset($project_master->laq_23_img)
+                                                            <a href="{{ asset('uplode_images/laq_approval/' . $project_master->laq_23_img) }}"
+                                                                target="_blank">
+                                                                <br>Open Image in New Tab
+                                                            </a>
+                                                        @endisset
                                                     </div>
                                                 </div>
                                             </div>

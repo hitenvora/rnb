@@ -98,7 +98,6 @@ class MasterController extends Controller
         // ];
 
 
-
         if ($request->master_id != '') {
             $basic_branch = Master::find($request->master_id);
             if (!$basic_branch) {
@@ -138,13 +137,13 @@ class MasterController extends Controller
             $basic_branch->basic_letter_date = $request->input('basic_letter_date');
 
             if (isset($request->basic_upload_img)) {
-                if(isset($basic_branch->basic_upload_img)){
+                if (isset($basic_branch->basic_upload_img)) {
                     $this->deleteFile($basic_branch->basic_upload_img, 'images/masters/');
                 }
                 $basic_branch->basic_upload_img = $this->storeImage($request->basic_upload_img, 'images/masters/');
             }
             if (isset($request->basic_sent_box_img)) {
-                if(isset($basic_branch->basic_sent_box_img)){
+                if (isset($basic_branch->basic_sent_box_img)) {
                     $this->deleteFile($basic_branch->basic_sent_box_img, 'images/masters/');
                 }
                 $basic_branch->basic_sent_box_img = $this->storeImage($request->basic_sent_box_img, 'images/masters/');
@@ -183,7 +182,7 @@ class MasterController extends Controller
             $basic_branch->ppd_proposal_submission_office = $request->input('ppd_proposal_submission_office');
 
             if (isset($request->ppd_letter_upload)) {
-                if(isset($basic_branch->ppd_letter_upload)){
+                if (isset($basic_branch->ppd_letter_upload)) {
                     $this->deleteFile($basic_branch->ppd_letter_upload, 'uplode_images/proposal_submitte_detail/');
                 }
                 $basic_branch->ppd_letter_upload = $this->storeImage($request->ppd_letter_upload, 'uplode_images/proposal_submitte_detail/');
@@ -197,7 +196,7 @@ class MasterController extends Controller
             $basic_branch->pad_approved_by = $request->input('pad_approved_by');
 
             if (isset($request->pad_letter_upload)) {
-                if(isset($basic_branch->pad_letter_upload)){
+                if (isset($basic_branch->pad_letter_upload)) {
                     $this->deleteFile($basic_branch->pad_letter_upload, 'uplode_images/principal_approval_detail/');
                 }
                 $basic_branch->pad_letter_upload = $this->storeImage($request->pad_letter_upload, 'uplode_images/principal_approval_detail/');
@@ -209,7 +208,7 @@ class MasterController extends Controller
             $basic_branch->bes_letter_date = $request->input('bes_letter_date');
             $basic_branch->bes_amount = $request->input('bes_amount');
             if (isset($request->bes_letter_upload)) {
-                if(isset($basic_branch->bes_letter_upload)){
+                if (isset($basic_branch->bes_letter_upload)) {
                     $this->deleteFile($basic_branch->bes_letter_upload, 'uplode_images/block_estimate_submitted_detail/');
                 }
                 $basic_branch->bes_letter_upload = $this->storeImage($request->bes_letter_upload, 'uplode_images/block_estimate_submitted_detail/');
@@ -220,7 +219,7 @@ class MasterController extends Controller
             $basic_branch->bes_submit_office_date = $request->input('bes_submit_office_date');
 
             if (isset($request->bes_office_letter_upload)) {
-                if(isset($basic_branch->bes_office_letter_upload)){
+                if (isset($basic_branch->bes_office_letter_upload)) {
                     $this->deleteFile($basic_branch->bes_office_letter_upload, 'uplode_images/block_estimate_submitted_detail/');
                 }
                 $basic_branch->bes_office_letter_upload = $this->storeImage($request->bes_office_letter_upload, 'uplode_images/block_estimate_submitted_detail/');
@@ -259,7 +258,7 @@ class MasterController extends Controller
             $basic_branch->aa_amount = $request->input('aa_amount');
 
             if (isset($request->aa_letter_upload)) {
-                if(isset($basic_branch->aa_letter_upload)){
+                if (isset($basic_branch->aa_letter_upload)) {
                     $this->deleteFile($basic_branch->aa_letter_upload, 'uplode_images/administrative_approval/');
                 }
                 $basic_branch->aa_letter_upload = $this->storeImage($request->aa_letter_upload, 'uplode_images/administrative_approval/');
@@ -277,7 +276,7 @@ class MasterController extends Controller
             $basic_branch->tsd_letter_date = $request->input('tsd_letter_date');
             $basic_branch->tsd_amount = $request->input('tsd_amount');
             if (isset($request->tsd_letter_upload)) {
-                if(isset($basic_branch->tsd_letter_upload)){
+                if (isset($basic_branch->tsd_letter_upload)) {
                     $this->deleteFile($basic_branch->tsd_letter_upload, 'uplode_images/technical_section_detail/');
                 }
                 $basic_branch->tsd_letter_upload = $this->storeImage($request->tsd_letter_upload, 'uplode_images/technical_section_detail/');
@@ -300,7 +299,7 @@ class MasterController extends Controller
             $basic_branch->forest_letter_date = $request->input('forest_letter_date');
 
             if (isset($request->forest_upload_img)) {
-                if(isset($basic_branch->forest_upload_img)){
+                if (isset($basic_branch->forest_upload_img)) {
                     $this->deleteFile($basic_branch->forest_upload_img, 'uplode_images/forest_clearance_detail/');
                 }
                 $basic_branch->forest_upload_img = $this->storeImage($request->forest_upload_img, 'uplode_images/forest_clearance_detail/');
@@ -313,7 +312,7 @@ class MasterController extends Controller
             $basic_branch->forest_l_no = $request->input('forest_l_no');
 
             if (isset($request->forest_letter_img)) {
-                if(isset($basic_branch->forest_letter_img)){
+                if (isset($basic_branch->forest_letter_img)) {
                     $this->deleteFile($basic_branch->forest_letter_img, 'uplode_images/forest_clearance_detail/');
                 }
                 $basic_branch->forest_letter_img = $this->storeImage($request->forest_letter_img, 'uplode_images/forest_clearance_detail/');
@@ -353,6 +352,8 @@ class MasterController extends Controller
 
 
                 $basic_branch->used_type = implode(",", $used_type);
+            } else {
+                $basic_branch->used_type = null;
             }
 
 
@@ -451,7 +452,7 @@ class MasterController extends Controller
             $basic_branch->laq_letter_no = $request->input('laq_letter_no');
             $basic_branch->laq_letter_date = $request->input('laq_letter_date');
             if (isset($request->laq_letter_uplode)) {
-                if(isset($basic_branch->laq_letter_uplode)){
+                if (isset($basic_branch->laq_letter_uplode)) {
                     $this->deleteFile($basic_branch->laq_letter_uplode, 'uplode_images/laq_approval/');
                 }
                 $basic_branch->laq_letter_uplode = $this->storeImage($request->laq_letter_uplode, 'uplode_images/laq_approval/');
@@ -467,7 +468,7 @@ class MasterController extends Controller
             $basic_branch->laq_jms_office = $request->input('laq_jms_office');
             $basic_branch->laq_approved_jms_date = $request->input('laq_approved_jms_date');
             if (isset($request->laq_upload_img)) {
-                if(isset($basic_branch->laq_upload_img)){
+                if (isset($basic_branch->laq_upload_img)) {
                     $this->deleteFile($basic_branch->laq_upload_img, 'uplode_images/laq_approval/');
                 }
                 $basic_branch->laq_upload_img = $this->storeImage($request->laq_upload_img, 'uplode_images/laq_approval/');
@@ -513,7 +514,7 @@ class MasterController extends Controller
             $basic_branch->laq_23sec_date = $request->input('laq_23sec_date');
             $basic_branch->laq_23letter_no = $request->input('laq_23letter_no');
             if (isset($request->laq_23_img)) {
-                if(isset($basic_branch->laq_23_img)){
+                if (isset($basic_branch->laq_23_img)) {
                     $this->deleteFile($basic_branch->laq_23_img, 'uplode_images/laq_approval/');
                 }
                 $basic_branch->laq_23_img = $this->storeImage($request->laq_23_img, 'uplode_images/laq_approval/');
@@ -530,18 +531,27 @@ class MasterController extends Controller
             $basic_branch->bd_item_no = $request->input('bd_item_no');
             $basic_branch->bd_page_no = $request->input('bd_page_no');
             $basic_branch->bd_continous = $request->input('bd_continous');
+            if ($request->input('bd_continous') == 'continue') {
 
 
-            $budget_previous_year = $request->input('budget_previous_year');
-            if (isset($budget_previous_year) && sizeof($budget_previous_year)) {
+                $budget_previous_year = $request->input('budget_previous_year');
+                if (isset($budget_previous_year) && sizeof($budget_previous_year)) {
 
-                $basic_branch->budget_previous_year = implode(",", $budget_previous_year);
-            }
+                    $basic_branch->budget_previous_year = implode(",", $budget_previous_year);
+                } else {
+                    $basic_branch->budget_previous_year = null;
+                }
 
-            $budget_previous_amount = $request->input('budget_previous_amount');
-            if (isset($budget_previous_amount) && sizeof($budget_previous_amount)) {
+                $budget_previous_amount = $request->input('budget_previous_amount');
+                if (isset($budget_previous_amount) && sizeof($budget_previous_amount)) {
 
-                $basic_branch->budget_previous_amount = implode(",", $budget_previous_amount);
+                    $basic_branch->budget_previous_amount = implode(",", $budget_previous_amount);
+                } else {
+                    $basic_branch->budget_previous_amount = null;
+                }
+            } else {
+                $basic_branch->budget_previous_year = null;
+                $basic_branch->budget_previous_amount = null;
             }
         }
 
@@ -626,7 +636,7 @@ class MasterController extends Controller
             $basic_branch->ed_division_letter_no = $request->input('ed_division_letter_no');
             $basic_branch->ed_division_letter_date = $request->input('ed_division_letter_date');
             if (isset($request->ed_division_letter_image)) {
-                if(isset($basic_branch->ed_division_letter_image)){
+                if (isset($basic_branch->ed_division_letter_image)) {
                     $this->deleteFile($basic_branch->ed_division_letter_image, 'uplode_images/excess_detail_extra_detail/');
                 }
                 $basic_branch->ed_division_letter_image = $this->storeImage($request->ed_division_letter_image, 'uplode_images/excess_detail_extra_detail/');
@@ -634,7 +644,7 @@ class MasterController extends Controller
             $basic_branch->ed_circle_letter_no = $request->input('ed_circle_letter_no');
             $basic_branch->ed_circle_letter_date = $request->input('ed_circle_letter_date');
             if (isset($request->ed_circle_letter_image)) {
-                if(isset($basic_branch->ed_circle_letter_image)){
+                if (isset($basic_branch->ed_circle_letter_image)) {
                     $this->deleteFile($basic_branch->ed_circle_letter_image, 'uplode_images/excess_detail_extra_detail/');
                 }
                 $basic_branch->ed_circle_letter_image = $this->storeImage($request->ed_circle_letter_image, 'uplode_images/excess_detail_extra_detail/');
@@ -643,7 +653,7 @@ class MasterController extends Controller
             $basic_branch->ed_government_letter_no = $request->input('ed_government_letter_no');
             $basic_branch->ed_government_letter_date = $request->input('ed_government_letter_date');
             if (isset($request->ed_government_letter_image)) {
-                if(isset($basic_branch->ed_government_letter_image)){
+                if (isset($basic_branch->ed_government_letter_image)) {
                     $this->deleteFile($basic_branch->ed_government_letter_image, 'uplode_images/excess_detail_extra_detail/');
                 }
                 $basic_branch->ed_government_letter_image = $this->storeImage($request->ed_government_letter_image, 'uplode_images/excess_detail_extra_detail/');
@@ -678,12 +688,13 @@ class MasterController extends Controller
 
             $data = [];
             if ($request->hasfile('tle_proposal_letter_image')) {
-
-                foreach ($request->file('tle_proposal_letter_image') as $image) {
+                foreach ($request->file('tle_proposal_letter_image') as $key => $image) {
                     $name = $image->getClientOriginalName();
                     $image->move('uplode_images/time_limit_extension/', $name);
                     $data[] = $name;
                 }
+                $existingImages = explode(",", $basic_branch->tle_proposal_letter_image);
+                $data = array_merge($existingImages, $data);
                 $basic_branch->tle_proposal_letter_image = implode(",", $data);
             }
 
@@ -707,14 +718,22 @@ class MasterController extends Controller
 
             $data = [];
             if ($request->hasfile('tle_approval_letter_image')) {
-
-                foreach ($request->file('tle_approval_letter_image') as $image) {
+                foreach ($request->file('tle_approval_letter_image') as $key => $image) {
                     $name = $image->getClientOriginalName();
                     $image->move('uplode_images/time_limit_extension/', $name);
+
+                    // Remove unnecessary code to check and append to the existing images
                     $data[] = $name;
                 }
+
+                // Merge the new image names with the existing ones
+                $existingImages = explode(",", $basic_branch->tle_approval_letter_image);
+                $data = array_merge($existingImages, $data);
+
+                // Update the tle_approval_letter_image field
                 $basic_branch->tle_approval_letter_image = implode(",", $data);
             }
+
 
             $tle_status = $request->input('tle_status');
             if (isset($tle_status) && sizeof($tle_status)) {
@@ -848,7 +867,7 @@ class MasterController extends Controller
             $basic_branch->nit_letter_no = $request->input('nit_letter_no');
             $basic_branch->nit_latter_date = $request->input('nit_latter_date');
             if (isset($request->nit_upload_letter)) {
-                if(isset($basic_branch->nit_upload_letter)){
+                if (isset($basic_branch->nit_upload_letter)) {
                     $this->deleteFile($basic_branch->nit_upload_letter, 'uplode_images/nit/');
                 }
                 $basic_branch->nit_upload_letter = $this->storeImage($request->nit_upload_letter, 'uplode_images/nit/');
@@ -904,24 +923,32 @@ class MasterController extends Controller
             if (isset($nit_agency_name) && sizeof($nit_agency_name)) {
 
                 $basic_branch->nit_agency_name = implode(",", $nit_agency_name);
+            }else{
+                $basic_branch->nit_agency_name = null;
             }
 
             $nit_validity_extension_date = $request->input('nit_validity_extension_date');
             if (isset($nit_validity_extension_date) && sizeof($nit_validity_extension_date)) {
 
                 $basic_branch->nit_validity_extension_date = implode(",", $nit_validity_extension_date);
+            }else{
+                $basic_branch->nit_validity_extension_date = null;
             }
 
             $nit_latter_extension_no = $request->input('nit_latter_extension_no');
             if (isset($nit_latter_extension_no) && sizeof($nit_latter_extension_no)) {
 
                 $basic_branch->nit_latter_extension_no = implode(",", $nit_latter_extension_no);
+            }else{
+                $basic_branch->nit_latter_extension_no = null;
             }
 
             $latter_date_extension = $request->input('latter_date_extension');
             if (isset($latter_date_extension) && sizeof($latter_date_extension)) {
 
                 $basic_branch->latter_date_extension = implode(",", $latter_date_extension);
+            }else{
+                $basic_branch->latter_date_extension = null;
             }
 
             // $latter_image_extensions = $request->input('latter_image_extension'); // Use a plural variable name
@@ -940,13 +967,18 @@ class MasterController extends Controller
 
             $data = [];
             if ($request->hasfile('latter_image_extension')) {
-
-                foreach ($request->file('latter_image_extension') as $image) {
+                foreach ($request->file('latter_image_extension') as $key => $image) {
                     $name = $image->getClientOriginalName();
                     $image->move('uplode_images/nit/', $name);
                     $data[] = $name;
                 }
+                $existingImages = explode(",", $basic_branch->latter_image_extension);
+                $data = array_merge($existingImages, $data);
                 $basic_branch->latter_image_extension = implode(",", $data);
+            }
+
+            if(!isset($nit_agency_name) && !isset($nit_validity_extension_date) && !isset($nit_latter_extension_no) && !isset($latter_date_extension)){
+                $basic_branch->latter_image_extension = null;
             }
         }
 
@@ -957,7 +989,7 @@ class MasterController extends Controller
             $basic_branch->do_letter_No = $request->input('do_letter_No');
             $basic_branch->do_tender_amt = $request->input('do_tender_amt');
             if (isset($request->do_letter_upload_img)) {
-                if(isset($basic_branch->do_letter_upload_img)){
+                if (isset($basic_branch->do_letter_upload_img)) {
                     $this->deleteFile($basic_branch->do_letter_upload_img, 'uplode_images/deposit_order_bank_guarantee_detail/');
                 }
                 $basic_branch->do_letter_upload_img = $this->storeImage($request->do_letter_upload_img, 'uplode_images/deposit_order_bank_guarantee_detail/');
@@ -970,7 +1002,7 @@ class MasterController extends Controller
             $basic_branch->do_deposit_letter_date = $request->input('do_deposit_letter_date');
             $basic_branch->do_deposit_letter_amount = $request->input('do_deposit_letter_amount');
             if (isset($request->do_deposit_letter_upload)) {
-                if(isset($basic_branch->do_deposit_letter_upload)){
+                if (isset($basic_branch->do_deposit_letter_upload)) {
                     $this->deleteFile($basic_branch->do_deposit_letter_upload, 'uplode_images/deposit_order_bank_guarantee_detail/');
                 }
                 $basic_branch->do_deposit_letter_upload = $this->storeImage($request->do_deposit_letter_upload, 'uplode_images/deposit_order_bank_guarantee_detail/');
@@ -993,7 +1025,7 @@ class MasterController extends Controller
             $basic_branch->do_fdr_date = $request->input('do_fdr_date');
             $basic_branch->do_fdr_amount = $request->input('do_fdr_amount');
             if (isset($request->do_fdr_image)) {
-                if(isset($basic_branch->do_fdr_image)){
+                if (isset($basic_branch->do_fdr_image)) {
                     $this->deleteFile($basic_branch->do_fdr_image, 'uplode_images/deposit_order_bank_guarantee_detail/');
                 }
                 $basic_branch->do_fdr_image = $this->storeImage($request->do_fdr_image, 'uplode_images/deposit_order_bank_guarantee_detail/');
@@ -1035,7 +1067,7 @@ class MasterController extends Controller
             $basic_branch->tpi_tender_letter_no = $request->input('tpi_tender_letter_no');
             $basic_branch->tpi_proposal_latter_date = $request->input('tpi_proposal_latter_date');
             if (isset($request->tpi_proposal_latter_image)) {
-                if(isset($basic_branch->tpi_proposal_latter_image)){
+                if (isset($basic_branch->tpi_proposal_latter_image)) {
                     $this->deleteFile($basic_branch->tpi_proposal_latter_image, '/uplode_images/tpi_detail/');
                 }
                 $basic_branch->tpi_proposal_latter_image = $this->storeImage($request->tpi_proposal_latter_image, '/uplode_images/tpi_detail/');
@@ -1050,12 +1082,16 @@ class MasterController extends Controller
             $tpi_re_invited_date = $request->input('tpi_re_invited_date');
             if (isset($tpi_re_invited_date) && sizeof($tpi_re_invited_date)) {
                 $basic_branch->tpi_re_invited_date = implode(",", $tpi_re_invited_date);
+            } else {
+                $basic_branch->tpi_re_invited_date = null;
             }
 
 
             $tpi_with_reason = $request->input('tpi_with_reason');
             if (isset($tpi_with_reason) && sizeof($tpi_with_reason)) {
                 $basic_branch->tpi_with_reason = implode(",", $tpi_with_reason);
+            } else {
+                $basic_branch->tpi_with_reason = null;
             }
 
 
@@ -1064,12 +1100,16 @@ class MasterController extends Controller
             $tpi_agency_main = $request->input('tpi_agency_main');
             if (isset($tpi_agency_main) && sizeof($tpi_agency_main)) {
                 $basic_branch->tpi_agency_main = implode(",", $tpi_agency_main);
+            } else {
+                $basic_branch->tpi_agency_main = null;
             }
 
 
             $tpi_tender_cost = $request->input('tpi_tender_cost');
             if (isset($tpi_tender_cost) && sizeof($tpi_tender_cost)) {
                 $basic_branch->tpi_tender_cost = implode(",", $tpi_tender_cost);
+            } else {
+                $basic_branch->tpi_tender_cost = null;
             }
 
 
@@ -1078,6 +1118,8 @@ class MasterController extends Controller
             $tpi_latter_no_2 = $request->input('tpi_latter_no_2');
             if (isset($tpi_latter_no_2) && sizeof($tpi_latter_no_2)) {
                 $basic_branch->tpi_latter_no_2 = implode(",", $tpi_latter_no_2);
+            } else {
+                $basic_branch->tpi_latter_no_2 = null;
             }
 
 
@@ -1087,6 +1129,8 @@ class MasterController extends Controller
             $tpi_above_tender_form = $request->input('tpi_above_tender_form');
             if (isset($tpi_above_tender_form) && sizeof($tpi_above_tender_form)) {
                 $basic_branch->tpi_above_tender_form = implode(",", $tpi_above_tender_form);
+            } else {
+                $basic_branch->tpi_above_tender_form = null;
             }
 
 
@@ -1094,6 +1138,8 @@ class MasterController extends Controller
             $tpi_agency_name = $request->input('tpi_agency_name');
             if (isset($tpi_agency_name) && sizeof($tpi_agency_name)) {
                 $basic_branch->tpi_agency_name = implode(",", $tpi_agency_name);
+            }else{
+                $basic_branch->tpi_agency_name = null;
             }
 
 
@@ -1101,11 +1147,15 @@ class MasterController extends Controller
             $tpi_validity_extension_date = $request->input('tpi_validity_extension_date');
             if (isset($tpi_validity_extension_date) && sizeof($tpi_validity_extension_date)) {
                 $basic_branch->tpi_validity_extension_date = implode(",", $tpi_validity_extension_date);
+            }else{
+                $basic_branch->tpi_validity_extension_date = null;
             }
 
             $tpi_validity_extension_letter_date = $request->input('tpi_validity_extension_letter_date');
             if (isset($tpi_validity_extension_letter_date) && sizeof($tpi_validity_extension_letter_date)) {
                 $basic_branch->tpi_validity_extension_letter_date = implode(",", $tpi_validity_extension_letter_date);
+            }else{
+                $basic_branch->tpi_validity_extension_letter_date = null;
             }
 
 
@@ -1113,24 +1163,25 @@ class MasterController extends Controller
             $tpi_validity_extension_letter_no = $request->input('tpi_validity_extension_letter_no');
             if (isset($tpi_validity_extension_letter_no) && sizeof($tpi_validity_extension_letter_no)) {
                 $basic_branch->tpi_validity_extension_letter_no = implode(",", $tpi_validity_extension_letter_no);
+            }else{
+                $basic_branch->tpi_validity_extension_letter_no = null;
             }
-
-
-
-
-
 
             $data = [];
             if ($request->hasfile('tpi_validity_extension_letter_image')) {
-
-                foreach ($request->file('tpi_validity_extension_letter_image') as $image) {
+                foreach ($request->file('tpi_validity_extension_letter_image') as $key => $image) {
                     $name = $image->getClientOriginalName();
-                    $image->move(public_path() . '/uplode_images/tpi_detail/', $name);
+                    $image->move('/uplode_images/tpi_detail/', $name);
                     $data[] = $name;
                 }
+                $existingImages = explode(",", $basic_branch->tpi_validity_extension_letter_image);
+                $data = array_merge($existingImages, $data);
+                $basic_branch->tpi_validity_extension_letter_image = implode(",", $data);
             }
 
-            $basic_branch->tpi_validity_extension_letter_image = implode(",", $data);
+            if(!isset($tpi_agency_name) && !isset($tpi_validity_extension_date) && !isset($tpi_validity_extension_letter_no) && !isset($tpi_validity_extension_letter_date)){
+                $basic_branch->tpi_validity_extension_letter_image = null;
+            }
         }
 
 

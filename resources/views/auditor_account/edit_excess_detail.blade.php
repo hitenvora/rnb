@@ -43,10 +43,12 @@
                                                         <input type="file" class="form-control w-100"
                                                             id="ed_division_letter_image" name="ed_division_letter_image"
                                                             value="{{ $project_master->ed_division_letter_image }}">
-                                                        <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_division_letter_image) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                        @isset($project_master->ed_division_letter_image)
+                                                            <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_division_letter_image) }}"
+                                                                target="_blank">
+                                                                <br>Open Image in New Tab
+                                                            </a>
+                                                        @endisset
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,10 +76,12 @@
                                                         <input type="file" class="form-control w-100"
                                                             id="ed_circle_letter_image" name="ed_circle_letter_image"
                                                             value="{{ $project_master->ed_circle_letter_image }}">
-                                                        <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_circle_letter_image) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                        @isset($project_master->ed_circle_letter_image)
+                                                            <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_circle_letter_image) }}"
+                                                                target="_blank">
+                                                                <br>Open Image in New Tab
+                                                            </a>
+                                                        @endisset
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,10 +110,12 @@
                                                             id="ed_government_letter_image"
                                                             name="ed_government_letter_image"
                                                             value="{{ $project_master->ed_government_letter_image }}">
-                                                        <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_government_letter_image) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                        @isset($project_master->ed_government_letter_image)
+                                                            <a href="{{ asset('uplode_images/excess_detail_extra_detail/' . $project_master->ed_government_letter_image) }}"
+                                                                target="_blank">
+                                                                <br>Open Image in New Tab
+                                                            </a>
+                                                        @endisset
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,7 +144,7 @@
                                         <input class="form-control" type="text" id="ed_approval_extra_amount"
                                             name="ed_approval_extra_amount" placeholder="Enter Extra Amount"
                                             value="{{ $project_master->ed_approval_extra_amount }}">
-                                    </div>  
+                                    </div>
                                     <div class="col-lg-12">
                                         <label class="form-label">Item Detail</label>
                                         <textarea rows="6" class="form-control" id="ed_item_detail" name="ed_item_detail"

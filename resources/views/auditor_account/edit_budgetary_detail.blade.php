@@ -31,8 +31,8 @@
                                     <div class="col-lg-12">
                                         <label class="form-label">Detail Budget Head</label>
                                         <input type="text" class="form-control" id="bd_detail_head" name="bd_detail_head"
-                                            placeholder="Enter Detail Budget Head"
-                                            value="{{ $budget->name ?? ''}}" readonly>
+                                            placeholder="Enter Detail Budget Head" value="{{ $budget->name ?? '' }}"
+                                            readonly>
                                     </div>
                                     <div class="col-lg-6">
                                         <label class="form-label">Budget Item No.</label>
@@ -47,10 +47,11 @@
                                     <div class="col-lg-12">
                                         <label class="form-label">Continous Or New Item</label>
                                         <select class="form-select product_select" id="bd_continous" name="bd_continous">
-                                            <option selected value="New Item">New Item</option>
-                                            <option value="continue">Continous</option>
+                                            <option selected value="New Item" @selected($project_master->bd_continous == 'New Item')>New Item</option>
+                                            <option value="continue" @selected($project_master->bd_continous == 'continue')>Continous</option>
                                         </select>
-                                        <table class="product_sub_menu table-bordered mt-3" id="contect">
+                                        <table class="product_sub_menu table-bordered mt-3 " id="contect"
+                                            @isset($project_master->bd_continous)  style="display:{{ $project_master->bd_continous == 'continue' ? 'block' : '' }}" @endisset>
                                             <thead>
                                                 <th>Budget Previous Year</th>
                                                 <th>Amount</th>
@@ -67,11 +68,12 @@
                                                                 name="budget_previous_year[]" id="budget_previous_year"
                                                                 value="{{ $date }}">
                                                         </td>
-                                                        <td>
+                                                        <td class="position-relative">
                                                             <input type="text" class="form-control"
                                                                 name="budget_previous_amount[]"
                                                                 id="budget_previous_amount[]"
                                                                 value="{{ @$budget_previous_amount[$key] }}">
+                                                                <button type="button" class="btn-close position-absolute top-0 end-0 remove-row" aria-label="Close"></button>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -153,7 +155,13 @@
             });
         });
 
-
+        $("#bd_continous").change(function() {
+            if($(this).val() == "continue"){
+                $("#contect").show();
+            }else{
+                $("#contect").hide();
+            }
+        });
         document.addEventListener('DOMContentLoaded', function() {
             const addContactButton = document.getElementById('add-contact');
             const contactFieldsContainer = document.getElementById('contect');
@@ -185,6 +193,10 @@
                 });
                 contactFieldsContainer.appendChild(newContactField);
             });
+        });
+
+        $(document).on('click','.remove-row',function(){
+            $(this).closest('tr').remove();
         });
     </script>
 @endsection

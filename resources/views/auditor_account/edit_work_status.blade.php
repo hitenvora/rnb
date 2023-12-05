@@ -28,11 +28,11 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label class="form-label" id="actual" style="display: none"> Actual Complete
+                                        <label class="form-label" id="actual" style="display: {{ $project_master->work_yes_no == 'Yes' ? 'block' : 'none' }}"> Actual Complete
                                             Date</label>
                                         <input type="date" class="form-control" id="ws_sd_completion"
                                             name="ws_sd_completion" placeholder="Enter SD(Security Deposit) Completion Date"
-                                            value="{{ $project_master->ws_sd_completion }}" style="display: none">
+                                            value="{{ $project_master->ws_sd_completion }}" style="display: {{ $project_master->work_yes_no == 'Yes' ? 'block' : 'none' }}">
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="inputtitle1" class="form-label">Date OF intiacle Yes/No</label>
@@ -42,10 +42,10 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label class="form-label" id="sd_release" style="display: none">SD Release
+                                        <label class="form-label" id="sd_release" style="display: {{ $project_master->acctual_yes_no == 'Yes' ? 'block' : 'none' }}">SD Release
                                             Date</label>
                                         <input type="date" class="form-control" id="ws_sd_release"  name="ws_sd_release"
-                                            value="{{ $project_master->ws_sd_release }}" style="display: none">
+                                            value="{{ $project_master->ws_sd_release }}" style="display: {{ $project_master->acctual_yes_no == 'Yes' ? 'block' : 'none' }}">
                                     </div>
 
                                     <div class="col-12 text-center">

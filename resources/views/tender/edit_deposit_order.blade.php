@@ -55,12 +55,13 @@
                                         <label class="form-label">Letter Upload</label>
                                         <div class="input-group">
                                             <input type="file" class="form-control w-100" id="do_letter_upload_img"
-                                                name="do_letter_upload_img"
-                                                value="{{ $project_master->do_letter_upload_img }}">
-                                            <a href="{{ asset('uplode_images/deposit_order_bank_guarantee_detail/' . $project_master->do_letter_upload_img) }}"
-                                                target="_blank">
-                                                <br>Open Image in New Tab
-                                            </a>
+                                                name="do_letter_upload_img">
+                                            @isset($project_master->do_letter_upload_img)
+                                                <a href="{{ asset('uplode_images/deposit_order_bank_guarantee_detail/' . $project_master->do_letter_upload_img) }}"
+                                                    target="_blank">
+                                                    <br>Open Image in New Tab
+                                                </a>
+                                            @endisset
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -103,12 +104,13 @@
                                                     <label class="form-label">Letter Upload</label>
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100"
-                                                            id="do_deposit_letter_upload" name="do_deposit_letter_upload"
-                                                            value="{{ $project_master->do_deposit_letter_upload }}">
-                                                        <a href="{{ asset('uplode_images/deposit_order_bank_guarantee_detail/' . $project_master->do_deposit_letter_upload) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                            id="do_deposit_letter_upload" name="do_deposit_letter_upload">
+                                                        @isset($project_master->do_deposit_letter_upload)
+                                                            <a href="{{ asset('uplode_images/deposit_order_bank_guarantee_detail/' . $project_master->do_deposit_letter_upload) }}"
+                                                                target="_blank">
+                                                                <br>Open Image in New Tab
+                                                            </a>
+                                                        @endisset
                                                     </div>
                                                 </div>
                                             </div>
@@ -236,12 +238,13 @@
                                                     <label class="form-label">Letter Upload</label>
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100"
-                                                            id="do_fdr_image" name="do_fdr_image"
-                                                            value="{{ $project_master->do_fdr_image }}">
-                                                        <a href="{{ asset('uplode_images/deposit_order_bank_guarantee_detail/' . $project_master->do_fdr_image) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                            id="do_fdr_image" name="do_fdr_image">
+                                                        @isset($project_master->do_fdr_image)
+                                                            <a href="{{ asset('uplode_images/deposit_order_bank_guarantee_detail/' . $project_master->do_fdr_image) }}"
+                                                                target="_blank">
+                                                                <br>Open Image in New Tab
+                                                            </a>
+                                                        @endisset
                                                     </div>
                                                 </div>
                                             </div>
@@ -332,36 +335,36 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-        const doWorkOrderDate = document.getElementById('do_work_order_date');
-        const doTimeLineMonth = document.getElementById('do_time_line_month');
-        const doCompletionDate = document.getElementById('do_completion_date');
+            const doWorkOrderDate = document.getElementById('do_work_order_date');
+            const doTimeLineMonth = document.getElementById('do_time_line_month');
+            const doCompletionDate = document.getElementById('do_completion_date');
 
-        // Function to update do_completion_date based on workOrderDate and timeLineMonth
-        function updateCompletionDate() {
-            const workOrderDate = new Date(doWorkOrderDate.value);
-            const timeLineMonth = parseInt(doTimeLineMonth.value);
-            
-            if (!isNaN(timeLineMonth)) {
-                const completionDate = new Date(workOrderDate);
-                completionDate.setMonth(workOrderDate.getMonth() + timeLineMonth);
-                const year = completionDate.getFullYear();
-                let month = completionDate.getMonth() + 1;
-                if (month < 10) {
-                    month = '0' + month;
+            // Function to update do_completion_date based on workOrderDate and timeLineMonth
+            function updateCompletionDate() {
+                const workOrderDate = new Date(doWorkOrderDate.value);
+                const timeLineMonth = parseInt(doTimeLineMonth.value);
+
+                if (!isNaN(timeLineMonth)) {
+                    const completionDate = new Date(workOrderDate);
+                    completionDate.setMonth(workOrderDate.getMonth() + timeLineMonth);
+                    const year = completionDate.getFullYear();
+                    let month = completionDate.getMonth() + 1;
+                    if (month < 10) {
+                        month = '0' + month;
+                    }
+                    const day = completionDate.getDate();
+                    doCompletionDate.value = `${day}-${month}-${year}`;
                 }
-                const day = completionDate.getDate();
-                doCompletionDate.value = `${day}-${month}-${year}`;
             }
-        }
 
-        // Call updateCompletionDate function when do_time_line_month changes
-        doTimeLineMonth.addEventListener('input', updateCompletionDate);
+            // Call updateCompletionDate function when do_time_line_month changes
+            doTimeLineMonth.addEventListener('input', updateCompletionDate);
 
-        // Call updateCompletionDate function when do_work_order_date changes
-        doWorkOrderDate.addEventListener('input', updateCompletionDate);
+            // Call updateCompletionDate function when do_work_order_date changes
+            doWorkOrderDate.addEventListener('input', updateCompletionDate);
 
-        // Initial update
-        updateCompletionDate();
-    });
+            // Initial update
+            updateCompletionDate();
+        });
     </script>
 @endsection

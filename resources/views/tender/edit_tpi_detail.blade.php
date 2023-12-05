@@ -162,20 +162,21 @@
                                                                     @endphp
 
                                                                     <tr>
-                                                                        <td>
+                                                                        <td style="width: 10%;">
                                                                             <input type="date"
                                                                                 name="tpi_re_invited_date[]"
                                                                                 class="form-control"
-                                                                                id="tpi_re_invited_date[]"
                                                                                 value="{{ $data }}">
                                                                         </td>
 
-                                                                        <td>
+                                                                        <td class="position-relative">
                                                                             <input type="text" name="tpi_with_reason[]"
                                                                                 class="form-control"
-                                                                                id="tpi_with_reason[]"
                                                                                 placeholder="Enter Reason"
                                                                                 value="{{ @$tpi_with_reason[$key] }}">
+                                                                            <button type="button"
+                                                                                class="btn-close remove-row position-absolute top-0 end-0"
+                                                                                aria-label="Close"></button>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -260,12 +261,13 @@
                                                     <div class="input-group">
                                                         <input type="file" class="form-control w-100"
                                                             id="tpi_proposal_latter_image"
-                                                            name="tpi_proposal_latter_image"
-                                                            value="{{ $project_master->tpi_proposal_latter_image }}">
-                                                        <a href="{{ asset('uplode_images/tpi_detail/' . $project_master->tpi_proposal_latter_image) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                            name="tpi_proposal_latter_image">
+                                                        @isset($project_master->tpi_proposal_latter_image)
+                                                            <a href="{{ asset('uplode_images/tpi_detail/' . $project_master->tpi_proposal_latter_image) }}"
+                                                                target="_blank">
+                                                                <br>Open Image in New Tab
+                                                            </a>
+                                                        @endisset
                                                     </div>
                                                 </div>
 
@@ -314,7 +316,7 @@
                                                                                 value="{{ @$tpi_latter_no_2[$key] }}">
                                                                         </td>
 
-                                                                        <td>
+                                                                        <td class="position-relative">
                                                                             <select class="form-select"
                                                                                 id="tpi_above_tender_form[]"
                                                                                 name="tpi_above_tender_form[]"
@@ -328,6 +330,9 @@
                                                                                     {{ $selectedBelow }}>Below
                                                                                 </option>
                                                                             </select>
+                                                                            <button type="button"
+                                                                                class="btn-close remove-row position-absolute top-0 end-0"
+                                                                                aria-label="Close"></button>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -418,18 +423,24 @@
                                                                                 value="{{ @$tpi_validity_extension_letter_date[$key] }}">
                                                                         </td>
 
-                                                                        <td>
+                                                                        <td class="position-relative">
                                                                             <div class="input-group">
                                                                                 <input type="file"
                                                                                     class="form-control w-100"
                                                                                     id="tpi_validity_extension_letter_image[]"
-                                                                                    name="tpi_validity_extension_letter_image[]"
-                                                                                    value="{{ @$tpi_validity_extension_letter_image[$key] }}">
-                                                                                <a href="{{ asset('uplode_images/tpi_detail/' . $project_master->tpi_validity_extension_letter_image) }}"
-                                                                                    target="_blank">
-                                                                                    <br>Open Image in New Tab
-                                                                                </a>
+                                                                                    name="tpi_validity_extension_letter_image[]">
+                                                                                @if ($tpi_validity_extension_letter_image[0] != "")
+                                                                                    @isset($tpi_validity_extension_letter_image[$key])
+                                                                                        <a href="{{ asset('uplode_images/tpi_detail/' . $tpi_validity_extension_letter_image[$key]) }}"
+                                                                                            target="_blank">
+                                                                                            <br>Open Image in New Tab
+                                                                                        </a>
+                                                                                    @endisset
+                                                                                @endif
                                                                             </div>
+                                                                            <button type="button"
+                                                                                class="btn-close remove-row position-absolute top-0 end-0"
+                                                                                aria-label="Close"></button>
                                                                         </td>
                                                                 </tr>
                                                                 @endforeach
@@ -618,7 +629,9 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
+                newContactField.style.position = 'relative';
+                newContactField.innerHTML =
+                    `
                
                 <div class="table-responsive" id="display_data">
                                                         
@@ -628,13 +641,13 @@
                                                                 <tr>
                                                                     <td>
                                                                         <input type="date" name="tpi_re_invited_date[]"
-                                                                            class="form-control" id="tpi_re_invited_date[]"
+                                                                            class="form-control" 
                                                                             value="14/09/2023">
                                                                     </td>
 
                                                                     <td>
                                                                         <input type="text" name="tpi_with_reason[]"
-                                                                            class="form-control" id="tpi_with_reason[]"
+                                                                            class="form-control" 
                                                                             placeholder="Enter Reason">
                                                                     </td>
                                                                 </tr>
@@ -645,7 +658,7 @@
                                                     </div>
                                                 </div>
 
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact position-absolute top-0 end-0" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -670,7 +683,9 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
+                newContactField.style.position = 'relative';
+                newContactField.innerHTML =
+                    `
                
                 <div class="panel-group utility-shifting-tabel pt-0" id="Agency_Entry">
                                                     <div class="table-responsive" id="display_data">
@@ -699,7 +714,7 @@
                                                                     </td>
 
                                                                     <td>
-                                                                        <select class="form-select"
+                                                                        <select class="form-select w-100"
                                                                             id="tpi_above_tender_form[]"
                                                                             name="tpi_above_tender_form[]">
                                                                             <option selected value="Above">Above</option>
@@ -714,7 +729,7 @@
                                                 </div>
 
 
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact position-absolute top-0 end-0" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -741,7 +756,9 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
+                newContactField.style.position = 'relative';
+                newContactField.innerHTML =
+                    `
                
                 <div class="panel-group utility-shifting-tabel pt-0" id="valid_add">
                                                     <div class="table-responsive" id="display_data">
@@ -801,7 +818,7 @@
                                     </div>
 
 
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact position-absolute top-0 end-0" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -812,6 +829,10 @@
                 });
                 contactFieldsContainer.appendChild(newContactField);
             });
+        });
+
+        $(document).on('click', '.remove-row', function() {
+            $(this).closest('tr').remove();
         });
     </script>
 @endsection

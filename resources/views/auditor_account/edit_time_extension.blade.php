@@ -58,19 +58,24 @@
                                                                     name="tle_proposal_extension_date[]"
                                                                     value="{{ @$tle_proposal_extension_date[$key] }}">
                                                             </div>
-                                                            <div class="col-lg-3">
+                                                            <div class="col-lg-3 position-relative">
                                                                 <label class="form-label">Letter Upload</label>
                                                                 <div class="input-group">
                                                                     <input type="file" class="form-control w-100"
                                                                         id="tle_proposal_letter_image[]"
                                                                         name="tle_proposal_letter_image[]"
                                                                         value="{{ @$tle_proposal_letter_image[$key] }}">
-                                                                    <a href="{{ asset('uplode_images/time_limit_extension/' . $project_master->tle_proposal_letter_image) }}"
-                                                                        target="_blank">
-                                                                        <br>Open Image in New Tab
-                                                                    </a>
+                                                                    @isset($tle_proposal_letter_image[$key])
+                                                                        <a href="{{ asset('uplode_images/time_limit_extension/' . $tle_proposal_letter_image[$key]) }}"
+                                                                            target="_blank">
+                                                                            <br>Open Image in New Tab
+                                                                        </a>
+                                                                    @endisset
 
                                                                 </div>
+                                                                <button type="button" class="btn-close remove-proposal"
+                                                                    style="position: absolute;right: 0px;top: 10px;"
+                                                                    aria-label="Close"></button>
                                                             </div>
 
                                                         </div>
@@ -78,7 +83,7 @@
                                                 </div>
                                             </div>
                                             <td class="text-end" colspan="14">
-                                                <a class="btn btn-light-warning px-3" id="add-Extension">
+                                                <a class="btn btn-light-warning px-3 border" id="add-Extension">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none">
                                                         <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
@@ -127,19 +132,24 @@
                                                                     name="tle_approval_extension_date[]"
                                                                     value="{{ @$tle_approval_extension_date[$key] }}">
                                                             </div>
-                                                            <div class="col-lg-3">
+                                                            <div class="col-lg-3 position-relative">
                                                                 <label class="form-label">Letter Upload</label>
                                                                 <div class="input-group">
                                                                     <input type="file" class="form-control w-100"
                                                                         id="tle_approval_letter_image[]"
                                                                         name="tle_approval_letter_image[]"
                                                                         value="{{ @$tle_approval_letter_image[$key] }}">
-                                                                    <a href="{{ asset('uplode_images/time_limit_extension/' . $project_master->tle_proposal_letter_image) }}"
-                                                                        target="_blank">
-                                                                        <br>Open Image in New Tab
-                                                                    </a>
+                                                                    @isset($tle_approval_letter_image[$key])
+                                                                        <a href="{{ asset('uplode_images/time_limit_extension/' . $tle_approval_letter_image[$key]) }}"
+                                                                            target="_blank">
+                                                                            <br>Open Image in New Tab
+                                                                        </a>
+                                                                    @endisset
 
                                                                 </div>
+                                                                <button type="button" class="btn-close remove-proposal"
+                                                                    style="position: absolute;right: 0px;top: 10px;"
+                                                                    aria-label="Close"></button>
                                                             </div>
 
                                                         </div>
@@ -147,7 +157,7 @@
                                                 </div>
                                             </div>
                                             <td class="text-end" colspan="14">
-                                                <a class="btn btn-light-warning px-3" id="add-approval">
+                                                <a class="btn btn-light-warning px-3 border" id="add-approval">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                         viewBox="0 0 20 20" fill="none">
                                                         <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337"
@@ -159,13 +169,18 @@
                                         </div>
                                     </div>
 
-                                    @foreach (explode(',', $project_master->tle_status) as $key => $data)
-                                        <div class="col-lg-12" id="status">
-                                            <label class="form-label">Status</label>
-                                            <textarea rows="3" class="form-control" id="tle_status[]" name="tle_status[]" placeholder="Enter Status">{{ $data }}</textarea>
-                                    @endforeach
-                                    <td class="text-end" colspan="14">
-                                        <a class="btn btn-light-warning px-3" id="add-status">
+                                    <div id="status">
+                                        @foreach (explode(',', $project_master->tle_status) as $key => $data)
+                                            <div class="row col-lg-12 position-relative">
+                                                <label class="form-label">Status</label>
+                                                <textarea rows="3" class="form-control" id="tle_status[]" name="tle_status[]" placeholder="Enter Status">{{ $data }}</textarea>
+                                                <button type="button" class="btn-close remove-proposal" style="position: absolute;right: 0px;top: 10px;" aria-label="Close"></button>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <td class="text-end">
+                                        <a class="btn btn-light-warning px-3 border" style="width: 90px;margin-left:10px;"
+                                            id="add-status">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 20 20" fill="none">
                                                 <path d="M10.0003 4.16675V15.8334M4.16699 10.0001H15.8337" stroke="#802B81"
@@ -173,17 +188,16 @@
                                             </svg> Add
                                         </a>
                                     </td>
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
+                                            name="sub_client">Save</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="col-12 text-center">
-                                <button type="submit" class="btn btn-primary submit-btn" id="btn_save"
-                                    name="sub_client">Save</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         </div>
     </body>
@@ -243,11 +257,10 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
-                <div class="card-body">
-
-                                            <div class="row p-0">
-                                                <div class="col-lg-12">
+                newContactField.style.position = 'relative';
+                newContactField.innerHTML =
+                    `
+                
                                                   
                                                         <div class="row mt-2">
                                                             <div class="col-lg-3">
@@ -284,12 +297,8 @@
                                                                 </div>
                                                             </div>
 
-                                                        </div>
                                                   
-                                                </div>
-                                            </div>
-                            
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact" style="position: absolute;right: -25px;top: 6px;"  aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -313,7 +322,11 @@
 
                 // Create a new input field (you can customize this as needed)
                 const newContactField = document.createElement('p');
-                newContactField.innerHTML = `
+                newContactField.style.marginTop = '5px';
+
+                newContactField.style.position = 'relative';
+                newContactField.innerHTML =
+                    `
                                             <div class="row p-0">
                                                 <div class="col-lg-8">
                                                     <div class="row">
@@ -344,18 +357,13 @@
                                                         <div class="input-group">
                                                         <input type="file" class="form-control w-100"
                                                             id="tle_approval_letter_image[]"
-                                                            name="tle_approval_letter_image[]"
-                                                            >
-                                                        <a href="{{ asset('uplode_images/time_limit_extension/' . $project_master->tle_approval_letter_image) }}"
-                                                            target="_blank">
-                                                            <br>Open Image in New Tab
-                                                        </a>
+                                                            name="tle_approval_letter_image[]">
                                                     </div>
                                                 </div>
                                             </div>
                                     
  
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact" style="position: absolute;right: -23px;top: 7px;" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -378,10 +386,14 @@
                 contactCount++; // Increment contact count
 
                 // Create a new input field (you can customize this as needed)
-                const newContactField = document.createElement('p');
-                newContactField.innerHTML = `<textarea rows="3" class="form-control" id="tle_status[]" name="tle_status[]" placeholder="Enter Status"></textarea>
+                const newContactField = document.createElement('div');
+                newContactField.classList.add('col-lg-12', 'row');
+                newContactField.style.marginTop = '20px'
+                newContactField.style.position = 'relative';
+                newContactField.innerHTML =
+                    `<textarea rows="3" class="form-control" id="tle_status[]" name="tle_status[]" placeholder="Enter Status"></textarea>
                                 
-                        <button type="button" class="btn-close remove-contact" aria-label="Close"></button>`;
+                        <button type="button" class="btn-close remove-contact" style="position: absolute;right: 0px;top: -20px;" aria-label="Close"></button>`;
 
                 // Add an event listener to the "Remove" button
                 const removeButton = newContactField.querySelector('.remove-contact');
@@ -392,6 +404,10 @@
                 });
                 contactFieldsContainer.appendChild(newContactField);
             });
+        });
+
+        $(document).on("click", '.remove-proposal', function() {
+            $(this).closest('.row').remove();
         });
     </script>
 @endsection
