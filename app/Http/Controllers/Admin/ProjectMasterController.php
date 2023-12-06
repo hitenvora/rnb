@@ -119,7 +119,7 @@ class ProjectMasterController extends Controller
         $mp_mla = MpMlaSuggested::orderBy('id')->get();
         $sent_box = SentBox::orderBy('id')->get();
         $master_show = Master::orderBy('id')->get();
-        $name_of_scheme  = NameOfSchema::orderBy('id')->get();
+        $name_of_scheme  = NameOfSchema::where('id',$project_master->basic_name_scheme)->orderBy('id')->get();
         $name_of_project  = NameOfProject::orderBy('id')->get();
 
         $selectedSchemeId = $project_master->basic_name_scheme;
@@ -269,6 +269,8 @@ class ProjectMasterController extends Controller
             'bd_item_no' => 'Budgetary - Budget Item No.',
             'bd_page_no' => 'Budgetary - Page No.',
             'bd_continous' => 'Budgetary - Continous Or New Item',
+            'budget_previous_year' => 'Budgetary - Budget Previous Year',
+            'budget_previous_amount' => 'Budgetary - Amount',
             'ed_dtp_amount' => 'Expenditure - Dtp Amount',
             'ed_project_cost' => 'Expenditure - AA Amount',
             'ed_estimated_cost' => 'Expenditure - Estimated Amount',
@@ -302,7 +304,9 @@ class ProjectMasterController extends Controller
             'tle_approval_extension_date' => 'Time Limit Extension - Approval Details - Extension Date',
             'tle_status' => 'Time Limit Extension - Status',
             'work_yes_no' => 'Work Status - Actual Complete Date Yes/No',
+            'ws_sd_completion' => 'Work Status - Actual Complete Date',
             'acctual_yes_no' => 'Work Status - Date OF intiacle Yes/No',
+            'ws_sd_release' => 'Work Status - SD Release Date',
             'fmg_completion_date' => 'FMG - Work Completion Date',
             'fmg_time' => 'FMG - FMG Time Limit In Year',
             'fmg_date' => 'FMG - FMG Complete Date',

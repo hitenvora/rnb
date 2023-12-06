@@ -33,12 +33,12 @@
                                     <div class="col-lg-6 branch-scheme-select">
                                         <label class="form-label">Name of Scheme</label>
                                         <div class="d-flex">
-                                            <select class="js-example-basic-multiple" id="basic_name_scheme"
-                                                name="basic_name_scheme[]" multiple="multiple">
+                                            <select class="form-select" id="basic_name_scheme"
+                                                name="basic_name_scheme">
                                                 <option value="">Select Name Of Scheme</option>
                                                 @foreach ($name_of_scheme as $value)
                                                     <option value="{{ $value['id'] }}"
-                                                        {{ in_array($value['id'], explode(',', $project_master->basic_name_scheme)) ? 'selected' : '' }}>
+                                                        @selected($project_master->basic_name_scheme == $value['id'])>
                                                         {{ $value['name'] }}
                                                     </option>
                                                 @endforeach
@@ -460,7 +460,7 @@
                                                                 <option value="">Select Mp MlaList</option>
                                                                 @foreach ($mp_mla as $value)
                                                                     <option
-                                                                        value="{{ $value['id'] }}"data-mla-name="{{ $value['name'] }}"
+                                                                        value="{{ $value['id'] }}" data-mla-name="{{ $value['name'] }}"
                                                                         {{ $project_master->basic_mp_mla == $value['id'] ? 'selected' : '' }}>
                                                                         {{ $value['name'] }}</option>
                                                                 @endforeach
@@ -695,7 +695,6 @@
                                         <select class="form-select" id="basic_circle_name" name="basic_circle_name">
                                             <option value="">Select Circle</option>
                                             <option value="Dabhoi" @selected($project_master->basic_circle_name == 'Dabhoi')>Dabhoi</option>
-
                                         </select>
                                     </div>
 

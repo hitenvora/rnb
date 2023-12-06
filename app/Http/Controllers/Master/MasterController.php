@@ -112,13 +112,13 @@ class MasterController extends Controller
         }
         //basic
         if ($step == 'basic') {
-            // $basic_branch->basic_name_scheme = $request->input('basic_name_scheme');
-            $basic_branch->basic_name_project = $request->input('basic_name_project');
-            $basic_name_scheme = $request->input('basic_name_scheme');
-            if (isset($basic_name_scheme) && sizeof($basic_name_scheme)) {
+            $basic_branch->basic_name_scheme = $request->input('basic_name_scheme');
+            // $basic_branch->basic_name_project = $request->input('basic_name_project');
+            // $basic_name_scheme = $request->input('basic_name_scheme');
+            // if (isset($basic_name_scheme) && sizeof($basic_name_scheme)) {
 
-                $basic_branch->basic_name_scheme = implode(",", $basic_name_scheme);
-            }
+            //     $basic_branch->basic_name_scheme = implode(",", $basic_name_scheme);
+            // }
 
             $basic_branch->basic_wms_work_head = $request->input('basic_wms_work_head');
             $basic_branch->district_id = $request->input('district_id');

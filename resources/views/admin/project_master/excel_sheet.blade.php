@@ -19,10 +19,10 @@
                                     </div>
 
                                     <!-- <div class="col-lg-5 col-md-3 col-sm-4 col-4">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="breadcome-heading d-flex justify-content-end align-items-center">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <a class="btn btn-light-primary" href="master-form.html">Master Forms</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="breadcome-heading d-flex justify-content-end align-items-center">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <a class="btn btn-light-primary" href="master-form.html">Master Forms</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
 
                                     <div class="col-lg-5 col-md-4 col-sm-3 col-2 profile-menu">
                                         <div class="header-right-info">
@@ -43,7 +43,7 @@
                                                         </div>
 
                                                         <!-- <h5 class="admin-name">John Doe</h5>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span>admin</span> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>admin</span> -->
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu">
@@ -511,6 +511,13 @@
                                                 <li><input type="checkbox" name="check_boxes[]" value="bd_continous"
                                                         checked="">
                                                     Budgetary - Continous Or New Item</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="budget_previous_year" checked="">
+                                                    Budgetary - Budget Previous Year</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="budget_previous_amount" checked="">
+                                                    Budgetary - Amount</li>
+
                                                 <li><input type="checkbox" name="check_boxes[]" value="ed_dtp_amount"
                                                         checked="">
                                                     Expenditure - Dtp Amount</li>
@@ -572,54 +579,56 @@
                                                         value="ed_circle_letter_date" checked="">
                                                     Excess Detail & Extra Detail -
                                                     Submission Details From Division to Circle - Letter Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="ed_government_letter_no"
-                                                        checked="">
-                                                    Excess Detail & Extra Detail - Submission Details From Circle to Government - Letter No.</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="ed_government_letter_date"
-                                                        checked="">
-                                                    Excess Detail & Extra Detail - Submission Details From Circle to Government - Letter Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="ed_approval_letter_no"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="ed_government_letter_no" checked="">
+                                                    Excess Detail & Extra Detail - Submission Details From Circle to
+                                                    Government - Letter No.</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="ed_government_letter_date" checked="">
+                                                    Excess Detail & Extra Detail - Submission Details From Circle to
+                                                    Government - Letter Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="ed_approval_letter_no" checked="">
                                                     Excess Detail & Extra Detail - Approval
                                                     Letter No.</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="ed_approval_letter_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="ed_approval_letter_date" checked="">
                                                     Excess Detail & Extra Detail - Letter
                                                     Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="ed_approval_letter_amount"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="ed_approval_letter_amount" checked="">
                                                     Excess Detail & Extra Detail - Access
                                                     Amount</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="ed_approval_extra_amount"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="ed_approval_extra_amount" checked="">
                                                     Excess Detail & Extra Detail - Extra
                                                     Amount</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="ed_item_detail"
                                                         checked="">
                                                     Excess Detail & Extra Detail - Item
                                                     Detail</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tle_proposal_letter_no"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tle_proposal_letter_no" checked="">
                                                     Time Limit Extension - Proposal
                                                     Submission - Letter No.</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tle_proposal_letter_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tle_proposal_letter_date" checked="">
                                                     Time Limit Extension - Proposal
                                                     Submission - Letter Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tle_proposal_extension_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tle_proposal_extension_date" checked="">
                                                     Time Limit Extension - Proposal
                                                     Submission - Extension Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tle_approval_letter_no"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tle_approval_letter_no" checked="">
                                                     Time Limit Extension - Approval Details
                                                     - Letter No.</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tle_approval_letter_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tle_approval_letter_date" checked="">
                                                     Time Limit Extension - Approval Details
                                                     - Letter Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tle_approval_extension_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tle_approval_extension_date" checked="">
                                                     Time Limit Extension - Approval Details
                                                     - Extension Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="tle_status"
@@ -629,12 +638,18 @@
                                                         checked="">
                                                     Work Status - Actual Complete Date
                                                     Yes/No</li>
+                                                <li><input type="checkbox" name="check_boxes[]" value="ws_sd_completion"
+                                                        checked="">Work Status - Actual Complete Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="acctual_yes_no"
                                                         checked="">
                                                     Work Status - Date OF intiacle Yes/No
                                                 </li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="fmg_completion_date"
+                                                <li><input type="checkbox" name="check_boxes[]" value="ws_sd_release"
                                                         checked="">
+                                                    Work Status - SD Release Date
+                                                </li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="fmg_completion_date" checked="">
                                                     FMG - Work Completion Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="fmg_time"
                                                         checked="">
@@ -651,14 +666,14 @@
                                                 <li><input type="checkbox" name="check_boxes[]" value="fmg_entry_amount"
                                                         checked="">
                                                     FMG - Amount</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="dlp_work_completion_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="dlp_work_completion_date" checked="">
                                                     DLP Period - Work Completion Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="dlp_timeline"
                                                         checked="">
                                                     DLP Period - DLP Timeline In Month</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="dlp_completion_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="dlp_completion_date" checked="">
                                                     DLP Period - DLP Completion Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="dlp_released_date"
                                                         checked="">
@@ -675,8 +690,8 @@
                                                 <li><input type="checkbox" name="check_boxes[]" value="dtp_submit_date"
                                                         checked="">
                                                     DTP Approval - Submitted Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="dtp_submit_letter_no"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="dtp_submit_letter_no" checked="">
                                                     DTP Approval - Letter No.</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="dtp_authority"
                                                         checked="">
@@ -711,8 +726,8 @@
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_last_sub_date"
                                                         checked="">
                                                     NIT - Last Submission Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_tender_open_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_tender_open_date" checked="">
                                                     NIT - Tender Open Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_pre_bid_date"
                                                         checked="">
@@ -720,31 +735,31 @@
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_tech_bid_date"
                                                         checked="">
                                                     NIT - Technical Bid Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_price_bid_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_price_bid_date" checked="">
                                                     NIT - Price Bid Opening Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_pq_open"
                                                         checked="">
                                                     NIT - PQ Open</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_preliminary_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_preliminary_date" checked="">
                                                     NIT - Preliminary Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_pq_sub_date"
                                                         checked="">
                                                     NIT - PQ Submission Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_pq_approval_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_pq_approval_date" checked="">
                                                     NIT - PQ Approval Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_sent_circle_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_sent_circle_date" checked="">
                                                     NIT - Sent To Circle Submission Date
                                                 </li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_sent_goverment_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_sent_goverment_date" checked="">
                                                     NIT - Circle To Government Submission
                                                     Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_re_invited_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_re_invited_date" checked="">
                                                     NIT - Proposal Sent - Re-Invited Date
                                                 </li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_with_reason"
@@ -757,8 +772,8 @@
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_tender_form"
                                                         checked="">
                                                     NIT - Tender Form</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_tender_proposal"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_tender_proposal" checked="">
                                                     NIT - Tender Proposal Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_letter_no"
                                                         checked="">
@@ -780,23 +795,23 @@
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_tender_above"
                                                         checked="">
                                                     NIT - Agency Entry - Above/Below</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tender_proposal_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tender_proposal_date" checked="">
                                                     NIT - Tender Proposal Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="nit_agency_name"
                                                         checked="">
                                                     NIT - Validity Extension - Agency
                                                     Name</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_validity_extension_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_validity_extension_date" checked="">
                                                     NIT - Validity Extension - Validity
                                                     Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="nit_latter_extension_no"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="nit_latter_extension_no" checked="">
                                                     NIT - Validity Extension - Letter No.
                                                 </li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="latter_date_extension"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="latter_date_extension" checked="">
                                                     NIT - Validity Extension - Letter
                                                     Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="do_tender_date"
@@ -807,8 +822,8 @@
                                                         checked="">
                                                     Deposit Order/Bank Guarantee - Agency
                                                     Name</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tender_approved_by"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tender_approved_by" checked="">
                                                     Deposit Order/Bank Guarantee - Tender
                                                     Approved By</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="do_letter_No"
@@ -825,28 +840,28 @@
                                                 <li><input type="checkbox" name="check_boxes[]" value="do_above_perc"
                                                         checked="">
                                                     Deposit Order/Bank Guarantee - Above/Below (%)</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_deposit_letter_no"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_deposit_letter_no" checked="">
                                                     Deposit Order/Bank Guarantee -
                                                     Deposit Issued - Letter No.</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_deposit_letter_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_deposit_letter_date" checked="">
                                                     Deposit Order/Bank Guarantee -
                                                     Deposit Issued - Letter Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_deposit_letter_amount"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_deposit_letter_amount" checked="">
                                                     Deposit Order/Bank Guarantee -
                                                     Deposit Issued - Amount</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="do_condition_date"
                                                         checked="">
                                                     Deposit Order/Bank Guarantee -
                                                     Deposit Condition Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_condition_datails"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_condition_datails" checked="">
                                                     Deposit Order/Bank Guarantee -
                                                     Deposit Condition - Details</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_condition_approval"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_condition_approval" checked="">
                                                     Deposit Order/Bank Guarantee -
                                                     Deposit Condition - Approval</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="do_dep_by"
@@ -873,12 +888,12 @@
                                                         checked="">
                                                     Deposit Order/Bank Guarantee - Bank
                                                     Guarantee - Bank Name</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_bg_bank_address"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_bg_bank_address" checked="">
                                                     Deposit Order/Bank Guarantee - Bank
                                                     Guarantee - BG Bank Address</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_bg_bank_verified"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_bg_bank_verified" checked="">
                                                     Deposit Order/Bank Guarantee - Bank
                                                     Guarantee - BG Bank Verified</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="do_fdr_date"
@@ -889,96 +904,122 @@
                                                         checked="">
                                                     Deposit Order/Bank Guarantee - FDR - Amount
                                                 </li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_work_order_date"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_work_order_date" checked="">
                                                     Deposit Order/Bank Guarantee - Work
                                                     Order Issue Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_time_line_month"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_time_line_month" checked="">
                                                     Deposit Order/Bank Guarantee - Time
                                                     Line As Per Work Order In Month</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_time_limit_any"
-                                                        checked="">
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_time_limit_any" checked="">
                                                     Deposit Order/Bank Guarantee - Time
                                                     Limit Extension If Any</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="do_completion_date"
-                                                        checked=""> Deposit Order/Bank Guarantee -
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="do_completion_date" checked=""> Deposit Order/Bank
+                                                    Guarantee -
                                                     Completion Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="tpi_dtp_date"
                                                         checked=""> TPI - DTP Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="tpi_dtp_amt"
                                                         checked=""> TPI - DTP Amount</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tender_date"
-                                                        checked=""> TPI - Tender Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tendure_amount"
-                                                        checked=""> TPI - Tender Amount</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tender_date" checked=""> TPI - Tender Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tendure_amount" checked=""> TPI - Tender Amount
+                                                </li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="tpi_nit_no"
                                                         checked=""> TPI - NIT - NIT No.</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="tpi_start_date"
                                                         checked=""> TPI - NIT - Start Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="tpi_end_date"
                                                         checked=""> TPI - NIT - End Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tender_open_date"
-                                                        checked=""> TPI - NIT - Tender Open Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tech_bid_date"
-                                                        checked=""> TPI - NIT - Technical Bid Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_interview_date"
-                                                        checked=""> TPI - NIT - Interview Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_last_sub_date"
-                                                        checked=""> TPI - NIT - Last Submission Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_pre_bid_date"
-                                                        checked=""> TPI - NIT - Pre-Bid Meeting Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_price_bid_date"
-                                                        checked=""> TPI - NIT - Price Bid Opening Date
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tender_open_date" checked=""> TPI - NIT - Tender
+                                                    Open Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tech_bid_date" checked=""> TPI - NIT - Technical
+                                                    Bid Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_interview_date" checked=""> TPI - NIT - Interview
+                                                    Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_last_sub_date" checked=""> TPI - NIT - Last
+                                                    Submission Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_pre_bid_date" checked=""> TPI - NIT - Pre-Bid
+                                                    Meeting Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_price_bid_date" checked=""> TPI - NIT - Price Bid
+                                                    Opening Date
                                                 </li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="tpi_pq_open"
                                                         checked=""> TPI - NIT - PQ Open</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_preliminary_date"
-                                                        checked=""> TPI - NIT - Preliminary Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_pq_sub_date"
-                                                        checked=""> TPI - NIT - PQ Submission Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_pq_approval_date"
-                                                        checked=""> TPI - NIT - PQ Approval Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_re_invited_date"
-                                                        checked=""> TPI - NIT - Re-Invited Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_with_reason"
-                                                        checked=""> TPI - NIT - With Reason</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_validity_date"
-                                                        checked=""> TPI - NIT - Validity Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tender_form"
-                                                        checked=""> TPI - NIT - Tender Form</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tender_proposal"
-                                                        checked=""> TPI - NIT - Tender Proposal Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tender_letter_no"
-                                                        checked=""> TPI - NIT - Letter No.</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_proposal_latter_date"
-                                                        checked=""> TPI - NIT - Letter Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_agency_main"
-                                                        checked=""> TPI - NIT - Agency</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tender_cost"
-                                                        checked=""> TPI - NIT - Bid Amount</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_latter_no_2"
-                                                        checked=""> TPI - NIT - Above / Below (%)</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_above_tender_form"
-                                                        checked=""> TPI - NIT - Above/Below</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_tender_proposal_date"
-                                                        checked=""> TPI - NIT - Tender Proposal Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_agency_name"
-                                                        checked=""> TPI - NIT - Validity Extension -
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_preliminary_date" checked=""> TPI - NIT -
+                                                    Preliminary Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_pq_sub_date" checked=""> TPI - NIT - PQ
+                                                    Submission Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_pq_approval_date" checked=""> TPI - NIT - PQ
+                                                    Approval Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_re_invited_date" checked=""> TPI - NIT -
+                                                    Re-Invited Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_with_reason" checked=""> TPI - NIT - With Reason
+                                                </li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_validity_date" checked=""> TPI - NIT - Validity
+                                                    Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tender_form" checked=""> TPI - NIT - Tender Form
+                                                </li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tender_proposal" checked=""> TPI - NIT - Tender
+                                                    Proposal Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tender_letter_no" checked=""> TPI - NIT - Letter
+                                                    No.</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_proposal_latter_date" checked=""> TPI - NIT -
+                                                    Letter Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_agency_main" checked=""> TPI - NIT - Agency</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tender_cost" checked=""> TPI - NIT - Bid Amount
+                                                </li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_latter_no_2" checked=""> TPI - NIT - Above /
+                                                    Below (%)</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_above_tender_form" checked=""> TPI - NIT -
+                                                    Above/Below</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_tender_proposal_date" checked=""> TPI - NIT -
+                                                    Tender Proposal Date</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_agency_name" checked=""> TPI - NIT - Validity
+                                                    Extension -
                                                     Agency Name</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_validity_extension_date"
-                                                        checked=""> TPI - NIT - Validity Extension -
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_validity_extension_date" checked=""> TPI - NIT -
+                                                    Validity Extension -
                                                     Validity Date</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_validity_extension_letter_no"
-                                                        checked=""> TPI - NIT - Validity Extension -
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_validity_extension_letter_no" checked=""> TPI -
+                                                    NIT - Validity Extension -
                                                     Letter No.</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_validity_extension_letter_date"
-                                                        checked=""> TPI - NIT - Validity Extension -
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_validity_extension_letter_date" checked=""> TPI -
+                                                    NIT - Validity Extension -
                                                     Letter Date</li>
                                                 <li><input type="checkbox" name="check_boxes[]" value="tpi_aggr_no"
                                                         checked=""> TPI - Agreement No.</li>
-                                                <li><input type="checkbox" name="check_boxes[]" value="tpi_agency_last"
-                                                        checked=""> TPI - Agency</li>
+                                                <li><input type="checkbox" name="check_boxes[]"
+                                                        value="tpi_agency_last" checked=""> TPI - Agency</li>
                                             </ul>
                                         </div>
                                     </div>
